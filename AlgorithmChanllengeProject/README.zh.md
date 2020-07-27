@@ -52,4 +52,4 @@
 
 扫码加入竞赛交流群，如有疑问请咨询管理员。
 
-![QR Code](placeholder)
+![QR Code](https://github.com/AgoraIO-Community/RTC-Innovation-Challenge-2020/blob/readmeupdate/AlgorithmChanllengeProject/QR_code.png)

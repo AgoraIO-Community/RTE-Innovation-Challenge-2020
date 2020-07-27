@@ -55,8 +55,3 @@ September 19 - Online Finals.
 The competition is open to the whole community, domestic and foreign higher education institutions, research institutes, Internet enterprises, etc. can register to participate in the competition, the team limits for 5 people.
 
 Persons involved in the preparation of the challenge and data are prohibited from participating. Employees of the competition organizor can participate in the ranking, but do not participate in the awards and receive the prize. 
-
-Sweep the QR code to join the communication group, contact the administrator if you have any questions.  
-
-
-![QR Code](https://github.com/AgoraIO-Community/RTC-Innovation-Challenge-2020/blob/readmeupdate/AlgorithmChanllengeProject/QR_code.png)
