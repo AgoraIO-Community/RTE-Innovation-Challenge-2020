@@ -1,5 +1,7 @@
 # RTE Innovation Challenge 2020
 
+*English* | [中文](README.zh.md)
+
 ## Introduction
 
 The RTE 2020 Innovation Challenge is a Data Algorithms and Innovative Applications Challenge launched by Agora and the RTC developer community，for developers all around the world.
