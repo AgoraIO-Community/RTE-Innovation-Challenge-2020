@@ -1,4 +1,6 @@
-# RTC Algorithm Challenge 2020
+# RTE Algorithm Challenge 2020
+
+*English* | [中文](README.zh.md)
 
 ## Introduction
 

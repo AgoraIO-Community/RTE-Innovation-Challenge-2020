@@ -1,5 +1,7 @@
 # RTE 2020 创新挑战赛秋季赛
 
+[English](README.md) | *中文*
+
 ## 赛事简介
 
 RTE 2020 Innovation Challenge 创新挑战赛，是由声网 Agora 和 RTC 开发者社区联合，面向全球开发者发起的数据算法及创新应用类挑战。
