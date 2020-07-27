@@ -1,5 +1,7 @@
 # RTE 2020 编程挑战赛秋季赛
 
+[English](README.md) | *中文*
+
 ## 赛事简介
 
 RTE（Real Time Engagement）线上编程挑战赛，是声网 Agora 面向全球 RTE 开发者、编程爱好者与极客举办的一场在线黑客马拉松。

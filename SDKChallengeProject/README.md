@@ -1,5 +1,7 @@
 # RTC Innovation Challenge 2020
 
+*English* | [中文](README.zh.md)
+
 ## Introduction
 
 The RTE Online Programming Challenge is an online hackathon for RTE developers, programming enthusiasts and geeks worldwide.
