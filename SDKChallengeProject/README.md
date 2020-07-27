@@ -1,12 +1,12 @@
-# RTC Innovation Challenge 2020
+# RTE Programming Challenge 2020
 
 *English* | [中文](README.zh.md)
 
 ## Introduction
 
-The RTE Online Programming Challenge is an online hackathon for RTE developers, programming enthusiasts and geeks worldwide.
+The RTE Programming Challenge is an online hackathon for RTE developers, programming enthusiasts and geeks worldwide.
 
-This Innovation Challenge will be held in the form of "Online Programming, Online Submissions and Online Finals". We hope that the contestants will solve the practical problems in academic, commercial and social areas while pursuing technological innovation, and use technology to create greater value for society.
+This Challenge will be held in the form of "Online Programming, Online Submissions, and Online Finals". We hope that the contestants will solve the practical problems in academic, commercial, and social areas while pursuing technological innovation, and use technology to create greater value for society.
 
 ## Challenge - Develop Application with Agora SDK
 
@@ -68,21 +68,21 @@ Excellent teams can join the Agora recruitment green channel.
 
 **Outstanding Award：** 3000 RMB
 
-## Judege
+## Judge
 ### Yuhua Gong
 Senior iOS development engineer at Agora. He graduated from Peking University and was a freelance writer before entering the Internet industry in 2012. He joined Agora in 2014 and previously developed a mobile-end electronic magazine reader, which was designated for integration by many third-party applications such as NetEase Cloud Reading.
 
 ### Qianze Zhang
-R & D engineer of Agora Web. Graduated from Oxford University in the UK, former SAP software engineer, leading the design and development of SAP Anywhere mobile terminal architecture. Joined Sound Network in 2017 and is currently a senior architect of Sound Network Agora, devoted to the application and R & D of RTC technology in entertainment, live broadcast and other industries.
+R & D engineer of Agora Web. Graduated from Oxford University in the UK, former SAP software engineer, leading the design and development of SAP Anywhere mobile terminal architecture. Joined Sound Network in 2017 and is currently a senior architect of Sound Network Agora, devoted to the application and R & D of RTC technology in entertainment, live broadcast, and other industries.
 
 ### Ning Qi
-SegmentFault CTO, full-stack engineer, graduated from the Department of Telecommunications, Huazhong University of Science and Technology, No. 98 member of Huake Electric Team He has worked for Alibaba, the initiator and core organizer of the open source content system Typecho, and has more than 10 years of experience in Internet product development.
+SegmentFault CTO, the full-stack engineer, graduated from the Department of Telecommunications, Huazhong University of Science and Technology, No. 98 member of Huake Electric Team He has worked for Alibaba, the initiator and core organizer of the open-source content system Typecho, and has more than 10 years of experience in Internet product development.
 
 ## Review Criteria
 
 All judges will review the projects based on Degree of completion, Creativity, Practicability, Potential commercial value.
 
-*Projects with the speical version of Agora SDK will get a bonus*
+*Projects with the special version of Agora SDK will get a bonus*
 
 Degree of completion (40%): the degree of realization of the works provided by the participating teams.
 Creativity (20%): the degree of innovation of the entries. Whether it is fully innovative and different from similar products in the industry.

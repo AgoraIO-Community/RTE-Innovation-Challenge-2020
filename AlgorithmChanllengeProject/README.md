@@ -6,11 +6,11 @@ Ultra-resolution is one of the core algorithms in the field of computer vision, 
 
 ## Task
 
-When using the super-resolution algorithm to process real-time video streaming, the processing performance and computing performance of the model are a dilemma. In order to pursue lower complexity, it may be necessary to sacrifice image quality, in order to pursue higher quality output, resulting in the equipment resource is over-occupied, resulting in equipment hot, video fuzzy Cardon and other phenomena. The challenge mainly examines the performance of the algorithm model, taking into account the quality of the image. Entrants need to do 2 times the image ultra-resolution processing, the algorithm complexity is controlled within 2GFLOPs, we provide a baseline model, using PSNR, SSIM and running time to synthesize the performance of the algorithm, the high score is the winner.
+When using the super-resolution algorithm to process real-time video streaming, the processing performance and computing performance of the model are a dilemma. In order to pursue lower complexity, it may be necessary to sacrifice image quality, in order to pursue higher quality output, resulting in the equipment resource is over-occupied, resulting in equipment hot, video fuzzy Cardon, and other phenomena. The challenge mainly examines the performance of the algorithm model, taking into account the quality of the image. Entrants need to do 2 times the image ultra-resolution processing, the algorithm complexity is controlled within 2GFLOPs, we provide a baseline model, using PSNR, SSIM and running time to synthesize the performance of the algorithm, the high score is the winner.
 
 ## Judgement Rule
 
-For mobile platform, the image is 2 times the ultra-resolution sampling, the algorithm complexity is controlled within 2 GFLOPs, we provide a baseline model, using PSNR, SSIM and running time to synthesize the evaluation of the performance of the algorithm, the high score is the winner：
+For the mobile platform, the image is 2 times the ultra-resolution sampling, the algorithm complexity is controlled within 2 GFLOPs, we provide a baseline model, using PSNR, SSIM and running time to synthesize the evaluation of the performance of the algorithm, the high score is the winner：
 
 ![Judgement Rule](https://github.com/AgoraIO-Community/RTC-Innovation-Challenge-2020/blob/readmeupdate/AlgorithmChanllengeProject/Judgement%20Rules.png)
 
@@ -23,9 +23,9 @@ Where PSNRb，SSIMb，Timeb represents the baseline model and the participant su
 
 Participants are required to use officially provided data sets for model training, requiring participants to submit the docker environment for model training, and the PSNR of the re-realization model and the submitted entry model must not exceed ±0.5db.
 
-*Notice:* The images provided in this contest are for training purposes only and the contestants may not be saved, disseminated or otherly non-training purposes of this contest.
+*Notice:* The images provided in this contest are for training purposes only and the contestants may not be saved, disseminated, or otherly non-training purposes of this contest.
 
-We will open source scoring codes at the appropriate time, and participants can refer to the open source scoring code, submit models and self-tests.
+We will open-source scoring codes at the appropriate time, and participants can refer to the open-source scoring code, submit models and self-tests.
 
 ## Schedule
 
@@ -54,4 +54,4 @@ September 19 - Online Finals.
 
 The competition is open to the whole community, domestic and foreign higher education institutions, research institutes, Internet enterprises, etc. can register to participate in the competition, the team limits for 5 people.
 
-Persons involved in the preparation of the challenge and data are prohibited from participating. Employees of the competition organizor can participate in the ranking, but do not participate in the awards and receive the prize. 
+Persons involved in the preparation of the challenge and data are prohibited from participating. Employees of the competition organizer can participate in the ranking, but do not participate in the awards and receive the prize. 
