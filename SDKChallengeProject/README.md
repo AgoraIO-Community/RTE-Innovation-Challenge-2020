@@ -14,6 +14,8 @@ RTC technology has been widely used in real-time interactive scenarios such as v
 
 This fall competition, in addition to the original SDK published on the official website of Agora, we will also provide more scene combination capabilities with the Special Version SDK, you can also combine with Go Pro and other hardware, to build more interesting scenes. Since the Special Version SDK is more complex to develop, so we'll give the corresponding work a certain amount of extra points.
 
+[Download Speical Version SDK](./SpecialSDK/README.zh.md)
+
 
 ## Project Submission
 * Fork the official repository to your personal GitHub( https://github.com/AgoraIO-Community/RTE-Innovation-Challenge-2020.git )

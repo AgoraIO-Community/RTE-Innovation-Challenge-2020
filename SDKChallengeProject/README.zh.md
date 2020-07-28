@@ -14,6 +14,8 @@ RTC 技术已经被广泛应用于视频会议、在线教育、视频会议、�
 
 本次秋季赛，除了原本声网发布在官网的 SDK，我们还将提供拥有更多场景结合能力的「特别版SDK」，基于这个 SDK，你还可以与 Go Pro 等硬件结合，玩转更多有趣的场景。使用「特别版 SDK」由于开发难度较大，因此我们会给相应的作品一定程度的加分。
 
+[点击下载 大赛特别版 SDK](./SpecialSDK/README.zh.md)
+
 ## 作品提交
 * Fork 官方仓库( https://github.com/AgoraIO-Community/RTE-Innovation-Challenge-2020.git )至个人 github 仓库
 * Clone 个人 github 仓库至本地
