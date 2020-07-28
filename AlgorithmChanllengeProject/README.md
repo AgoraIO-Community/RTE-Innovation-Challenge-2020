@@ -4,7 +4,7 @@
 
 ## Introduction
 
-Ultra-resolution is one of the core algorithms in the field of computer vision, attracting the attention of academia and industry, with the aim of restoring high-resolution, clear images (videos) from low-resolution images (videos). This technology has important practical value in real-time communication (RTC), and how to apply the super-resolution algorithm to RTC is an urgent problem to be solved by industry. The aim of this competition is to attract more researchers to participate in the study of super-resolution algorithms, promote the application of super-resolution algorithms in RTC scenes, and promote in-depth collaboration between industry and academia.
+Ultra-resolution is one of the core algorithms in the field of computer vision, attracting the attention of academia and industry, with the aim of restoring high-resolution, clear images (videos) from low-resolution images (videos). This technology has important practical value in real-time engagement (RTE), and how to apply the super-resolution algorithm to RTE is an urgent problem to be solved by industry. The aim of this competition is to attract more researchers to participate in the study of super-resolution algorithms, promote the application of super-resolution algorithms in RTE scenes, and promote in-depth collaboration between industry and academia.
 
 ## Task
 

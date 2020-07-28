@@ -17,7 +17,7 @@ In this challenge, you can use the Agora SDK to create more scenes with real-tim
 
 
 ## Project Submission
-* Fork the official repository to your personal GitHub( https://github.com/AgoraIO-Community/RTC-Innovation-Challenge-2020.git )
+* Fork the official repository to your personal GitHub( https://github.com/AgoraIO-Community/RTE-Innovation-Challenge-2020.git )
 * Clone the forked repository in your Github account to local. 
 * Create a new personal folder under SDKChallengeProject to store your project.
 * Submit Pull Request to the official repository.
@@ -73,7 +73,7 @@ Excellent teams can join the Agora recruitment green channel.
 Senior iOS development engineer at Agora. He graduated from Peking University and was a freelance writer before entering the Internet industry in 2012. He joined Agora in 2014 and previously developed a mobile-end electronic magazine reader, which was designated for integration by many third-party applications such as NetEase Cloud Reading.
 
 ### Qianze Zhang
-R & D engineer of Agora Web. Graduated from Oxford University in the UK, former SAP software engineer, leading the design and development of SAP Anywhere mobile terminal architecture. Joined Sound Network in 2017 and is currently a senior architect of Sound Network Agora, devoted to the application and R & D of RTC technology in entertainment, live broadcast, and other industries.
+R & D engineer of Agora Web. Graduated from Oxford University in the UK, former SAP software engineer, leading the design and development of SAP Anywhere mobile terminal architecture. Joined Sound Network in 2017 and is currently a senior architect of Sound Network Agora, devoted to the application and R & D of RTE technology in entertainment, live broadcast, and other industries.
 
 ### Ning Qi
 SegmentFault CTO, the full-stack engineer, graduated from the Department of Telecommunications, Huazhong University of Science and Technology, No. 98 member of Huake Electric Team He has worked for Alibaba, the initiator and core organizer of the open-source content system Typecho, and has more than 10 years of experience in Internet product development.

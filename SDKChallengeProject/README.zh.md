@@ -15,7 +15,7 @@ RTE（Real Time Engagement）线上编程挑战赛，是声网 Agora 面向全�
 在本次大赛中，你可以使用 Agora SDK ，赋予更多场景实时音视频互动的能力，还可以凭借这些创新，赢得大奖。
 
 ## 作品提交
-* Fork 官方仓库( https://github.com/AgoraIO-Community/RTC-Innovation-Challenge-2020.git )至个人 github 仓库
+* Fork 官方仓库( https://github.com/AgoraIO-Community/RTE-Innovation-Challenge-2020.git )至个人 github 仓库
 * Clone 个人 github 仓库至本地
 * 在本地 SDKChallengeProject 文件夹下创建个人项目文件夹，将参赛作品放置个人文件夹
 * Pull Request 提交本人作品至官方仓库
