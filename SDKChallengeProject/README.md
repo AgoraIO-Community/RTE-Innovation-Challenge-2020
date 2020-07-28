@@ -4,16 +4,15 @@
 
 ## Introduction
 
-The RTE Programming Challenge is an online hackathon for RTE developers, programming enthusiasts and geeks worldwide.
+The RTC Programming Challenge is an online hackathon for RTC developers, programming enthusiasts and geeks worldwide.
 
 This Challenge will be held in the form of "Online Programming, Online Submissions, and Online Finals". We hope that the contestants will solve the practical problems in academic, commercial, and social areas while pursuing technological innovation, and use technology to create greater value for society.
 
 ## Challenge - Develop Application with Agora SDK
 
-Under the spread of COVID-19, RTE technology is widely used in real-time interactive scenarios such as video conferencing, online education, and online medicine. We believe RTE technology can do much more than that.
+RTC technology has been widely used in real-time interactive scenarios such as video conferencing, online education, video conferencing, online medical, etc. In the context of the global epidemic, it has accelerated the birth of new scenes such as cloud dancing, cloud gathering sings. And we believe RTC technology can do much more than that.
 
-In this challenge, you can use the Agora SDK to create more scenes with real-time audio and video interaction capabilities, and you may also win the award with your innovations.
-
+This fall competition, in addition to the original SDK published on the official website of Agora, we will also provide more scene combination capabilities with the Special Version SDK, you can also combine with Go Pro and other hardware, to build more interesting scenes. Since the Special Version SDK is more complex to develop, so we'll give the corresponding work a certain amount of extra points.
 
 
 ## Project Submission
@@ -23,9 +22,10 @@ In this challenge, you can use the Agora SDK to create more scenes with real-tim
 * Submit Pull Request to the official repository.
 
 ## Resources
-* [Agora Official Website](https://www.agora.io/cn/)
-* SDK Download
-* [Agora Documents](https://docs.agora.io/cn)
+* [Agora Official Website](https://www.agora.io/en/)
+* [SDK Download](https://docs.agora.io/en/Agora%20Platform/downloads)
+* [Special SDK Download](./SpecialSDK/README.zh.md) 
+* [Agora Documents](https://docs.agora.io/en)
 * [Demos](https://rtcdeveloper.com/t/topic/12820)
 * [2019 Chanllenge Projects](https://github.com/AgoraIO-Community/AI-in-RTC_ProgrammingChallenge)
 * [2020 Spring Challenge Projects](https://github.com/AgoraIO-Community/RTC-Hackathon)
