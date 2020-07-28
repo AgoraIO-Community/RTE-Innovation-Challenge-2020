@@ -4,11 +4,11 @@
 
 ## SDK 下载
 
-[点击下载 Android](http://10.80.1.174:8090/agora_sdk/android/2020-07-27/Agora_Native_SDK_for_Android_admin_2761_ffmpeg_player_20200727_2231.zip)
+[点击下载 Android](https://release.agoralab.co/disk/v2.7.1/android/2020-07-27/Agora_NG_RTE_SDK_for_Android_v2.7.1.2761_20200727_2231.zip)
 
-[点击下载 iOS](http://10.80.1.174:8090/agora_sdk/ios/2020-07-28/Agora_Native_SDK_for_iOS_special_21085_20200728_1157.zip)
+[点击下载 iOS](https://release.agoralab.co/disk/v2.7.1/ios/2020-07-28/Agora_NG_RTE_SDK_for_iOS_v2.7.1.21085_20200728_1157.zip)
 
-[点击下载 Windows](http://10.80.1.174:8090/agora_sdk/windows/2020-07-26/x86/Agora_Native_SDK_for_Windows_x86_admin_25414_ffmpeg_player_20200726_2255.zip)
+[点击下载 Windows](https://release.agoralab.co/disk/v2.7.1/windows/2020-07-26/x86/Agora_NG_RTE_SDK_for_Windows_x86_v2.7.1.25414_20200726_2255.zip)
 
 ## 功能 & 性能 亮点
 ### 加强频道管理  - 多频道，多视频流 - 新增和修改接口说明
@@ -149,22 +149,3 @@ struct ChannelMediaOptions {
 }
 ```
 ![API](API.jpeg)
-
-***
-
-### 多频道，多视频流 - 新增和修改接口说明
-
-#### API 整体说明
-
-* 新增和修改的API 是为了多频道，保持原有API对于 default channel 主频道 行为不变
-* 原JoinChannel为主频道，只能调用一次
-* joinChannelEx/leaveChannelEx 可以进去额外频道，可以调用多次
-* channel Id 为频道名，因为需要支持进入相同频道名多次，新增connectionId 作为标识
-* ConnectionId 主频道可以用DEFAULT_CHANNEL_ID（0）也可以省略不填,  其他频道的connectionId， 是在joinChannelEx中获得的, 用于针对频道的一些操作，如:
-  * 订阅/取消订阅用户的视频流
-  * 订阅/取消订阅用户的音频流
-  * 设置远端用户的渲染窗口（ivreal不需要）
-
-#### 关于多频道接口说明
-
-![MultiChannelInterface](./MultiChannelInterface.png)

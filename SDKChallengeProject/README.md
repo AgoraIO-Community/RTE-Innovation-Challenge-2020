@@ -18,8 +18,9 @@ This fall competition, in addition to the original SDK published on the official
 
 
 ## Project Submission
+* [Sign up](https://www.agora.io/en/) for Agora.io account
 * Fork the official repository to your personal GitHub( https://github.com/AgoraIO-Community/RTE-Innovation-Challenge-2020.git )
-* Clone the forked repository in your Github account to local. 
+* Clone the forked repository in your GitHub account to local. 
 * Create a new personal folder under SDKChallengeProject to store your project.
 * Submit Pull Request to the official repository.
 
