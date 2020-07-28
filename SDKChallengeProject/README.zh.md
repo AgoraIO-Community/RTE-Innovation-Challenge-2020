@@ -18,8 +18,8 @@ RTC 技术已经被广泛应用于视频会议、在线教育、视频会议、�
 
 ## 作品提交
 * [注册](https://www.agora.io/cn/)声网账号
-* Fork 官方仓库( https://github.com/AgoraIO-Community/RTE-Innovation-Challenge-2020.git )至个人 Github 仓库
-* Clone 个人 Github 仓库至本地
+* Fork 官方仓库( https://github.com/AgoraIO-Community/RTE-Innovation-Challenge-2020.git )至个人 GitHub 仓库
+* Clone 个人 GitHub 仓库至本地
 * 在本地 SDKChallengeProject 文件夹下创建个人项目文件夹，将参赛作品放置个人文件夹
 * Pull Request 提交本人作品至官方仓库
 
