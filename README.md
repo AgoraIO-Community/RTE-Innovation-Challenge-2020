@@ -4,7 +4,7 @@
 
 ## Introduction
 
-The RTC 2020 Innovation Challenge is a Data Algorithms and Innovative Applications Challenge launched by Agora and the RTC developer community，for developers all around the world.
+The RTE 2020 Innovation Challenge is a Data Algorithms and Innovative Applications Challenge launched by Agora and the RTC developer community，for developers all around the world.
 
 Our original goal is to find out the developers who are interested in the technology boundaries of RTC, who love technology innovation, and who want to challenge themselves.
 
