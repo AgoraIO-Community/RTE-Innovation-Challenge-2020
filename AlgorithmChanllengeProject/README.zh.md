@@ -4,7 +4,7 @@
 
 ## 赛事简介
 
-超分辨率是计算机视觉领域的核心算法之一，受到学术界和工业界的关注，其目的是从低分辨率的图片（视频）恢复出高分辨率的清晰图片（视频）。该技术在实时音视频通话（RTC）有着重要的实用价值，如何将超分辨率算法应用到RTC，是工业界亟待解决的问题。本次竞赛的目的，旨在吸引更多研究人员参与超分辨率算法的研究，推动超分辨率算法在RTC场景应用，促进工业界与学术界的深度合作。
+超分辨率是计算机视觉领域的核心算法之一，受到学术界和工业界的关注，其目的是从低分辨率的图片（视频）恢复出高分辨率的清晰图片（视频）。该技术在实时音视频互动（RTE）有着重要的实用价值，如何将超分辨率算法应用到RTE，是工业界亟待解决的问题。本次竞赛的目的，旨在吸引更多研究人员参与超分辨率算法的研究，推动超分辨率算法在RTE场景应用，促进工业界与学术界的深度合作。
 
 ## 赛题介绍
 
@@ -12,7 +12,7 @@
 
 ## 评分规则
 针对移动平台，对图像进行2倍的超分辨率采样，算法复杂度控制在2 GFLOPs之内，我们提供一个baseline模型，采用PSNR、SSIM及运行时间来综合评估算法的性能，分值高者即获胜，即：
-![评分规则](https://github.com/AgoraIO-Community/RTC-Innovation-Challenge-2020/blob/readmeupdate/AlgorithmChanllengeProject/Judgement%20Rules.png)
+![评分规则](./Judgement%20Rules.png)
 
 其中，PSNRb，SSIMb，Timeb分别表示baseline模型和参赛者提交模型的PSNR，SSIM和运行时间，α=2，β=4，γ=0.8。最终排行榜前十的选手可进入决赛，若综合得分低于baseline者，即score为负值，不具备参加决赛资格。为了保证公平性，需要参赛者提交模型，在统一的平台计算PSNR、SSIM和Time。
 
@@ -54,4 +54,4 @@
 
 扫码加入竞赛交流群，如有疑问请咨询管理员。
 
-![QR Code](https://github.com/AgoraIO-Community/RTC-Innovation-Challenge-2020/blob/readmeupdate/AlgorithmChanllengeProject/QR_code.png)
+![image](./QR_code.png)

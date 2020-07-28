@@ -4,25 +4,29 @@
 
 ## 赛事简介
 
-RTE（Real Time Engagement）线上编程挑战赛，是声网 Agora 面向全球 RTE 开发者、编程爱好者与极客举办的一场在线黑客马拉松。
+RTC 线上编程挑战赛，是声网 Agora 面向全球 RTC 开发者、编程爱好者与极客举办的一场在线黑客马拉松。
 
 本次秋季赛将以「线上编程+线上提交+线上决赛」的方式进行。希望选手在追求技术创新的同时，解决学术、商业中、社会中的实际问题，用技术为社会创造更大价值。
 
 ## 赛题介绍：使用 Agora SDK 开发应用
 
-在全球疫情的大背景下，RTE 技术被迅速的广泛应用于视频会议、在线教育、视频会议、在线医疗等实时互动场景中。而我们相信 RTE 技术可以做的，远不止于此。
+RTC 技术已经被广泛应用于视频会议、在线教育、视频会议、在线医疗等实时互动场景中。在全球疫情的大背景下，更是加速了云蹦迪、云聚会等新场景的诞生。而我们相信 RTC 技术可以做的，远不止于此。
 
-在本次大赛中，你可以使用 Agora SDK ，赋予更多场景实时音视频互动的能力，还可以凭借这些创新，赢得大奖。
+本次秋季赛，除了原本声网发布在官网的 SDK，我们还将提供拥有更多场景结合能力的「特别版SDK」，基于这个 SDK，你还可以与 Go Pro 等硬件结合，玩转更多有趣的场景。使用「特别版 SDK」由于开发难度较大，因此我们会给相应的作品一定程度的加分。
+
+[点击下载 大赛特别版 SDK](./SpecialSDK/README.zh.md)
 
 ## 作品提交
-* Fork 官方仓库( https://github.com/AgoraIO-Community/RTC-Innovation-Challenge-2020.git )至个人 github 仓库
-* Clone 个人 github 仓库至本地
+* [注册](https://www.agora.io/cn/)声网账号
+* Fork 官方仓库( https://github.com/AgoraIO-Community/RTE-Innovation-Challenge-2020.git )至个人 GitHub 仓库
+* Clone 个人 GitHub 仓库至本地
 * 在本地 SDKChallengeProject 文件夹下创建个人项目文件夹，将参赛作品放置个人文件夹
 * Pull Request 提交本人作品至官方仓库
 
 ## 参考资料
 * [Agora 官网](https://www.agora.io/cn/)
-* SDK 下载
+* [SDK 下载](https://docs.agora.io/cn/Agora%20Platform/downloads)
+* [特别版 SDK 下载](./SpecialSDK/README.zh.md)
 * [Agora 文档中心](https://docs.agora.io/cn)
 * [Demo 汇总](https://rtcdeveloper.com/t/topic/12820)
 * [2019 年大赛作品分享](https://github.com/AgoraIO-Community/AI-in-RTC_ProgrammingChallenge)
@@ -41,7 +45,7 @@ RTE（Real Time Engagement）线上编程挑战赛，是声网 Agora 面向全�
 
 官网报名后，即可进入组队和开发阶段
 
-作品提交后，不可修改，如有特殊需求可联系大赛组委会（见官网底部二维码）
+作品提交后，不可修改，如有特殊需求可联系大赛组委会
 
 作品展示即为最终决赛，详情可见决赛日程
 

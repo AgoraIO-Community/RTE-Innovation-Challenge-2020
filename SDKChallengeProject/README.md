@@ -4,28 +4,31 @@
 
 ## Introduction
 
-The RTE Programming Challenge is an online hackathon for RTE developers, programming enthusiasts and geeks worldwide.
+The RTC Programming Challenge is an online hackathon for RTC developers, programming enthusiasts and geeks worldwide.
 
 This Challenge will be held in the form of "Online Programming, Online Submissions, and Online Finals". We hope that the contestants will solve the practical problems in academic, commercial, and social areas while pursuing technological innovation, and use technology to create greater value for society.
 
 ## Challenge - Develop Application with Agora SDK
 
-Under the spread of COVID-19, RTE technology is widely used in real-time interactive scenarios such as video conferencing, online education, and online medicine. We believe RTE technology can do much more than that.
+RTC technology has been widely used in real-time interactive scenarios such as video conferencing, online education, video conferencing, online medical, etc. In the context of the global epidemic, it has accelerated the birth of new scenes such as cloud dancing, cloud gathering sings. And we believe RTC technology can do much more than that.
 
-In this challenge, you can use the Agora SDK to create more scenes with real-time audio and video interaction capabilities, and you may also win the award with your innovations.
+This fall competition, in addition to the original SDK published on the official website of Agora, we will also provide more scene combination capabilities with the Special Version SDK, you can also combine with Go Pro and other hardware, to build more interesting scenes. Since the Special Version SDK is more complex to develop, so we'll give the corresponding work a certain amount of extra points.
 
+[Download Speical Version SDK](./SpecialSDK/README.zh.md)
 
 
 ## Project Submission
-* Fork the official repository to your personal GitHub( https://github.com/AgoraIO-Community/RTC-Innovation-Challenge-2020.git )
-* Clone the forked repository in your Github account to local. 
+* [Sign up](https://www.agora.io/en/) for Agora.io account
+* Fork the official repository to your personal GitHub( https://github.com/AgoraIO-Community/RTE-Innovation-Challenge-2020.git )
+* Clone the forked repository in your GitHub account to local. 
 * Create a new personal folder under SDKChallengeProject to store your project.
 * Submit Pull Request to the official repository.
 
 ## Resources
-* [Agora Official Website](https://www.agora.io/cn/)
-* SDK Download
-* [Agora Documents](https://docs.agora.io/cn)
+* [Agora Official Website](https://www.agora.io/en/)
+* [SDK Download](https://docs.agora.io/en/Agora%20Platform/downloads)
+* [Special SDK Download](./SpecialSDK/README.zh.md) 
+* [Agora Documents](https://docs.agora.io/en)
 * [Demos](https://rtcdeveloper.com/t/topic/12820)
 * [2019 Chanllenge Projects](https://github.com/AgoraIO-Community/AI-in-RTC_ProgrammingChallenge)
 * [2020 Spring Challenge Projects](https://github.com/AgoraIO-Community/RTC-Hackathon)
@@ -73,7 +76,7 @@ Excellent teams can join the Agora recruitment green channel.
 Senior iOS development engineer at Agora. He graduated from Peking University and was a freelance writer before entering the Internet industry in 2012. He joined Agora in 2014 and previously developed a mobile-end electronic magazine reader, which was designated for integration by many third-party applications such as NetEase Cloud Reading.
 
 ### Qianze Zhang
-R & D engineer of Agora Web. Graduated from Oxford University in the UK, former SAP software engineer, leading the design and development of SAP Anywhere mobile terminal architecture. Joined Sound Network in 2017 and is currently a senior architect of Sound Network Agora, devoted to the application and R & D of RTC technology in entertainment, live broadcast, and other industries.
+R & D engineer of Agora Web. Graduated from Oxford University in the UK, former SAP software engineer, leading the design and development of SAP Anywhere mobile terminal architecture. Joined Sound Network in 2017 and is currently a senior architect of Sound Network Agora, devoted to the application and R & D of RTE technology in entertainment, live broadcast, and other industries.
 
 ### Ning Qi
 SegmentFault CTO, the full-stack engineer, graduated from the Department of Telecommunications, Huazhong University of Science and Technology, No. 98 member of Huake Electric Team He has worked for Alibaba, the initiator and core organizer of the open-source content system Typecho, and has more than 10 years of experience in Internet product development.
