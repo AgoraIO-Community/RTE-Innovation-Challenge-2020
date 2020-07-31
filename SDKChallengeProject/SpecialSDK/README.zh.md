@@ -21,7 +21,7 @@
 * 支持外部音频流和本地音频流自动混音 
 * Windows 支持同时屏幕共享和摄像头采集 - Windows同时共享桌面和摄像头
 ### 性能优化
-* Android 支持全链路硬件加速，相同profile，如720P30 system CPU 节省40%，app CPU 节省60%， 性能提升一倍
+* Android 支持全链路硬件加速，相同profile，如720P30 system CPU 节省40%，app CPU 节省60%， 性能提升一倍 （需开启硬解码，暂时通过私有参数打开 {"engine.video.enable_hw_decoder": true}）
 * Windows 不需要用多进程支持多路视频源，在相同场景下，节省CPU 30%+
 * Windows 支持至少4KP30 的播放，支持Intel，NVIDIA 硬编，性能有大幅提升
 * 全平台支持1080P60 播放
