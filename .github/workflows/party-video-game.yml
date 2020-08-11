@@ -30,5 +30,6 @@ jobs:
         registry: docker.pkg.github.com
         repository: bryht/rte-innovation-challenge-2020/game-server
         tag_with_ref: true
+        path: ./SDKChallengeProject/PartyVideoGame/src/game-server/
     
     
