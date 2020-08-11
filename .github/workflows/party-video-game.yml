@@ -22,13 +22,12 @@ jobs:
     # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
     - uses: actions/checkout@v2
     
-    - name: Push to GitHub Packages
+    - name: Push to Docker Hub
       uses: docker/build-push-action@v1
       with:
-        username: ${{ github.actor }}
-        password: ${{ secrets.GITHUB_TOKEN }}
-        registry: docker.pkg.github.com
-        repository: bryht/rte-innovation-challenge-2020/game-server
+        username: ${{ secrets.DOCKER_USERNAME }}
+        password: ${{ secrets.DOCKER_PASSWORD }}
+        repository: bryht/rte-innovation-challenge-2020-game-server
         tag_with_ref: true
         path: ./SDKChallengeProject/PartyVideoGame/src/game-server/
     
