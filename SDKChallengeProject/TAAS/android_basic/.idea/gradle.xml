@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="GradleMigrationSettings" migrationVersion="1" />
   <component name="GradleSettings">
     <option name="linkedExternalProjectsSettings">
       <GradleProjectSettings>
@@ -10,7 +11,15 @@
         <option name="modules">
           <set>
             <option value="$PROJECT_DIR$" />
-            <option value="$PROJECT_DIR$/app" />
+            <option value="$PROJECT_DIR$/architecture_aac" />
+            <option value="$PROJECT_DIR$/architecture_mvvm" />
+            <option value="$PROJECT_DIR$/baselib" />
+            <option value="$PROJECT_DIR$/business" />
+            <option value="$PROJECT_DIR$/businesslib" />
+            <option value="$PROJECT_DIR$/commonlib" />
+            <option value="$PROJECT_DIR$/customer" />
+            <option value="$PROJECT_DIR$/customerlib" />
+            <option value="$PROJECT_DIR$/supportlib" />
           </set>
         </option>
         <option name="resolveModulePerSourceSet" value="false" />
