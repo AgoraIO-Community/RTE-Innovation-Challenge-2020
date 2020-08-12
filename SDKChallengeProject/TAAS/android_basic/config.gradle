@@ -1,0 +1,44 @@
+// 把公用的阿，可扩展的，加入进来
+// 整个App项目的 配置文件
+// ext 自定义增加我们的内容
+
+ext {
+    // 定义 key value  map
+    set_android = [
+            versionCode = 1,
+            versionName = "1.0.0",
+            //Android
+            androidBuildToolsVersion = "30.0.0",//"""26.0.2"
+            androidMinSdkVersion = 19,
+            androidTargetSdkVersion = 27,
+            androidCompileSdkVersion = 30
+    ]
+
+    // 依赖相关的
+    set_compile = [
+
+    ]
+
+    url = [
+            "local": "${getIP()}",
+            "offical": "http://taas.com"
+    ]
+}
+def getIP() {//测试时用本机跑的服务端 使用本地地址
+    InetAddress result = null;
+    Enumeration<NetworkInterface> interfaces = NetworkInterface.getNetworkInterfaces();
+    while (interfaces.hasMoreElements()) {
+        Enumeration<InetAddress> addresses = interfaces.nextElement().getInetAddresses();
+        while (addresses.hasMoreElements()) {
+            InetAddress address = addresses.nextElement();
+            if (!address.isLoopbackAddress()) {
+                if (address.isSiteLocalAddress()) {
+                    return address.getHostAddress();
+                } else if (result == null) {
+                    result = address;
+                }
+            }
+        }
+    }
+    return (result != null ? result : InetAddress.getLocalHost()).getHostAddress();
+}
