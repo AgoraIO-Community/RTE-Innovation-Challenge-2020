@@ -14,6 +14,7 @@
         android:layout_height="match_parent"
         app:layoutDescription="@xml/c_container_activity_scene">
         <FrameLayout
+            android:id="@+id/start_container"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
             <fragment
@@ -24,8 +25,23 @@
                 app:defaultNavHost="true"
                 app:navGraph="@navigation/customer_start_logic_navigation" />
         </FrameLayout>
-        <fragment
+        <FrameLayout
+            android:id="@+id/content_container"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"></fragment>
+            android:layout_height="match_parent">
+            <fragment
+                android:id="@+id/content_fragment_host"
+                android:name="androidx.navigation.fragment.NavHostFragment"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:defaultNavHost="true"
+                app:navGraph="@navigation/customer_container_content_nav" />
+        </FrameLayout>
+
+        <TextView
+            android:id="@+id/test_view"
+            android:text="123"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"></TextView>
     </androidx.constraintlayout.motion.widget.MotionLayout>
 </layout>

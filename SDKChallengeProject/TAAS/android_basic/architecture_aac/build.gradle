@@ -3,15 +3,19 @@ apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
 
+def config=this.getRootProject().ext
+def nav = this.getRootProject().ext.nav_version
+
 android {
-    compileSdkVersion rootProject.ext.androidCompileSdkVersion
-    buildToolsVersion rootProject.ext.androidBuildToolsVersion
+    compileSdkVersion config.androidCompileSdkVersion
+    buildToolsVersion config.androidBuildToolsVersion
 
     defaultConfig {
-        minSdkVersion rootProject.ext.androidMinSdkVersion
-        targetSdkVersion rootProject.ext.androidTargetSdkVersion
-        versionCode rootProject.ext.versionCode
-        versionName rootProject.ext.versionName
+        minSdkVersion config.androidMinSdkVersion
+        targetSdkVersion config.androidTargetSdkVersion
+        versionCode config.versionCode
+        versionName config.versionName
+
         consumerProguardFiles 'consumer-rules.pro'
     }
 
@@ -28,9 +32,6 @@ android {
     kotlinOptions {
         jvmTarget = "1.8"
     }
-    dataBinding {
-        enabled true
-    }
 }
 
 dependencies {
@@ -38,8 +39,8 @@ dependencies {
     def room_version = "2.2.5"
     def lifecycle_version = "2.2.0"
     def work_manager = "2.4.0"
-    def nav_version = "2.3.0"
-    def constraint_version="2.0.0-rc1"
+    def nav_version = nav
+    def constraint_version="2.0.0-beta8"
 
     api "androidx.appcompat:appcompat:1.2.0"
     //根据google jetpack KTX 优化使用

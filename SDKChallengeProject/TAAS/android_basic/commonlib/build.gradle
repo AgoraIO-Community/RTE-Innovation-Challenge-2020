@@ -6,14 +6,14 @@ apply plugin: 'kotlin-kapt'
 def config=this.getRootProject().ext
 def url=this.getRootProject().ext.url
 android {
-    compileSdkVersion rootProject.ext.androidCompileSdkVersion
-    buildToolsVersion rootProject.ext.androidBuildToolsVersion
+    compileSdkVersion config.androidCompileSdkVersion
+    buildToolsVersion config.androidBuildToolsVersion
 
     defaultConfig {
-        minSdkVersion rootProject.ext.androidMinSdkVersion
-        targetSdkVersion rootProject.ext.androidTargetSdkVersion
-        versionCode rootProject.ext.versionCode
-        versionName rootProject.ext.versionName
+        minSdkVersion config.androidMinSdkVersion
+        targetSdkVersion config.androidTargetSdkVersion
+        versionCode config.versionCode
+        versionName config.versionName
 
         consumerProguardFiles "consumer-rules.pro"
     }
@@ -24,8 +24,10 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
-    dataBinding{
-        enabled = true
+    buildFeatures{
+        dataBinding = true
+        // for view binding :
+        // viewBinding = true
     }
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
@@ -37,4 +39,7 @@ dependencies {
     implementation fileTree(dir: "libs", include: ["*.jar"])
     api project(':baselib')
     api project(':architecture_aac')
+    implementation project (':supportlib')
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlin_version"
+    kapt  "com.android.databinding:compiler:4.0.1"//和gradle版本号同步
 }

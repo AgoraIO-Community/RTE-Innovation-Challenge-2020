@@ -3,20 +3,22 @@
 // ext 自定义增加我们的内容
 
 ext {
+    versionCode = 1
+    versionName = "1.0.0"
+    //Android
+    androidBuildToolsVersion = "30.0.0"//"""26.0.2"
+    androidMinSdkVersion = 19
+    androidTargetSdkVersion = 27
+    androidCompileSdkVersion = 30
+
+
     // 定义 key value  map
     set_android = [
-            versionCode = 1,
-            versionName = "1.0.0",
-            //Android
-            androidBuildToolsVersion = "30.0.0",//"""26.0.2"
-            androidMinSdkVersion = 19,
-            androidTargetSdkVersion = 27,
-            androidCompileSdkVersion = 30
+
     ]
 
     // 依赖相关的
     set_compile = [
-
     ]
 
     url = [
