@@ -44,8 +44,8 @@ android {
 
 dependencies {
     implementation fileTree(dir: "libs", include: ["*.jar"])
-    api project(':architecture_mvvm')
     kapt  "com.android.databinding:compiler:4.0.1"
+    api project(':architecture_mvvm')
     api 'androidx.multidex:multidex:2.0.1'
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlin_version"
 }

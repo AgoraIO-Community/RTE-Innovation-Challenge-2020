@@ -37,7 +37,10 @@
                 app:defaultNavHost="true"
                 app:navGraph="@navigation/customer_container_content_nav" />
         </FrameLayout>
-
+        <com.framing.module.customer.ui.widget.map.CustomerMapView
+            android:id="@+id/map_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"></com.framing.module.customer.ui.widget.map.CustomerMapView>
         <TextView
             android:id="@+id/test_view"
             android:text="123"

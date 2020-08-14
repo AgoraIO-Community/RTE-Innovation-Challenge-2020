@@ -1,6 +1,7 @@
 package com.framing.commonlib.map
 
 import android.content.Context
+import android.os.Bundle
 import android.util.AttributeSet
 import android.util.Log
 import androidx.lifecycle.Lifecycle
@@ -13,7 +14,7 @@ import com.framing.support.map.FramingMapView
  * Author Young
  * Date 
  */
-class SimpleMapView : FramingMapView,LifecycleObserver{
+abstract class SimpleMapView : FramingMapView,LifecycleObserver{
 
     constructor(p0: Context?) : super(p0)
     constructor(p0: Context?, p1: AttributeSet?) : super(p0, p1)
@@ -21,7 +22,7 @@ class SimpleMapView : FramingMapView,LifecycleObserver{
 
     @OnLifecycleEvent(Lifecycle.Event.ON_CREATE)
     fun onCreateLife(){
-        onCreate(null)
+//        onCreate(Bundle())
         Log.i("SimpleMapView","oncreate")
     }
     @OnLifecycleEvent(Lifecycle.Event.ON_PAUSE)
@@ -37,6 +38,5 @@ class SimpleMapView : FramingMapView,LifecycleObserver{
     @OnLifecycleEvent(Lifecycle.Event.ON_RESUME)
     fun onResumeLife(){
         onResume()
-        Log.i("SimpleMapView","onResumeLife")
     }
 }

@@ -37,9 +37,9 @@ android {
 
 dependencies {
     implementation fileTree(dir: "libs", include: ["*.jar"])
+    kapt  "com.android.databinding:compiler:4.0.1"//和gradle版本号同步
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlin_version"
     api project(':baselib')
     api project(':architecture_aac')
-    implementation project (':supportlib')
-    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlin_version"
-    kapt  "com.android.databinding:compiler:4.0.1"//和gradle版本号同步
+    api project (':supportlib')
 }

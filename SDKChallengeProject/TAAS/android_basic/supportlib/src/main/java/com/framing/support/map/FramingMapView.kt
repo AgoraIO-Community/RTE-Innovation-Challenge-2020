@@ -16,19 +16,15 @@ import java.net.URL
  * Author Young
  * Date 
  */
-open class FramingMapView : MapView {
+abstract class FramingMapView : MapView {
     constructor(p0: Context?) : super(p0){
-        initLoad()
     }
     constructor(p0: Context?, p1: AttributeSet?) : super(p0, p1){
-        initLoad()
     }
 
     constructor(p0: Context?, p1: AttributeSet?, p2: Int) : super(p0, p1, p2){
-        initLoad()
     }
     constructor(p0: Context?, p1: AMapOptions?) : super(p0, p1){
-        initLoad()
     }
 
     private var url =
@@ -37,22 +33,24 @@ open class FramingMapView : MapView {
     private var longitude=112.019825//经度
     private var latitude=37.303396//纬度
 
+    abstract fun urlFilePath( x:Int,  y:Int,  zoom:Int):String//实时操作获取对应google瓦片
+    abstract val diskCacheDir:String//缓存路径
+
 
     /*
     * TileOverlayOptions overlayOptions 覆盖物的设置构造
     * 把加载好瓦片的overlayOptions  添加给Amap
     * */
-    private fun initLoad(){
+    fun initLoad(){
         initAmap()
-
-        var overlayOptions=TileOverlayOptions().tileProvider(object :UrlTileProvider(256, 256){
-            override fun getTileUrl(p0: Int, p1: Int, p2: Int): URL? {
-                //
-                return null
-            }
-        })
+        var overlayOptions=TileOverlayOptions().tileProvider(
+            object :UrlTileProvider(256, 256){
+                override fun getTileUrl(p0: Int, p1: Int, p2: Int): URL? {
+                    return URL(urlFilePath(p0,p1,p2))
+                }
+            })
         overlayOptions.diskCacheEnabled(false) //由于自带的缓存在关闭程序后会自动释放,所以无意义,关闭本地缓存
-            .diskCacheDir("/storage/emulated/0/amap/OMCcache")
+            .diskCacheDir(diskCacheDir)
             .diskCacheSize(1024000)
             .memoryCacheEnabled(true)
             .memCacheSize(102400)
@@ -66,8 +64,8 @@ open class FramingMapView : MapView {
                 LatLng(
                     latitude,
                     longitude
-                ), 2f
-            )
+                ), 17f
+            )//放大级别
         )
         map.uiSettings.run {
             isCompassEnabled=true //是否显示指南针

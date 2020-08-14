@@ -1,5 +1,6 @@
 package com.framing.module.customer.ui.activity
 
+import android.os.Bundle
 import com.young.aac.base.MvvmBaseActivity
 import com.framing.module.customer.databinding.CContainerActivityBinding
 import com.framing.module.customer.ui.viewmodel.CContainerUIVM
@@ -12,7 +13,11 @@ import com.framing.module.customer.R
  */
 class CContainerActivity :  MvvmBaseActivity<CContainerActivityBinding, CContainerUIVM,CContainerDataVM>(){
 
-
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        getBinding().mapView.onCreate(savedInstanceState)
+        getBinding().mapView.initLoad()
+    }
     override fun getUIViewModel(): CContainerUIVM {
         return getActivityViewModelProvider(this).get(CContainerUIVM::class.java)
     }

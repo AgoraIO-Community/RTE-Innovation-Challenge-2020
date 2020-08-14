@@ -12,9 +12,9 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-        <com.framing.commonlib.map.SimpleMapView
+        <com.framing.module.customer.ui.widget.map.CustomerMapView
             android:id="@+id/map_view"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"></com.framing.commonlib.map.SimpleMapView>
+            android:layout_height="match_parent"></com.framing.module.customer.ui.widget.map.CustomerMapView>
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

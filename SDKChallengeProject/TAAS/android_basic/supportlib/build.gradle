@@ -24,10 +24,15 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
+    sourceSets {
+        main {
+            jniLibs.srcDirs = ['libs']
+        }
+    }
 }
 
 dependencies {
     implementation fileTree(dir: "libs", include: ["*.jar"])
-    api files('libs\\Android_Map3D_SDK_V7.5.0_20200610.jar')
-    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlin_version"
+    //多平台公共的支持依赖 地图定位，lottie等
+    api files('libs/Android_Map3D_SDK_V7.5.0_20200610.jar')
 }
