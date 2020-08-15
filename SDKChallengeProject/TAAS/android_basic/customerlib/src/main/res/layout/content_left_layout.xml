@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.motion.widget.MotionLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    layoutDescription="@xml/content_left_layout_scene"
+    tools:ignore="MotionLayoutInvalidSceneFileReference">
+    <androidx.constraintlayout.utils.widget.ImageFilterView
+        android:id="@+id/one_img"
+        android:layout_width="55dp"
+        android:layout_height="55dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        ></androidx.constraintlayout.utils.widget.ImageFilterView>
+    <TextView
+        android:id="@+id/one_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="60dp"
+        android:text="1234567"></TextView>
+</androidx.constraintlayout.motion.widget.MotionLayout>
