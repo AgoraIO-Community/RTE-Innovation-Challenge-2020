@@ -17,7 +17,7 @@ import com.framing.module.customer.ui.widget.map.CustomerMapView
  * Des 进入首页map 地图
  * Created by VULCAN on 2020-08-13 13:30:55
  */
-class MapFragment :  MvvmBaseFragment<MapFragmentLayoutBinding, MapUIVM,MapDataVM>(){
+class  MapFragment :  MvvmBaseFragment<MapFragmentLayoutBinding, MapUIVM,MapDataVM>(){
 
 
     val mapView:CustomerMapView?=null

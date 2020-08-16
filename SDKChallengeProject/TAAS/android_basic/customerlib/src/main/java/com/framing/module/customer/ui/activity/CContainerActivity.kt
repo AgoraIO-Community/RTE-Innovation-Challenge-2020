@@ -1,6 +1,7 @@
 package com.framing.module.customer.ui.activity
 
 import android.os.Bundle
+import com.framing.commonlib.inject.policy.PermissionPolicy
 import com.young.aac.base.MvvmBaseActivity
 import com.framing.module.customer.databinding.CContainerActivityBinding
 import com.framing.module.customer.ui.viewmodel.CContainerUIVM
@@ -15,6 +16,9 @@ class CContainerActivity :  MvvmBaseActivity<CContainerActivityBinding, CContain
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        permissionRun(PermissionPolicy.P_LOC){
+
+        }
         getBinding().mapView.onCreate(savedInstanceState)
         getBinding().mapView.initLoad()
     }

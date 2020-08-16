@@ -11,7 +11,7 @@ import androidx.core.content.PermissionChecker;
 
 
 /**
- * Created by ${Young} on 2018/10/30.
+ * Created by ${Young} on 2017/10/30.
  * fragment 使用回掉在actvity  如果想在framgnet 回掉 在fragment使用requestpermision
  */
 
@@ -42,7 +42,9 @@ public class DealWithPermissions {
     };
     public static String[] LOCATION = new String[] {//定位
             Manifest.permission.ACCESS_COARSE_LOCATION,
-            Manifest.permission.ACCESS_FINE_LOCATION
+            Manifest.permission.ACCESS_FINE_LOCATION,
+            Manifest.permission.READ_EXTERNAL_STORAGE,
+            Manifest.permission.WRITE_EXTERNAL_STORAGE
     };
     public static final String[] CONTACTS = new String[] {//联系人
             Manifest.permission.READ_CONTACTS,
@@ -62,21 +64,6 @@ public class DealWithPermissions {
 
     // dangero
     // us permission  空行为一组全限 组权限只申请一条就可以
-
-    public static  final  String READ_EXTERNAL_STORAGE= Manifest.permission.READ_EXTERNAL_STORAGE;//读写权限
-    public static  final  String WRITE_EXTERNAL_STORAGE= Manifest.permission.WRITE_EXTERNAL_STORAGE;
-
-    public static  final  String CALL_PHONE= Manifest.permission.CALL_PHONE;//电话相关
-
-    public static  final  String CAMERA= Manifest.permission.CAMERA;//相机
-
-    public static  final  String ACCESS_FINE_LOCATION= Manifest.permission.ACCESS_FINE_LOCATION;//定位
-
-    public static  final  String RECORD_AUDIO= Manifest.permission.RECORD_AUDIO;//麦克风
-
-    public static  final  String READ_CALENDAR= Manifest.permission.READ_CALENDAR;//日历相关
-
-    public static  final  String BODY_SENSORS= Manifest.permission.BODY_SENSORS;//传感器
 
     public static final int STORAGE_REQUEST_CODE=100;//存储请求值
     public static final int MICROPHONE_REQUEST_CODE=300;//麦克分请求值
