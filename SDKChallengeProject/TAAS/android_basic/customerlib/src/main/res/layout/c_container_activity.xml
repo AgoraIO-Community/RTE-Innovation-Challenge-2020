@@ -4,6 +4,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
+        <import type="android.view.View"></import>
         <variable
             name="cContainerUIVM"
             type="com.framing.module.customer.ui.viewmodel.CContainerUIVM" />
@@ -16,7 +17,8 @@
         <FrameLayout
             android:id="@+id/start_container"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:visibility="@{cContainerUIVM.isStartHide()?View.GONE:View.VISIBLE}" >
             <fragment
                 android:id="@+id/launch_fragment_host"
                 android:name="androidx.navigation.fragment.NavHostFragment"
@@ -25,15 +27,11 @@
                 app:defaultNavHost="true"
                 app:navGraph="@navigation/customer_start_logic_navigation" />
         </FrameLayout>
-        <com.framing.module.customer.ui.widget.map.CustomerMapView
-            android:id="@+id/map_view"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"></com.framing.module.customer.ui.widget.map.CustomerMapView>
-
-        <FrameLayout
+        <RelativeLayout
             android:id="@+id/content_container"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:visibility="@{cContainerUIVM.isStartHide()?View.VISIBLE:View.GONE}">
             <fragment
                 android:id="@+id/content_fragment_host"
                 android:name="androidx.navigation.fragment.NavHostFragment"
@@ -41,11 +39,6 @@
                 android:layout_height="match_parent"
                 app:defaultNavHost="true"
                 app:navGraph="@navigation/customer_container_content_nav" />
-        </FrameLayout>
-        <TextView
-            android:id="@+id/test_view"
-            android:text="123"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"></TextView>
+        </RelativeLayout>
     </androidx.constraintlayout.motion.widget.MotionLayout>
 </layout>

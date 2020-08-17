@@ -1,5 +1,6 @@
 package com.young.aac.base
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import androidx.annotation.LayoutRes
 import androidx.appcompat.app.AppCompatActivity
@@ -7,6 +8,7 @@ import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import androidx.lifecycle.ViewModelProvider
 import com.framing.commonlib.base.CommonBaseActivity
+import com.framing.commonlib.utils.BarUtils
 
 /*
 * BaseUIViewMode   UI 管理
@@ -46,8 +48,10 @@ abstract class MvvmBaseActivity <V : ViewDataBinding, UVM : BaseUIViewModel,DVM:
     protected  fun getActivityViewModelProvider(activity: AppCompatActivity): ViewModelProvider{
         return ViewModelProvider(activity, activity.defaultViewModelProviderFactory)
     }
+    @SuppressLint("ResourceAsColor")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        BarUtils.setStatusBarColor(this,R.color.colorAccent)
         byDataBindingAttach()
     }
     /*
