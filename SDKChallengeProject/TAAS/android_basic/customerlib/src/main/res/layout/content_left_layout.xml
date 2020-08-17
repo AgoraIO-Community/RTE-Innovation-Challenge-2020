@@ -1,16 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
+<layout>
 <androidx.constraintlayout.motion.widget.MotionLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:id="@+id/motion_layout"
     app:layoutDescription="@xml/content_left_layout_scene">
 
     <androidx.constraintlayout.utils.widget.ImageFilterView
         android:id="@+id/one_img"
         android:layout_width="55dp"
         android:layout_height="55dp"
-        android:background="#0f0"
+        app:srcCompat="@mipmap/question_simple_icon"
         app:layout_constraintBottom_toBottomOf="@+id/one_tv"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/one_tv"></androidx.constraintlayout.utils.widget.ImageFilterView>
@@ -29,7 +31,7 @@
         android:id="@+id/two_img"
         android:layout_width="55dp"
         android:layout_height="55dp"
-        android:background="#0ff"
+        app:srcCompat="@mipmap/question_simple_icon"
         app:layout_constraintBottom_toBottomOf="@+id/two_tv"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/two_tv"></androidx.constraintlayout.utils.widget.ImageFilterView>
@@ -49,3 +51,4 @@
 
 
 </androidx.constraintlayout.motion.widget.MotionLayout>
+</layout>

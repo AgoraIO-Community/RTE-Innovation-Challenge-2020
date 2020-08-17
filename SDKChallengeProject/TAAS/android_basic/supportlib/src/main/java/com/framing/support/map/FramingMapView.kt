@@ -5,6 +5,7 @@ import android.util.AttributeSet
 import com.amap.api.maps.AMapOptions
 import com.amap.api.maps.CameraUpdateFactory
 import com.amap.api.maps.MapView
+import com.amap.api.maps.TextureMapView
 import com.amap.api.maps.model.LatLng
 import com.amap.api.maps.model.TileOverlay
 import com.amap.api.maps.model.TileOverlayOptions
@@ -16,7 +17,7 @@ import java.net.URL
  * Author Young
  * Date 
  */
-abstract class FramingMapView : MapView {
+abstract class FramingMapView : TextureMapView {
     constructor(p0: Context?) : super(p0){
     }
     constructor(p0: Context?, p1: AttributeSet?) : super(p0, p1){

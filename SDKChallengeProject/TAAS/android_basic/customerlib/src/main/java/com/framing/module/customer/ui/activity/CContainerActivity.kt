@@ -19,8 +19,8 @@ class CContainerActivity :  MvvmBaseActivity<CContainerActivityBinding, CContain
         permissionRun(PermissionPolicy.P_LOC){
 
         }
-        getBinding().mapView.onCreate(savedInstanceState)
-        getBinding().mapView.initLoad()
+//        getBinding().mapView.onCreate(savedInstanceState)
+//        getBinding().mapView.initLoad()
     }
     override fun getUIViewModel(): CContainerUIVM {
         return getActivityViewModelProvider(this).get(CContainerUIVM::class.java)

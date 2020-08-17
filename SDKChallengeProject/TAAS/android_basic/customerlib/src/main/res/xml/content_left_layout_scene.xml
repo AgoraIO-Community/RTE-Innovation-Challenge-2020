@@ -4,7 +4,7 @@
 
     <ConstraintSet android:id="@+id/start">
         <Constraint android:id="@+id/one_img"
-            android:alpha="0f" />
+            android:alpha="0" />
         <Constraint
             android:id="@+id/one_tv"
             app:layout_constraintLeft_toRightOf="@+id/one_img"
@@ -15,7 +15,7 @@
             android:rotationX="90" />
         <Constraint
             android:id="@+id/two_img"
-            android:alpha="0f" />
+            android:alpha="0" />
         <Constraint
             android:id="@+id/two_tv"
             app:layout_constraintLeft_toRightOf="@+id/two_img"
@@ -26,7 +26,7 @@
             android:rotationX="90" />
     </ConstraintSet>
 
-    <ConstraintSet android:id="@+id/end">
+    <ConstraintSet android:id="@+id/left">
         <Constraint android:id="@id/one_img" />
         <Constraint
             android:id="@+id/one_tv"
@@ -52,9 +52,8 @@
     </ConstraintSet>
 
     <Transition
-        app:constraintSetEnd="@id/end"
+        android:id="@+id/content_left_transition"
+        app:constraintSetEnd="@id/left"
         app:constraintSetStart="@+id/start"
-        app:duration="@android:integer/status_bar_notification_info_maxnum" >
-        <OnSwipe app:dragDirection="dragLeft" />
-    </Transition>
+        app:duration="5000" ></Transition>
 </MotionScene>

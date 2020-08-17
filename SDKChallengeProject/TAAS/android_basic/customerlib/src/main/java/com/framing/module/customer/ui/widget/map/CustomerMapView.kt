@@ -4,6 +4,7 @@ import android.content.Context
 import android.graphics.Bitmap
 import android.util.AttributeSet
 import android.util.Log
+import android.view.MotionEvent
 import com.framing.baselib.TLog
 import com.framing.commonlib.map.SimpleMapView
 import com.framing.commonlib.utils.FileUtils
@@ -76,4 +77,8 @@ class CustomerMapView : SimpleMapView {
     }
     override val diskCacheDir: String
         get() =localPath
+
+    override fun onInterceptTouchEvent(ev: MotionEvent?): Boolean {
+        return true
+    }
 }
