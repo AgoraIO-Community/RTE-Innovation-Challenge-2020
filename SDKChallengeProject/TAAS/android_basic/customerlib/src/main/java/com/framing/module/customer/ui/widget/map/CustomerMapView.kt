@@ -13,10 +13,7 @@ import com.framing.commonlib.map.SimpleMapView
 import com.framing.commonlib.utils.FileUtils
 import com.framing.commonlib.utils.ImageUtils
 import com.framing.module.customer.Constans
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.delay
-import kotlinx.coroutines.launch
+import kotlinx.coroutines.*
 import java.io.File
 import java.io.IOException
 import java.io.InputStream
@@ -92,11 +89,17 @@ class CustomerMapView : SimpleMapView {
         get() =localPath
 
     override fun drawOverlay() {
-        //创建测试区域
-        BaseMapDrawBuild().with(map)
-            .style(BaseMapDrawBuild.DrawMapStye.DRAW_RECTANGLE)
-            .targetLatLng(listOf(TEST_AREA_TL,TEST_AREA_TR,TEST_AREA_BR,TEST_AREA_BL),1)
-            .create()
+        GlobalScope.launch {
+            Thread.sleep(3000)
+            withContext(Dispatchers.IO){
+
+            }
+            //创建测试区域
+            BaseMapDrawBuild().with(map)
+                .style(BaseMapDrawBuild.DrawMapStye.DRAW_RECTANGLE)
+                .targetLatLng(listOf(TEST_AREA_TL,TEST_AREA_TR,TEST_AREA_BR,TEST_AREA_BL),1)
+                .create()
+        }
     }
 
     override fun addMaker() {
@@ -105,6 +108,7 @@ class CustomerMapView : SimpleMapView {
 
     override fun moveCamera(mAmap: AMap) {
         GlobalScope.launch{
+            Thread.sleep(3000)
             launch (Dispatchers.Main){
                 map.moveCamera(
                     CameraUpdateFactory.newLatLngZoom(
