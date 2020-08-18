@@ -1,14 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.motion.widget.MotionLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.fragment.StartFragment">
+    android:background="@color/color_main_science"
+    tools:context=".ui.fragment.StartFragment"
+    android:id="@+id/motion_layout"
+    app:layoutDescription="@xml/fragment_start_scene">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
-
-</FrameLayout>
+    <androidx.constraintlayout.utils.widget.ImageFilterView
+        android:id="@+id/logo_view"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:src="@mipmap/question_simple_icon"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"></androidx.constraintlayout.utils.widget.ImageFilterView>
+</androidx.constraintlayout.motion.widget.MotionLayout>

@@ -7,12 +7,13 @@
         <Constraint
             android:id="@+id/start_container"
             android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+            android:layout_height="match_parent"
+            app:visibilityMode="ignore"/>
         <Constraint
-            android:id="@+id/test_view"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:rotation="90" />
+            android:id="@+id/content_container"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:visibilityMode="ignore"/>
     </ConstraintSet>
 
     <ConstraintSet android:id="@+id/left">
@@ -20,12 +21,13 @@
         <Constraint
             android:id="@+id/start_container"
             android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+            android:layout_height="match_parent"
+            app:visibilityMode="ignore" />
         <Constraint
-            android:id="@+id/test_view"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:rotation="180" />
+            android:id="@+id/content_container"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:visibilityMode="ignore"/>
     </ConstraintSet>
 
     <Transition

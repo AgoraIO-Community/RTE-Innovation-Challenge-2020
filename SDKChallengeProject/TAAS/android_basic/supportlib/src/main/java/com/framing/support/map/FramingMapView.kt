@@ -2,10 +2,8 @@ package com.framing.support.map
 
 import android.content.Context
 import android.util.AttributeSet
-import com.amap.api.maps.AMapOptions
-import com.amap.api.maps.CameraUpdateFactory
-import com.amap.api.maps.MapView
-import com.amap.api.maps.TextureMapView
+import android.util.Log
+import com.amap.api.maps.*
 import com.amap.api.maps.model.LatLng
 import com.amap.api.maps.model.TileOverlay
 import com.amap.api.maps.model.TileOverlayOptions
@@ -31,12 +29,12 @@ abstract class FramingMapView : TextureMapView {
     private var url =
         "http://mt2.google.cn/vt/lyrs=y&scale=2&hl=zh-CN&gl=cn&x=%d&s=&y=%d&z=%d"
     private lateinit var OMCMapOverlay: TileOverlay//覆盖的瓦片
-    private var longitude=112.019825//经度
-    private var latitude=37.303396//纬度
 
     abstract fun urlFilePath( x:Int,  y:Int,  zoom:Int):String//实时操作获取对应google瓦片
     abstract val diskCacheDir:String//缓存路径
-
+    abstract fun drawOverlay()//覆盖物
+    abstract fun addMaker()//标记点
+    abstract fun moveCamera(mAmap:AMap)//初始点
 
     /*
     * TileOverlayOptions overlayOptions 覆盖物的设置构造
@@ -57,23 +55,19 @@ abstract class FramingMapView : TextureMapView {
             .memCacheSize(102400)
             .zIndex(-9999f)
         OMCMapOverlay = map.addTileOverlay(overlayOptions)
+        map.addOnMapClickListener {
+            Log.i("test_lalo",it.toString())
+        }
     }
     private fun initAmap(){
         //移动中心点
-        map.moveCamera(
-            CameraUpdateFactory.newLatLngZoom(
-                LatLng(
-                    latitude,
-                    longitude
-                ), 17f
-            )//放大级别
-        )
+        moveCamera(map)
         map.uiSettings.run {
             isCompassEnabled=true //是否显示指南针
             isScaleControlsEnabled=true//比例尺控件是否显示
             isRotateGesturesEnabled=false//旋转手势关闭
         }
-
+        drawOverlay()
     }
     //清除覆盖物
     fun cleanOverlay(){

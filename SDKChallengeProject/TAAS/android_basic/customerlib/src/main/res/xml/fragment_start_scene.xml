@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MotionScene xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <ConstraintSet android:id="@+id/logo_start">
+        <Constraint android:id="@+id/widget" />
+        <Constraint
+            android:id="@+id/logo_view"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+    </ConstraintSet>
+
+    <ConstraintSet android:id="@+id/logo_end">
+        <Constraint android:id="@id/widget" />
+        <Constraint
+            android:id="@+id/logo_view"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+    </ConstraintSet>
+    <Transition
+        android:id="@+id/start_transition"
+        app:constraintSetEnd="@id/logo_end"
+        app:constraintSetStart="@+id/logo_start"
+        app:duration="3000">
+        <KeyFrameSet>
+            <KeyAttribute
+                app:motionTarget="@+id/logo_view"
+                app:framePosition="0"
+                android:scaleX="1.0" />
+            <KeyAttribute
+                app:motionTarget="@+id/logo_view"
+                app:framePosition="0"
+                android:scaleY="1.0" />
+
+            <KeyAttribute
+                app:motionTarget="@+id/logo_view"
+                app:framePosition="20"
+                android:scaleX="0.7" />
+            <KeyAttribute
+                app:motionTarget="@+id/logo_view"
+                app:framePosition="20"
+                android:scaleY="0.7" />
+
+            <KeyAttribute
+                app:motionTarget="@+id/logo_view"
+                app:framePosition="20"
+                android:scaleX="0.2" />
+            <KeyAttribute
+                app:motionTarget="@+id/logo_view"
+                app:framePosition="20"
+                android:scaleY="0.2" />
+
+            <KeyAttribute
+                app:motionTarget="@+id/logo_view"
+                app:framePosition="40"
+                android:scaleX="0.7" />
+            <KeyAttribute
+                app:motionTarget="@+id/logo_view"
+                app:framePosition="40"
+                android:scaleY="0.7" />
+
+            <KeyAttribute
+                app:motionTarget="@+id/logo_view"
+                app:framePosition="60"
+                android:rotation="-360"
+                android:scaleX="8.0" />
+            <KeyAttribute
+                app:motionTarget="@+id/logo_view"
+                app:framePosition="60"
+                android:rotation="-360"
+                android:scaleY="8.0" />
+            <KeyAttribute
+                app:motionTarget="@+id/logo_view"
+                app:framePosition="100"
+                android:scaleX="1" />
+        </KeyFrameSet>
+        <OnClick app:targetId="@id/logo_view"
+            app:clickAction="transitionToEnd" />
+
+    </Transition>
+</MotionScene>

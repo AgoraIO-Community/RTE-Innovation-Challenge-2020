@@ -14,10 +14,14 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:layoutDescription="@xml/map_fragment_layout_scene">
+
         <com.framing.module.customer.ui.widget.map.CustomerMapView
             android:id="@+id/map_view"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"></com.framing.module.customer.ui.widget.map.CustomerMapView>
+            android:layout_height="match_parent"
+            tools:layout_editor_absoluteX="0dp"
+            tools:layout_editor_absoluteY="0dp"></com.framing.module.customer.ui.widget.map.CustomerMapView>
+
         <FrameLayout
             android:id="@+id/left_layout"
             android:layout_width="200dp"
