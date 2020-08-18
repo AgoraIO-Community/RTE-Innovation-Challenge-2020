@@ -24,11 +24,76 @@
 package com.qifan.emojibattle
 
 import android.os.Bundle
+import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
+import com.qifan.emojibattle.databinding.ActivityMainBinding
+import io.agora.rtc2.ChannelMediaOptions
+import io.agora.rtc2.IRtcEngineEventHandler
+import io.agora.rtc2.RtcEngine
+import io.agora.rtc2.video.VideoCanvas
+import io.agora.rtc2.video.VideoEncoderConfiguration
+import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
+    private lateinit var binding: ActivityMainBinding
+    private val localSurfaceView get() = binding.localSurfaceView
+    private val token = BuildConfig.Token
+    private val appId = BuildConfig.AppId
+    private lateinit var rtcEngine: RtcEngine
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        binding = ActivityMainBinding.inflate(layoutInflater)
+        setContentView(binding.root)
+        initializeAgoraEngine()
+        controlVideo()
+        joinChannel()
+    }
+
+    private fun initializeAgoraEngine() {
+        try {
+            rtcEngine = RtcEngine.create(
+                baseContext,
+                appId,
+                object : IRtcEngineEventHandler() {
+                    override fun onJoinChannelSuccess(channel: String?, userId: Int, elapsed: Int) {
+                        super.onJoinChannelSuccess(channel, userId, elapsed)
+                        Log.d(
+                            "Qifan",
+                            """
+                            join channel success channel:$channel
+                            userId = $userId
+                            elapsed = $elapsed
+                            """.trimIndent()
+                        )
+                    }
+                }
+            )
+        } catch (e: Exception) {
+            throw RuntimeException("NEED TO check rtc sdk init fatal error ${Log.getStackTraceString(e)}")
+        }
+    }
+
+    private fun controlVideo() {
+//        rtcEngine.enableAudio()
+        rtcEngine.enableVideo()
+        rtcEngine.setVideoEncoderConfiguration(VideoEncoderConfiguration())
+        rtcEngine.setupLocalVideo(VideoCanvas(localSurfaceView, VideoCanvas.RENDER_MODE_FIT, 0))
+    }
+
+    private fun joinChannel() {
+        // if you do not specify the uid, Agora will assign one.
+        val channelMediaOptions = ChannelMediaOptions()
+        channelMediaOptions.publishCameraTrack = true
+        channelMediaOptions.autoSubscribeVideo = true
+        rtcEngine.joinChannel(null, "demoChannel1", "Extra Optional Data", 0)
+    }
+
+    private fun leaveChannel() {
+        rtcEngine.leaveChannel()
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        leaveChannel()
     }
 }
