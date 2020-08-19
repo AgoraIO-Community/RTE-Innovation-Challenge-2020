@@ -28,6 +28,7 @@ import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import com.qifan.emojibattle.databinding.ActivityMainBinding
 import io.agora.rtc2.ChannelMediaOptions
+import io.agora.rtc2.Constants
 import io.agora.rtc2.IRtcEngineEventHandler
 import io.agora.rtc2.RtcEngine
 import io.agora.rtc2.video.VideoCanvas
@@ -37,6 +38,7 @@ import kotlinx.android.synthetic.main.activity_main.*
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
     private val localSurfaceView get() = binding.localSurfaceView
+    private val remoteSurfaceView get() = binding.remoteSurfaceView
     private val token = BuildConfig.Token
     private val appId = BuildConfig.AppId
     private lateinit var rtcEngine: RtcEngine
@@ -65,27 +67,88 @@ class MainActivity : AppCompatActivity() {
                             elapsed = $elapsed
                             """.trimIndent()
                         )
+
+                    }
+
+                    override fun onFirstLocalVideoFrame(width: Int, height: Int, elapsed: Int) {
+                        super.onFirstLocalVideoFrame(width, height, elapsed)
+                        Log.d("Qifan", "onFirstLocalVideoFrame")
+
+                    }
+
+                    override fun onFirstRemoteVideoDecoded(
+                        userId: Int,
+                        width: Int,
+                        height: Int,
+                        elapsed: Int
+                    ) {
+                        super.onFirstRemoteVideoDecoded(userId, width, height, elapsed)
+                        Log.d("Qifan", "Remote=====")
+                        runOnUiThread {
+                            if (remoteSurfaceView.childCount >= 1) {
+                                return@runOnUiThread
+                            }
+                            val surfaceView = RtcEngine.CreateRendererView(baseContext)
+                            remoteSurfaceView.addView(surfaceView)
+                            rtcEngine.setupRemoteVideo(
+                                VideoCanvas(
+                                    surfaceView,
+                                    VideoCanvas.RENDER_MODE_FIT,
+//                                    VideoCanvas.RENDER_SOURCE_CAMERA,
+                                    userId
+                                )
+                            )
+                        }
+                    }
+
+                    override fun onUserJoined(userId: Int, elapsed: Int) {
+                        super.onUserJoined(userId, elapsed)
+                        Log.d("Qifan", "onUserJoined")
                     }
                 }
             )
         } catch (e: Exception) {
-            throw RuntimeException("NEED TO check rtc sdk init fatal error ${Log.getStackTraceString(e)}")
+            throw RuntimeException(
+                "NEED TO check rtc sdk init fatal error ${
+                    Log.getStackTraceString(
+                        e
+                    )
+                }"
+            )
         }
     }
 
     private fun controlVideo() {
-//        rtcEngine.enableAudio()
         rtcEngine.enableVideo()
-        rtcEngine.setVideoEncoderConfiguration(VideoEncoderConfiguration())
-        rtcEngine.setupLocalVideo(VideoCanvas(localSurfaceView, VideoCanvas.RENDER_MODE_FIT, 0))
+        rtcEngine.setVideoEncoderConfiguration(
+            VideoEncoderConfiguration(
+                VideoEncoderConfiguration.VD_640x360,
+                VideoEncoderConfiguration.FRAME_RATE.FRAME_RATE_FPS_15,
+                VideoEncoderConfiguration.STANDARD_BITRATE,
+                VideoEncoderConfiguration.ORIENTATION_MODE.ORIENTATION_MODE_FIXED_PORTRAIT
+            )
+        )
+        val surfaceView = RtcEngine.CreateRendererView(baseContext)
+        surfaceView.setZOrderMediaOverlay(true)
+        localSurfaceView.addView(surfaceView)
+        rtcEngine.setupLocalVideo(
+            VideoCanvas(
+                surfaceView,
+                VideoCanvas.RENDER_MODE_FIT,
+                VideoCanvas.RENDER_SOURCE_CAMERA,
+                0
+            )
+        )
     }
 
     private fun joinChannel() {
         // if you do not specify the uid, Agora will assign one.
-        val channelMediaOptions = ChannelMediaOptions()
-        channelMediaOptions.publishCameraTrack = true
-        channelMediaOptions.autoSubscribeVideo = true
-        rtcEngine.joinChannel(null, "demoChannel1", "Extra Optional Data", 0)
+//        val channelMediaOptions = ChannelMediaOptions()
+//        channelMediaOptions.publishCameraTrack = true
+//        channelMediaOptions.autoSubscribeVideo = true
+//        channelMediaOptions.clientRoleType = Constants.CLIENT_ROLE_BROADCASTER
+//        rtcEngine.joinChannel(token, "demoChannel1", 0, channelMediaOptions)
+        rtcEngine.joinChannel(token, "demoChannel1", "Extra Optional Data", 0)
     }
 
     private fun leaveChannel() {
@@ -95,5 +158,6 @@ class MainActivity : AppCompatActivity() {
     override fun onDestroy() {
         super.onDestroy()
         leaveChannel()
+        RtcEngine.destroy()
     }
 }
