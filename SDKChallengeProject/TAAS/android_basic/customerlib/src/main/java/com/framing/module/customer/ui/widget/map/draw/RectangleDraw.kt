@@ -27,7 +27,8 @@ import com.amap.api.maps.model.PolygonOptions
         polygonOptions.add(latLng[0], latLng[1], latLng[2], latLng[3])
         polygonOptions.strokeWidth(15f) // 多边形的边框
             .strokeColor(Color.GREEN) // 边框颜色
-            .fillColor(Color.GRAY) // 多边形的填充色
+            .fillColor(Color.TRANSPARENT) // 多边形的填充色
+            .zIndex(999F)
         aMap.addPolygon(polygonOptions)
     }
 

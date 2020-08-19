@@ -42,14 +42,8 @@ import com.framing.module.customer.databinding.ContentLeftLayoutBinding
         binding = DataBindingUtil.inflate(LayoutInflater.from(context), R.layout.content_left_layout,this,true);
     }
     fun showHide(isShow:Boolean){
-        if(isShow) {
-            binding.motionLayout.transitionToState(R.id.content_left_transition)
-            binding.motionLayout.transitionToStart()
-            binding.motionLayout.transitionToEnd()
-        }else{
-            binding.motionLayout.transitionToState(R.id.content_left_transition)
-            binding.motionLayout.transitionToEnd()
-            binding.motionLayout.transitionToStart()
-        }
+    }
+    fun progress(pro:Float){
+        binding.motionLayout.progress=pro
     }
 }

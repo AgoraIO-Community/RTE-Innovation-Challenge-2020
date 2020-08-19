@@ -4,69 +4,63 @@
 
     <ConstraintSet android:id="@+id/start">
         <Constraint
-            android:layout_height="match_parent"
-            android:layout_width="200dp"
+            android:id="@+id/left_layout"
             app:layout_constraintEnd_toStartOf="parent"
-            android:id="@+id/left_layout"
-            app:layout_constraintHorizontal_bias="1" />
-        <Constraint
-            android:id="@+id/bottom_layout"
-            android:layout_width="match_parent"
-            android:layout_height="450dp"
-            app:layout_constraintTop_toBottomOf="parent"
-            app:layout_editor_absoluteX="16dp"
-            app:layout_constraintVertical_bias="0.05"
-            app:layout_constraintBottom_toTopOf="parent" />
-    </ConstraintSet>
-
-    <ConstraintSet android:id="@+id/left">
-        <Constraint
-            android:id="@+id/left_layout"
             android:layout_width="200dp"
-            android:layout_height="match_parent"
-            app:layout_constraintStart_toStartOf="parent" />
-    </ConstraintSet>
-
-    <Transition
-        app:constraintSetEnd="@id/left"
-        app:constraintSetStart="@+id/start" >
-        <OnSwipe app:dragDirection="dragRight" />
-    </Transition>
-    <ConstraintSet
-        android:id="@+id/bottom"
-        app:deriveConstraintsFrom="@+id/start" >
-        <Constraint
-            android:id="@+id/bottom_layout"
-            android:layout_width="match_parent"
-            android:layout_height="450dp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintVertical_bias="1"
-            app:layout_constraintHorizontal_bias="0"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintTop_toBottomOf="parent" />
-        <Constraint
-            android:id="@+id/bottom_layout"
-            android:layout_height="450dp"
-            android:layout_width="match_parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="1"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintTop_toBottomOf="parent" />
+            android:layout_height="match_parent" />
         <Constraint
             android:id="@+id/map_view"
             android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+        <Constraint
+            android:id="@+id/bottom_layout"
+            android:layout_width="match_parent"
+            android:layout_height="450dp" />
+        <Constraint
+            android:id="@+id/bottom_layout"
+            android:layout_width="match_parent"
+            android:layout_height="450dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/map_view"
+            app:layout_constraintVertical_bias="0.1" />
+    </ConstraintSet>
+
+    <ConstraintSet android:id="@+id/left_end">
+        <Constraint
+            android:id="@+id/left_layout"
+            android:layout_width="200dp"
             android:layout_height="match_parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent" />
+            app:layout_constraintStart_toStartOf="@+id/map_view" />
+        <Constraint
+            android:id="@+id/map_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+    </ConstraintSet>
+
+    <Transition
+        app:constraintSetEnd="@id/left_end"
+        app:constraintSetStart="@+id/start"
+        android:id="@+id/to_left">
+        <OnSwipe app:dragDirection="dragRight" />
+    </Transition>
+    <ConstraintSet
+        android:id="@+id/bottom_end">
+        <Constraint
+            android:id="@+id/map_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+        <Constraint
+            android:id="@+id/bottom_layout"
+            android:layout_width="match_parent"
+            android:layout_height="450dp"
+            app:layout_constraintTop_toBottomOf="@id/map_view"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintVertical_bias="1" />
     </ConstraintSet>
     <Transition
         android:id="@+id/to_bottom"
         app:constraintSetStart="@+id/start"
-        app:constraintSetEnd="@+id/bottom">
+        app:constraintSetEnd="@+id/bottom_end" >
         <OnSwipe app:dragDirection="dragUp" />
     </Transition>
 </MotionScene>

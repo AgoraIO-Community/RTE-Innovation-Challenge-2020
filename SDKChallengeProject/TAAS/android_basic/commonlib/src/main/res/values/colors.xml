@@ -4,5 +4,5 @@
     <color name="colorPrimaryDark">#3700B3</color>
     <color name="colorAccent">#03DAC5</color>
     <color name="color_main_science">#72d2f5</color>
-
+    <color name="color_menu_science">#434e9f</color>
 </resources>

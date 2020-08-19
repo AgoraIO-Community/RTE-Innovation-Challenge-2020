@@ -1,9 +1,11 @@
 package com.framing.module.customer.ui.fragment
 
+import android.os.Build
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.annotation.RequiresApi
 import androidx.constraintlayout.motion.widget.MotionLayout
 import androidx.constraintlayout.motion.widget.MotionLayout.TransitionListener
 import com.amap.api.maps.MapView
@@ -40,14 +42,15 @@ class  MapFragment :  MvvmBaseFragment<MapFragmentLayoutBinding, MapUIVM,MapData
                  TLog.log("motionLayout","onTransitionStarted")
              }
 
+             @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
              override fun onTransitionChange(p0: MotionLayout?, p1: Int, p2: Int, p3: Float) {
-                 TLog.log("motionLayout","onTransitionChange")
+                 TLog.log("motionLayout","onTransitionChange$p1 p2 $p2 p3 $p3  name ${p0?.currentState} ")
+                 getBinding().leftLayout.progress(p3)
+                 getBinding().bottomLayout.progress(p3)
              }
 
              override fun onTransitionCompleted(p0: MotionLayout?, p1: Int) {
                  TLog.log("motionLayout","onTransitionCompleted"+p1)
-                 isShow= if(isShow) false else true
-                 getBinding().leftMenu.showHide(isShow)
              }
          })
     }

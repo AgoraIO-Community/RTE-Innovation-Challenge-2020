@@ -33,7 +33,7 @@ abstract class FramingMapView : TextureMapView {
     abstract fun urlFilePath( x:Int,  y:Int,  zoom:Int):String//实时操作获取对应google瓦片
     abstract val diskCacheDir:String//缓存路径
     abstract fun drawOverlay()//覆盖物
-    abstract fun addMaker()//标记点
+    abstract fun addMaker(mAmap:AMap)//标记点
     abstract fun moveCamera(mAmap:AMap)//初始点
 
     /*
@@ -68,6 +68,7 @@ abstract class FramingMapView : TextureMapView {
             isRotateGesturesEnabled=false//旋转手势关闭
         }
         drawOverlay()
+        addMaker(map)
     }
     //清除覆盖物
     fun cleanOverlay(){
