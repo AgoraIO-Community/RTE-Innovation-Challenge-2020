@@ -66,6 +66,7 @@ dependencies {
     implementation fileTree(dir: "libs", include: ["*.jar"])
     implementation files("libs/agora-rtc-sdk.jar")
     implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
+    implementation "com.qifan.powerpermission:powerpermission:1.3.0"
     implementation "androidx.core:core-ktx:1.3.1"
     implementation "androidx.appcompat:appcompat:1.2.0"
     implementation "androidx.constraintlayout:constraintlayout:1.1.3"

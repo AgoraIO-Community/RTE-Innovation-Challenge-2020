@@ -24,173 +24,47 @@
 package com.qifan.emojibattle
 
 import android.Manifest
-import android.content.pm.PackageManager
 import android.os.Bundle
-import android.util.Log
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.app.ActivityCompat
-import androidx.core.content.ContextCompat
+import com.qifan.emojibattle.BattleActivity.Companion.startBattleActivity
 import com.qifan.emojibattle.databinding.ActivityMainBinding
-import io.agora.rtc2.ChannelMediaOptions
-import io.agora.rtc2.Constants
-import io.agora.rtc2.IRtcEngineEventHandler
-import io.agora.rtc2.RtcEngine
-import io.agora.rtc2.video.VideoCanvas
-import io.agora.rtc2.video.VideoEncoderConfiguration
-
-private const val PERMISSION_REQ_ID_RECORD_AUDIO = 1
-private const val PERMISSION_REQ_ID_CAMERA = 2
+import com.qifan.emojibattle.extension.debug
+import com.qifan.powerpermission.askPermissions
+import com.qifan.powerpermission.data.hasAllGranted
+import com.qifan.powerpermission.data.hasPermanentDenied
+import com.qifan.powerpermission.rationale.createDialogRationale
+import com.qifan.powerpermission.rationale.delegate.RationaleDelegate
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
-    private val localSurfaceView get() = binding.localSurfaceView
-    private val remoteSurfaceView get() = binding.remoteSurfaceView
-    private val token = BuildConfig.Token
-    private val appId = BuildConfig.AppId
-    private lateinit var rtcEngine: RtcEngine
+    private val editChannel get() = binding.editChannel
+    private val btnBattle get() = binding.btnBattle
+    private val permissions = arrayOf(Manifest.permission.CAMERA, Manifest.permission.RECORD_AUDIO)
+    private val DEFAULT_CHANNEL = "demoChannel1"
+
+    private val dialogRationaleDelegate: RationaleDelegate by lazy {
+        createDialogRationale(
+            dialogTitle = R.string.permission_dialog_title,
+            requiredPermissions = permissions.toList(),
+            message = getString(R.string.permission_dialog_message)
+        )
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        if (
-            checkSelfPermission(
-                Manifest.permission.RECORD_AUDIO,
-                PERMISSION_REQ_ID_RECORD_AUDIO
-            ) && checkSelfPermission(Manifest.permission.CAMERA, PERMISSION_REQ_ID_CAMERA)
-        ) {
-            initAgoraEngineAndJoinChannel()
+        editChannel.setText(DEFAULT_CHANNEL)
+        btnBattle.setOnClickListener { askPermissionToBattle() }
+    }
+
+    private fun askPermissionToBattle() {
+        askPermissions(*permissions, rationaleDelegate = dialogRationaleDelegate) { result ->
+            when {
+                result.hasAllGranted() -> startBattleActivity(editChannel.text.toString())
+                result.hasPermanentDenied() -> debug("need to do something here")
+            }
         }
-    }
-
-    private fun initAgoraEngineAndJoinChannel() {
-        initializeAgoraEngine()
-        setupVideoProfile()
-        setupLocalVideo()
-        joinChannel()
-    }
-
-    private fun initializeAgoraEngine() {
-        try {
-            rtcEngine = RtcEngine.create(
-                applicationContext,
-                appId,
-                object : IRtcEngineEventHandler() {
-                    override fun onJoinChannelSuccess(channel: String?, userId: Int, elapsed: Int) {
-                        Log.d(
-                            "Qifan",
-                            """
-                            join channel success channel:$channel
-                            userId = $userId
-                            elapsed = $elapsed
-                            """.trimIndent()
-                        )
-
-                    }
-
-                    override fun onFirstLocalVideoFrame(width: Int, height: Int, elapsed: Int) {
-                        super.onFirstLocalVideoFrame(width, height, elapsed)
-                        Log.d("Qifan", "onFirstLocalVideoFrame")
-                    }
-
-                    override fun onFirstRemoteVideoDecoded(
-                        userId: Int,
-                        width: Int,
-                        height: Int,
-                        elapsed: Int
-                    ) {
-                        Log.d("Qifan", "onFirstRemoteVideoDecoded")
-                        super.onFirstRemoteVideoDecoded(userId, width, height, elapsed)
-                        runOnUiThread { setRemoteVideo(userId) }
-                    }
-                }
-            )
-        } catch (e: Exception) {
-            throw RuntimeException(
-                "NEED TO check rtc sdk init fatal error ${Log.getStackTraceString(e)}"
-            )
-        }
-    }
-
-    private fun setupVideoProfile() {
-        rtcEngine.enableVideo()
-        rtcEngine.setVideoEncoderConfiguration(
-            VideoEncoderConfiguration(
-                VideoEncoderConfiguration.VD_640x360,
-                VideoEncoderConfiguration.FRAME_RATE.FRAME_RATE_FPS_15,
-                VideoEncoderConfiguration.STANDARD_BITRATE,
-                VideoEncoderConfiguration.ORIENTATION_MODE.ORIENTATION_MODE_FIXED_PORTRAIT
-            )
-        )
-    }
-
-    private fun setupLocalVideo() {
-        val surfaceView = RtcEngine.CreateRendererView(applicationContext)
-        localSurfaceView.addView(surfaceView)
-        rtcEngine.setupLocalVideo(
-            VideoCanvas(
-                surfaceView,
-                VideoCanvas.RENDER_MODE_FIT,
-                VideoCanvas.RENDER_SOURCE_CAMERA,
-                0
-            )
-        )
-        surfaceView.setZOrderMediaOverlay(true)
-    }
-
-    private fun joinChannel() {
-        // if you do not specify the uid, Agora will assign one.
-        val channelMediaOptions = ChannelMediaOptions()
-        channelMediaOptions.publishCameraTrack = true
-        channelMediaOptions.autoSubscribeVideo = true
-        channelMediaOptions.publishMediaPlayerVideoTrack = false
-        channelMediaOptions.channelProfile = Constants.CHANNEL_PROFILE_COMMUNICATION
-        channelMediaOptions.clientRoleType = Constants.CLIENT_ROLE_BROADCASTER
-        rtcEngine.joinChannel(token, "demoChannel1", 0, channelMediaOptions)
-        rtcEngine.startPreview()
-//        rtcEngine.joinChannel(token, "demoChannel1", "Extra Optional Data", 0)
-    }
-
-    private fun setRemoteVideo(uid: Int) {
-        if (remoteSurfaceView.childCount >= 1) return
-        val surfaceView = RtcEngine.CreateRendererView(applicationContext)
-        remoteSurfaceView.addView(surfaceView)
-        surfaceView.setZOrderMediaOverlay(true)
-        rtcEngine.setupRemoteVideo(
-            VideoCanvas(
-                surfaceView,
-                VideoCanvas.RENDER_MODE_FIT,
-                VideoCanvas.RENDER_SOURCE_CAMERA,
-                uid
-            )
-        )
-    }
-
-    private fun leaveChannel() {
-        rtcEngine.leaveChannel()
-    }
-
-
-    private fun checkSelfPermission(permission: String, requestCode: Int): Boolean {
-        if (ContextCompat.checkSelfPermission(
-                this,
-                permission
-            ) != PackageManager.PERMISSION_GRANTED
-        ) {
-
-            ActivityCompat.requestPermissions(
-                this,
-                arrayOf(permission),
-                requestCode
-            )
-            return false
-        }
-        return true
-    }
-
-    override fun onDestroy() {
-        super.onDestroy()
-        rtcEngine.stopPreview()
-        leaveChannel()
-        RtcEngine.destroy()
     }
 }
