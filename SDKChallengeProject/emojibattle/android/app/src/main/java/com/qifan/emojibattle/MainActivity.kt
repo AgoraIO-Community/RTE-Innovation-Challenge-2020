@@ -37,10 +37,6 @@ import io.agora.rtc2.IRtcEngineEventHandler
 import io.agora.rtc2.RtcEngine
 import io.agora.rtc2.video.VideoCanvas
 import io.agora.rtc2.video.VideoEncoderConfiguration
-//import io.agora.rtc.IRtcEngineEventHandler
-//import io.agora.rtc.RtcEngine
-//import io.agora.rtc.video.VideoCanvas
-//import io.agora.rtc.video.VideoEncoderConfiguration
 
 private const val PERMISSION_REQ_ID_RECORD_AUDIO = 1
 private const val PERMISSION_REQ_ID_CAMERA = 2
@@ -143,14 +139,14 @@ class MainActivity : AppCompatActivity() {
 
     private fun joinChannel() {
         // if you do not specify the uid, Agora will assign one.
-       val channelMediaOptions = ChannelMediaOptions()
+        val channelMediaOptions = ChannelMediaOptions()
         channelMediaOptions.publishCameraTrack = true
         channelMediaOptions.autoSubscribeVideo = true
         channelMediaOptions.publishMediaPlayerVideoTrack = false
-//        channelMediaOptions.publishCustomVideoTrack = false
         channelMediaOptions.channelProfile = Constants.CHANNEL_PROFILE_COMMUNICATION
         channelMediaOptions.clientRoleType = Constants.CLIENT_ROLE_BROADCASTER
         rtcEngine.joinChannel(token, "demoChannel1", 0, channelMediaOptions)
+        rtcEngine.startPreview()
 //        rtcEngine.joinChannel(token, "demoChannel1", "Extra Optional Data", 0)
     }
 
@@ -193,6 +189,7 @@ class MainActivity : AppCompatActivity() {
 
     override fun onDestroy() {
         super.onDestroy()
+        rtcEngine.stopPreview()
         leaveChannel()
         RtcEngine.destroy()
     }
