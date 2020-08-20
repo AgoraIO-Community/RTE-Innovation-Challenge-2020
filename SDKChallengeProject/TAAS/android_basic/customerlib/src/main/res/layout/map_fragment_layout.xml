@@ -14,20 +14,26 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:layoutDescription="@xml/map_fragment_layout_scene">
-
+        <!--map info-->
         <com.framing.module.customer.ui.widget.map.CustomerMapView
             android:id="@+id/map_view"
             android:layout_width="match_parent"
             android:layout_height="match_parent"></com.framing.module.customer.ui.widget.map.CustomerMapView>
-
+        <!--left user center menu-->
         <com.framing.module.customer.ui.widget.element.LeftMenuView
             android:id="@+id/left_layout"
             android:layout_width="200dp"
             android:layout_height="match_parent"
             app:layout_constraintEnd_toStartOf="parent"></com.framing.module.customer.ui.widget.element.LeftMenuView>
+        <!--bottom up view -->
         <com.framing.module.customer.ui.widget.element.BottomScienceView
             android:id="@+id/bottom_layout"
             android:layout_width="match_parent"
             android:layout_height="450dp"></com.framing.module.customer.ui.widget.element.BottomScienceView>
+        <!--right tip  and ani to center-->
+        <com.framing.module.customer.ui.widget.element.ScienceRightTip
+            android:id="@+id/right_one"
+            android:layout_width="160dp"
+            android:layout_height="40dp"></com.framing.module.customer.ui.widget.element.ScienceRightTip>
     </androidx.constraintlayout.motion.widget.MotionLayout>
 </layout>

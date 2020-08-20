@@ -4,6 +4,7 @@ import android.annotation.SuppressLint
 import android.os.Bundle
 import android.os.Handler
 import android.os.HandlerThread
+import androidx.constraintlayout.motion.widget.MotionLayout
 import androidx.core.os.HandlerCompat.postDelayed
 import androidx.core.os.postDelayed
 import androidx.lifecycle.Observer
@@ -41,12 +42,15 @@ class CContainerActivity :  MvvmBaseActivity<CContainerActivityBinding, CContain
         startNavCtrl=findNavController(R.id.launch_fragment_host)
 
         uiLogic()
+        getUIViewModel().isDialogShow.postValue(true)
         permissionRun(PermissionPolicy.P_LOC){
             //权限请求
         }
         GlobalScope?.launch{
             delay(5000)
             appShareVM?.isStartHide?.postValue(true) //执行完了
+            getUIViewModel().isDialogShow.postValue(false)
+
         }
     }
 
@@ -56,10 +60,42 @@ class CContainerActivity :  MvvmBaseActivity<CContainerActivityBinding, CContain
     @SuppressLint("ResourceAsColor")
     private fun uiLogic() {
         appShareVM?.isStartHide?.observe(this, Observer {
-            TLog.log("isStartHide","2222$it ___"+(getUIViewModel().isStartHide.value!=it))
-            if(getUIViewModel().isStartHide.value!=it) {//UI 状态 和 data 不一致才处理
+            if(getUIViewModel().isStartHide.value!=it) {//UI 状态 和 data 不一致才处理 启动页展示与否
                 getUIViewModel().isStartHide.postValue(true)
-                TLog.log("isStartHide","333${getUIViewModel().isStartHide.value} ___")
+            }
+        })
+        getUIViewModel().isDialogShow.observe(this, Observer {
+            if(it) {//展示弹窗
+                getBinding().motionLayout?.run {
+                    setTransition(R.id.to_dialog)
+                    transitionToEnd()
+                }
+            }else{
+                getBinding().motionLayout?.run {
+//                    setTransition(R.id.to_dialog)
+//                    transitionToStart()
+                }
+            }
+        })
+        //监听动效流程 配置逻辑
+        getBinding().motionLayout.addTransitionListener(object : MotionLayout.TransitionListener{
+            override fun onTransitionTrigger(p0: MotionLayout?, p1: Int, p2: Boolean, p3: Float) {
+                TLog.log("container_motionLayout","onTransitionTrigger")
+            }
+
+            override fun onTransitionStarted(p0: MotionLayout?, p1: Int, p2: Int) {
+                TLog.log("container_motionLayout","onTransitionStarted")
+            }
+
+            override fun onTransitionChange(p0: MotionLayout?, p1: Int, p2: Int, p3: Float) {
+                TLog.log("container_motionLayout","onTransitionChange")
+            }
+
+            override fun onTransitionCompleted(p0: MotionLayout?, p1: Int) {
+                TLog.log("container_motionLayout","onTransitionCompleted$p1  ${R.id.dialog}")
+                if(p1==R.id.dialog){//id
+                    getBinding().dialogView?.progress(1f)
+                }
             }
         })
     }

@@ -29,6 +29,7 @@
             android:background="@color/color_main_science"
             android:gravity="center_vertical|left"
             android:text="@string/app_customer_menu_one"
+            android:textColor="@color/color_white"
             android:layout_marginTop="100dp"
             app:layout_constraintLeft_toRightOf="@+id/one_img"
             app:layout_constraintRight_toRightOf="parent"

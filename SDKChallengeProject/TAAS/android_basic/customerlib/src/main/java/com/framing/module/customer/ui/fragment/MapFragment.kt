@@ -32,8 +32,6 @@ class  MapFragment :  MvvmBaseFragment<MapFragmentLayoutBinding, MapUIVM,MapData
         super.onViewCreated(view, savedInstanceState)
         getBinding().mapView.onCreate(savedInstanceState)
         getBinding().mapView.initLoad()
-//        lifecycle.addObserver(getBinding().mapView)
-//        getBinding().mapView.initLoad()
          getBinding().motionLayout.addTransitionListener(object :TransitionListener{
              override fun onTransitionTrigger(p0: MotionLayout?, p1: Int, p2: Boolean, p3: Float) {
                     TLog.log("motionLayout","onTransitionTrigger")
@@ -41,26 +39,22 @@ class  MapFragment :  MvvmBaseFragment<MapFragmentLayoutBinding, MapUIVM,MapData
              override fun onTransitionStarted(p0: MotionLayout?, p1: Int, p2: Int) {
                  TLog.log("motionLayout","onTransitionStarted")
              }
-
              @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
              override fun onTransitionChange(p0: MotionLayout?, p1: Int, p2: Int, p3: Float) {
                  TLog.log("motionLayout","onTransitionChange$p1 p2 $p2 p3 $p3  name ${p0?.currentState} ")
-                 getBinding().leftLayout.progress(p3)
-                 getBinding().bottomLayout.progress(p3)
+                 if(p1==R.id.left_end||p2==R.id.left_end){
+                     getBinding().leftLayout.progress(p3)
+                 }else if(p1==R.id.bottom_end||p2==R.id.bottom_end){
+                     getBinding().bottomLayout.progress(p3)
+                 }else if(p1==R.id.right_one_end||p2==R.id.right_one_end){
+                     getBinding().rightOne.progress(p3)
+                 }
              }
 
              override fun onTransitionCompleted(p0: MotionLayout?, p1: Int) {
                  TLog.log("motionLayout","onTransitionCompleted"+p1)
              }
          })
-    }
-
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        return super.onCreateView(inflater, container, savedInstanceState)
     }
 
     override fun onResume() {

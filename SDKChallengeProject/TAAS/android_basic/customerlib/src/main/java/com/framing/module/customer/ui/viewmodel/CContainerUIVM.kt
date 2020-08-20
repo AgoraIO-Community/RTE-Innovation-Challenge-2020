@@ -11,5 +11,6 @@ class CContainerUIVM : BaseUIViewModel{
     constructor() : super(){
         isStartHide.postValue(false)//默认为启动状态 加载启动
     }
-    val isStartHide=MutableLiveData<Boolean>()
+    val isStartHide=MutableLiveData<Boolean>()//控制启动页 和首页 切换
+    val isDialogShow=MutableLiveData<Boolean>()//控制弹窗显示
 }

@@ -23,6 +23,13 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintTop_toBottomOf="@id/map_view"
             app:layout_constraintVertical_bias="0.1" />
+        <Constraint
+            android:id="@+id/right_one"
+            android:layout_width="160dp"
+            android:layout_height="40dp"
+            app:layout_constraintBottom_toTopOf="@+id/bottom_layout"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="parent" />
     </ConstraintSet>
 
     <ConstraintSet android:id="@+id/left_end">
@@ -62,5 +69,23 @@
         app:constraintSetStart="@+id/start"
         app:constraintSetEnd="@+id/bottom_end" >
         <OnSwipe app:dragDirection="dragUp" />
+    </Transition>
+    <ConstraintSet
+        android:id="@+id/right_one_end"
+        app:deriveConstraintsFrom="@+id/start" >
+        <Constraint
+            android:id="@+id/right_one"
+            android:layout_width="320dp"
+            android:layout_height="400dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent" />
+    </ConstraintSet>
+    <Transition
+        android:id="@+id/to_right_one"
+        app:constraintSetStart="@+id/start"
+        app:constraintSetEnd="@+id/right_one_end" >
+        <OnClick app:targetId="@id/right_one" />
     </Transition>
 </MotionScene>

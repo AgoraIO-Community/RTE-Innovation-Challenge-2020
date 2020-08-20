@@ -14,6 +14,12 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             app:visibilityMode="ignore"/>
+        <Constraint
+            android:layout_height="1dp"
+            android:layout_width="1dp"
+            android:id="@+id/dialog_view"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="parent" />
     </ConstraintSet>
 
     <ConstraintSet android:id="@+id/left">
@@ -34,4 +40,23 @@
         app:constraintSetEnd="@id/left"
         app:constraintSetStart="@+id/start"
         app:duration="5000" />
+    <ConstraintSet
+        android:id="@+id/dialog"
+        app:deriveConstraintsFrom="@+id/start" >
+        <Constraint
+            android:id="@+id/dialog_view"
+            android:layout_width="220dp"
+            android:layout_height="260dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent" />
+    </ConstraintSet>
+    <Transition
+        android:id="@+id/to_dialog"
+        app:constraintSetStart="@+id/start"
+        app:constraintSetEnd="@+id/dialog"
+        app:duration="400">
+        <OnClick />
+    </Transition>
 </MotionScene>

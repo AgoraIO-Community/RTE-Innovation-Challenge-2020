@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <androidx.constraintlayout.motion.widget.MotionLayout
+        android:id="@+id/constraintLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layoutDescription="@xml/scicence_content_parent_view_xml_constraintlayout_scene">
+
+        <TextView
+            android:id="@+id/title_view"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:background="@color/color_menu_science_dip"
+            android:gravity="center"
+            android:text="Science"
+            android:textColor="@color/color_white"
+            android:textSize="15sp"></TextView>
+
+        <View
+            android:id="@+id/content_container"
+            android:layout_width="400dp"
+            android:layout_height="320dp"
+            android:background="@color/color_menu_science"
+            tools:layout_editor_absoluteX="5dp"
+            tools:layout_editor_absoluteY="233dp"></View>
+    </androidx.constraintlayout.motion.widget.MotionLayout>
+</layout>
