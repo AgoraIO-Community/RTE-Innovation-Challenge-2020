@@ -29,11 +29,16 @@ import android.os.Bundle
 import android.view.ViewGroup
 import android.widget.FrameLayout
 import androidx.appcompat.app.AppCompatActivity
+import com.google.firebase.ml.vision.FirebaseVision
+import com.google.firebase.ml.vision.common.FirebaseVisionImage
+import com.google.firebase.ml.vision.face.FirebaseVisionFaceDetector
+import com.google.firebase.ml.vision.face.FirebaseVisionFaceDetectorOptions
 import com.qifan.emojibattle.databinding.ActivityBattleBinding
 import com.qifan.emojibattle.extension.debug
 import io.agora.advancedvideo.rawdata.MediaDataObserverPlugin
 import io.agora.advancedvideo.rawdata.MediaDataVideoObserver
 import io.agora.advancedvideo.rawdata.MediaPreProcessing
+import io.agora.advancedvideo.rawdata.YUVUtils
 import io.agora.rtc.IRtcEngineEventHandler
 import io.agora.rtc.RtcEngine
 import io.agora.rtc.video.VideoCanvas
@@ -51,6 +56,7 @@ class BattleActivity : AppCompatActivity(), MediaDataVideoObserver {
     private lateinit var rtcEngine: RtcEngine
 
     private val mediaDataObserverPlugin by lazy { MediaDataObserverPlugin.the() }
+    private lateinit var detector: FirebaseVisionFaceDetector
 
     companion object {
         private const val CHANNEL = "Channel"
@@ -73,6 +79,14 @@ class BattleActivity : AppCompatActivity(), MediaDataVideoObserver {
         MediaPreProcessing.setCallback(mediaDataObserverPlugin)
         MediaPreProcessing.setVideoCaptureByteBuffer(mediaDataObserverPlugin.byteBufferCapture)
         mediaDataObserverPlugin.addVideoObserver(this)
+        val highAccuracyOpts = FirebaseVisionFaceDetectorOptions.Builder()
+            .setPerformanceMode(FirebaseVisionFaceDetectorOptions.ACCURATE)
+            .setLandmarkMode(FirebaseVisionFaceDetectorOptions.ALL_LANDMARKS)
+            .setClassificationMode(FirebaseVisionFaceDetectorOptions.ALL_CLASSIFICATIONS)
+            .build()
+
+        detector = FirebaseVision.getInstance()
+            .getVisionFaceDetector(highAccuracyOpts)
     }
 
     private fun parseIntents() {
@@ -204,7 +218,20 @@ class BattleActivity : AppCompatActivity(), MediaDataVideoObserver {
         rotation: Int,
         renderTimeMs: Long
     ) {
-        debug("=====onCaptureVideoFrame====")
+        val bmp = YUVUtils.i420ToBitmap(
+            width,
+            height,
+            rotation,
+            bufferLength,
+            data,
+            yStride,
+            uStride,
+            vStride
+        )
+        val image = FirebaseVisionImage.fromBitmap(bmp)
+        detector.detectInImage(image).addOnSuccessListener { faces ->
+            faces.forEach { debug("$it") }
+        }
     }
 
     override fun onRenderVideoFrame(
@@ -220,6 +247,6 @@ class BattleActivity : AppCompatActivity(), MediaDataVideoObserver {
         rotation: Int,
         renderTimeMs: Long
     ) {
-        debug("=====onRenderVideoFrame====")
+//        debug("=====onRenderVideoFrame====")
     }
 }
