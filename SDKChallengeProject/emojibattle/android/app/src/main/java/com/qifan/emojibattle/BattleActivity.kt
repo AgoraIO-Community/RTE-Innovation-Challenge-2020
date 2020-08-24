@@ -31,15 +31,16 @@ import android.widget.FrameLayout
 import androidx.appcompat.app.AppCompatActivity
 import com.qifan.emojibattle.databinding.ActivityBattleBinding
 import com.qifan.emojibattle.extension.debug
-import io.agora.rtc2.ChannelMediaOptions
-import io.agora.rtc2.Constants
-import io.agora.rtc2.IRtcEngineEventHandler
-import io.agora.rtc2.RtcEngine
-import io.agora.rtc2.video.VideoCanvas
-import io.agora.rtc2.video.VideoEncoderConfiguration
+import io.agora.advancedvideo.rawdata.MediaDataObserverPlugin
+import io.agora.advancedvideo.rawdata.MediaDataVideoObserver
+import io.agora.advancedvideo.rawdata.MediaPreProcessing
+import io.agora.rtc.IRtcEngineEventHandler
+import io.agora.rtc.RtcEngine
+import io.agora.rtc.video.VideoCanvas
+import io.agora.rtc.video.VideoEncoderConfiguration
 import kotlin.properties.Delegates.notNull
 
-class BattleActivity : AppCompatActivity() {
+class BattleActivity : AppCompatActivity(), MediaDataVideoObserver {
     private lateinit var binding: ActivityBattleBinding
     private val localSurfaceView get() = binding.localSurfaceView
     private val remoteSurfaceView get() = binding.remoteSurfaceView
@@ -48,6 +49,8 @@ class BattleActivity : AppCompatActivity() {
     private val token = BuildConfig.Token
     private val appId = BuildConfig.AppId
     private lateinit var rtcEngine: RtcEngine
+
+    private val mediaDataObserverPlugin by lazy { MediaDataObserverPlugin.the() }
 
     companion object {
         private const val CHANNEL = "Channel"
@@ -67,6 +70,9 @@ class BattleActivity : AppCompatActivity() {
         setContentView(binding.root)
         parseIntents()
         initAgoraEngineAndJoinChannel()
+        MediaPreProcessing.setCallback(mediaDataObserverPlugin)
+        MediaPreProcessing.setVideoCaptureByteBuffer(mediaDataObserverPlugin.byteBufferCapture)
+        mediaDataObserverPlugin.addVideoObserver(this)
     }
 
     private fun parseIntents() {
@@ -118,7 +124,6 @@ class BattleActivity : AppCompatActivity() {
         val videoCanvas = VideoCanvas(
             surfaceView,
             VideoCanvas.RENDER_MODE_FIT,
-            VideoCanvas.RENDER_SOURCE_CAMERA,
             0
         )
         rtcEngine.setupLocalVideo(videoCanvas)
@@ -126,13 +131,7 @@ class BattleActivity : AppCompatActivity() {
 
     private fun joinChannel() {
         // if you do not specify the uid, Agora will assign one.
-        val channelMediaOptions = ChannelMediaOptions()
-        channelMediaOptions.publishCameraTrack = true
-        channelMediaOptions.autoSubscribeVideo = true
-//        channelMediaOptions.publishMediaPlayerVideoTrack = false
-        channelMediaOptions.channelProfile = Constants.CHANNEL_PROFILE_COMMUNICATION
-        channelMediaOptions.clientRoleType = Constants.CLIENT_ROLE_BROADCASTER
-        rtcEngine.joinChannel(token, channel, 0, channelMediaOptions)
+        rtcEngine.joinChannel(token, channel, "test", 0)
         rtcEngine.startPreview()
     }
 
@@ -153,7 +152,6 @@ class BattleActivity : AppCompatActivity() {
             VideoCanvas(
                 surfaceView,
                 VideoCanvas.RENDER_MODE_FIT,
-                VideoCanvas.RENDER_SOURCE_CAMERA,
                 uid
             )
         )
@@ -163,6 +161,8 @@ class BattleActivity : AppCompatActivity() {
         super.onDestroy()
         rtcEngine.leaveChannel()
         rtcEngine.stopPreview()
+        mediaDataObserverPlugin.removeVideoObserver(this)
+        mediaDataObserverPlugin.removeAllBuffer()
         RtcEngine.destroy()
     }
 
@@ -171,6 +171,7 @@ class BattleActivity : AppCompatActivity() {
             super.onUserJoined(userId, elapsed)
             debug("onUserJoined $userId")
             runOnUiThread {
+                mediaDataObserverPlugin.addDecodeBuffer(userId)
                 setRemoteVideo(userId)
             }
         }
@@ -179,15 +180,46 @@ class BattleActivity : AppCompatActivity() {
             super.onUserOffline(userId, reason)
             debug("onUserOffline $reason")
             runOnUiThread {
+                mediaDataObserverPlugin.removeDecodeBuffer(userId)
                 rtcEngine.setupRemoteVideo(
                     VideoCanvas(
                         null,
                         VideoCanvas.RENDER_MODE_FIT,
-                        VideoCanvas.RENDER_SOURCE_CAMERA,
                         userId
                     )
                 )
             }
         }
+    }
+
+    override fun onCaptureVideoFrame(
+        data: ByteArray?,
+        frameType: Int,
+        width: Int,
+        height: Int,
+        bufferLength: Int,
+        yStride: Int,
+        uStride: Int,
+        vStride: Int,
+        rotation: Int,
+        renderTimeMs: Long
+    ) {
+        debug("=====onCaptureVideoFrame====")
+    }
+
+    override fun onRenderVideoFrame(
+        uid: Int,
+        data: ByteArray?,
+        frameType: Int,
+        width: Int,
+        height: Int,
+        bufferLength: Int,
+        yStride: Int,
+        uStride: Int,
+        vStride: Int,
+        rotation: Int,
+        renderTimeMs: Long
+    ) {
+        debug("=====onRenderVideoFrame====")
     }
 }
