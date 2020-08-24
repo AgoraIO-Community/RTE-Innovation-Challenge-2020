@@ -26,8 +26,11 @@ package com.qifan.emojibattle
 import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
+import android.view.ViewGroup
+import android.widget.FrameLayout
 import androidx.appcompat.app.AppCompatActivity
 import com.qifan.emojibattle.databinding.ActivityBattleBinding
+import com.qifan.emojibattle.extension.debug
 import io.agora.rtc2.ChannelMediaOptions
 import io.agora.rtc2.Constants
 import io.agora.rtc2.IRtcEngineEventHandler
@@ -61,42 +64,29 @@ class BattleActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityBattleBinding.inflate(layoutInflater)
-        setContentView(R.layout.activity_battle)
+        setContentView(binding.root)
         parseIntents()
         initAgoraEngineAndJoinChannel()
     }
 
     private fun parseIntents() {
-        val channel = intent.getStringExtra(CHANNEL)
-        requireNotNull(channel)
+        val contentChannel = intent.getStringExtra(CHANNEL)
+        requireNotNull(contentChannel)
+        channel = contentChannel
     }
 
     private fun initAgoraEngineAndJoinChannel() {
         initializeAgoraEngine()
-        setupVideoProfile()
         setupLocalVideo()
+        setupVideoProfile()
         joinChannel()
     }
 
     private fun initializeAgoraEngine() {
         try {
-            rtcEngine = RtcEngine.create(
-                applicationContext,
-                appId,
-                object : IRtcEngineEventHandler() {
-                    override fun onFirstRemoteVideoDecoded(
-                        userId: Int,
-                        width: Int,
-                        height: Int,
-                        elapsed: Int
-                    ) {
-                        super.onFirstRemoteVideoDecoded(userId, width, height, elapsed)
-                        runOnUiThread { setRemoteVideo(userId) }
-                    }
-                }
-            )
+            rtcEngine = RtcEngine.create(applicationContext, appId, RtcEngineEventHandler())
         } catch (e: Exception) {
-            e.printStackTrace()
+            error(e.stackTraceToString())
         }
     }
 
@@ -114,16 +104,24 @@ class BattleActivity : AppCompatActivity() {
 
     private fun setupLocalVideo() {
         val surfaceView = RtcEngine.CreateRendererView(applicationContext)
-        localSurfaceView.addView(surfaceView)
-        rtcEngine.setupLocalVideo(
-            VideoCanvas(
-                surfaceView,
-                VideoCanvas.RENDER_MODE_FIT,
-                VideoCanvas.RENDER_SOURCE_CAMERA,
-                0
+        surfaceView.setZOrderMediaOverlay(true)
+        if (localSurfaceView.childCount > 0) {
+            localSurfaceView.removeAllViews()
+        }
+        localSurfaceView.addView(
+            surfaceView,
+            FrameLayout.LayoutParams(
+                ViewGroup.LayoutParams.MATCH_PARENT,
+                ViewGroup.LayoutParams.MATCH_PARENT
             )
         )
-        surfaceView.setZOrderMediaOverlay(true)
+        val videoCanvas = VideoCanvas(
+            surfaceView,
+            VideoCanvas.RENDER_MODE_FIT,
+            VideoCanvas.RENDER_SOURCE_CAMERA,
+            0
+        )
+        rtcEngine.setupLocalVideo(videoCanvas)
     }
 
     private fun joinChannel() {
@@ -131,21 +129,25 @@ class BattleActivity : AppCompatActivity() {
         val channelMediaOptions = ChannelMediaOptions()
         channelMediaOptions.publishCameraTrack = true
         channelMediaOptions.autoSubscribeVideo = true
-        channelMediaOptions.publishMediaPlayerVideoTrack = false
+//        channelMediaOptions.publishMediaPlayerVideoTrack = false
         channelMediaOptions.channelProfile = Constants.CHANNEL_PROFILE_COMMUNICATION
         channelMediaOptions.clientRoleType = Constants.CLIENT_ROLE_BROADCASTER
         rtcEngine.joinChannel(token, channel, 0, channelMediaOptions)
         rtcEngine.startPreview()
     }
 
-    private fun leaveChannel() {
-        rtcEngine.leaveChannel()
-    }
-
     private fun setRemoteVideo(uid: Int) {
-        if (remoteSurfaceView.childCount >= 1) return
+        if (remoteSurfaceView.childCount >= 1) {
+            remoteSurfaceView.removeAllViews()
+        }
         val surfaceView = RtcEngine.CreateRendererView(applicationContext)
-        remoteSurfaceView.addView(surfaceView)
+        remoteSurfaceView.addView(
+            surfaceView,
+            FrameLayout.LayoutParams(
+                ViewGroup.LayoutParams.MATCH_PARENT,
+                ViewGroup.LayoutParams.MATCH_PARENT
+            )
+        )
         surfaceView.setZOrderMediaOverlay(true)
         rtcEngine.setupRemoteVideo(
             VideoCanvas(
@@ -159,8 +161,33 @@ class BattleActivity : AppCompatActivity() {
 
     override fun onDestroy() {
         super.onDestroy()
+        rtcEngine.leaveChannel()
         rtcEngine.stopPreview()
-        leaveChannel()
         RtcEngine.destroy()
+    }
+
+    inner class RtcEngineEventHandler : IRtcEngineEventHandler() {
+        override fun onUserJoined(userId: Int, elapsed: Int) {
+            super.onUserJoined(userId, elapsed)
+            debug("onUserJoined $userId")
+            runOnUiThread {
+                setRemoteVideo(userId)
+            }
+        }
+
+        override fun onUserOffline(userId: Int, reason: Int) {
+            super.onUserOffline(userId, reason)
+            debug("onUserOffline $reason")
+            runOnUiThread {
+                rtcEngine.setupRemoteVideo(
+                    VideoCanvas(
+                        null,
+                        VideoCanvas.RENDER_MODE_FIT,
+                        VideoCanvas.RENDER_SOURCE_CAMERA,
+                        userId
+                    )
+                )
+            }
+        }
     }
 }

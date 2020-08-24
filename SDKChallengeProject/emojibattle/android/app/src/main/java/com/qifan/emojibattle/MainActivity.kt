@@ -25,7 +25,6 @@ package com.qifan.emojibattle
 
 import android.Manifest
 import android.os.Bundle
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.qifan.emojibattle.BattleActivity.Companion.startBattleActivity
 import com.qifan.emojibattle.databinding.ActivityMainBinding
