@@ -3,9 +3,9 @@
     <application
         android:name=".CustomerApplication"
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@mipmap/icon_lanucher"
         android:label="@string/app_customer_name"
-        android:roundIcon="@mipmap/ic_launcher_round"
+        android:roundIcon="@mipmap/icon_lanucher"
         android:supportsRtl="true"
         android:theme="@style/AppTheme"></application>
 </manifest>

@@ -57,6 +57,6 @@
         app:constraintSetStart="@+id/start"
         app:constraintSetEnd="@+id/dialog"
         app:duration="400">
-        <OnClick />
+        <OnClick app:targetId="@id/dialog_view" />
     </Transition>
 </MotionScene>

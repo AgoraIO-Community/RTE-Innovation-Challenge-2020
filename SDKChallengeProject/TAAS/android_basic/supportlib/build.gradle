@@ -35,5 +35,6 @@ dependencies {
     implementation fileTree(dir: "libs", include: ["*.jar"])
     //多平台公共的支持依赖 地图定位，lottie等
     api files('libs/Android_Map3D_SDK_V7.5.0_20200610.jar')
-    implementation files('libs\\AgoraMediaPlayer.jar')
+    api files('libs\\AgoraMediaPlayer.jar')
+    api files('libs\\agora-rtc-sdk.jar')
 }

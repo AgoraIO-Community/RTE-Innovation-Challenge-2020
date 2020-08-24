@@ -5,6 +5,7 @@ import android.os.Build
 import android.util.AttributeSet
 import android.view.Gravity
 import androidx.annotation.RequiresApi
+import com.framing.module.customer.R
 
 /*
  * Des  
@@ -28,19 +29,36 @@ import androidx.annotation.RequiresApi
     ) : super(context, attrs, defStyleAttr, defStyleRes)
 
 
-    override fun initView() {
-        super.initView()
+    private var titleName:String?=null//标题名
+
+    override fun initView(attrs: AttributeSet?) {
+        super.initView(attrs)
+        val typedArray = context.obtainStyledAttributes(attrs, R.styleable.ScienceRightTip)
+        titleName = typedArray.getString(R.styleable.ScienceRightTip_title_name)
         binding?.titleView?.run {
             this.gravity=Gravity.LEFT
             this.gravity=Gravity.CENTER_VERTICAL
+            text=titleName
         }
     }
     /*
    * 根据外层执行进度
    * */
     override fun progress(progress:Float){
-        binding?.constraintLayout?.progress=progress
         titleLogic(progress)
+    }
+    fun complete(isComplete:Boolean){
+        if(isComplete){
+            binding?.constraintLayout?.run {
+                setTransition(R.id.to_show)
+                transitionToEnd()
+            }
+        }else{
+            binding?.constraintLayout?.run {
+                setTransition(R.id.to_show)
+                transitionToStart()
+            }
+        }
     }
     /*
     * 处理title内容 贴边居右 居中居中

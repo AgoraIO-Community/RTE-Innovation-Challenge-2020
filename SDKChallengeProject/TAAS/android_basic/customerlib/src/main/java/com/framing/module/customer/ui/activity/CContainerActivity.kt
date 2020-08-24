@@ -31,7 +31,7 @@ import kotlinx.coroutines.launch
  */
 class CContainerActivity :  MvvmBaseActivity<CContainerActivityBinding, CContainerUIVM,CContainerDataVM>(){
 
-    private var appShareVM:CustomerShareVM?=null
+    private var appShareVM:CustomerShareVM?=null//app共享 CContainerActivity dataVM 目前也是相当于app
     private var contentNavCtrl: NavController?=null//主内容分发控制器
     private var startNavCtrl: NavController?=null//启动页分发控制器
 
@@ -50,7 +50,6 @@ class CContainerActivity :  MvvmBaseActivity<CContainerActivityBinding, CContain
             delay(5000)
             appShareVM?.isStartHide?.postValue(true) //执行完了
             getUIViewModel().isDialogShow.postValue(false)
-
         }
     }
 
@@ -65,15 +64,17 @@ class CContainerActivity :  MvvmBaseActivity<CContainerActivityBinding, CContain
             }
         })
         getUIViewModel().isDialogShow.observe(this, Observer {
-            if(it) {//展示弹窗
-                getBinding().motionLayout?.run {
-                    setTransition(R.id.to_dialog)
-                    transitionToEnd()
-                }
-            }else{
-                getBinding().motionLayout?.run {
-//                    setTransition(R.id.to_dialog)
-//                    transitionToStart()
+            if(getUIViewModel().isStartHide.value!!) {//展示弹窗 且在非启动页逻辑请款
+                if(it) {
+                    getBinding().motionLayout?.run {
+                        setTransition(R.id.to_dialog)
+                        transitionToEnd()
+                    }
+                }else{
+                    getBinding().motionLayout?.run {
+                        setTransition(R.id.to_dialog)
+                        transitionToStart()
+                    }
                 }
             }
         })
@@ -93,7 +94,7 @@ class CContainerActivity :  MvvmBaseActivity<CContainerActivityBinding, CContain
 
             override fun onTransitionCompleted(p0: MotionLayout?, p1: Int) {
                 TLog.log("container_motionLayout","onTransitionCompleted$p1  ${R.id.dialog}")
-                if(p1==R.id.dialog){//id
+                if(p1==R.id.dialog){//id 在container动销执行完成再执行dialogstyle 动画
                     getBinding().dialogView?.progress(1f)
                 }
             }

@@ -9,8 +9,9 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelStore
 import androidx.lifecycle.ViewModelStoreOwner
+import com.framing.commonlib.base.CommonApplication
 
-open class MvvmBaseApplication : Application(), ViewModelStoreOwner {
+open class MvvmBaseApplication : CommonApplication(), ViewModelStoreOwner {
     private var mAppViewModelStore: ViewModelStore? = null
     private var mFactory: ViewModelProvider.Factory? = null
     override fun onCreate() {

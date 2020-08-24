@@ -14,7 +14,7 @@ import com.amap.api.maps.model.PolygonOptions
  * Date 
  */class RectangleDraw : BaseDrawOverlay {
 
-    override fun draw(aMap: AMap, latLng: List<LatLng>, offSet: Int) {
+    override fun draw(aMap: AMap, latLng: List<LatLng>, offSet: Int,config: DrawConfig?) {
 //        aMap.addPolygon(PolygonOptions()
 //            .addAll(latLng)
 //            .fillColor(Color.GREEN)
@@ -25,9 +25,9 @@ import com.amap.api.maps.model.PolygonOptions
         // 添加 多边形的每个顶点（顺序添加）
         // 添加 多边形的每个顶点（顺序添加）
         polygonOptions.add(latLng[0], latLng[1], latLng[2], latLng[3])
-        polygonOptions.strokeWidth(15f) // 多边形的边框
-            .strokeColor(Color.GREEN) // 边框颜色
-            .fillColor(Color.TRANSPARENT) // 多边形的填充色
+        polygonOptions.strokeWidth(config?.strokeWidth()!!) // 多边形的边框
+            .strokeColor(config?.strokeColor()!!) // 边框颜色
+            .fillColor(config?.fillColor()!!) // 多边形的填充色
             .zIndex(999F)
         aMap.addPolygon(polygonOptions)
     }

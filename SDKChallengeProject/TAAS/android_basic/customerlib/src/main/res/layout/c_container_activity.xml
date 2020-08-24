@@ -50,5 +50,9 @@
             android:id="@+id/dialog_view"
             android:layout_width="220dp"
             android:layout_height="290dp"></com.framing.module.customer.ui.widget.element.ScienceDialog>
+        <com.framing.commonlib.agora.AgoraLiviView
+            android:id="@+id/livi_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"></com.framing.commonlib.agora.AgoraLiviView>
     </androidx.constraintlayout.motion.widget.MotionLayout>
 </layout>

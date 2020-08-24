@@ -6,4 +6,8 @@ import android.app.Application
 * */
 open class CommonApplication : Application{
     constructor() : super()
+
+    override fun onCreate() {
+        super.onCreate()
+    }
 }

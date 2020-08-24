@@ -8,5 +8,5 @@ import com.amap.api.maps.model.LatLng
  * Author Young
  * Date 
  */interface BaseDrawOverlay {
-        fun draw(aMap: AMap,latLng: List<LatLng>,offSet:Int)
+        fun draw(aMap: AMap,latLng: List<LatLng>,offSet:Int,config:DrawConfig?)
 }

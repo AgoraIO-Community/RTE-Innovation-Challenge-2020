@@ -1,6 +1,17 @@
 <resources>
     <string name="app_business_name">TAAS</string>
     <string name="app_customer_name">TAAS</string>
+    <string name="app_customer_logo_slogn">Build Agricultural Science</string>
+    <string name="app_customer_menu_title">User Center</string>
     <string name="app_customer_menu_one">tab_one</string>
     <string name="app_customer_menu_two">tab_two</string>
+    <string name="app_customer_right_tip_one">Science</string>
+    <string name="app_customer_right_tip_two">Weather</string>
+    <string name="app_customer_right_tip_three">Focus</string>
+    <string name="app_customer_dialog_warning">Warning</string>
+    <string name="app_customer_right_dialog_attention">Attention</string>
+    <string name="app_customer_right_dialog_Focus">Focus</string>
+    <string name="app_customer_bottom_title">TAAS Immediacy Data</string>
+    <string name="app_customer_bottom_title_right">about</string>
+
 </resources>

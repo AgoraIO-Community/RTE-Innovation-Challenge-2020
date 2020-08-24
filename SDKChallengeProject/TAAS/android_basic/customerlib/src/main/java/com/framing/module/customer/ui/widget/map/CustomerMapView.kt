@@ -1,20 +1,30 @@
 package com.framing.module.customer.ui.widget.map
 
-import android.R
 import android.content.Context
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
+import android.graphics.Color
 import android.util.AttributeSet
+import android.view.Gravity
+import android.view.LayoutInflater
 import android.view.MotionEvent
+import android.widget.ImageView
+import com.amap.api.mapcore.util.gh.q
 import com.amap.api.maps.AMap
 import com.amap.api.maps.CameraUpdateFactory
+import com.amap.api.maps.UiSettings
 import com.amap.api.maps.model.BitmapDescriptorFactory
 import com.amap.api.maps.model.LatLng
 import com.amap.api.maps.model.MarkerOptions
 import com.framing.baselib.TLog
 import com.framing.commonlib.map.SimpleMapView
+import com.framing.commonlib.utils.DisplayUtils
 import com.framing.commonlib.utils.FileUtils
 import com.framing.commonlib.utils.ImageUtils
+import com.framing.commonlib.utils.NetworkUtils
+import com.framing.module.customer.R
+import com.framing.module.customer.ui.widget.map.draw.DrawConfig
+import com.young.businessmvvm.data.repository.network.NetRequestManager
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
@@ -35,8 +45,12 @@ import java.net.URL
  * Date 
  */
 class CustomerMapView : SimpleMapView {
-    constructor(p0: Context?) : super(p0)
-    constructor(p0: Context?, p1: AttributeSet?) : super(p0, p1)
+    constructor(p0: Context?) : super(p0){
+        addView()
+    }
+    constructor(p0: Context?, p1: AttributeSet?) : super(p0, p1){
+        addView()
+    }
     constructor(p0: Context?, p1: AttributeSet?, p2: Int) : super(p0, p1, p2)
 
     private val TEST_AREA_BR=LatLng(37.30299398093054,112.02101053883912)//底左
@@ -49,7 +63,18 @@ class CustomerMapView : SimpleMapView {
     private val googleUrl="http://mt2.google.cn/vt/lyrs=y&scale=2&hl=zh-CN&gl=cn&x=%d&s=&y=%d&z=%d"
     private var mFileDirName:String?=null
     private var mFileName:String?=null
+    private var isLock=true//锁定map
 
+    private fun addView(){
+        TLog.log("map_addView","1111")
+        val params=LayoutParams(DisplayUtils.dp2px(35f),DisplayUtils.dp2px(35f))
+        params.setMargins(0, DisplayUtils.dp2px(15f), DisplayUtils.dp2px(15f), 0)
+        params.gravity=Gravity.RIGHT
+        val lockView= ImageView(context)
+        lockView.setImageResource(R.mipmap.audio_bottom_paue_icon)
+        lockView.layoutParams=params
+        addView(lockView)
+    }
 
     override fun urlFilePath(x: Int, y: Int, zoom: Int): String {
         mFileDirName = String.format("L%02d/", zoom + 1)
@@ -66,6 +91,7 @@ class CustomerMapView : SimpleMapView {
         }else{
             val filePath = String.format(googleUrl, x, y, zoom)
             val mBitmap: Bitmap
+            NetRequestManager()?.getMap()
             mBitmap = ImageUtils.getBitmap(getImageStream(filePath))
             try {
                 var file= File(localPath +File.separator+ mFileDirName + mFileName);
@@ -101,8 +127,10 @@ class CustomerMapView : SimpleMapView {
                 Thread.sleep(3000)
                 withContext(Dispatchers.Main){
                     //创建测试区域
-                    BaseMapDrawBuild().with(map)
-                        .style(BaseMapDrawBuild.DrawMapStye.DRAW_RECTANGLE)
+                    MapDrawBuild()
+                        .with(map)
+                        .style(MapDrawBuild.DrawMapStye.DRAW_RECTANGLE)
+                        .drawConfig(DrawConfig(Color.TRANSPARENT,Color.BLUE,10f,999f))
                         .targetLatLng(listOf(TEST_AREA_TL,TEST_AREA_TR,TEST_AREA_BR,TEST_AREA_BL),1)
                         .create()
                 }
@@ -119,7 +147,7 @@ class CustomerMapView : SimpleMapView {
         markerOption.icon(
             BitmapDescriptorFactory.fromBitmap(
                 BitmapFactory
-                    .decodeResource(resources, R.mipmap.sym_def_app_icon)
+                    .decodeResource(resources, R.mipmap.mark_location)
             )
         )
         // 将Marker设置为贴地显示，可以双指下拉地图查看效果
@@ -128,23 +156,38 @@ class CustomerMapView : SimpleMapView {
         TLog.log("maker_x",""+markerOption.infoWindowOffsetX)
     }
 
-    override fun moveCamera(mAmap: AMap) {
+    override fun moveCamera(mAmap: AMap,delay:Int) {
         GlobalScope.launch {
-            Thread.sleep(3000)
-            withContext(Dispatchers.IO){
-                Thread.sleep(1000)
-                withContext(Dispatchers.Main){
-                    map.moveCamera(
-                        CameraUpdateFactory.newLatLngZoom(
-                            TEST_AREA_CENTER, 17f
-                        )//放大级别
-                    )
-                }
-            }
+            Thread.sleep(delay.toLong())
+            map.animateCamera(
+                CameraUpdateFactory.newLatLngZoom(
+                    TEST_AREA_CENTER, 17f
+                )//放大级别
+            )
         }
     }
 
+    override fun uiSetting(settings: UiSettings) {
+        settings.run {
+            isCompassEnabled=true //是否显示指南针
+            isScaleControlsEnabled=true//比例尺控件是否显示
+            isRotateGesturesEnabled=false//旋转手势关闭
+            isZoomControlsEnabled=false//放大缩小按钮
+        }
+    }
+    /*
+    * 锁定地图 保证主页交互
+    * */
+    fun isLock():Boolean{
+        if(isLock) {
+            isLock=false
+        }else{
+            isLock=true
+            moveCamera(map,0)
+        }
+        return isLock
+    }
     override fun onInterceptTouchEvent(ev: MotionEvent?): Boolean {//搞掉
-        return true
+        return isLock
     }
 }

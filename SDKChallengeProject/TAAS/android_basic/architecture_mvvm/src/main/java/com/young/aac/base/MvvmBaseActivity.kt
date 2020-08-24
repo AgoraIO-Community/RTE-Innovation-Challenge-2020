@@ -51,7 +51,7 @@ abstract class MvvmBaseActivity <V : ViewDataBinding, UVM : BaseUIViewModel,DVM:
     @SuppressLint("ResourceAsColor")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        BarUtils.setStatusBarColor(this,R.color.colorAccent)
+        BarUtils.setStatusBarColor(this,R.color.colorAccent,false)
         byDataBindingAttach()
     }
     /*

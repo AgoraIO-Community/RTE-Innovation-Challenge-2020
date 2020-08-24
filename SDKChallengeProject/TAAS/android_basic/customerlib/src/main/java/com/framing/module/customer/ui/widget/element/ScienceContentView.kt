@@ -17,10 +17,10 @@ import com.framing.module.customer.databinding.ScicenceContentParentLayoutBindin
  * Date 
  */open class ScienceContentView : FrameLayout {
     constructor(context: Context) : super(context){
-        initView()
+        initView(null)
     }
     constructor(context: Context, attrs: AttributeSet?) : super(context, attrs){
-        initView()
+        initView(attrs)
     }
     constructor(context: Context, attrs: AttributeSet?, defStyleAttr: Int) : super(
         context,
@@ -39,7 +39,7 @@ import com.framing.module.customer.databinding.ScicenceContentParentLayoutBindin
 
     var binding:ScicenceContentParentLayoutBinding?=null
 
-    open fun initView(){
+    open fun initView(attrs: AttributeSet?){
         binding = DataBindingUtil.inflate(LayoutInflater.from(context), R.layout.scicence_content_parent_layout,this,true);
     }
     /*

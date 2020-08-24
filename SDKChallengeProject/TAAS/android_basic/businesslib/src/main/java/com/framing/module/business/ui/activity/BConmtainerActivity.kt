@@ -1,5 +1,6 @@
 package com.framing.module.business.ui.activity
 
+import android.os.Bundle
 import com.young.aac.base.MvvmBaseActivity
 import com.framing.module.business.databinding.BContainerActivityBinding
 import com.framing.module.business.ui.viewmodel.BConmtainerUIVM
@@ -12,7 +13,10 @@ import com.framing.module.business.R
  */
 class BConmtainerActivity :  MvvmBaseActivity<BContainerActivityBinding, BConmtainerUIVM,BConmtainerDataVM>(){
 
-
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        getBinding().liviView.startPrepare()
+    }
     override fun getUIViewModel(): BConmtainerUIVM {
         return getActivityViewModelProvider(this).get(BConmtainerUIVM::class.java)
     }

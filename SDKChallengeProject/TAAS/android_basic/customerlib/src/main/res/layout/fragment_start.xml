@@ -1,22 +1,58 @@
 <?xml version="1.0" encoding="utf-8"?>
+<layout>
+    <data>
+        <variable
+            name="startVM"
+            type="com.framing.module.customer.ui.viewmodel.StartFUiVM" />
+    </data>
 <androidx.constraintlayout.motion.widget.MotionLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/motion_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/color_main_science"
-    tools:context=".ui.fragment.StartFragment"
-    android:id="@+id/motion_layout"
-    app:layoutDescription="@xml/fragment_start_scene">
+    app:layoutDescription="@xml/fragment_start_scene"
+    tools:context=".ui.fragment.StartFragment">
 
     <androidx.constraintlayout.utils.widget.ImageFilterView
         android:id="@+id/logo_view"
         android:layout_width="80dp"
         android:layout_height="80dp"
         android:src="@mipmap/question_simple_icon"
+        android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"></androidx.constraintlayout.utils.widget.ImageFilterView>
+
+    <TextView
+        android:id="@+id/logo_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/app_customer_name"
+        android:textColor="@color/color_white"
+        android:textSize="28sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"></TextView>
+
+    <TextView
+        android:id="@+id/slogn_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/app_customer_logo_slogn"
+        android:textColor="@color/color_white"
+        android:textSize="16sp"></TextView>
+
+    <ImageView
+        android:id="@+id/swipe_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:src="@mipmap/swipe_line"></ImageView>
+
 </androidx.constraintlayout.motion.widget.MotionLayout>
+</layout>

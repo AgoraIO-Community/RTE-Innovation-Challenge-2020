@@ -52,6 +52,7 @@ abstract class MvvmBaseFragment  <V : ViewDataBinding, UVM : BaseUIViewModel,DVM
     ) {
         super.onViewCreated(view, savedInstanceState)
         UIVM = getUIViewModel()
+        dataVM=getDataViewModel()
         if (bindingVariable > 0 && UIVM != null) {
             viewDataBinding?.setVariable(bindingVariable, UIVM)
         } else {

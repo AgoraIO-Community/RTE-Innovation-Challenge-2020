@@ -34,8 +34,8 @@ abstract class FramingMapView : TextureMapView {
     abstract val diskCacheDir:String//缓存路径
     abstract fun drawOverlay()//覆盖物
     abstract fun addMaker(mAmap:AMap)//标记点
-    abstract fun moveCamera(mAmap:AMap)//初始点
-
+    abstract fun moveCamera(mAmap:AMap,delay:Int)//初始点
+    abstract fun uiSetting(settings: UiSettings)//设置地图属性
     /*
     * TileOverlayOptions overlayOptions 覆盖物的设置构造
     * 把加载好瓦片的overlayOptions  添加给Amap
@@ -61,11 +61,13 @@ abstract class FramingMapView : TextureMapView {
     }
     private fun initAmap(){
         //移动中心点
-        moveCamera(map)
+        moveCamera(map,5000)
         map.uiSettings.run {
             isCompassEnabled=true //是否显示指南针
             isScaleControlsEnabled=true//比例尺控件是否显示
             isRotateGesturesEnabled=false//旋转手势关闭
+            isZoomControlsEnabled=false//放大缩小按钮
+            isZoomGesturesEnabled=false//放大缩小功能
         }
         drawOverlay()
         addMaker(map)

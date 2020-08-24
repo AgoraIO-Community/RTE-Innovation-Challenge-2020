@@ -2,7 +2,7 @@
     package="com.framing.module.customer">
     <application>
         <activity android:name=".ui.activity.CContainerActivity"
-            android:theme="@style/Theme.AppCompat.NoActionBar">
+            android:theme="@style/Lanucher">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />

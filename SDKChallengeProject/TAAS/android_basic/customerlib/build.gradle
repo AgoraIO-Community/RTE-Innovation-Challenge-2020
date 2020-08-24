@@ -47,5 +47,6 @@ dependencies {
     kapt  "com.android.databinding:compiler:4.0.1"
     api project(':architecture_mvvm')
     api 'androidx.multidex:multidex:2.0.1'
+    implementation 'com.airbnb.android:lottie:3.4.1'
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlin_version"
 }
