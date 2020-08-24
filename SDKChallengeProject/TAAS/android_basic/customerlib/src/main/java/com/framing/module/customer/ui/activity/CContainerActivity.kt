@@ -12,6 +12,8 @@ import androidx.navigation.NavController
 import androidx.navigation.findNavController
 import com.framing.baselib.TLog
 import com.framing.commonlib.inject.policy.PermissionPolicy
+import com.framing.commonlib.network.HeaderInfoInit
+import com.framing.commonlib.network.RequestBuild
 import com.framing.commonlib.utils.BarUtils
 import com.young.aac.base.MvvmBaseActivity
 import com.framing.module.customer.databinding.CContainerActivityBinding
@@ -20,6 +22,7 @@ import com.framing.module.customer.data.viewmodel.CContainerDataVM
 import com.framing.module.customer.BR
 import com.framing.module.customer.CustomerShareVM
 import com.framing.module.customer.R
+import com.young.businessmvvm.data.repository.network.NetRequestManager
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.delay
@@ -40,7 +43,7 @@ class CContainerActivity :  MvvmBaseActivity<CContainerActivityBinding, CContain
         appShareVM=getAppViewModelProvider()?.get(CustomerShareVM::class.java)
         contentNavCtrl=findNavController(R.id.content_fragment_host)
         startNavCtrl=findNavController(R.id.launch_fragment_host)
-
+        NetRequestManager.get()?.setNetworkRequestInfo(HeaderInfoInit())
         uiLogic()
         getUIViewModel().isDialogShow.postValue(true)
         permissionRun(PermissionPolicy.P_LOC){
@@ -50,6 +53,7 @@ class CContainerActivity :  MvvmBaseActivity<CContainerActivityBinding, CContain
             delay(5000)
             appShareVM?.isStartHide?.postValue(true) //执行完了
             getUIViewModel().isDialogShow.postValue(false)
+            NetRequestManager.get()?.getMap()
         }
     }
 

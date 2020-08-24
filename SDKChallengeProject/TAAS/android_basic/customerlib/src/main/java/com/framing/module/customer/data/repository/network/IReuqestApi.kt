@@ -1,5 +1,7 @@
 package com.young.businessmvvm.data.repository.network
 
+import com.framing.module.customer.data.bean.SimpleDataBean
+import com.framing.module.customer.data.bean.TestBean
 import io.reactivex.Observable
 import retrofit2.http.GET
 import retrofit2.http.POST
@@ -12,7 +14,7 @@ import java.util.*
  * Date 2020-05-21
  */interface IReuqestApi {
 
-    @GET("/vt/lyrs=y&scale=2&hl=zh-CN&gl=cn&x=%d&s=&y=%d&z=%d")
-    fun getMap( ) : Object
+    @POST("/asfbusiness/user/info")
+    suspend  fun getMap( ) : SimpleDataBean<TestBean>
 
 }

@@ -91,7 +91,6 @@ class CustomerMapView : SimpleMapView {
         }else{
             val filePath = String.format(googleUrl, x, y, zoom)
             val mBitmap: Bitmap
-            NetRequestManager()?.getMap()
             mBitmap = ImageUtils.getBitmap(getImageStream(filePath))
             try {
                 var file= File(localPath +File.separator+ mFileDirName + mFileName);

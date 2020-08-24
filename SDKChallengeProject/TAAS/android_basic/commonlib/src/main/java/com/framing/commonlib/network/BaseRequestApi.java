@@ -67,7 +67,7 @@ public abstract class BaseRequestApi {
     private void setLoggingLevel(OkHttpClient.Builder builder) {
         HttpLoggingInterceptor logging = new HttpLoggingInterceptor();
         //BODY打印信息,NONE不打印信息
-        logging.setLevel(networkRequestInfo.isDebug() ? HttpLoggingInterceptor.Level.BODY : HttpLoggingInterceptor.Level.NONE);
+        logging.setLevel(true? HttpLoggingInterceptor.Level.BODY : HttpLoggingInterceptor.Level.NONE);
         builder.addInterceptor(logging);
     }
 
