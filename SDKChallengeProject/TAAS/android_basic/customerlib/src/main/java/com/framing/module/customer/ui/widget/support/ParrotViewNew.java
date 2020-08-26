@@ -97,7 +97,7 @@ public class ParrotViewNew extends View {
     private float mMinTextSize = DisplayUtils.dp2px(5);
     //文字颜色
     @SuppressLint("ResourceType")
-    private int mTextColor = ColorUtils.setAlphaComponent(Color.parseColor("#000000"), 153);
+    private int mTextColor = ColorUtils.setAlphaComponent(Color.parseColor("#ffffff"), 153);
 
     //动画类型
     public static final int ANIM_TYPE_NORMAL = 1;//普通转圈
@@ -441,6 +441,10 @@ public class ParrotViewNew extends View {
             interValNum = mColumn;
         }
         mAngle = (360f * 1f - interValNum * mInterval) / mColumn;
+    }
+
+    public ParrotViewNew(Context context) {
+        super(context);
     }
 
     public ParrotViewNew(Context context, @Nullable AttributeSet attrs) {

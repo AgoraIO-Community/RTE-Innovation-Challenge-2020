@@ -1,5 +1,6 @@
 package com.framing.module.customer.ui.viewmodel
 
+import androidx.lifecycle.MutableLiveData
 import com.young.aac.base.BaseUIViewModel
 
 /**
@@ -8,4 +9,5 @@ import com.young.aac.base.BaseUIViewModel
  */
 class MapUIVM : BaseUIViewModel{
     constructor() : super()
+    var test=MutableLiveData<Int>()
 }

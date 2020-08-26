@@ -15,7 +15,7 @@ class BConmtainerActivity :  MvvmBaseActivity<BContainerActivityBinding, BConmta
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        getBinding().liviView.startPrepare()
+//        getBinding().liviView.startPrepare()
     }
     override fun getUIViewModel(): BConmtainerUIVM {
         return getActivityViewModelProvider(this).get(BConmtainerUIVM::class.java)
@@ -24,7 +24,7 @@ class BConmtainerActivity :  MvvmBaseActivity<BContainerActivityBinding, BConmta
             return getActivityViewModelProvider(this).get(BConmtainerDataVM::class.java)!!
     }
     override val bindingVariable: Int
-        get() = BR.bConmtainerUIVM
+        get() = BR.bUIVM
     override val layoutId: Int
         get() = R.layout.b_container_activity
 }

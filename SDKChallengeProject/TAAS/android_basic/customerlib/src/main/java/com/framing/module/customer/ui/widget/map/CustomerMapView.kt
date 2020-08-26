@@ -1,27 +1,27 @@
 package com.framing.module.customer.ui.widget.map
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.graphics.Bitmap
-import android.graphics.BitmapFactory
 import android.graphics.Color
 import android.util.AttributeSet
 import android.view.Gravity
-import android.view.LayoutInflater
 import android.view.MotionEvent
+import android.view.View
 import android.widget.ImageView
-import com.amap.api.mapcore.util.gh.q
 import com.amap.api.maps.AMap
 import com.amap.api.maps.CameraUpdateFactory
+import com.amap.api.maps.MapView
 import com.amap.api.maps.UiSettings
 import com.amap.api.maps.model.BitmapDescriptorFactory
 import com.amap.api.maps.model.LatLng
+import com.amap.api.maps.model.Marker
 import com.amap.api.maps.model.MarkerOptions
 import com.framing.baselib.TLog
 import com.framing.commonlib.map.SimpleMapView
 import com.framing.commonlib.utils.DisplayUtils
 import com.framing.commonlib.utils.FileUtils
 import com.framing.commonlib.utils.ImageUtils
-import com.framing.commonlib.utils.NetworkUtils
 import com.framing.module.customer.R
 import com.framing.module.customer.ui.widget.map.draw.DrawConfig
 import com.young.businessmvvm.data.repository.network.NetRequestManager
@@ -31,9 +31,6 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import java.io.File
 import java.io.IOException
-import java.io.InputStream
-import java.net.HttpURLConnection
-import java.net.URL
 
 
 /*
@@ -44,7 +41,7 @@ import java.net.URL
  * Author Young
  * Date 
  */
-class CustomerMapView : SimpleMapView {
+class CustomerMapView : SimpleMapView ,AMap.InfoWindowAdapter,AMap.OnInfoWindowClickListener,AMap.OnMarkerClickListener{
     constructor(p0: Context?) : super(p0){
         addView()
     }
@@ -57,13 +54,20 @@ class CustomerMapView : SimpleMapView {
     private val TEST_AREA_BL=LatLng(37.30313052744131,112.01696442660936)//底右
     private val TEST_AREA_TL=LatLng(37.30569072861245,112.01740833219374)//上左
     private  val TEST_AREA_TR=LatLng(37.30567792782341,112.02136056710957)//上右
-    private  val TEST_AREA_CENTER=LatLng(37.303396,112.019825)//聚焦点 //17级
+    private  val TEST_AREA_CENTER=LatLng(37.3043,112.019107)//聚焦点 //17级
+    private val TEST_UAV_PRO=LatLng(37.30431463131708,112.0191075115756)//uav植保
+    private val TEST_UAV_WATCH=LatLng(37.304451175429904,112.02055992773232)//uav植保
+    private val TEST_TRACK_PRO=LatLng(37.30461332124187,112.01809900100325)//track植保
+
 
     private val localPath="/storage/emulated/0/TAAS_C/mapCache"
     private val googleUrl="http://mt2.google.cn/vt/lyrs=y&scale=2&hl=zh-CN&gl=cn&x=%d&s=&y=%d&z=%d"
     private var mFileDirName:String?=null
     private var mFileName:String?=null
     private var isLock=true//锁定map
+    private var maker:Marker?=null//添加的当前操作merker
+    private var infoWindowView:MarkerView?=null//确保 getInfoContents 和infowindow 一个view
+    private val markerOption = MarkerOptions()
 
     private fun addView(){
         TLog.log("map_addView","1111")
@@ -74,6 +78,11 @@ class CustomerMapView : SimpleMapView {
         lockView.setImageResource(R.mipmap.audio_bottom_paue_icon)
         lockView.layoutParams=params
         addView(lockView)
+        infoWindowView=MarkerView(context)
+        map.setInfoWindowAdapter(this@CustomerMapView)
+        map.setOnMarkerClickListener(this@CustomerMapView)
+        map.setOnInfoWindowClickListener(this@CustomerMapView)
+        isClickable=true
     }
 
     override fun urlFilePath(x: Int, y: Int, zoom: Int): String {
@@ -82,8 +91,7 @@ class CustomerMapView : SimpleMapView {
             "%s",
             MapUtils.tileXYToQuadKey(x, y, zoom)
         ) //为了不在手机的图片中显示,取消jpg后缀,文件名自己定义,写入和读取一致即可,由于有自己的bingmap图源服务,所以此处我用的bingmap的文件名
-        val LJ: String =
-            localPath+File.separator + mFileDirName + mFileName
+        val LJ: String = localPath+File.separator + mFileDirName + mFileName
         TLog.log("customermapview",LJ+"___"+FileUtils.isFileExists(LJ))
         if(FileUtils.isFileExists(LJ)){
             //判断本地是否有图片文件,如果有返回本地url,如果没有,缓存到本地并返回googleurl
@@ -91,7 +99,7 @@ class CustomerMapView : SimpleMapView {
         }else{
             val filePath = String.format(googleUrl, x, y, zoom)
             val mBitmap: Bitmap
-            mBitmap = ImageUtils.getBitmap(getImageStream(filePath))
+            mBitmap = ImageUtils.getBitmap(NetRequestManager.get().getMap(filePath))
             try {
                 var file= File(localPath +File.separator+ mFileDirName + mFileName);
                 var a= ImageUtils.save(mBitmap,
@@ -106,16 +114,6 @@ class CustomerMapView : SimpleMapView {
         return ""
     }
 
-    @Throws(Exception::class)
-    fun getImageStream(path: String?): InputStream? {
-        val url = URL(path)
-        val conn = url.openConnection() as HttpURLConnection
-        conn.connectTimeout = 5 * 1000
-        conn.requestMethod = "GET"
-        return if (conn.responseCode == HttpURLConnection.HTTP_OK) {
-            conn.inputStream
-        } else null
-    }
     override val diskCacheDir: String
         get() =localPath
 
@@ -129,7 +127,7 @@ class CustomerMapView : SimpleMapView {
                     MapDrawBuild()
                         .with(map)
                         .style(MapDrawBuild.DrawMapStye.DRAW_RECTANGLE)
-                        .drawConfig(DrawConfig(Color.TRANSPARENT,Color.BLUE,10f,999f))
+                        .drawConfig(DrawConfig(Color.TRANSPARENT,Color.parseColor("#8072d2f5"),10f,999f))
                         .targetLatLng(listOf(TEST_AREA_TL,TEST_AREA_TR,TEST_AREA_BR,TEST_AREA_BL),1)
                         .create()
                 }
@@ -137,24 +135,41 @@ class CustomerMapView : SimpleMapView {
         }
     }
 
+    @SuppressLint("ResourceAsColor")
     override fun addMaker(mAmap:AMap) {
-        val markerOption = MarkerOptions()
-        markerOption.position(TEST_AREA_CENTER)
-        markerOption.title("test").snippet("test：${TEST_AREA_CENTER.latitude}, ${TEST_AREA_CENTER.longitude}")
+        //初始化makerview
+        for(i in 3 downTo 1){
+            TLog.log("downto",i.toString())
+            if(i==1) {
+                infoWindowView?.viewType(MarkerView.MakerType.UAV_WATCH)
+                makerLogic("","",TEST_UAV_WATCH,true)
+            }else if(i==2){
+                infoWindowView?.viewType(MarkerView.MakerType.UAV_PRO)
+                makerLogic("","", TEST_UAV_PRO,false)
+            }else{
+                infoWindowView?.viewType(MarkerView.MakerType.Track_PRO)
+                makerLogic("", "",TEST_TRACK_PRO,false)
+            }
 
-        markerOption.draggable(true) //设置Marker可拖动
-        markerOption.icon(
-            BitmapDescriptorFactory.fromBitmap(
-                BitmapFactory
-                    .decodeResource(resources, R.mipmap.mark_location)
-            )
-        )
-        // 将Marker设置为贴地显示，可以双指下拉地图查看效果
-        markerOption.isFlat = true //设置marker平贴地图效果
-        mAmap.addMarker(markerOption)
-        TLog.log("maker_x",""+markerOption.infoWindowOffsetX)
+        }
     }
-
+    /*
+    * 如果返回的View不为空且View的background不为null，
+    * 则直接使用它来展示marker的信息。如果backgound为null
+    * ，SDK内部会给这个View设置一个默认的background。
+    * 如果这个方法返回null，将使用内置的一个默认的View来展示marker的信息。
+    * */
+    private fun makerLogic(title:String,content:String,latLng: LatLng,isInfo:Boolean){
+        markerOption.position(latLng)
+            .draggable(true) //设置Marker可拖动
+            .setFlat(true)
+            .infoWindowEnable(true)
+            .icon(BitmapDescriptorFactory.fromResource(R.mipmap.mark_location))
+        maker= map.addMarker(markerOption)
+        if(isInfo) {
+            maker?.showInfoWindow()
+        }
+    }
     override fun moveCamera(mAmap: AMap,delay:Int) {
         GlobalScope.launch {
             Thread.sleep(delay.toLong())
@@ -165,7 +180,6 @@ class CustomerMapView : SimpleMapView {
             )
         }
     }
-
     override fun uiSetting(settings: UiSettings) {
         settings.run {
             isCompassEnabled=true //是否显示指南针
@@ -186,7 +200,93 @@ class CustomerMapView : SimpleMapView {
         }
         return isLock
     }
-    override fun onInterceptTouchEvent(ev: MotionEvent?): Boolean {//搞掉
-        return isLock
+//    override fun onInterceptTouchEvent(ev: MotionEvent?): Boolean {//搞掉
+//        return isLock
+//    }
+
+    override fun getInfoContents(p0: Marker?): View {
+        return infoWindowView!!
     }
+
+//    override fun getInfoContents(p0: Marker?): View {
+//        TLog.log("getInfoContents123","111$infoWindowView")
+//        return infoWindowView!!
+//    }
+
+    override fun getInfoWindow(p0: Marker?): View {
+        TLog.log("getInfoWindow","$infoWindowView"+(p0?.position))
+        when(p0?.position){
+            TEST_TRACK_PRO->{
+                TLog.log("getInfoWindow","TEST_TRACK_PRO"+(p0?.position))
+                infoWindowView?.viewType(MarkerView.MakerType.Track_PRO)
+            }
+            TEST_UAV_PRO->{
+                TLog.log("getInfoWindow","TEST_UAV_PRO"+(p0?.position))
+                infoWindowView?.viewType(MarkerView.MakerType.UAV_PRO)
+            }
+            TEST_UAV_WATCH->{
+                TLog.log("getInfoWindow","TEST_UAV_WATCH"+(p0?.position))
+                infoWindowView?.viewType(MarkerView.MakerType.UAV_WATCH)
+            }
+        }
+        return  infoWindowView!!
+    }
+    /*
+    * -----start-----
+    * info click  marker click
+    *
+    * */
+    override fun onInfoWindowClick(p0: Marker?) {
+        TLog.log("onInfoWindowClick","$p0")
+        when(p0?.position){
+            TEST_TRACK_PRO->{
+            }
+            TEST_UAV_PRO->{
+            }
+            TEST_UAV_WATCH->{
+            }
+        }
+    }
+
+    override fun onMarkerClick(p0: Marker?): Boolean {
+        TLog.log("onMarkerClick","$p0")
+        when(p0?.position){
+            TEST_TRACK_PRO->{
+                makerLogic("","",TEST_TRACK_PRO,true)
+            }
+            TEST_UAV_PRO->{
+                makerLogic("","",TEST_UAV_PRO,true)
+            }
+            TEST_UAV_WATCH->{
+                makerLogic("","",TEST_UAV_WATCH,true)
+            }
+        }
+        return true
+    }
+    private var downX=0f
+    private var downY=0f
+    override fun dispatchTouchEvent(ev: MotionEvent?): Boolean {
+        if(ev?.getAction() == MotionEvent.ACTION_MOVE){
+            getParent().requestDisallowInterceptTouchEvent(true);
+        }
+        return super.dispatchTouchEvent(ev)
+    }
+//    override fun onTouchEvent(event: MotionEvent?): Boolean {
+//        TLog.log("ontouchevent","$isLock${event?.action}$downX ---$downY ---${event?.x}--${event?.y}")
+//        when(event?.action){
+//            MotionEvent.ACTION_DOWN->{
+//                downX=event.x
+//                downY=event.y
+//            }
+//            MotionEvent.ACTION_UP->{
+//                if(downX==event.x&&downY==event.y){
+//                    isLock=false
+//                }
+//            }
+//            else ->{
+//                isLock=true
+//            }
+//        }
+//        return super.onTouchEvent(event)
+//    }
 }

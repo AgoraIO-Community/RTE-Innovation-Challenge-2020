@@ -12,6 +12,8 @@ import androidx.databinding.ViewDataBinding
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.NavController
+import androidx.navigation.fragment.NavHostFragment
 
 /*
 * BaseUIViewMode  UI 管理
@@ -78,7 +80,14 @@ abstract class MvvmBaseFragment  <V : ViewDataBinding, UVM : BaseUIViewModel,DVM
         super.onAttach(context)
         mActivity = context as AppCompatActivity
     }
-    fun getBinding() : V{
+    protected open fun getBinding() : V{
         return viewDataBinding!!
+    }
+    /**
+     * 为了给所有的fragment，导航跳转fragment的
+     * @return
+     */
+    protected open fun nav(): NavController? {
+        return NavHostFragment.findNavController(this)
     }
 }

@@ -14,6 +14,7 @@ import com.framing.commonlib.utils.ScreenUtils
 import com.framing.module.customer.R
 import com.framing.module.customer.ui.widget.support.ParrotViewNew
 import com.framing.module.customer.ui.widget.support.utils.ParrotPillarNew
+import com.young.bean.DialogBean
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
@@ -45,43 +46,23 @@ import java.util.ArrayList
 
     override fun initView(attrs: AttributeSet?) {
         super.initView(attrs)
-        binding?.titleView?.run {
+        binding?.titleTv?.run {
             this.gravity=Gravity.CENTER
         }
         addViewLogic()
     }
-    private var mParrotPillars1: ArrayList<ParrotPillarNew>? = null
-    private val citys = arrayOf("California", "Texas", "Florida", "New York", "llinos", "Georgia", "Michigan", "New Jersey", "Pennsylvania", "Virginana", "Obhio", "U.S. Virgin Islands", "North Arolina", "South Carolina", "Maryland", "Colorado", "Minnersota", "Arizona", "Northern Marianas", "tokey")
+    private var data:DialogBean?=null
 
-    private val value1 = floatArrayOf(1f, 2f, 3f, 4f, 5f, 6f, 7f, 8f, 9f, 10f, 11f, 12f, 13f, 14f, 15f, 16f, 17f, 18f, 19f, 20f)
-    private fun getFakeData() {
-        mParrotPillars1 = ArrayList()
-        for (i in citys.indices) {
-            mParrotPillars1!!.add(ParrotPillarNew(citys[i], value1[i]))
-        }
-    }
     private fun addViewLogic(){
-        val params=LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT)
-        params.setMargins(0, DisplayUtils.dp2px(40f), 0, 0)
-        val addContent=LayoutInflater.from(context).inflate(
-            R.layout.content_style_parent_layout, null
-        )
-        addContent.layoutParams=params
-        addContent.alpha=0.9f
-        val a=addContent.findViewById<ParrotViewNew>(R.id.percent_view)
-        this.addView(addContent)
-        addContent.setOnClickListener {
-            TLog.log("ScienceDialog","test_123456")
-        }
-        GlobalScope.launch {
-            Thread.sleep(1000)
-            getFakeData()
-            a.setColor(Color.parseColor("#cc8400"), Color.parseColor("#ffff00"))
-            a.setData(mParrotPillars1,ParrotViewNew.ANIM_TYPE_COLECT)
-            withContext(Dispatchers.Main){
-                a.startAnim()
-            }
-        }
+//        GlobalScope.launch {
+//            Thread.sleep(5000)
+//            getFakeData()
+//            a.setColor(Color.parseColor("#cc8400"), Color.parseColor("#ffff00"))
+//            a.setData(mParrotPillars1,ParrotViewNew.ANIM_TYPE_COLECT)
+//            withContext(Dispatchers.Main){
+//                a.startAnim()
+//            }
+//        }
     }
     /*
    * 根据外层执行进度
@@ -90,12 +71,26 @@ import java.util.ArrayList
         TLog.log("science_dialog","$progress")
         styleAni(progress)
     }
+    fun setData(data:DialogBean){
+        this.data=data
+    }
     private fun styleAni(progress:Float){
         if(progress==1f){
             binding?.constraintLayout?.run {
                 setTransition(R.id.to_warning)
+                binding?.titleTv?.text="Warning"
 //                setTransition(R.id.to_attention)
                 transitionToEnd()
+                dataToUi()
+            }
+        }
+    }
+
+    private fun dataToUi() {
+        data?.run {
+            binding?.contentView?.contentBinding()?.run {
+                leftTipTv.text=subtitle
+                centerTv.text=content
             }
         }
     }

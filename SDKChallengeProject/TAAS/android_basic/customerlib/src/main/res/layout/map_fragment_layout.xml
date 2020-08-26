@@ -8,6 +8,9 @@
             name="onClick"
             type="com.framing.commonlib.base.IViewBindingClick" />
         <variable
+            name="onClick2"
+            type="com.framing.commonlib.base.IBindingClickA" />
+        <variable
             name="mapUIVM"
             type="com.framing.module.customer.ui.viewmodel.MapUIVM" />
     </data>

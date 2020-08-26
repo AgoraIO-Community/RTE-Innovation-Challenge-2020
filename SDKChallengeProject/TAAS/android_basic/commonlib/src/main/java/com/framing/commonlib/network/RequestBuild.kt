@@ -61,13 +61,7 @@ import java.util.concurrent.TimeUnit
         logging.level=(if (true) HttpLoggingInterceptor.Level.BODY else HttpLoggingInterceptor.Level.NONE)
         builder.addInterceptor(logging)
     }
-    protected fun apiSubscribe(){
 
-    }
-    inline  fun <T> apiSubscribe(obj:Observable<T>, mt:(String)->Unit) {
-        TLog.log("invoke_unit1", obj.toString() + "___")
-        return mt(obj.toString())
-    }
     fun setNetworkRequestInfo(requestInfo: IRequestHeaderInfo?) {
         networkRequestInfo = requestInfo
         sHttpsRequestInterceptor = RequestInterceptor(requestInfo)

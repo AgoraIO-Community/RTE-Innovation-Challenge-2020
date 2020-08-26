@@ -1,3 +1,12 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.framing.business">
+    <application
+        android:name=".data.BusinessApplication"
+        android:allowBackup="true"
+        android:icon="@mipmap/icon_lanucher"
+        android:label="@string/app_business_name"
+        android:roundIcon="@mipmap/icon_lanucher"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme"></application>
+
 </manifest>

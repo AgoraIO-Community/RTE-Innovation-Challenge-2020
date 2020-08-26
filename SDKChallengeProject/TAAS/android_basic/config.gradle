@@ -23,7 +23,7 @@ ext {
 
     url = [
             "local": "${getIP()}",
-            "offical": "http://taas.com"
+            "offical": "http://182.92.164.242:8080/"
     ]
 }
 def getIP() {//测试时用本机跑的服务端 使用本地地址

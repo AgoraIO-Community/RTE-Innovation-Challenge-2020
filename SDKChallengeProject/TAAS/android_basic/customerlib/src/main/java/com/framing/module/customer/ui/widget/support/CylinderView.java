@@ -85,12 +85,13 @@ public class CylinderView extends View {
     float leftAngle = 0;
     float rightAngle = 0;
 
+    public CylinderView(Context context) {
+        super(context);
+    }
+
     public CylinderView(Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
         initPaint();
-
-
-
     }
 
     public CylinderView(Context context, @Nullable AttributeSet attrs, int defStyleAttr) {

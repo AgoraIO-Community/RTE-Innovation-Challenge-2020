@@ -22,6 +22,8 @@ import com.framing.module.customer.data.viewmodel.CContainerDataVM
 import com.framing.module.customer.BR
 import com.framing.module.customer.CustomerShareVM
 import com.framing.module.customer.R
+import com.framing.module.customer.data.bean.SimpleDataBean
+import com.young.bean.PageAllBean
 import com.young.businessmvvm.data.repository.network.NetRequestManager
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.coroutineScope
@@ -43,7 +45,7 @@ class CContainerActivity :  MvvmBaseActivity<CContainerActivityBinding, CContain
         appShareVM=getAppViewModelProvider()?.get(CustomerShareVM::class.java)
         contentNavCtrl=findNavController(R.id.content_fragment_host)
         startNavCtrl=findNavController(R.id.launch_fragment_host)
-        NetRequestManager.get()?.setNetworkRequestInfo(HeaderInfoInit())
+        NetRequestManager.get().setNetworkRequestInfo(HeaderInfoInit())
         uiLogic()
         getUIViewModel().isDialogShow.postValue(true)
         permissionRun(PermissionPolicy.P_LOC){
@@ -53,8 +55,8 @@ class CContainerActivity :  MvvmBaseActivity<CContainerActivityBinding, CContain
             delay(5000)
             appShareVM?.isStartHide?.postValue(true) //执行完了
             getUIViewModel().isDialogShow.postValue(false)
-            NetRequestManager.get()?.getMap()
         }
+        getDataViewModel()?.requestData()
     }
 
     /*
@@ -62,13 +64,20 @@ class CContainerActivity :  MvvmBaseActivity<CContainerActivityBinding, CContain
     * */
     @SuppressLint("ResourceAsColor")
     private fun uiLogic() {
+        //UI 状态 和 data 不一致才处理 启动页展示与否
         appShareVM?.isStartHide?.observe(this, Observer {
-            if(getUIViewModel().isStartHide.value!=it) {//UI 状态 和 data 不一致才处理 启动页展示与否
+            if(getUIViewModel().isStartHide.value!=it) {
                 getUIViewModel().isStartHide.postValue(true)
             }
         })
+        //通知UIload状态
+        getDataViewModel()?.loadType?.observe(this, Observer {
+            getUIViewModel().loadType.postValue(it)
+        })
+        //观察 做dialog 显示逻辑
         getUIViewModel().isDialogShow.observe(this, Observer {
-            if(getUIViewModel().isStartHide.value!!) {//展示弹窗 且在非启动页逻辑请款
+            if(getUIViewModel().isStartHide.value!!) {
+                //展示弹窗 且在非启动页逻辑情况
                 if(it) {
                     getBinding().motionLayout?.run {
                         setTransition(R.id.to_dialog)

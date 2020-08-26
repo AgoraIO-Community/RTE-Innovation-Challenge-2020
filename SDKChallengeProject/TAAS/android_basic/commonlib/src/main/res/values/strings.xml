@@ -1,7 +1,8 @@
 <resources>
-    <string name="app_business_name">TAAS</string>
+    <string name="app_business_name">TAAS_B</string>
     <string name="app_customer_name">TAAS</string>
     <string name="app_customer_logo_slogn">Build Agricultural Science</string>
+    <string name="app_business_logo_slogn">for business</string>
     <string name="app_customer_menu_title">User Center</string>
     <string name="app_customer_menu_one">tab_one</string>
     <string name="app_customer_menu_two">tab_two</string>
@@ -13,5 +14,10 @@
     <string name="app_customer_right_dialog_Focus">Focus</string>
     <string name="app_customer_bottom_title">TAAS Immediacy Data</string>
     <string name="app_customer_bottom_title_right">about</string>
+
+    <string name="app_customer_uav_pro">无人机植保中</string>
+    <string name="app_customer_uav_watch">无人机采集中</string>
+    <string name="app_customer_track_pro">植保耕收作业中</string>
+
 
 </resources>

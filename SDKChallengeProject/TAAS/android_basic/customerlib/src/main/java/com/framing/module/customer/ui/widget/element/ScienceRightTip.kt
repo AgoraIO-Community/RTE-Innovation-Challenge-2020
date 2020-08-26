@@ -35,7 +35,7 @@ import com.framing.module.customer.R
         super.initView(attrs)
         val typedArray = context.obtainStyledAttributes(attrs, R.styleable.ScienceRightTip)
         titleName = typedArray.getString(R.styleable.ScienceRightTip_title_name)
-        binding?.titleView?.run {
+        binding?.titleTv?.run {
             this.gravity=Gravity.LEFT
             this.gravity=Gravity.CENTER_VERTICAL
             text=titleName
@@ -65,10 +65,10 @@ import com.framing.module.customer.R
     * */
     override fun titleLogic(progress:Float){
         if(progress==1f) {
-            binding?.titleView?.gravity = Gravity.CENTER
+            binding?.titleTv?.gravity = Gravity.CENTER
         }else if(progress==0f){
-            binding?.titleView?.gravity = Gravity.LEFT
-            binding?.titleView?.gravity = Gravity.CENTER_VERTICAL
+            binding?.titleTv?.gravity = Gravity.LEFT
+            binding?.titleTv?.gravity = Gravity.CENTER_VERTICAL
         }
     }
 }

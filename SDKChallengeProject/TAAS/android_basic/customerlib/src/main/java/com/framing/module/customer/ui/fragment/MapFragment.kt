@@ -39,6 +39,7 @@ class  MapFragment :  MvvmBaseFragment<MapFragmentLayoutBinding, MapUIVM,MapData
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         getBinding().onClick= this
+        getBinding().onClick2=this
         containerVM=getActivityViewModelProvider(requireActivity()).get(CContainerUIVM::class.java)
         getBinding().mapView.onCreate(savedInstanceState)
         viewLogic()

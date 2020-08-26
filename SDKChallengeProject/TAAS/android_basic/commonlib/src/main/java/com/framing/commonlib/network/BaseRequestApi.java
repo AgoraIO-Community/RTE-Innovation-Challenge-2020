@@ -37,7 +37,7 @@ public abstract class BaseRequestApi {
                 .addConverterFactory(GsonConverterFactory.create()).build();
     }
 
-    public static void setNetworkRequestInfo(IRequestHeaderInfo requestInfo) {
+    public  void setNetworkRequestInfo(IRequestHeaderInfo requestInfo) {
         networkRequestInfo = requestInfo;
         sHttpsRequestInterceptor = new RequestInterceptor(requestInfo);
         sHttpsResponseInterceptor = new ResponseInterceptor();

@@ -9,11 +9,15 @@
         android:layout_height="match_parent"
         app:layoutDescription="@xml/scicence_content_parent_view_xml_constraintlayout_scene">
 
-        <TextView
+        <View
             android:id="@+id/title_view"
             android:layout_width="match_parent"
             android:layout_height="40dp"
-            android:background="@color/color_menu_science_dip"
+            android:background="@color/color_menu_science_dip"></View>
+        <TextView
+            android:id="@+id/title_tv"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
             android:gravity="center"
             android:text="Science"
             android:textColor="@color/color_white"
@@ -23,8 +27,14 @@
             android:id="@+id/content_container"
             android:layout_width="400dp"
             android:layout_height="320dp"
-            android:background="@color/color_menu_science"
-            tools:layout_editor_absoluteX="5dp"
-            tools:layout_editor_absoluteY="233dp"></View>
+            android:background="@color/color_menu_science"></View>
+        <com.framing.module.customer.ui.widget.element.ContentParentView
+            android:id="@+id/content_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:layout_constraintTop_toTopOf="@+id/title_view"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/content_container"
+            app:layout_constraintStart_toStartOf="@+id/content_container"></com.framing.module.customer.ui.widget.element.ContentParentView>
     </androidx.constraintlayout.motion.widget.MotionLayout>
 </layout>
