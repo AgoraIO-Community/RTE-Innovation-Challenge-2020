@@ -131,5 +131,4 @@ class  MapFragment :  MvvmBaseFragment<MapFragmentLayoutBinding, MapUIVM,MapData
         get() = R.layout.map_fragment_layout
 
 
-
 }

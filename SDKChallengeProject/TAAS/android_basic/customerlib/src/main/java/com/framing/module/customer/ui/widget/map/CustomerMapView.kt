@@ -11,7 +11,6 @@ import android.view.View
 import android.widget.ImageView
 import com.amap.api.maps.AMap
 import com.amap.api.maps.CameraUpdateFactory
-import com.amap.api.maps.MapView
 import com.amap.api.maps.UiSettings
 import com.amap.api.maps.model.BitmapDescriptorFactory
 import com.amap.api.maps.model.LatLng
@@ -200,18 +199,38 @@ class CustomerMapView : SimpleMapView ,AMap.InfoWindowAdapter,AMap.OnInfoWindowC
         }
         return isLock
     }
-//    override fun onInterceptTouchEvent(ev: MotionEvent?): Boolean {//搞掉
-//        return isLock
+    private var mLastX:Float?=null
+    private var mLastY:Float?=null
+
+
+//    override fun dispatchTouchEvent(ev: MotionEvent?): Boolean {
+//        val x = ev?.getX()
+//        val y = ev?.getY()
+//        when (ev?.getAction()) {
+//            MotionEvent.ACTION_DOWN -> {
+//                mLastX = ev.getX()
+//                mLastY = ev.getY()
+//                return super.dispatchTouchEvent(ev)
+//            }
+//
+//            MotionEvent.ACTION_UP -> {
+//                val deltaX = x?.minus(mLastX!!)
+//                val deltaY = y?.minus(mLastY!!)
+//                TLog.log("touch_event122","${deltaX} --- ${deltaY}")
+//                if (deltaX?.toInt() ==0 && deltaY?.toInt()==0) {
+//                    return true
+//                }
+//            }
+//            else -> {
+//            }
+//        }
+//        return super.dispatchTouchEvent(ev)
 //    }
 
     override fun getInfoContents(p0: Marker?): View {
         return infoWindowView!!
     }
 
-//    override fun getInfoContents(p0: Marker?): View {
-//        TLog.log("getInfoContents123","111$infoWindowView")
-//        return infoWindowView!!
-//    }
 
     override fun getInfoWindow(p0: Marker?): View {
         TLog.log("getInfoWindow","$infoWindowView"+(p0?.position))
@@ -263,30 +282,4 @@ class CustomerMapView : SimpleMapView ,AMap.InfoWindowAdapter,AMap.OnInfoWindowC
         }
         return true
     }
-    private var downX=0f
-    private var downY=0f
-    override fun dispatchTouchEvent(ev: MotionEvent?): Boolean {
-        if(ev?.getAction() == MotionEvent.ACTION_MOVE){
-            getParent().requestDisallowInterceptTouchEvent(true);
-        }
-        return super.dispatchTouchEvent(ev)
-    }
-//    override fun onTouchEvent(event: MotionEvent?): Boolean {
-//        TLog.log("ontouchevent","$isLock${event?.action}$downX ---$downY ---${event?.x}--${event?.y}")
-//        when(event?.action){
-//            MotionEvent.ACTION_DOWN->{
-//                downX=event.x
-//                downY=event.y
-//            }
-//            MotionEvent.ACTION_UP->{
-//                if(downX==event.x&&downY==event.y){
-//                    isLock=false
-//                }
-//            }
-//            else ->{
-//                isLock=true
-//            }
-//        }
-//        return super.onTouchEvent(event)
-//    }
 }
