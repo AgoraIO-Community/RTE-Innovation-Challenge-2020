@@ -30,10 +30,10 @@ import android.os.Bundle
 import android.view.ViewGroup
 import android.widget.FrameLayout
 import androidx.appcompat.app.AppCompatActivity
-import com.google.firebase.ml.vision.FirebaseVision
-import com.google.firebase.ml.vision.common.FirebaseVisionImage
-import com.google.firebase.ml.vision.face.FirebaseVisionFaceDetector
-import com.google.firebase.ml.vision.face.FirebaseVisionFaceDetectorOptions
+import com.google.mlkit.vision.common.InputImage
+import com.google.mlkit.vision.face.FaceDetection
+import com.google.mlkit.vision.face.FaceDetector
+import com.google.mlkit.vision.face.FaceDetectorOptions
 import com.qifan.emojibattle.databinding.ActivityBattleBinding
 import com.qifan.emojibattle.extension.debug
 import com.qifan.emojibattle.sdk.VideoRawData
@@ -53,7 +53,7 @@ class BattleActivity : AppCompatActivity(), VideoRawData.VideoObserver {
     private val appId = BuildConfig.AppId
     private lateinit var rtcEngine: RtcEngine
 
-    private lateinit var detector: FirebaseVisionFaceDetector
+    private lateinit var detector: FaceDetector
 
     companion object {
         private const val CHANNEL = "Channel"
@@ -74,7 +74,7 @@ class BattleActivity : AppCompatActivity(), VideoRawData.VideoObserver {
         parseIntents()
         initAgoraEngineAndJoinChannel()
         initVideoRawData()
-        initFirebaseML()
+        initFaceML()
     }
 
     private fun parseIntents() {
@@ -94,15 +94,14 @@ class BattleActivity : AppCompatActivity(), VideoRawData.VideoObserver {
         VideoRawData.instance.subscribe(this)
     }
 
-    private fun initFirebaseML() {
-        val highAccuracyOpts = FirebaseVisionFaceDetectorOptions.Builder()
-            .setPerformanceMode(FirebaseVisionFaceDetectorOptions.ACCURATE)
-            .setLandmarkMode(FirebaseVisionFaceDetectorOptions.ALL_LANDMARKS)
-            .setClassificationMode(FirebaseVisionFaceDetectorOptions.ALL_CLASSIFICATIONS)
+    private fun initFaceML() {
+        val highAccuracyOpts = FaceDetectorOptions.Builder()
+            .setPerformanceMode(FaceDetectorOptions.PERFORMANCE_MODE_ACCURATE)
+            .setLandmarkMode(FaceDetectorOptions.LANDMARK_MODE_ALL)
+            .setClassificationMode(FaceDetectorOptions.CLASSIFICATION_MODE_ALL)
             .build()
 
-        detector = FirebaseVision.getInstance()
-            .getVisionFaceDetector(highAccuracyOpts)
+        detector = FaceDetection.getClient(highAccuracyOpts)
     }
 
     private fun initializeAgoraEngine() {
@@ -207,9 +206,9 @@ class BattleActivity : AppCompatActivity(), VideoRawData.VideoObserver {
     }
 
     override fun onCaptureVideoFrame(bitmap: Bitmap) {
-        val image = FirebaseVisionImage.fromBitmap(bitmap)
-        detector.detectInImage(image).addOnSuccessListener { faces ->
-            faces.forEach { debug("FirebaseVisionImage $it") }
+        val image = InputImage.fromBitmap(bitmap, 0)
+        detector.process(image).addOnSuccessListener { faces ->
+            faces.forEach { debug("VisionImage $it") }
         }
     }
 }
