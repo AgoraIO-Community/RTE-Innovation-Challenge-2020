@@ -25,6 +25,7 @@ package com.qifan.emojibattle
 
 import android.app.Activity
 import android.content.Intent
+import android.graphics.Bitmap
 import android.os.Bundle
 import android.view.ViewGroup
 import android.widget.FrameLayout
@@ -35,17 +36,14 @@ import com.google.firebase.ml.vision.face.FirebaseVisionFaceDetector
 import com.google.firebase.ml.vision.face.FirebaseVisionFaceDetectorOptions
 import com.qifan.emojibattle.databinding.ActivityBattleBinding
 import com.qifan.emojibattle.extension.debug
-import io.agora.advancedvideo.rawdata.MediaDataObserverPlugin
-import io.agora.advancedvideo.rawdata.MediaDataVideoObserver
-import io.agora.advancedvideo.rawdata.MediaPreProcessing
-import io.agora.advancedvideo.rawdata.YUVUtils
+import com.qifan.emojibattle.sdk.VideoRawData
 import io.agora.rtc.IRtcEngineEventHandler
 import io.agora.rtc.RtcEngine
 import io.agora.rtc.video.VideoCanvas
 import io.agora.rtc.video.VideoEncoderConfiguration
 import kotlin.properties.Delegates.notNull
 
-class BattleActivity : AppCompatActivity(), MediaDataVideoObserver {
+class BattleActivity : AppCompatActivity(), VideoRawData.VideoObserver {
     private lateinit var binding: ActivityBattleBinding
     private val localSurfaceView get() = binding.localSurfaceView
     private val remoteSurfaceView get() = binding.remoteSurfaceView
@@ -55,7 +53,6 @@ class BattleActivity : AppCompatActivity(), MediaDataVideoObserver {
     private val appId = BuildConfig.AppId
     private lateinit var rtcEngine: RtcEngine
 
-    private val mediaDataObserverPlugin by lazy { MediaDataObserverPlugin.the() }
     private lateinit var detector: FirebaseVisionFaceDetector
 
     companion object {
@@ -76,17 +73,8 @@ class BattleActivity : AppCompatActivity(), MediaDataVideoObserver {
         setContentView(binding.root)
         parseIntents()
         initAgoraEngineAndJoinChannel()
-        MediaPreProcessing.setCallback(mediaDataObserverPlugin)
-        MediaPreProcessing.setVideoCaptureByteBuffer(mediaDataObserverPlugin.byteBufferCapture)
-        mediaDataObserverPlugin.addVideoObserver(this)
-        val highAccuracyOpts = FirebaseVisionFaceDetectorOptions.Builder()
-            .setPerformanceMode(FirebaseVisionFaceDetectorOptions.ACCURATE)
-            .setLandmarkMode(FirebaseVisionFaceDetectorOptions.ALL_LANDMARKS)
-            .setClassificationMode(FirebaseVisionFaceDetectorOptions.ALL_CLASSIFICATIONS)
-            .build()
-
-        detector = FirebaseVision.getInstance()
-            .getVisionFaceDetector(highAccuracyOpts)
+        initVideoRawData()
+        initFirebaseML()
     }
 
     private fun parseIntents() {
@@ -100,6 +88,21 @@ class BattleActivity : AppCompatActivity(), MediaDataVideoObserver {
         setupLocalVideo()
         setupVideoProfile()
         joinChannel()
+    }
+
+    private fun initVideoRawData() {
+        VideoRawData.instance.subscribe(this)
+    }
+
+    private fun initFirebaseML() {
+        val highAccuracyOpts = FirebaseVisionFaceDetectorOptions.Builder()
+            .setPerformanceMode(FirebaseVisionFaceDetectorOptions.ACCURATE)
+            .setLandmarkMode(FirebaseVisionFaceDetectorOptions.ALL_LANDMARKS)
+            .setClassificationMode(FirebaseVisionFaceDetectorOptions.ALL_CLASSIFICATIONS)
+            .build()
+
+        detector = FirebaseVision.getInstance()
+            .getVisionFaceDetector(highAccuracyOpts)
     }
 
     private fun initializeAgoraEngine() {
@@ -175,8 +178,7 @@ class BattleActivity : AppCompatActivity(), MediaDataVideoObserver {
         super.onDestroy()
         rtcEngine.leaveChannel()
         rtcEngine.stopPreview()
-        mediaDataObserverPlugin.removeVideoObserver(this)
-        mediaDataObserverPlugin.removeAllBuffer()
+        VideoRawData.instance.unsubscribe()
         RtcEngine.destroy()
     }
 
@@ -185,7 +187,6 @@ class BattleActivity : AppCompatActivity(), MediaDataVideoObserver {
             super.onUserJoined(userId, elapsed)
             debug("onUserJoined $userId")
             runOnUiThread {
-                mediaDataObserverPlugin.addDecodeBuffer(userId)
                 setRemoteVideo(userId)
             }
         }
@@ -194,7 +195,6 @@ class BattleActivity : AppCompatActivity(), MediaDataVideoObserver {
             super.onUserOffline(userId, reason)
             debug("onUserOffline $reason")
             runOnUiThread {
-                mediaDataObserverPlugin.removeDecodeBuffer(userId)
                 rtcEngine.setupRemoteVideo(
                     VideoCanvas(
                         null,
@@ -206,47 +206,10 @@ class BattleActivity : AppCompatActivity(), MediaDataVideoObserver {
         }
     }
 
-    override fun onCaptureVideoFrame(
-        data: ByteArray?,
-        frameType: Int,
-        width: Int,
-        height: Int,
-        bufferLength: Int,
-        yStride: Int,
-        uStride: Int,
-        vStride: Int,
-        rotation: Int,
-        renderTimeMs: Long
-    ) {
-        val bmp = YUVUtils.i420ToBitmap(
-            width,
-            height,
-            rotation,
-            bufferLength,
-            data,
-            yStride,
-            uStride,
-            vStride
-        )
-        val image = FirebaseVisionImage.fromBitmap(bmp)
+    override fun onCaptureVideoFrame(bitmap: Bitmap) {
+        val image = FirebaseVisionImage.fromBitmap(bitmap)
         detector.detectInImage(image).addOnSuccessListener { faces ->
-            faces.forEach { debug("$it") }
+            faces.forEach { debug("FirebaseVisionImage $it") }
         }
-    }
-
-    override fun onRenderVideoFrame(
-        uid: Int,
-        data: ByteArray?,
-        frameType: Int,
-        width: Int,
-        height: Int,
-        bufferLength: Int,
-        yStride: Int,
-        uStride: Int,
-        vStride: Int,
-        rotation: Int,
-        renderTimeMs: Long
-    ) {
-//        debug("=====onRenderVideoFrame====")
     }
 }

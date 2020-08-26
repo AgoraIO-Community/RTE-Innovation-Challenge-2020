@@ -5,7 +5,7 @@ spotless {
         targetExclude '**/spotless/*.java'
         trimTrailingWhitespace()
         removeUnusedImports()
-        googleJavaFormat("1.8")
+        googleJavaFormat("1.7")
         endWithNewline()
         licenseHeaderFile rootProject.file('spotless/copyright.java')
     }

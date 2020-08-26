@@ -17,7 +17,7 @@ add_library( # Sets the name of the library.
         SHARED
 
         # Provides a relative path to your source file(s).
-        src/main/cpp/io_agora_advancedvideo_rawdata_MediaPreProcessing.cpp)
+        src/main/cpp/videorawdata.cpp)
 
 # Searches for a specified prebuilt library and stores the path as a
 # variable. Because CMake includes system libraries in the search path by
