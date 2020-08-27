@@ -1,14 +1,19 @@
 package com.framing.module.customer.ui.widget.element
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.graphics.Color
 import android.os.Build
 import android.util.AttributeSet
 import android.view.Gravity
 import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import android.widget.Button
 import android.widget.LinearLayout
 import androidx.annotation.RequiresApi
 import com.framing.baselib.TLog
+import com.framing.commonlib.base.IBindingClickEvent
 import com.framing.commonlib.utils.DisplayUtils
 import com.framing.commonlib.utils.ScreenUtils
 import com.framing.module.customer.R
@@ -43,6 +48,13 @@ import java.util.ArrayList
         defStyleAttr: Int,
         defStyleRes: Int
     ) : super(context, attrs, defStyleAttr, defStyleRes)
+    /*-------start--------
+    * data 业务数据
+    * btn  添加的独立UI
+    * */
+    private var data:DialogBean?=null
+    private var btn:Button?=null
+
 
     override fun initView(attrs: AttributeSet?) {
         super.initView(attrs)
@@ -51,18 +63,18 @@ import java.util.ArrayList
         }
         addViewLogic()
     }
-    private var data:DialogBean?=null
 
+    @SuppressLint("ResourceAsColor")
     private fun addViewLogic(){
-//        GlobalScope.launch {
-//            Thread.sleep(5000)
-//            getFakeData()
-//            a.setColor(Color.parseColor("#cc8400"), Color.parseColor("#ffff00"))
-//            a.setData(mParrotPillars1,ParrotViewNew.ANIM_TYPE_COLECT)
-//            withContext(Dispatchers.Main){
-//                a.startAnim()
-//            }
-//        }
+        val param= LayoutParams(DisplayUtils.dp2px(160f), DisplayUtils.dp2px(60f))
+        param.gravity=Gravity.BOTTOM
+        param.gravity=Gravity.CENTER_HORIZONTAL
+        btn=Button(context)
+        btn?.alpha=0.4f
+        btn?.text="go"
+        btn?.gravity=Gravity.CENTER
+        btn?.setBackgroundColor(R.color.color_menu_science)
+        addView(btn,childCount,param)
     }
     /*
    * 根据外层执行进度
@@ -73,14 +85,28 @@ import java.util.ArrayList
     }
     fun setData(data:DialogBean){
         this.data=data
+        dataToUi()
     }
     private fun styleAni(progress:Float){
         if(progress==1f){
             binding?.constraintLayout?.run {
-                setTransition(R.id.to_warning)
-                binding?.titleTv?.text="Warning"
-//                setTransition(R.id.to_attention)
-                transitionToEnd()
+                data?.run {
+                    when(dialogLevel){
+                        1->{
+                            setTransition(R.id.to_warning)
+                            binding?.titleTv?.text="Warning"
+                            transitionToEnd()
+                        }
+                        2->{
+                            setTransition(R.id.to_attention)
+                            binding?.titleTv?.text="Attention"
+                            transitionToEnd()
+                        }
+                        3->{
+                            binding?.titleTv?.text="Foucs"
+                        }
+                    }
+                }
                 dataToUi()
             }
         }
@@ -89,9 +115,26 @@ import java.util.ArrayList
     private fun dataToUi() {
         data?.run {
             binding?.contentView?.contentBinding()?.run {
-                leftTipTv.text=subtitle
-                centerTv.text=content
+                if(subtitle.isEmpty()){
+                    leftTipTv.visibility= View.GONE
+                }else{
+                    leftTipTv.visibility= View.VISIBLE
+                    leftTipTv.text=subtitle
+                }
+                if(content.isEmpty()){
+                    centerTv.visibility= View.GONE
+                }else{
+                    centerTv.visibility= View.VISIBLE
+                    leftTipTv.text=content
+                }
             }
+        }
+    }
+
+    override fun  clickLisen(click: IBindingClickEvent<Any>) {
+        super.clickLisen(click)
+        btn?.setOnClickListener {
+            click.onClick(it,data!!,0)
         }
     }
 }

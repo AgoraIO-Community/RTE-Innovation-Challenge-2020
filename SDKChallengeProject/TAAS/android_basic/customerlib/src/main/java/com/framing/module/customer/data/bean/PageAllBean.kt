@@ -12,6 +12,6 @@ data class PageAllBean
  var dialogBean: DialogBean,
  var bottom:BottomBean)
 
-data class DialogBean(var subtitle:String,var content:String,var nutrientBean: NutrientBean)
+data class DialogBean(var isShowDialog:Boolean,var dialogLevel:Int,var subtitle:String,var content:String,var nutrientBean: NutrientBean)
 data class BottomBean(var list: List<ContentListBean> )
 data class ContentListBean(var title:String,var imgurl:String,var content:String,var contenturl:String,var nutrientBean: NutrientBean)

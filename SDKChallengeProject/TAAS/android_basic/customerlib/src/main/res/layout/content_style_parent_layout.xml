@@ -11,6 +11,7 @@
             android:id="@+id/left_tip_tv"
             android:textSize="14sp"
             android:text="tip:"
+            android:visibility="gone"
             android:gravity="center_vertical|left"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
@@ -23,6 +24,7 @@
             android:textSize="15sp"
             android:gravity="center"
             android:text="center123"
+            android:visibility="gone"
             app:layout_constraintTop_toBottomOf="@+id/left_tip_tv"
             android:textColor="@color/color_white"
             android:layout_width="match_parent"
@@ -35,11 +37,13 @@
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
+            android:visibility="gone"
             app:lottie_autoPlay="true"
             app:lottie_loop="true"></com.framing.module.customer.ui.widget.element.WeatherLottieView>
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recycleview"
             app:layout_constraintTop_toBottomOf="@+id/left_tip_tv"
+            android:visibility="gone"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"></androidx.recyclerview.widget.RecyclerView>
         <TextView
@@ -48,6 +52,7 @@
             android:gravity="left|center_vertical"
             android:text="center321"
             android:background="#fff"
+            android:visibility="gone"
             app:layout_constraintBottom_toBottomOf="parent"
             android:textColor="@color/color_white"
             android:layout_width="match_parent"
@@ -64,6 +69,8 @@
 <!--            app:layout_constraintTop_toTopOf="parent"></com.framing.commonlib.agora.AgoraMediaKit>-->
         <com.framing.module.customer.ui.widget.support.ParrotViewNew
             android:id="@+id/percent_view"
+            app:layout_constraintTop_toBottomOf="@+id/left_tip_tv"
+            android:visibility="gone"
             android:layout_width="match_parent"
             android:layout_height="match_parent"></com.framing.module.customer.ui.widget.support.ParrotViewNew>
     </androidx.constraintlayout.widget.ConstraintLayout>

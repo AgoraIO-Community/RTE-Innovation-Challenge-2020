@@ -68,7 +68,7 @@ abstract class FramingMapView : TextureMapView {
             isRotateGesturesEnabled=false//旋转手势关闭
             isZoomControlsEnabled=false//放大缩小按钮
             isZoomGesturesEnabled=false//放大缩小功能
-            setScrollGesturesEnabled(false)
+            setScrollGesturesEnabled(true)
         }
         drawOverlay()
         addMaker(map)

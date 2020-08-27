@@ -7,6 +7,7 @@ import com.framing.commonlib.helper.ProjectLiveData
 import com.young.aac.base.BaseDataViewModel
 import com.young.bean.BottomBean
 import com.young.bean.ContentListBean
+import com.young.bean.DialogBean
 import com.young.bean.PageAllBean
 import com.young.businessmvvm.data.repository.network.NetRequestManager
 import kotlinx.coroutines.Dispatchers
@@ -35,15 +36,26 @@ class CContainerDataVM : BaseDataViewModel{
     var focusData=ProjectLiveData<ContentListBean>()
     var isShowDialog=MutableLiveData<Boolean>()
     var dialogLev=MutableLiveData<Int>()
+    var dialogData=MutableLiveData<DialogBean>()
 
-
+    /*
+    * 请求首页全部
+    * */
     fun requestData(){
         viewModelScope.launch {
             val ob=NetRequestManager.get().reuqestApiInterface.getPageAllData()
             NetRequestManager.get().getResult (ob,this@CContainerDataVM){
                 TLog.log("test_request",it.toString())
+                bottomData.postValue(it.bottom)
+                scienceData.postValue(it.science)
+                focusData.postValue(it.focus)
+                isShowDialog.postValue(it.isShowDialog)
+                dialogLev.postValue(it.dialogLevel)
+                val dialog=it.dialogBean
+                dialog.dialogLevel=1
+                dialog.isShowDialog=true
+                dialogData.postValue(dialog)
             }
         }
-
     }
 }

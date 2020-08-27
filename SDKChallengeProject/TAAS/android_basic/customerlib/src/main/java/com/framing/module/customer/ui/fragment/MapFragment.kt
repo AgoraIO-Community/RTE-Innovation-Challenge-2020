@@ -8,20 +8,22 @@ import android.view.ViewGroup
 import androidx.annotation.RequiresApi
 import androidx.constraintlayout.motion.widget.MotionLayout
 import androidx.constraintlayout.motion.widget.MotionLayout.TransitionListener
+import androidx.lifecycle.lifecycleScope
 import com.amap.api.maps.MapView
 import com.framing.baselib.TLog
-import com.framing.commonlib.base.IBindingClickA
 import com.framing.commonlib.base.IViewBindingClick
+import com.framing.commonlib.helper.ObserVerScope
 import com.young.aac.base.MvvmBaseFragment
 import com.framing.module.customer.databinding.MapFragmentLayoutBinding
 import com.framing.module.customer.ui.viewmodel.MapUIVM
 import com.framing.module.customer.data.viewmodel.MapDataVM
 import com.framing.module.customer.BR
 import com.framing.module.customer.R
+import com.framing.module.customer.data.viewmodel.CContainerDataVM
 import com.framing.module.customer.ui.viewmodel.CContainerUIVM
 import com.framing.module.customer.ui.widget.map.CustomerMapView
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.launch
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.withContext
 import java.util.*
 
 /**
@@ -29,19 +31,20 @@ import java.util.*
  * Created by VULCAN on 2020-08-13 13:30:55
  */
 class  MapFragment :  MvvmBaseFragment<MapFragmentLayoutBinding, MapUIVM,MapDataVM>(),
-    IViewBindingClick ,IBindingClickA<Object>{
+    IViewBindingClick {
 
 
     private val mapView:CustomerMapView?=null
     private var isShow=false
-    private var containerVM:CContainerUIVM?=null
+    private var containerVM:CContainerDataVM?=null//activity datavm
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        TLog.log("SimpleMapView","onViewCreated")
         getBinding().onClick= this
-        getBinding().onClick2=this
-        containerVM=getActivityViewModelProvider(requireActivity()).get(CContainerUIVM::class.java)
+        containerVM=getActivityViewModelProvider(requireActivity()).get(CContainerDataVM::class.java)
         getBinding().mapView.onCreate(savedInstanceState)
+        lifecycle.addObserver(getBinding().mapView)
         viewLogic()
 //        getBinding().mapLockImg.setOnClickListener {
 //            TLog.log("map_onclick","${view.id}")
@@ -51,8 +54,25 @@ class  MapFragment :  MvvmBaseFragment<MapFragmentLayoutBinding, MapUIVM,MapData
     * UI
     * */
     private fun viewLogic() {
-        //地图初始配置
-        getBinding().mapView.initLoad()
+        initUI()
+        initData()
+    }
+
+    /*
+    * motionLayout 动效联动配置
+    * 拿到datavm 配置给UI
+    * 弹窗  data
+    * leftmenu data
+    * bottom data
+    * right tip data
+    * */
+    private fun initData() {
+        containerVM?.bottomData?.observe(viewLifecycleOwner, androidx.lifecycle.Observer {
+
+        })
+        getUIViewModel().isShowDialog.observe(viewLifecycleOwner, androidx.lifecycle.Observer {
+            containerVM?.isShowDialog?.postValue(it)
+        })
         //添加xml parent motionlayout 监听
         getBinding().motionLayout.addTransitionListener(object :TransitionListener{
             override fun onTransitionTrigger(p0: MotionLayout?, p1: Int, p2: Boolean, p3: Float) {
@@ -83,14 +103,23 @@ class  MapFragment :  MvvmBaseFragment<MapFragmentLayoutBinding, MapUIVM,MapData
                 getBinding().rightOne.complete(p1==R.id.right_one_end)
             }
         })
-        GlobalScope.launch {
-            Thread.sleep(6000)
-            containerVM?.isDialogShow?.postValue(true)//通知容器布局 显示弹窗
-        }
+    }
+
+    private fun initUI() {
+        //地图初始配置
+        getBinding().mapView.initLoad()
     }
 
     override fun onResume() {
         super.onResume()
+        lifecycleScope.launchWhenResumed {
+            withContext(Dispatchers.IO){
+                Thread.sleep(10000)
+                withContext(Dispatchers.Main){
+                    getUIViewModel().isShowDialog.postValue(true)
+                }
+            }
+        }
     }
     /*
     * 页面全部点击处理
@@ -107,9 +136,6 @@ class  MapFragment :  MvvmBaseFragment<MapFragmentLayoutBinding, MapUIVM,MapData
                 }
             }
         }
-    }
-    override fun onClick(view: View, data: Object, position: Int) {
-        TLog.log("map_onclick2","${view.id}")
     }
     /*
     * 以下是初始封装得配置

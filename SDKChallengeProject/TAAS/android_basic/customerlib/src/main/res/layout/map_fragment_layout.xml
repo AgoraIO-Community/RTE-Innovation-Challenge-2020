@@ -8,63 +8,65 @@
             name="onClick"
             type="com.framing.commonlib.base.IViewBindingClick" />
         <variable
-            name="onClick2"
-            type="com.framing.commonlib.base.IBindingClickA" />
-        <variable
             name="mapUIVM"
             type="com.framing.module.customer.ui.viewmodel.MapUIVM" />
     </data>
-
-    <androidx.constraintlayout.motion.widget.MotionLayout
-        android:id="@+id/motion_layout"
+    <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        app:layoutDescription="@xml/map_fragment_layout_scene">
-        <!--map info-->
+        android:layout_height="match_parent">
         <com.framing.module.customer.ui.widget.map.CustomerMapView
             android:id="@+id/map_view"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"></com.framing.module.customer.ui.widget.map.CustomerMapView>
-        <!--left user center menu-->
-        <com.framing.module.customer.ui.widget.element.LeftMenuView
-            android:id="@+id/left_layout"
-            android:layout_width="200dp"
             android:layout_height="match_parent"
-            app:layout_constraintEnd_toStartOf="parent"></com.framing.module.customer.ui.widget.element.LeftMenuView>
-        <!--bottom up view -->
-        <com.framing.module.customer.ui.widget.element.BottomScienceView
-            android:id="@+id/bottom_layout"
+            ></com.framing.module.customer.ui.widget.map.CustomerMapView>
+        <androidx.constraintlayout.motion.widget.MotionLayout
+            android:id="@+id/motion_layout"
             android:layout_width="match_parent"
-            android:layout_height="450dp"></com.framing.module.customer.ui.widget.element.BottomScienceView>
-        <!--right tip  and ani to center one to three bottom to top -->
-        <com.framing.module.customer.ui.widget.element.ScienceRightTip
-            android:id="@+id/right_one"
-            app:title_name="@string/app_customer_right_tip_one"
-            android:layout_width="100dp"
-            android:layout_height="40dp"></com.framing.module.customer.ui.widget.element.ScienceRightTip>
-        <com.framing.module.customer.ui.widget.element.ScienceRightTip
-            android:id="@+id/right_two"
-            android:layout_width="100dp"
-            android:layout_height="40dp"
-            app:title_name="@string/app_customer_right_tip_two"
-            ></com.framing.module.customer.ui.widget.element.ScienceRightTip>
-        <com.framing.module.customer.ui.widget.element.ScienceRightTip
-            android:id="@+id/right_three"
-            android:layout_width="100dp"
-            android:layout_height="40dp"
-            app:title_name="@string/app_customer_right_tip_three"
-            ></com.framing.module.customer.ui.widget.element.ScienceRightTip>
-        <!--mapview lock -->
-        <ImageView
-            android:onClick="@{(view)->onClick.onClick(view)}"
-            android:alpha="0.6"
-            android:id="@+id/map_lock_img"
-            android:layout_marginTop="15dp"
-            android:layout_marginRight="15dp"
-            android:layout_width="28dp"
-            android:layout_height="28dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            android:src="@mipmap/map_lock" />
-    </androidx.constraintlayout.motion.widget.MotionLayout>
+            android:layout_height="match_parent"
+            app:layoutDescription="@xml/map_fragment_layout_scene">
+            <!--map info-->
+            <!--left user center menu-->
+            <com.framing.module.customer.ui.widget.element.LeftMenuView
+                android:id="@+id/left_layout"
+                android:layout_width="200dp"
+                android:layout_height="match_parent"
+                app:layout_constraintEnd_toStartOf="parent"></com.framing.module.customer.ui.widget.element.LeftMenuView>
+            <!--bottom up view -->
+            <com.framing.module.customer.ui.widget.element.BottomScienceView
+                android:id="@+id/bottom_layout"
+                android:layout_width="match_parent"
+                android:layout_height="450dp"></com.framing.module.customer.ui.widget.element.BottomScienceView>
+            <!--right tip  and ani to center one to three bottom to top -->
+            <com.framing.module.customer.ui.widget.element.ScienceRightTip
+                android:id="@+id/right_one"
+                app:title_name="@string/app_customer_right_tip_one"
+                android:layout_width="100dp"
+                android:layout_height="40dp"></com.framing.module.customer.ui.widget.element.ScienceRightTip>
+            <com.framing.module.customer.ui.widget.element.ScienceRightTip
+                android:id="@+id/right_two"
+                android:layout_width="100dp"
+                android:layout_height="40dp"
+                app:title_name="@string/app_customer_right_tip_two"
+                ></com.framing.module.customer.ui.widget.element.ScienceRightTip>
+            <com.framing.module.customer.ui.widget.element.ScienceRightTip
+                android:id="@+id/right_three"
+                android:layout_width="100dp"
+                android:layout_height="40dp"
+                app:title_name="@string/app_customer_right_tip_three"
+                ></com.framing.module.customer.ui.widget.element.ScienceRightTip>
+            <!--mapview lock -->
+            <ImageView
+                android:onClick="@{(view)->onClick.onClick(view)}"
+                android:alpha="0.6"
+                android:id="@+id/map_lock_img"
+                android:layout_marginTop="15dp"
+                android:layout_marginRight="15dp"
+                android:layout_width="28dp"
+                android:layout_height="28dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                android:src="@mipmap/map_lock" />
+        </androidx.constraintlayout.motion.widget.MotionLayout>
+
+    </FrameLayout>
 </layout>

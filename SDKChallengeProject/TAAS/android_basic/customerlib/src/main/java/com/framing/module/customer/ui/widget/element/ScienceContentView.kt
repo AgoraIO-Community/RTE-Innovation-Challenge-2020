@@ -8,6 +8,7 @@ import android.view.LayoutInflater
 import android.widget.FrameLayout
 import androidx.annotation.RequiresApi
 import androidx.databinding.DataBindingUtil
+import com.framing.commonlib.base.IBindingClickEvent
 import com.framing.module.customer.R
 import com.framing.module.customer.databinding.ScicenceContentParentLayoutBinding
 
@@ -38,6 +39,7 @@ import com.framing.module.customer.databinding.ScicenceContentParentLayoutBindin
 
 
     var binding:ScicenceContentParentLayoutBinding?=null
+    var click:IBindingClickEvent<Any>?=null
 
     open fun initView(attrs: AttributeSet?){
         binding = DataBindingUtil.inflate(LayoutInflater.from(context), R.layout.scicence_content_parent_layout,this,true);
@@ -51,5 +53,8 @@ import com.framing.module.customer.databinding.ScicenceContentParentLayoutBindin
     * 处理title内容 贴边居右 居中居中
     * */
     open fun titleLogic(progress:Float){
+    }
+    open fun clickLisen(click:IBindingClickEvent<Any>){
+        this.click=click
     }
 }

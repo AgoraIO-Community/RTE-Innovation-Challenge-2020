@@ -14,6 +14,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="@color/color_menu_science"></View>
+
         <TextView
             android:id="@+id/title_tv"
             android:layout_width="wrap_content"
@@ -29,6 +30,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="@+id/one_tv"
             app:srcCompat="@mipmap/question_simple_icon"></androidx.constraintlayout.utils.widget.ImageFilterView>
+
         <View
             android:id="@+id/one_tv_view"
             android:layout_width="0dp"
@@ -62,6 +64,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="@+id/two_tv"
             app:srcCompat="@mipmap/question_simple_icon"></androidx.constraintlayout.utils.widget.ImageFilterView>
+
         <View
             android:id="@+id/two_tv_view"
             android:layout_width="0dp"
@@ -88,5 +91,12 @@
             app:layout_constraintLeft_toRightOf="@+id/two_img"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/one_tv"></TextView>
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guide"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="1"/>
     </androidx.constraintlayout.motion.widget.MotionLayout>
 </layout>

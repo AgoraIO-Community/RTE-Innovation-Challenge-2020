@@ -19,6 +19,6 @@ interface IBindingViewClick<T> {
 interface IBindingItemClick<T> {
     fun onClick(data:T,position:Int)
 }
-interface IBindingClickA<D> {
+interface IBindingClickEvent<D> {
     fun onClick(view: View,data:D,position:Int)
 }

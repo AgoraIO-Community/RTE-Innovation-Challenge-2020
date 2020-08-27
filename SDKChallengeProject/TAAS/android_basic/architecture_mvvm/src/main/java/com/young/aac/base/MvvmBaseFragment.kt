@@ -19,7 +19,7 @@ import androidx.navigation.fragment.NavHostFragment
 * BaseUIViewMode  UI 管理
 * BaseDataViewModel 业务数据管理 可以未null
 * */
-abstract class MvvmBaseFragment  <V : ViewDataBinding, UVM : BaseUIViewModel,DVM:BaseDataViewModel?> :
+abstract class MvvmBaseFragment  <V : ViewDataBinding, UVM : BaseUIViewModel<V>,DVM:BaseDataViewModel?> :
     Fragment {
 
     constructor() : super()
@@ -35,7 +35,7 @@ abstract class MvvmBaseFragment  <V : ViewDataBinding, UVM : BaseUIViewModel,DVM
     @get:LayoutRes
     abstract val layoutId: Int
 
-    abstract fun getUIViewModel(): UVM//页面UI管理 可以和宿主activity 统计fragment 共享
+    abstract fun getUIViewModel(): UVM//页面UI管理  共享
     abstract fun getDataViewModel(): DVM?//dataViewModel 业务数据
 
 
@@ -55,6 +55,7 @@ abstract class MvvmBaseFragment  <V : ViewDataBinding, UVM : BaseUIViewModel,DVM
         super.onViewCreated(view, savedInstanceState)
         UIVM = getUIViewModel()
         dataVM=getDataViewModel()
+        UIVM?.withBinding(viewDataBinding!!,this)
         if (bindingVariable > 0 && UIVM != null) {
             viewDataBinding?.setVariable(bindingVariable, UIVM)
         } else {

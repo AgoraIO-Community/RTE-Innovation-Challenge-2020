@@ -14,7 +14,7 @@ import com.framing.commonlib.utils.BarUtils
 * BaseUIViewMode   UI 管理
 * BaseDataViewModel  业务数据管理 可以未null
 * */
-abstract class MvvmBaseActivity <V : ViewDataBinding, UVM : BaseUIViewModel,DVM:BaseDataViewModel?> :
+abstract class MvvmBaseActivity <V : ViewDataBinding, UVM : BaseUIViewModel<V>,DVM:BaseDataViewModel?> :
     CommonBaseActivity {
 
     private var dataVM: DVM? = null//dataViewModel

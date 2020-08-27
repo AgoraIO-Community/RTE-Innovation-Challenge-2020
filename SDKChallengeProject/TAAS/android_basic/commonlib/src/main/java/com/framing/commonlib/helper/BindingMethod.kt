@@ -3,6 +3,7 @@ package com.framing.commonlib.helper
 import android.view.View
 import androidx.databinding.BindingAdapter
 import com.framing.baselib.TLog
+import com.framing.commonlib.base.IBindingClickEvent
 
 class BindingMethod {
     companion object {

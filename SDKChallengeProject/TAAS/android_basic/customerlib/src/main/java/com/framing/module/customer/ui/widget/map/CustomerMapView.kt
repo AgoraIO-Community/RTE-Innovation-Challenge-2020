@@ -33,7 +33,7 @@ import java.io.IOException
 
 
 /*
- * Des  负载客户端业务的地图view
+ * Des  负载客户端业务的地图view 主要为对应业务
  * 父类SimpleMapView 负载生命周期
  * 祖父类FramingMapView 负载高德mapview
  * 维护对应分层
@@ -73,10 +73,6 @@ class CustomerMapView : SimpleMapView ,AMap.InfoWindowAdapter,AMap.OnInfoWindowC
         val params=LayoutParams(DisplayUtils.dp2px(35f),DisplayUtils.dp2px(35f))
         params.setMargins(0, DisplayUtils.dp2px(15f), DisplayUtils.dp2px(15f), 0)
         params.gravity=Gravity.RIGHT
-        val lockView= ImageView(context)
-        lockView.setImageResource(R.mipmap.audio_bottom_paue_icon)
-        lockView.layoutParams=params
-        addView(lockView)
         infoWindowView=MarkerView(context)
         map.setInfoWindowAdapter(this@CustomerMapView)
         map.setOnMarkerClickListener(this@CustomerMapView)
@@ -199,33 +195,6 @@ class CustomerMapView : SimpleMapView ,AMap.InfoWindowAdapter,AMap.OnInfoWindowC
         }
         return isLock
     }
-    private var mLastX:Float?=null
-    private var mLastY:Float?=null
-
-
-//    override fun dispatchTouchEvent(ev: MotionEvent?): Boolean {
-//        val x = ev?.getX()
-//        val y = ev?.getY()
-//        when (ev?.getAction()) {
-//            MotionEvent.ACTION_DOWN -> {
-//                mLastX = ev.getX()
-//                mLastY = ev.getY()
-//                return super.dispatchTouchEvent(ev)
-//            }
-//
-//            MotionEvent.ACTION_UP -> {
-//                val deltaX = x?.minus(mLastX!!)
-//                val deltaY = y?.minus(mLastY!!)
-//                TLog.log("touch_event122","${deltaX} --- ${deltaY}")
-//                if (deltaX?.toInt() ==0 && deltaY?.toInt()==0) {
-//                    return true
-//                }
-//            }
-//            else -> {
-//            }
-//        }
-//        return super.dispatchTouchEvent(ev)
-//    }
 
     override fun getInfoContents(p0: Marker?): View {
         return infoWindowView!!
@@ -282,4 +251,12 @@ class CustomerMapView : SimpleMapView ,AMap.InfoWindowAdapter,AMap.OnInfoWindowC
         }
         return true
     }
+
+    override fun dispatchTouchEvent(ev: MotionEvent?): Boolean {
+        return if(isLock) true else super.dispatchTouchEvent(ev)
+    }
+
+//    override fun onInterceptTouchEvent(ev: MotionEvent?): Boolean {
+//        return isLock
+//    }
 }

@@ -53,13 +53,14 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:alpha="0.4"
-            motion:layout_constraintTop_toBottomOf="@id/title_view" />
+            motion:layout_constraintTop_toBottomOf="@id/title_view"
+            android:layout_marginTop="40dp" />
         <Constraint
             android:id="@+id/title_view"
             android:layout_width="match_parent"
             android:layout_height="40dp"
-            motion:layout_constraintTop_toTopOf="@id/bg_view"
-            android:alpha="0.4" />
+            android:alpha="0.4"
+            motion:layout_constraintBottom_toTopOf="@id/bg_view" />
         <Constraint
             android:id="@+id/title_right_view"
             android:layout_width="wrap_content"

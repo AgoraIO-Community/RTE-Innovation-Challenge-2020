@@ -4,6 +4,7 @@ import android.annotation.SuppressLint
 import android.os.Bundle
 import android.os.Handler
 import android.os.HandlerThread
+import android.view.View
 import androidx.constraintlayout.motion.widget.MotionLayout
 import androidx.core.os.HandlerCompat.postDelayed
 import androidx.core.os.postDelayed
@@ -11,6 +12,7 @@ import androidx.lifecycle.Observer
 import androidx.navigation.NavController
 import androidx.navigation.findNavController
 import com.framing.baselib.TLog
+import com.framing.commonlib.base.IBindingClickEvent
 import com.framing.commonlib.inject.policy.PermissionPolicy
 import com.framing.commonlib.network.HeaderInfoInit
 import com.framing.commonlib.network.RequestBuild
@@ -34,7 +36,7 @@ import kotlinx.coroutines.launch
  * Des 容器类 控制分发 控制业务 相当于app controller
  * Created by Young on 2020-08-11 19:15:07
  */
-class CContainerActivity :  MvvmBaseActivity<CContainerActivityBinding, CContainerUIVM,CContainerDataVM>(){
+class CContainerActivity :  MvvmBaseActivity<CContainerActivityBinding, CContainerUIVM,CContainerDataVM>() ,IBindingClickEvent<Any>{
 
     private var appShareVM:CustomerShareVM?=null//app共享 CContainerActivity dataVM 目前也是相当于app
     private var contentNavCtrl: NavController?=null//主内容分发控制器
@@ -47,20 +49,20 @@ class CContainerActivity :  MvvmBaseActivity<CContainerActivityBinding, CContain
         startNavCtrl=findNavController(R.id.launch_fragment_host)
         NetRequestManager.get().setNetworkRequestInfo(HeaderInfoInit())
         uiLogic()
-        getUIViewModel().isDialogShow.postValue(true)
         permissionRun(PermissionPolicy.P_LOC){
             //权限请求
         }
         GlobalScope?.launch{
             delay(5000)
             appShareVM?.isStartHide?.postValue(true) //执行完了
-            getUIViewModel().isDialogShow.postValue(false)
         }
         getDataViewModel()?.requestData()
     }
 
     /*
     * UI 执行逻辑是由 app share vm 控制分发 启动页相关 还是 主内容相关
+    * 主要 datavm 反转给UIvm 控制
+    * UiVM post value 触发ui更新
     * */
     @SuppressLint("ResourceAsColor")
     private fun uiLogic() {
@@ -74,11 +76,16 @@ class CContainerActivity :  MvvmBaseActivity<CContainerActivityBinding, CContain
         getDataViewModel()?.loadType?.observe(this, Observer {
             getUIViewModel().loadType.postValue(it)
         })
+        //观察 控制 交给Uivm dialog
+        getDataViewModel()?.isShowDialog?.observe(this, Observer {
+            getUIViewModel().isDialogShow.postValue(it)
+        })
         //观察 做dialog 显示逻辑
         getUIViewModel().isDialogShow.observe(this, Observer {
             if(getUIViewModel().isStartHide.value!!) {
                 //展示弹窗 且在非启动页逻辑情况
                 if(it) {
+                    initDialog()
                     getBinding().motionLayout?.run {
                         setTransition(R.id.to_dialog)
                         transitionToEnd()
@@ -113,7 +120,15 @@ class CContainerActivity :  MvvmBaseActivity<CContainerActivityBinding, CContain
             }
         })
     }
-
+    private fun initDialog(){
+        getBinding().dialogView.run {
+            setData(getDataViewModel()?.dialogData?.value!!)
+            clickLisen(this@CContainerActivity)
+        }
+    }
+    override fun onClick(view: View, data: Any, position: Int) {
+        TLog.log("CContainerActivity","onclick$view")
+    }
     override fun getUIViewModel(): CContainerUIVM {
         return getActivityViewModelProvider(this).get(CContainerUIVM::class.java)
     }
@@ -124,4 +139,5 @@ class CContainerActivity :  MvvmBaseActivity<CContainerActivityBinding, CContain
         get() = BR.cContainerUIVM
     override val layoutId: Int
         get() = R.layout.c_container_activity
+
 }
