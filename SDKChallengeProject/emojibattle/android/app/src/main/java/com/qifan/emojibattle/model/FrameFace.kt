@@ -21,23 +21,8 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-package com.qifan.emojibattle
+package com.qifan.emojibattle.model
 
-import android.app.Application
-import com.qifan.emojibattle.di.appModule
-import org.koin.android.ext.koin.androidContext
-import org.koin.android.ext.koin.androidLogger
-import org.koin.core.context.startKoin
-import org.koin.core.logger.Level
-
-class EmojiBattleApp : Application() {
-
-    override fun onCreate() {
-        super.onCreate()
-        startKoin {
-            androidLogger(Level.ERROR)
-            androidContext(this@EmojiBattleApp)
-            modules(appModule)
-        }
-    }
+enum class FrameFace {
+    SMILE, LEFT_WINK, RIGHT_WINK, UNKNOWN
 }

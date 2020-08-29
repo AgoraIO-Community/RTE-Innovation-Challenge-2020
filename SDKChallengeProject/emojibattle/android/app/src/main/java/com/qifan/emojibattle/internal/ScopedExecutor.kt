@@ -21,23 +21,25 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-package com.qifan.emojibattle
+package com.qifan.emojibattle.internal
 
-import android.app.Application
-import com.qifan.emojibattle.di.appModule
-import org.koin.android.ext.koin.androidContext
-import org.koin.android.ext.koin.androidLogger
-import org.koin.core.context.startKoin
-import org.koin.core.logger.Level
+import java.util.concurrent.Executor
+import java.util.concurrent.atomic.AtomicBoolean
 
-class EmojiBattleApp : Application() {
+class ScopedExecutor(private val executor: Executor) : Executor {
+    private val shutdown = AtomicBoolean()
 
-    override fun onCreate() {
-        super.onCreate()
-        startKoin {
-            androidLogger(Level.ERROR)
-            androidContext(this@EmojiBattleApp)
-            modules(appModule)
+    override fun execute(command: Runnable?) {
+        if (shutdown.get()) return
+        executor.execute command@{
+            if (shutdown.get()) {
+                return@command
+            }
+            command?.run()
         }
+    }
+
+    fun shutdown() {
+        shutdown.set(true)
     }
 }

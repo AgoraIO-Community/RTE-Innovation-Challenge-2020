@@ -21,25 +21,16 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-package com.qifan.emojibattle.sdk
+package com.qifan.emojibattle.internal.sdk
 
 import android.graphics.Bitmap
 import java.nio.ByteBuffer
 
 class VideoRawData {
-    private val byteBufferCapture: ByteBuffer =
-        ByteBuffer.allocateDirect(3240 * 1080) // default maximum video size Full HD+
+    private val byteBufferCapture: ByteBuffer = ByteBuffer.allocateDirect(3240 * 1080) // default maximum video size Full HD+
 
-    companion object {
-        val instance = Holder.holder
-
-        init {
-            System.loadLibrary("apm-plugin-raw-data")
-        }
-    }
-
-    private object Holder {
-        val holder = VideoRawData()
+    init {
+        System.loadLibrary("apm-plugin-raw-data")
     }
 
     fun subscribe(observer: VideoObserver) {

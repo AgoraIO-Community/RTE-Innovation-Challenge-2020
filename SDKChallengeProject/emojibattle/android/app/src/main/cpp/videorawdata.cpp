@@ -156,7 +156,7 @@ unloadAgoraRtcEnginePlugin(agora::rtc::IRtcEngine *engine) {
     rtcEngine = nullptr;
 }
 
-JNIEXPORT void JNICALL Java_com_qifan_emojibattle_sdk_VideoRawData_setCallback
+JNIEXPORT void JNICALL Java_com_qifan_emojibattle_internal_sdk_VideoRawData_setCallback
         (JNIEnv *env, jobject, jobject callback) {
     if (!rtcEngine) {
         __android_log_print(ANDROID_LOG_INFO, "ldh", "register null");
@@ -198,12 +198,12 @@ JNIEXPORT void JNICALL Java_com_qifan_emojibattle_sdk_VideoRawData_setCallback
 }
 
 JNIEXPORT void JNICALL
-Java_com_qifan_emojibattle_sdk_VideoRawData_setVideoCaptureByteBuffer
+Java_com_qifan_emojibattle_internal_sdk_VideoRawData_setVideoCaptureByteBuffer
         (JNIEnv *env, jobject, jobject bytebuffer) {
     _javaDirectPlayBufferCapture = env->GetDirectBufferAddress(bytebuffer);
 }
 
-JNIEXPORT void JNICALL Java_com_qifan_emojibattle_sdk_VideoRawData_releasePoint
+JNIEXPORT void JNICALL Java_com_qifan_emojibattle_internal_sdk_VideoRawData_releasePoint
         (JNIEnv *env, jobject) {
     agora::util::AutoPtr<agora::media::IMediaEngine> mediaEngine;
     mediaEngine.queryInterface(rtcEngine, agora::INTERFACE_ID_TYPE::AGORA_IID_MEDIA_ENGINE);

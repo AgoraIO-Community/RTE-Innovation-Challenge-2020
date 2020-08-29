@@ -25,44 +25,30 @@ package com.qifan.emojibattle
 
 import android.app.Activity
 import android.content.Intent
-import android.graphics.Bitmap
 import android.os.Bundle
-import android.view.ViewGroup
-import android.widget.FrameLayout
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import com.google.mlkit.vision.common.InputImage
-import com.google.mlkit.vision.face.Face
-import com.google.mlkit.vision.face.FaceDetection
-import com.google.mlkit.vision.face.FaceDetector
-import com.google.mlkit.vision.face.FaceDetectorOptions
 import com.qifan.emojibattle.databinding.ActivityBattleBinding
-import com.qifan.emojibattle.engine.GameEngine
 import com.qifan.emojibattle.extension.debug
-import com.qifan.emojibattle.sdk.VideoRawData
 import com.squareup.picasso.Picasso
 import io.agora.rtc.IRtcEngineEventHandler
 import io.agora.rtc.RtcEngine
 import io.agora.rtc.video.VideoCanvas
 import io.agora.rtc.video.VideoEncoderConfiguration
+import org.koin.android.viewmodel.ext.android.viewModel
 import kotlin.properties.Delegates.notNull
 
-class BattleActivity : AppCompatActivity(), VideoRawData.VideoObserver {
+class BattleActivity : AppCompatActivity() {
     private lateinit var binding: ActivityBattleBinding
     private val localSurfaceView get() = binding.localSurfaceView
     private val remoteSurfaceView get() = binding.remoteSurfaceView
     private val engineEmoji get() = binding.engineEmoji
 
+    private val viewModel: BattleViewModel by viewModel()
+
     private var channel: String by notNull()
     private val token = BuildConfig.Token
     private val appId = BuildConfig.AppId
     private lateinit var rtcEngine: RtcEngine
-
-    private lateinit var detector: FaceDetector
-
-    private var recongized: Boolean = false
-
-    private val result: MutableList<Boolean> = mutableListOf()
 
     companion object {
         private const val CHANNEL = "Channel"
@@ -83,7 +69,16 @@ class BattleActivity : AppCompatActivity(), VideoRawData.VideoObserver {
         parseIntents()
         initAgoraEngineAndJoinChannel()
         initVideoRawData()
-        initFaceML()
+    }
+
+    private fun observerModel() {
+        viewModel.emoji.observe(this) { emoji ->
+            Picasso.get()
+                .load(emoji.battleRes)
+                .centerCrop()
+                .resize(200, 200)
+                .into(engineEmoji)
+        }
     }
 
     private fun parseIntents() {
@@ -100,16 +95,7 @@ class BattleActivity : AppCompatActivity(), VideoRawData.VideoObserver {
     }
 
     private fun initVideoRawData() {
-        VideoRawData.instance.subscribe(this)
-    }
-
-    private fun initFaceML() {
-        val highAccuracyOpts = FaceDetectorOptions.Builder()
-            .setPerformanceMode(FaceDetectorOptions.PERFORMANCE_MODE_ACCURATE)
-            .setLandmarkMode(FaceDetectorOptions.LANDMARK_MODE_ALL)
-            .setClassificationMode(FaceDetectorOptions.CLASSIFICATION_MODE_ALL)
-            .build()
-        detector = FaceDetection.getClient(highAccuracyOpts)
+        viewModel.initialize()
     }
 
     private fun initializeAgoraEngine() {
@@ -139,18 +125,8 @@ class BattleActivity : AppCompatActivity(), VideoRawData.VideoObserver {
         if (localSurfaceView.childCount > 0) {
             localSurfaceView.removeAllViews()
         }
-        localSurfaceView.addView(
-            surfaceView,
-            FrameLayout.LayoutParams(
-                ViewGroup.LayoutParams.MATCH_PARENT,
-                ViewGroup.LayoutParams.MATCH_PARENT
-            )
-        )
-        val videoCanvas = VideoCanvas(
-            surfaceView,
-            VideoCanvas.RENDER_MODE_FIT,
-            0
-        )
+        localSurfaceView.addView(surfaceView)
+        val videoCanvas = VideoCanvas(surfaceView, VideoCanvas.RENDER_MODE_HIDDEN, 0)
         rtcEngine.setupLocalVideo(videoCanvas)
     }
 
@@ -165,28 +141,16 @@ class BattleActivity : AppCompatActivity(), VideoRawData.VideoObserver {
             remoteSurfaceView.removeAllViews()
         }
         val surfaceView = RtcEngine.CreateRendererView(applicationContext)
-        remoteSurfaceView.addView(
-            surfaceView,
-            FrameLayout.LayoutParams(
-                ViewGroup.LayoutParams.MATCH_PARENT,
-                ViewGroup.LayoutParams.MATCH_PARENT
-            )
-        )
+        remoteSurfaceView.addView(surfaceView)
         surfaceView.setZOrderMediaOverlay(true)
-        rtcEngine.setupRemoteVideo(
-            VideoCanvas(
-                surfaceView,
-                VideoCanvas.RENDER_MODE_FIT,
-                uid
-            )
-        )
+        rtcEngine.setupRemoteVideo(VideoCanvas(surfaceView, VideoCanvas.RENDER_MODE_FIT, uid))
     }
 
     override fun onDestroy() {
         super.onDestroy()
         rtcEngine.leaveChannel()
         rtcEngine.stopPreview()
-        VideoRawData.instance.unsubscribe()
+        viewModel.destory()
         RtcEngine.destroy()
     }
 
@@ -195,7 +159,7 @@ class BattleActivity : AppCompatActivity(), VideoRawData.VideoObserver {
             super.onUserJoined(userId, elapsed)
             debug("onUserJoined $userId")
             runOnUiThread {
-                GameEngine.startGame(engineListener)
+                viewModel.startGame()
                 setRemoteVideo(userId)
             }
         }
@@ -204,75 +168,9 @@ class BattleActivity : AppCompatActivity(), VideoRawData.VideoObserver {
             super.onUserOffline(userId, reason)
             debug("onUserOffline $reason")
             runOnUiThread {
-                rtcEngine.setupRemoteVideo(
-                    VideoCanvas(
-                        null,
-                        VideoCanvas.RENDER_MODE_FIT,
-                        userId
-                    )
-                )
+                viewModel.endGame()
+                rtcEngine.setupRemoteVideo(VideoCanvas(null, VideoCanvas.RENDER_MODE_HIDDEN, userId))
             }
         }
-    }
-
-    override fun onCaptureVideoFrame(bitmap: Bitmap) {
-        val image = InputImage.fromBitmap(bitmap, 0)
-        detector.process(image).addOnSuccessListener { faces ->
-            faces.forEach { face ->
-                debug("detector process $face")
-                if (!recongized) {
-                    engineListener.transformFaceToEmoji(face)
-                } else {
-
-                }
-            }
-        }
-    }
-
-    private val engineListener = object : GameEngine.Listener {
-        private var emoji: Pair<Int, GameEngine.EmojiState>? = null
-        override fun displayEmoji(emoji: Pair<Int, GameEngine.EmojiState>) {
-            runOnUiThread {
-                //picasso display image
-                // set current emoji
-                this.emoji = emoji
-                recongized = false
-                Picasso.get()
-                    .load(emoji.first)
-                    .centerCrop()
-                    .resize(200, 200)
-                    .into(engineEmoji)
-            }
-        }
-
-        override fun transformFaceToEmoji(face: Face) {
-            val smiling = face.smilingProbability ?: 0f > 0.15
-            val leftEyeClosed = face.leftEyeOpenProbability ?: 0f < 0.5
-            val rightEyeClosed = face.rightEyeOpenProbability ?: 0f < 0.5
-            val transformState: GameEngine.EmojiState
-            transformState = if (smiling) {
-                when {
-                    leftEyeClosed -> {
-                        GameEngine.EmojiState.LEFT_WINK
-                    }
-                    rightEyeClosed -> {
-                        GameEngine.EmojiState.RIGHT_WINK
-                    }
-                    else -> {
-                        GameEngine.EmojiState.SMILE
-                    }
-                }
-            } else {
-                GameEngine.EmojiState.UNKNOWN
-            }
-            recongized = emoji?.second == transformState
-
-            if (recongized) {
-                // TODO : display recongized interface
-                Toast.makeText(this@BattleActivity, "Emoji has been recongized", Toast.LENGTH_LONG)
-                    .show()
-            }
-        }
-
     }
 }

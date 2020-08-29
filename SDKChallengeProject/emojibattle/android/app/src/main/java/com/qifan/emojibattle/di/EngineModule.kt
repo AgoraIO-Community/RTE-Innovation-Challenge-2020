@@ -21,23 +21,16 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-package com.qifan.emojibattle
+package com.qifan.emojibattle.di
 
-import android.app.Application
-import com.qifan.emojibattle.di.appModule
-import org.koin.android.ext.koin.androidContext
-import org.koin.android.ext.koin.androidLogger
-import org.koin.core.context.startKoin
-import org.koin.core.logger.Level
+import com.qifan.emojibattle.engine.DetectionEngine
+import com.qifan.emojibattle.engine.GameEngine
+import com.qifan.emojibattle.internal.sdk.VideoRawData
+import org.koin.core.module.Module
+import org.koin.dsl.module
 
-class EmojiBattleApp : Application() {
-
-    override fun onCreate() {
-        super.onCreate()
-        startKoin {
-            androidLogger(Level.ERROR)
-            androidContext(this@EmojiBattleApp)
-            modules(appModule)
-        }
-    }
+val engineModule: Module = module {
+    single { VideoRawData() }
+    single { GameEngine() }
+    single { DetectionEngine(get()) }
 }

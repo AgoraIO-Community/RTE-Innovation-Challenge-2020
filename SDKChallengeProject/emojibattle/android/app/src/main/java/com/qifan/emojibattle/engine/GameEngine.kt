@@ -23,48 +23,72 @@
  */
 package com.qifan.emojibattle.engine
 
-import com.google.mlkit.vision.face.Face
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import com.qifan.emojibattle.R
-import com.qifan.emojibattle.internal.Queue
-import java.util.*
+import com.qifan.emojibattle.model.Emoji
+import com.qifan.emojibattle.model.FrameFace
+import com.qifan.emojibattle.model.FrameFace.* // ktlint-disable no-wildcard-imports
+import java.util.Timer
+import java.util.concurrent.atomic.AtomicInteger
 import kotlin.concurrent.fixedRateTimer
-
 
 private const val TIME_PERIOD_DURATION = 5000L
 
 class GameEngine {
-    private val emojis = Queue<Pair<Int, EmojiState>>()
+    private val emojis = listOf(
+        Emoji(R.drawable.smile, Emoji.State.SMILE),
+        Emoji(R.drawable.leftwink, Emoji.State.LEFT_WINK),
+        Emoji(R.drawable.rightwink, Emoji.State.RIGHT_WINK)
+    )
     private lateinit var timer: Timer
-    private lateinit var listener: Listener
+    private val _emoji: MutableLiveData<Emoji> = MutableLiveData()
+    internal val emoji: LiveData<Emoji> = _emoji
 
-    init {
-        emojis.push(R.drawable.smile to EmojiState.SMILE)
-        emojis.push(R.drawable.leftwink to EmojiState.LEFT_WINK)
-        emojis.push(R.drawable.rightwink to EmojiState.RIGHT_WINK)
-    }
+    private val _gameStatus: MutableLiveData<GameState> = MutableLiveData(GameState.START)
+    internal val gameStatus: LiveData<GameState> = _gameStatus
+    private val results = mutableListOf<Boolean>()
+    private val _result: MutableLiveData<List<Boolean>> = MutableLiveData(results)
+    val result: LiveData<List<Boolean>> = _result
+    private val count: AtomicInteger = AtomicInteger(0)
 
-    fun startGame(listener: Listener) {
-        this.listener = listener
+    fun startGame() {
+        _gameStatus.postValue(GameState.GAMING)
         timer = fixedRateTimer("startGame", period = TIME_PERIOD_DURATION) {
-            if (emojis.isNotEmpty()) {
-                listener.displayEmoji(emojis.pop())
+            if (emojis.count() - 1 == count.get()) {
+                _gameStatus.postValue(GameState.END)
             } else {
-                //开始评分
+                _emoji.postValue(emojis[count.getAndIncrement()])
             }
         }
     }
 
+    fun setResult(frameFace: FrameFace) {
+        val state = when (frameFace) {
+            SMILE -> Emoji.State.SMILE
+            LEFT_WINK -> Emoji.State.LEFT_WINK
+            RIGHT_WINK -> Emoji.State.RIGHT_WINK
+            UNKNOWN -> Emoji.State.UNKNOWN
+        }
+        val target = emojis[count.get()]
+        if (target.verified) return
+        if (target.state == state) {
+            target.verified = true
+            results.add(true)
+            _result.postValue(results)
+        } else {
+            results.add(false)
+        }
+    }
 
     fun endGame() {
+        count.set(0)
         timer.cancel()
     }
 
-    interface Listener {
-        fun displayEmoji(emoji: Pair<Int, EmojiState>)
-        fun transformFaceToEmoji(face: Face)
-    }
-
-    enum class EmojiState {
-        SMILE, LEFT_WINK, RIGHT_WINK, UNKNOWN
+    enum class GameState {
+        START,
+        GAMING,
+        END
     }
 }

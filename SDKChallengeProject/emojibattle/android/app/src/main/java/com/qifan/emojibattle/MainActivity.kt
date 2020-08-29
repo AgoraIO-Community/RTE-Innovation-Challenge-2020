@@ -59,7 +59,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun askPermissionToBattle() {
-        askPermissions(*permissions, rationaleDelegate = dialogRationaleDelegate) { result ->
+        askPermissions(*permissions) { result ->
             when {
                 result.hasAllGranted() -> startBattleActivity(editChannel.text.toString())
                 result.hasPermanentDenied() -> debug("need to do something here")

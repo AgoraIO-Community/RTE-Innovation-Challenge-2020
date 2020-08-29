@@ -21,7 +21,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-package com.qifan.emojibattle.sdk;
+package com.qifan.emojibattle.internal.sdk;
 
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
