@@ -27,7 +27,6 @@ import android.util.Log
 
 /**
  * Helper function to do the log debug work
- * @param tag simple java class name
  * @param message basic message
  * @param args additional message
  */
@@ -36,14 +35,13 @@ fun Any.debug(
     vararg args: Any?
 ) {
     try {
-        Log.d(this::class.java.simpleName, message.format(*args))
+        Log.d(this::class.java.simpleName, message.format(args))
     } catch (_: Exception) {
     }
 }
 
 /**
  * Helper function to do the log warn work
- * @param tag simple java class name
  * @param message basic message
  * @param args additional message
  */
@@ -52,14 +50,13 @@ fun Any.warn(
     vararg args: Any?
 ) {
     try {
-        Log.w(this::class.java.simpleName, message.format(*args))
+        Log.w(this::class.java.simpleName, message.format(args))
     } catch (_: Exception) {
     }
 }
 
 /**
  * Helper function to do the log error work
- * @param tag simple java class name
  * @param message basic message
  * @param args additional message
  */

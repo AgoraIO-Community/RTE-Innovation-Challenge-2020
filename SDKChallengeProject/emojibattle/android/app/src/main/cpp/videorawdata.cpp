@@ -99,7 +99,7 @@ public:
      *   This callback does not support sending processed RGBA video data back to the SDK.*/
     virtual bool onCaptureVideoFrame(VideoFrame &videoFrame) override {
         getVideoFrame(videoFrame, captureVideoMethodId, _javaDirectPlayBufferCapture, 0);
-        __android_log_print(ANDROID_LOG_DEBUG, "AgoraVideoFrameObserver", "onCaptureVideoFrame");
+//        __android_log_print(ANDROID_LOG_DEBUG, "AgoraVideoFrameObserver", "onCaptureVideoFrame");
         writebackVideoFrame(videoFrame, _javaDirectPlayBufferCapture);
         return true;
     }

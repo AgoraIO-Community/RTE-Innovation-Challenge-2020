@@ -29,14 +29,18 @@ import android.graphics.Bitmap
 import android.os.Bundle
 import android.view.ViewGroup
 import android.widget.FrameLayout
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.google.mlkit.vision.common.InputImage
+import com.google.mlkit.vision.face.Face
 import com.google.mlkit.vision.face.FaceDetection
 import com.google.mlkit.vision.face.FaceDetector
 import com.google.mlkit.vision.face.FaceDetectorOptions
 import com.qifan.emojibattle.databinding.ActivityBattleBinding
+import com.qifan.emojibattle.engine.GameEngine
 import com.qifan.emojibattle.extension.debug
 import com.qifan.emojibattle.sdk.VideoRawData
+import com.squareup.picasso.Picasso
 import io.agora.rtc.IRtcEngineEventHandler
 import io.agora.rtc.RtcEngine
 import io.agora.rtc.video.VideoCanvas
@@ -47,6 +51,7 @@ class BattleActivity : AppCompatActivity(), VideoRawData.VideoObserver {
     private lateinit var binding: ActivityBattleBinding
     private val localSurfaceView get() = binding.localSurfaceView
     private val remoteSurfaceView get() = binding.remoteSurfaceView
+    private val engineEmoji get() = binding.engineEmoji
 
     private var channel: String by notNull()
     private val token = BuildConfig.Token
@@ -54,6 +59,10 @@ class BattleActivity : AppCompatActivity(), VideoRawData.VideoObserver {
     private lateinit var rtcEngine: RtcEngine
 
     private lateinit var detector: FaceDetector
+
+    private var recongized: Boolean = false
+
+    private val result: MutableList<Boolean> = mutableListOf()
 
     companion object {
         private const val CHANNEL = "Channel"
@@ -100,7 +109,6 @@ class BattleActivity : AppCompatActivity(), VideoRawData.VideoObserver {
             .setLandmarkMode(FaceDetectorOptions.LANDMARK_MODE_ALL)
             .setClassificationMode(FaceDetectorOptions.CLASSIFICATION_MODE_ALL)
             .build()
-
         detector = FaceDetection.getClient(highAccuracyOpts)
     }
 
@@ -114,6 +122,7 @@ class BattleActivity : AppCompatActivity(), VideoRawData.VideoObserver {
 
     private fun setupVideoProfile() {
         rtcEngine.enableVideo()
+        rtcEngine.disableAudio()
         rtcEngine.setVideoEncoderConfiguration(
             VideoEncoderConfiguration(
                 VideoEncoderConfiguration.VD_640x360,
@@ -147,7 +156,7 @@ class BattleActivity : AppCompatActivity(), VideoRawData.VideoObserver {
 
     private fun joinChannel() {
         // if you do not specify the uid, Agora will assign one.
-        rtcEngine.joinChannel(token, channel, "test", 0)
+        rtcEngine.joinChannel(token, channel, getString(R.string.app_name), 0)
         rtcEngine.startPreview()
     }
 
@@ -186,6 +195,7 @@ class BattleActivity : AppCompatActivity(), VideoRawData.VideoObserver {
             super.onUserJoined(userId, elapsed)
             debug("onUserJoined $userId")
             runOnUiThread {
+                GameEngine.startGame(engineListener)
                 setRemoteVideo(userId)
             }
         }
@@ -208,7 +218,61 @@ class BattleActivity : AppCompatActivity(), VideoRawData.VideoObserver {
     override fun onCaptureVideoFrame(bitmap: Bitmap) {
         val image = InputImage.fromBitmap(bitmap, 0)
         detector.process(image).addOnSuccessListener { faces ->
-            faces.forEach { debug("VisionImage $it") }
+            faces.forEach { face ->
+                debug("detector process $face")
+                if (!recongized) {
+                    engineListener.transformFaceToEmoji(face)
+                } else {
+
+                }
+            }
         }
+    }
+
+    private val engineListener = object : GameEngine.Listener {
+        private var emoji: Pair<Int, GameEngine.EmojiState>? = null
+        override fun displayEmoji(emoji: Pair<Int, GameEngine.EmojiState>) {
+            runOnUiThread {
+                //picasso display image
+                // set current emoji
+                this.emoji = emoji
+                recongized = false
+                Picasso.get()
+                    .load(emoji.first)
+                    .centerCrop()
+                    .resize(200, 200)
+                    .into(engineEmoji)
+            }
+        }
+
+        override fun transformFaceToEmoji(face: Face) {
+            val smiling = face.smilingProbability ?: 0f > 0.15
+            val leftEyeClosed = face.leftEyeOpenProbability ?: 0f < 0.5
+            val rightEyeClosed = face.rightEyeOpenProbability ?: 0f < 0.5
+            val transformState: GameEngine.EmojiState
+            transformState = if (smiling) {
+                when {
+                    leftEyeClosed -> {
+                        GameEngine.EmojiState.LEFT_WINK
+                    }
+                    rightEyeClosed -> {
+                        GameEngine.EmojiState.RIGHT_WINK
+                    }
+                    else -> {
+                        GameEngine.EmojiState.SMILE
+                    }
+                }
+            } else {
+                GameEngine.EmojiState.UNKNOWN
+            }
+            recongized = emoji?.second == transformState
+
+            if (recongized) {
+                // TODO : display recongized interface
+                Toast.makeText(this@BattleActivity, "Emoji has been recongized", Toast.LENGTH_LONG)
+                    .show()
+            }
+        }
+
     }
 }
