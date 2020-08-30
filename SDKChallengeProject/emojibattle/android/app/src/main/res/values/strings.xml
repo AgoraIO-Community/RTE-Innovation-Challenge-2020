@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">emojibattle</string>
+    <string name="app_name">表情模仿秀</string>
     <string name="create_channel">创建房间</string>
     <string name="enter_room">进入房间</string>
     <string name="permission_dialog_title">Battle权限</string>

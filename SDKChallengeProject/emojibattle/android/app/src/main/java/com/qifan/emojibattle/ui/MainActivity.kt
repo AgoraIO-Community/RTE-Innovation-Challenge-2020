@@ -21,14 +21,15 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-package com.qifan.emojibattle
+package com.qifan.emojibattle.ui
 
 import android.Manifest
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import com.qifan.emojibattle.BattleActivity.Companion.startBattleActivity
+import com.qifan.emojibattle.R
 import com.qifan.emojibattle.databinding.ActivityMainBinding
 import com.qifan.emojibattle.extension.debug
+import com.qifan.emojibattle.ui.battle.BattleActivity.Companion.startBattleActivity
 import com.qifan.powerpermission.askPermissions
 import com.qifan.powerpermission.data.hasAllGranted
 import com.qifan.powerpermission.data.hasPermanentDenied
@@ -36,34 +37,34 @@ import com.qifan.powerpermission.rationale.createDialogRationale
 import com.qifan.powerpermission.rationale.delegate.RationaleDelegate
 
 class MainActivity : AppCompatActivity() {
-    private lateinit var binding: ActivityMainBinding
-    private val editChannel get() = binding.editChannel
-    private val btnBattle get() = binding.btnBattle
-    private val permissions = arrayOf(Manifest.permission.CAMERA, Manifest.permission.RECORD_AUDIO)
-    private val DEFAULT_CHANNEL = "demoChannel1"
+  private lateinit var binding: ActivityMainBinding
+  private val editChannel get() = binding.editChannel
+  private val btnBattle get() = binding.btnBattle
+  private val permissions = arrayOf(Manifest.permission.CAMERA, Manifest.permission.RECORD_AUDIO)
+  private val DEFAULT_CHANNEL = "demoChannel1"
 
-    private val dialogRationaleDelegate: RationaleDelegate by lazy {
-        createDialogRationale(
-            dialogTitle = R.string.permission_dialog_title,
-            requiredPermissions = permissions.toList(),
-            message = getString(R.string.permission_dialog_message)
-        )
-    }
+  private val dialogRationaleDelegate: RationaleDelegate by lazy {
+    createDialogRationale(
+      dialogTitle = R.string.permission_dialog_title,
+      requiredPermissions = permissions.toList(),
+      message = getString(R.string.permission_dialog_message)
+    )
+  }
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        binding = ActivityMainBinding.inflate(layoutInflater)
-        setContentView(binding.root)
-        editChannel.setText(DEFAULT_CHANNEL)
-        btnBattle.setOnClickListener { askPermissionToBattle() }
-    }
+  override fun onCreate(savedInstanceState: Bundle?) {
+    super.onCreate(savedInstanceState)
+    binding = ActivityMainBinding.inflate(layoutInflater)
+    setContentView(binding.root)
+    editChannel.setText(DEFAULT_CHANNEL)
+    btnBattle.setOnClickListener { askPermissionToBattle() }
+  }
 
-    private fun askPermissionToBattle() {
-        askPermissions(*permissions) { result ->
-            when {
-                result.hasAllGranted() -> startBattleActivity(editChannel.text.toString())
-                result.hasPermanentDenied() -> debug("need to do something here")
-            }
-        }
+  private fun askPermissionToBattle() {
+    askPermissions(*permissions, rationaleDelegate = dialogRationaleDelegate) { result ->
+      when {
+        result.hasAllGranted() -> startBattleActivity(editChannel.text.toString())
+        result.hasPermanentDenied() -> debug("need to do something here")
+      }
     }
+  }
 }

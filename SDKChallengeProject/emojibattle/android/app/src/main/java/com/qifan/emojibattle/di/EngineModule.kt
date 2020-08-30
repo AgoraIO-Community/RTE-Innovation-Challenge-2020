@@ -23,6 +23,7 @@
  */
 package com.qifan.emojibattle.di
 
+import com.qifan.emojibattle.data.DataStore
 import com.qifan.emojibattle.engine.DetectionEngine
 import com.qifan.emojibattle.engine.GameEngine
 import com.qifan.emojibattle.internal.sdk.VideoRawData
@@ -30,7 +31,8 @@ import org.koin.core.module.Module
 import org.koin.dsl.module
 
 val engineModule: Module = module {
-    single { VideoRawData() }
-    single { GameEngine() }
-    single { DetectionEngine(get()) }
+  single { DataStore() }
+  single { VideoRawData() }
+  factory { GameEngine(get()) }
+  factory { DetectionEngine(get()) }
 }

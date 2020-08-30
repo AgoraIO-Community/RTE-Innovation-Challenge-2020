@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".BattleActivity">
+    tools:context=".ui.battle.BattleActivity">
 
     <FrameLayout
         android:id="@+id/localSurfaceView"
@@ -15,6 +15,17 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <TextView
+        android:id="@+id/localResult"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@android:color/black"
+        android:textColor="@android:color/white"
+        app:layout_constraintBottom_toBottomOf="@+id/localSurfaceView"
+        app:layout_constraintEnd_toEndOf="@+id/localSurfaceView"
+        app:layout_constraintStart_toStartOf="@+id/localSurfaceView"
+        app:layout_constraintTop_toTopOf="@+id/localSurfaceView" />
+
     <FrameLayout
         android:id="@+id/remoteSurfaceView"
         android:layout_width="match_parent"
@@ -23,6 +34,17 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/guideline" />
+
+    <TextView
+        android:id="@+id/remoteResult"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@android:color/black"
+        android:textColor="@android:color/white"
+        app:layout_constraintBottom_toBottomOf="@+id/remoteSurfaceView"
+        app:layout_constraintEnd_toEndOf="@+id/remoteSurfaceView"
+        app:layout_constraintStart_toStartOf="@+id/remoteSurfaceView"
+        app:layout_constraintTop_toTopOf="@+id/remoteSurfaceView" />
 
     <ImageView
         android:id="@+id/engine_emoji"
@@ -34,6 +56,17 @@
         app:layout_constraintTop_toTopOf="parent"
         tools:ignore="ContentDescription"
         tools:src="@tools:sample/avatars" />
+
+
+    <ProgressBar
+        android:id="@+id/loading"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline"

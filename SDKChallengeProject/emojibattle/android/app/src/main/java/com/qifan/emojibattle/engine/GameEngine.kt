@@ -26,69 +26,97 @@ package com.qifan.emojibattle.engine
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.qifan.emojibattle.R
+import com.qifan.emojibattle.data.DataStore
 import com.qifan.emojibattle.model.Emoji
 import com.qifan.emojibattle.model.FrameFace
-import com.qifan.emojibattle.model.FrameFace.* // ktlint-disable no-wildcard-imports
-import java.util.Timer
+import com.qifan.emojibattle.model.FrameFace.*
+import com.qifan.emojibattle.model.GameSessionResult
+import java.util.*
 import java.util.concurrent.atomic.AtomicInteger
 import kotlin.concurrent.fixedRateTimer
 
 private const val TIME_PERIOD_DURATION = 5000L
 
-class GameEngine {
-    private val emojis = listOf(
-        Emoji(R.drawable.smile, Emoji.State.SMILE),
-        Emoji(R.drawable.leftwink, Emoji.State.LEFT_WINK),
-        Emoji(R.drawable.rightwink, Emoji.State.RIGHT_WINK)
-    )
-    private lateinit var timer: Timer
-    private val _emoji: MutableLiveData<Emoji> = MutableLiveData()
-    internal val emoji: LiveData<Emoji> = _emoji
+class GameEngine(private val dataStore: DataStore) {
+  private val emojis = listOf(
+    Emoji(R.drawable.smile, Emoji.State.SMILE),
+    Emoji(R.drawable.leftwink, Emoji.State.LEFT_WINK),
+    Emoji(R.drawable.rightwink, Emoji.State.RIGHT_WINK)
+  )
+  private var currentEmoji = emojis[0]
+  private lateinit var timer: Timer
+  private val _emoji: MutableLiveData<Emoji> = MutableLiveData()
+  internal val emoji: LiveData<Emoji> = _emoji
 
-    private val _gameStatus: MutableLiveData<GameState> = MutableLiveData(GameState.START)
-    internal val gameStatus: LiveData<GameState> = _gameStatus
-    private val results = mutableListOf<Boolean>()
-    private val _result: MutableLiveData<List<Boolean>> = MutableLiveData(results)
-    val result: LiveData<List<Boolean>> = _result
-    private val count: AtomicInteger = AtomicInteger(0)
+  private val _gameStatus: MutableLiveData<GameState> = MutableLiveData(GameState.IDLE)
+  internal val gameStatus: LiveData<GameState> = _gameStatus
+  internal val results = hashSetOf<Emoji>()
+  private val count: AtomicInteger = AtomicInteger(0)
 
-    fun startGame() {
-        _gameStatus.postValue(GameState.GAMING)
-        timer = fixedRateTimer("startGame", period = TIME_PERIOD_DURATION) {
-            if (emojis.count() - 1 == count.get()) {
-                _gameStatus.postValue(GameState.END)
-            } else {
-                _emoji.postValue(emojis[count.getAndIncrement()])
-            }
-        }
-    }
-
-    fun setResult(frameFace: FrameFace) {
-        val state = when (frameFace) {
-            SMILE -> Emoji.State.SMILE
-            LEFT_WINK -> Emoji.State.LEFT_WINK
-            RIGHT_WINK -> Emoji.State.RIGHT_WINK
-            UNKNOWN -> Emoji.State.UNKNOWN
-        }
-        val target = emojis[count.get()]
-        if (target.verified) return
-        if (target.state == state) {
-            target.verified = true
-            results.add(true)
-            _result.postValue(results)
-        } else {
-            results.add(false)
-        }
-    }
-
-    fun endGame() {
-        count.set(0)
+  fun startGame(roomId: String, userId: String) {
+    _gameStatus.postValue(GameState.GAMING)
+    timer = fixedRateTimer("startGame", period = TIME_PERIOD_DURATION) {
+      if (emojis.size - 1 < count.get()) {
+        evaluate(roomId, userId)
+        _gameStatus.postValue(GameState.END)
         timer.cancel()
+      } else {
+        currentEmoji = emojis[count.getAndIncrement()]
+        _emoji.postValue(currentEmoji)
+      }
     }
+  }
 
-    enum class GameState {
-        START,
-        GAMING,
-        END
+  fun setResult(frameFace: FrameFace) {
+    val state = when (frameFace) {
+      SMILE -> Emoji.State.SMILE
+      LEFT_WINK -> Emoji.State.LEFT_WINK
+      RIGHT_WINK -> Emoji.State.RIGHT_WINK
+      UNKNOWN -> Emoji.State.UNKNOWN
     }
+    val target = currentEmoji
+    if (target.verified) return
+    if (target.state == state) {
+      target.verified = true
+    }
+    results.add(target)
+  }
+
+  fun endGame(roomId: String) {
+    _gameStatus.postValue(GameState.IDLE)
+    results.clear()
+    count.set(0)
+    timer.cancel()
+    dataStore.delete(roomId)
+  }
+
+  private fun evaluate(roomId: String, userId: String) {
+    dataStore.setResult(GameSessionResult(roomId, userId, results.map { it.verified }.size)) {
+      getResult(roomId, userId)
+    }
+  }
+
+  private fun getResult(roomId: String, userId: String) {
+    dataStore.getWinner(
+      GameSessionResult(
+        roomId,
+        userId,
+        results.map { it.verified }.size
+      )
+    ) { result ->
+      if (result) {
+        _gameStatus.postValue(GameState.WIN)
+      } else {
+        _gameStatus.postValue(GameState.LOSE)
+      }
+    }
+  }
+
+  enum class GameState {
+    IDLE,
+    GAMING,
+    END,
+    WIN,
+    LOSE
+  }
 }

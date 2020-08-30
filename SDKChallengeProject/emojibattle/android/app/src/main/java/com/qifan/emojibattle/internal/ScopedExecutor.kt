@@ -27,19 +27,19 @@ import java.util.concurrent.Executor
 import java.util.concurrent.atomic.AtomicBoolean
 
 class ScopedExecutor(private val executor: Executor) : Executor {
-    private val shutdown = AtomicBoolean()
+  private val shutdown = AtomicBoolean()
 
-    override fun execute(command: Runnable?) {
-        if (shutdown.get()) return
-        executor.execute command@{
-            if (shutdown.get()) {
-                return@command
-            }
-            command?.run()
-        }
+  override fun execute(command: Runnable?) {
+    if (shutdown.get()) return
+    executor.execute command@{
+      if (shutdown.get()) {
+        return@command
+      }
+      command?.run()
     }
+  }
 
-    fun shutdown() {
-        shutdown.set(true)
-    }
+  fun shutdown() {
+    shutdown.set(true)
+  }
 }

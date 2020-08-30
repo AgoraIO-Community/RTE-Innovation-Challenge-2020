@@ -28,5 +28,5 @@ import org.koin.core.module.Module
 import org.koin.dsl.module
 
 val repositoryModule: Module = module {
-    single { GameRepository(get(), get()) }
+  factory { GameRepository(get(), get()) }
 }

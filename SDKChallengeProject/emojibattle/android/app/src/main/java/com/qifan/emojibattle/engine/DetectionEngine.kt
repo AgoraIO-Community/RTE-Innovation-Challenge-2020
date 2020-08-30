@@ -39,63 +39,63 @@ private const val SMILE_THRESHOLD = 0.15
 private const val EYE_OPEN_THRESHOLD = 0.5
 
 class DetectionEngine constructor(
-    private val videoRawData: VideoRawData
+  private val videoRawData: VideoRawData
 ) : VideoRawData.VideoObserver {
-    private val executor by lazy { ScopedExecutor(TaskExecutors.MAIN_THREAD) }
-    private var detector: FaceDetector? = null
-    private var detectionListener: DetectionListener? = null
+  private val executor by lazy { ScopedExecutor(TaskExecutors.MAIN_THREAD) }
+  private var detector: FaceDetector? = null
+  private var detectionListener: DetectionListener? = null
 
-    fun initialize(detectionListener: DetectionListener) {
-        this.detectionListener = detectionListener
-        val highAccuracyOpts = FaceDetectorOptions.Builder()
-            .setPerformanceMode(FaceDetectorOptions.PERFORMANCE_MODE_ACCURATE)
-            .setLandmarkMode(FaceDetectorOptions.LANDMARK_MODE_ALL)
-            .setClassificationMode(FaceDetectorOptions.CLASSIFICATION_MODE_ALL)
-            .build()
-        detector = FaceDetection.getClient(highAccuracyOpts)
-        videoRawData.subscribe(this)
-    }
+  fun initialize(detectionListener: DetectionListener) {
+    this.detectionListener = detectionListener
+    val highAccuracyOpts = FaceDetectorOptions.Builder()
+      .setPerformanceMode(FaceDetectorOptions.PERFORMANCE_MODE_ACCURATE)
+      .setLandmarkMode(FaceDetectorOptions.LANDMARK_MODE_ALL)
+      .setClassificationMode(FaceDetectorOptions.CLASSIFICATION_MODE_ALL)
+      .build()
+    detector = FaceDetection.getClient(highAccuracyOpts)
+    videoRawData.subscribe(this)
+  }
 
-    private fun processImage(bitmap: Bitmap) {
-        val image = InputImage.fromBitmap(bitmap, 0)
-        detector?.process(image)
-            ?.addOnSuccessListener(executor) { faces ->
-                faces.forEach { face: Face ->
-                    debug("detector process $face")
-                    val smiling = face.smilingProbability ?: 0f > SMILE_THRESHOLD
-                    val leftEyeClosed = face.leftEyeOpenProbability ?: 0f < EYE_OPEN_THRESHOLD
-                    val rightEyeClosed = face.rightEyeOpenProbability ?: 0f < EYE_OPEN_THRESHOLD
-                    val frameFace: FrameFace = if (smiling) {
-                        when {
-                            leftEyeClosed -> FrameFace.LEFT_WINK
-                            rightEyeClosed -> FrameFace.RIGHT_WINK
-                            else -> FrameFace.SMILE
-                        }
-                    } else {
-                        FrameFace.UNKNOWN
-                    }
-                    detectionListener?.onSuccess(frameFace)
-                }
+  private fun processImage(bitmap: Bitmap) {
+    val image = InputImage.fromBitmap(bitmap, 0)
+    detector?.process(image)
+      ?.addOnSuccessListener(executor) { faces ->
+        faces.forEach { face: Face ->
+          debug("detector process $face")
+          val smiling = face.smilingProbability ?: 0f > SMILE_THRESHOLD
+          val leftEyeClosed = face.leftEyeOpenProbability ?: 0f < EYE_OPEN_THRESHOLD
+          val rightEyeClosed = face.rightEyeOpenProbability ?: 0f < EYE_OPEN_THRESHOLD
+          val frameFace: FrameFace = if (smiling) {
+            when {
+              leftEyeClosed -> FrameFace.LEFT_WINK
+              rightEyeClosed -> FrameFace.RIGHT_WINK
+              else -> FrameFace.SMILE
             }
-            ?.addOnFailureListener(executor) { e ->
-                detectionListener?.onFail(e)
-            }
-    }
+          } else {
+            FrameFace.UNKNOWN
+          }
+          detectionListener?.onSuccess(frameFace)
+        }
+      }
+      ?.addOnFailureListener(executor) { e ->
+        detectionListener?.onFail(e)
+      }
+  }
 
-    fun shutdown() {
-        videoRawData.unsubscribe()
-        executor.shutdown()
-        detector?.close()
-        detectionListener = null
-        detector = null
-    }
+  fun shutdown() {
+    videoRawData.unsubscribe()
+    executor.shutdown()
+    detector?.close()
+    detectionListener = null
+    detector = null
+  }
 
-    override fun onCaptureVideoFrame(bitmap: Bitmap) {
-        processImage(bitmap)
-    }
+  override fun onCaptureVideoFrame(bitmap: Bitmap) {
+    processImage(bitmap)
+  }
 
-    interface DetectionListener {
-        fun onSuccess(face: FrameFace)
-        fun onFail(e: Exception)
-    }
+  interface DetectionListener {
+    fun onSuccess(face: FrameFace)
+    fun onFail(e: Exception)
+  }
 }

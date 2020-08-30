@@ -21,31 +21,31 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-package com.qifan.emojibattle
+package com.qifan.emojibattle.ui.battle
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
+import com.qifan.emojibattle.engine.GameEngine
 import com.qifan.emojibattle.model.Emoji
 import com.qifan.emojibattle.repository.GameRepository
 
-class BattleViewModel(
-    private val gameRepository: GameRepository
-) : ViewModel() {
-    val emoji: LiveData<Emoji> = gameRepository.gameEmoji
+class BattleViewModel(private val gameRepository: GameRepository) : ViewModel() {
+  val emoji: LiveData<Emoji> = gameRepository.gameEmoji
+  val gameStatus: LiveData<GameEngine.GameState> = gameRepository.gameStatus
 
-    fun initialize() {
-        gameRepository.initialize()
-    }
+  fun initialize() {
+    gameRepository.initialize()
+  }
 
-    fun startGame() {
-        gameRepository.startGame()
-    }
+  fun startGame(roomId: String, userId: String) {
+    gameRepository.startGame(roomId, userId)
+  }
 
-    fun endGame() {
-        gameRepository.endGame()
-    }
+  fun endGame(roomId: String) {
+    gameRepository.endGame(roomId)
+  }
 
-    fun destory() {
-        gameRepository.destory()
-    }
+  fun destory() {
+    gameRepository.destory()
+  }
 }

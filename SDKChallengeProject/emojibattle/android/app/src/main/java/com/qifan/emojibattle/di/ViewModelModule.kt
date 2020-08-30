@@ -23,11 +23,11 @@
  */
 package com.qifan.emojibattle.di
 
-import com.qifan.emojibattle.BattleViewModel
+import com.qifan.emojibattle.ui.battle.BattleViewModel
 import org.koin.android.viewmodel.dsl.viewModel
 import org.koin.core.module.Module
 import org.koin.dsl.module
 
 val viewmodelModule: Module = module {
-    viewModel { BattleViewModel(get()) }
+  viewModel { BattleViewModel(get()) }
 }

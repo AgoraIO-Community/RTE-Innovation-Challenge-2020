@@ -32,12 +32,12 @@ import org.koin.core.logger.Level
 
 class EmojiBattleApp : Application() {
 
-    override fun onCreate() {
-        super.onCreate()
-        startKoin {
-            androidLogger(Level.ERROR)
-            androidContext(this@EmojiBattleApp)
-            modules(appModule)
-        }
+  override fun onCreate() {
+    super.onCreate()
+    startKoin {
+      androidLogger(Level.ERROR)
+      androidContext(this@EmojiBattleApp)
+      modules(appModule)
     }
+  }
 }

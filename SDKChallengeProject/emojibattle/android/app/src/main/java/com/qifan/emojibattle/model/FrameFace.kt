@@ -24,5 +24,5 @@
 package com.qifan.emojibattle.model
 
 enum class FrameFace {
-    SMILE, LEFT_WINK, RIGHT_WINK, UNKNOWN
+  SMILE, LEFT_WINK, RIGHT_WINK, UNKNOWN
 }

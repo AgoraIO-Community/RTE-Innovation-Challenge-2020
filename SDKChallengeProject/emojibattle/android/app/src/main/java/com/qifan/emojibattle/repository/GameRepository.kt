@@ -31,32 +31,35 @@ import com.qifan.emojibattle.model.Emoji
 import com.qifan.emojibattle.model.FrameFace
 
 class GameRepository(
-    private val gameEngine: GameEngine,
-    private val detectionEngine: DetectionEngine
+  private val gameEngine: GameEngine,
+  private val detectionEngine: DetectionEngine
 ) {
-    val gameEmoji: LiveData<Emoji> = gameEngine.emoji
+  val gameEmoji: LiveData<Emoji> = gameEngine.emoji
+  val gameStatus: LiveData<GameEngine.GameState> = gameEngine.gameStatus
 
-    internal fun initialize() {
-        detectionEngine.initialize(object : DetectionEngine.DetectionListener {
-            override fun onSuccess(face: FrameFace) {
-                gameEngine.setResult(face)
-            }
+  internal fun initialize() {
+    detectionEngine.initialize(
+      object : DetectionEngine.DetectionListener {
+        override fun onSuccess(face: FrameFace) {
+          gameEngine.setResult(face)
+        }
 
-            override fun onFail(e: Exception) {
-                warn("detectionEngine $e")
-            }
-        })
-    }
+        override fun onFail(e: Exception) {
+          warn("detectionEngine $e")
+        }
+      }
+    )
+  }
 
-    internal fun startGame() {
-        gameEngine.startGame()
-    }
+  internal fun startGame(roomId: String, userId: String) {
+    gameEngine.startGame(roomId, userId)
+  }
 
-    internal fun endGame() {
-        gameEngine.endGame()
-    }
+  internal fun endGame(roomId: String) {
+    gameEngine.endGame(roomId)
+  }
 
-    internal fun destory() {
-        detectionEngine.shutdown()
-    }
+  internal fun destory() {
+    detectionEngine.shutdown()
+  }
 }

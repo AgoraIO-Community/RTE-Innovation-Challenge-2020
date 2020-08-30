@@ -21,51 +21,10 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-package com.qifan.emojibattle.extension
+package com.qifan.emojibattle.model
 
-import android.util.Log
-
-/**
- * Helper function to do the log debug work
- * @param message basic message
- * @param args additional message
- */
-fun Any.debug(
-  message: String,
-  vararg args: Any?
-) {
-  try {
-    Log.d(this::class.java.simpleName, message.format(args))
-  } catch (_: Exception) {
-  }
-}
-
-/**
- * Helper function to do the log warn work
- * @param message basic message
- * @param args additional message
- */
-fun Any.warn(
-  message: String,
-  vararg args: Any?
-) {
-  try {
-    Log.w(this::class.java.simpleName, message.format(args))
-  } catch (_: Exception) {
-  }
-}
-
-/**
- * Helper function to do the log error work
- * @param message basic message
- * @param args additional message
- */
-fun Any.error(
-  message: String,
-  vararg args: Any?
-) {
-  try {
-    Log.e(this::class.java.simpleName, message.format(*args))
-  } catch (_: Exception) {
-  }
-}
+data class GameSessionResult(
+  val roomId: String,
+  val userId: String,
+  val verifiedTimes: Int
+)
