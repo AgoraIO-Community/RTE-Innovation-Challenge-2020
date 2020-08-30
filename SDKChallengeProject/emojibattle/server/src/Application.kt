@@ -1,60 +1,53 @@
 package om.qifan.emojibattle.server
 
+import com.fasterxml.jackson.databind.SerializationFeature
 import io.ktor.application.*
-import io.ktor.response.*
+import io.ktor.features.*
+import io.ktor.jackson.*
 import io.ktor.request.*
+import io.ktor.response.*
 import io.ktor.routing.*
-import io.ktor.http.*
-import io.ktor.websocket.*
-import io.ktor.http.cio.websocket.*
-import java.time.*
-import io.ktor.client.*
-import io.ktor.server.engine.*
-import io.ktor.server.netty.*
+import java.util.*
 
-//fun main(args: Array<String>): Unit = io.ktor.server.netty.EngineMain.main(args)
-//
-//@Suppress("unused") // Referenced in application.conf
-//@kotlin.jvm.JvmOverloads
-//fun Application.module(testing: Boolean = false) {
-//    install(io.ktor.websocket.WebSockets) {
-//        pingPeriod = Duration.ofSeconds(15)
-//        timeout = Duration.ofSeconds(15)
-//        maxFrameSize = Long.MAX_VALUE
-//        masking = false
-//    }
-//
-//    val client = HttpClient() {
-//    }
-//
-//    routing {
-//        get("/") {
-//            call.respondText("HELLO WORLD!", contentType = ContentType.Text.Plain)
-//        }
-//
-//        webSocket("/myws/echo") {
-//            send(Frame.Text("Hi from server"))
-//            while (true) {
-//                val frame = incoming.receive()
-//                if (frame is Frame.Text) {
-//                    send(Frame.Text("Client said: " + frame.readText()))
-//                }
-//            }
-//        }
-//    }
-//}
+fun main(args: Array<String>): Unit = io.ktor.server.netty.EngineMain.main(args)
 
-fun main(args: Array<String>) {
-    val server = embeddedServer(Netty, port = 8080) {
-        routing {
-            get("/") {
-                call.respondText("Hello World!", ContentType.Text.Plain)
-            }
-            get("/demo") {
-                call.respondText("HELLO WORLD!")
+@Suppress("unused") // Referenced in application.conf
+fun Application.module() {
+    install(ContentNegotiation) {
+        jackson {
+            enable(SerializationFeature.INDENT_OUTPUT) // Pretty Prints the JSON
+        }
+    }
+
+    routing {
+        post("/evaluate") {
+            val post = call.receive<GameSessionResult>()
+            gamerSessionResult.add(post)
+            call.respond(post)
+        }
+        get("/gameresult") {
+            val roomId = call.request.queryParameters["roomId"]
+            val userId = call.request.queryParameters["userId"]
+
+            val targetResult = gamerSessionResult.maxByOrNull { it.verifiedTimes }
+            if (targetResult?.roomId == roomId && targetResult?.userId == userId) {
+                call.respond(GameResult(true))
+            } else {
+                call.respond(GameResult(false))
             }
         }
     }
-    server.start(wait = true)
 }
 
+val gamerSessionResult = Collections.synchronizedList(mutableListOf<GameSessionResult>())
+
+
+data class GameSessionResult(
+    val roomId: String,
+    val userId: String,
+    val verifiedTimes: Int
+)
+
+data class GameResult(
+    val isWinner: Boolean
+)
