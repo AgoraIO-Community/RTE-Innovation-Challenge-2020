@@ -33,6 +33,7 @@ import com.qifan.emojibattle.R
 import com.qifan.emojibattle.databinding.ActivityBattleBinding
 import com.qifan.emojibattle.engine.GameEngine.GameState.*
 import com.qifan.emojibattle.extension.debug
+import com.qifan.emojibattle.ui.ResultActivity.Companion.startResultActivity
 import com.squareup.picasso.Picasso
 import io.agora.rtc.IRtcEngineEventHandler
 import io.agora.rtc.RtcEngine
@@ -102,13 +103,13 @@ class BattleActivity : AppCompatActivity() {
         END -> loading.visibility = View.VISIBLE
         WIN -> {
           loading.visibility = View.GONE
-          localResult.setText("==========WIN========")
-          remoteResult.setText("==========LOSE========")
+          startResultActivity(true)
+          finish()
         }
         LOSE -> {
           loading.visibility = View.GONE
-          localResult.setText("==========LOSE========")
-          remoteResult.setText("==========WIN========")
+          startResultActivity(false)
+          finish()
         }
         else -> {
         }
