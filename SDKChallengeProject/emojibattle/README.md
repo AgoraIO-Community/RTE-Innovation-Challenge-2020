@@ -4,24 +4,27 @@
 </p>
 
 ## 项目展示
-<p align="center">
-  <video width="200px" height="400px" src="https://github.com/underwindfall/blogAssets/raw/master/match/1599088412675314.mp4" type="video/mp4" autoplay>
-</p>
 
 | ![](https://raw.githubusercontent.com/underwindfall/blogAssets/master/match/%E6%88%AA%E5%B1%8F2020-09-03%2000.53.33.png) | ![](https://raw.githubusercontent.com/underwindfall/blogAssets/master/match/%E6%88%AA%E5%B1%8F2020-09-03%2001.33.44.png) | ![](https://raw.githubusercontent.com/underwindfall/blogAssets/master/match/%E6%88%AA%E5%B1%8F2020-09-03%2000.56.46.png) | ![](https://raw.githubusercontent.com/underwindfall/blogAssets/master/match/%E6%88%AA%E5%B1%8F2020-09-03%2000.56.12.png) |
 | :-------------------: | :------------------: | :-----------------: | :------------------: |
 |         首页          |        创建/加入房间        |        比赛中         |       比赛结果       |
 
+## Live Video
+[Live video](https://github.com/underwindfall/blogAssets/raw/master/match/1599088412675314.mp4)
+  
 ## 什么是Emoji Battle
 声网2020秋季开发者大赛参赛作品, 这是一款基于`RTC 视频开发`和`机器学习`人脸表情的娱乐性项目。
 
 ## 如何体验
-- 需要在`string-config.xml`下填写争取的`appId` 与 `token`
+- 需要在`string-config.xml`下填写正确的`appId` 与 `token`
 
 ```xml
 <string name="appId"></string>
 <string name="token"></string>
 ```
+
+## APK
+[APK](app-debug.apk)
 
 ## 玩法
 
