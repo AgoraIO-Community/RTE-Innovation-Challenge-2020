@@ -21,27 +21,30 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-package com.qifan.emojibattle.ui
+package com.qifan.emojibattle.ui.battle
 
 import android.Manifest
 import android.os.Bundle
-import androidx.appcompat.app.AppCompatActivity
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import android.widget.Toast
+import androidx.navigation.fragment.findNavController
 import com.qifan.emojibattle.R
-import com.qifan.emojibattle.databinding.ActivityMainBinding
-import com.qifan.emojibattle.extension.debug
-import com.qifan.emojibattle.ui.battle.BattleActivity.Companion.startBattleActivity
+import com.qifan.emojibattle.databinding.FragmentRoomBinding
+import com.qifan.emojibattle.ui.base.BaseFragment
 import com.qifan.powerpermission.askPermissions
 import com.qifan.powerpermission.data.hasAllGranted
 import com.qifan.powerpermission.data.hasPermanentDenied
 import com.qifan.powerpermission.rationale.createDialogRationale
 import com.qifan.powerpermission.rationale.delegate.RationaleDelegate
 
-class MainActivity : AppCompatActivity() {
-  private lateinit var binding: ActivityMainBinding
+class RoomFragment : BaseFragment<FragmentRoomBinding>() {
+  override val bindingInflater: (LayoutInflater, ViewGroup?, Boolean) -> FragmentRoomBinding =
+    FragmentRoomBinding::inflate
   private val editChannel get() = binding.editChannel
   private val btnBattle get() = binding.btnBattle
   private val permissions = arrayOf(Manifest.permission.CAMERA, Manifest.permission.RECORD_AUDIO)
-  private val DEFAULT_CHANNEL = "demoChannel1"
 
   private val dialogRationaleDelegate: RationaleDelegate by lazy {
     createDialogRationale(
@@ -51,19 +54,35 @@ class MainActivity : AppCompatActivity() {
     )
   }
 
-  override fun onCreate(savedInstanceState: Bundle?) {
-    super.onCreate(savedInstanceState)
-    binding = ActivityMainBinding.inflate(layoutInflater)
-    setContentView(binding.root)
-    editChannel.setText(DEFAULT_CHANNEL)
+  override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+    super.onViewCreated(view, savedInstanceState)
     btnBattle.setOnClickListener { askPermissionToBattle() }
   }
 
   private fun askPermissionToBattle() {
     askPermissions(*permissions, rationaleDelegate = dialogRationaleDelegate) { result ->
       when {
-        result.hasAllGranted() -> startBattleActivity(editChannel.text.toString())
-        result.hasPermanentDenied() -> debug("need to do something here")
+        result.hasAllGranted() -> {
+          val roomId = editChannel.text
+          if (!roomId.isNullOrEmpty()) {
+            findNavController().navigate(
+              RoomFragmentDirections.actionRoomFragmentToBattleFragment(
+                roomId.toString()
+              )
+            )
+          } else {
+            Toast.makeText(
+              requireContext(),
+              R.string.input_room_id,
+              Toast.LENGTH_LONG
+            ).show()
+          }
+        }
+        result.hasPermanentDenied() -> Toast.makeText(
+          requireContext(),
+          R.string.permission_denied,
+          Toast.LENGTH_LONG
+        ).show()
       }
     }
   }

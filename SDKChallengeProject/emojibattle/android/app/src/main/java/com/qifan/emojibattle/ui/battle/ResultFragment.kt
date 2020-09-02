@@ -21,36 +21,36 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-package com.qifan.emojibattle.ui
+package com.qifan.emojibattle.ui.battle
 
-import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
-import androidx.appcompat.content.res.AppCompatResources
-import com.qifan.emojibattle.R
-import com.qifan.emojibattle.databinding.ActivitySplashBinding
-import com.qifan.emojibattle.ui.base.BaseActivity
-import com.qifan.emojibattle.ui.view.TileDrawable
+import androidx.navigation.fragment.navArgs
+import com.airbnb.lottie.LottieCompositionFactory
+import com.qifan.emojibattle.databinding.FragmentResultBinding
+import com.qifan.emojibattle.ui.base.BaseFragment
 
-class SplashActivity : BaseActivity<ActivitySplashBinding>() {
-  override val bindingInflater: (LayoutInflater, ViewGroup?, Boolean) -> ActivitySplashBinding =
-    ActivitySplashBinding::inflate
-  private val scrollBackground get() = binding.scrollingBackground
-  private val play get() = binding.play
+class ResultFragment : BaseFragment<FragmentResultBinding>() {
+  override val bindingInflater: (LayoutInflater, ViewGroup?, Boolean) -> FragmentResultBinding =
+    FragmentResultBinding::inflate
+  private val result get() = binding.result
+  private val args: ResultFragmentArgs by navArgs()
 
-  override fun onCreate(savedInstanceState: Bundle?) {
-    super.onCreate(savedInstanceState)
-    scrollBackground.setImageDrawable(
-      AppCompatResources.getDrawable(this, R.drawable.pattern)?.let {
-        TileDrawable(
-          it
-        )
-      }
-    )
-    play.setOnClickListener {
-      startActivity(Intent(this, GameActivity::class.java))
-      finish()
+  override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+    super.onViewCreated(view, savedInstanceState)
+    val win = args.result
+    val json = if (win) {
+      "win.json"
+    } else {
+      "lose.json"
     }
+    LottieCompositionFactory.fromAsset(requireContext(), json)
+      .addListener {
+        result.repeatCount = 2
+        result.setComposition(it)
+        result.playAnimation()
+      }
   }
 }

@@ -9,4 +9,6 @@
     <string name="introduction_2">在游戏中需要尽力模仿屏幕的表情</string>
     <string name="introduction_3">完成后告诉你是否获胜</string>
     <string name="play">开始游戏</string>
+    <string name="permission_denied">玩游戏需要通过相应的权限</string>
+    <string name="input_room_id">请输入正确的房间号</string>
 </resources>

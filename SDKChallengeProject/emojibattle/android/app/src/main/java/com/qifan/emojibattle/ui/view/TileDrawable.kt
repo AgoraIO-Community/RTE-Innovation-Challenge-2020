@@ -21,36 +21,49 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-package com.qifan.emojibattle.ui
+package com.qifan.emojibattle.ui.view
 
-import android.content.Intent
-import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.ViewGroup
-import androidx.appcompat.content.res.AppCompatResources
-import com.qifan.emojibattle.R
-import com.qifan.emojibattle.databinding.ActivitySplashBinding
-import com.qifan.emojibattle.ui.base.BaseActivity
-import com.qifan.emojibattle.ui.view.TileDrawable
+import android.graphics.*
+import android.graphics.drawable.BitmapDrawable
+import android.graphics.drawable.Drawable
 
-class SplashActivity : BaseActivity<ActivitySplashBinding>() {
-  override val bindingInflater: (LayoutInflater, ViewGroup?, Boolean) -> ActivitySplashBinding =
-    ActivitySplashBinding::inflate
-  private val scrollBackground get() = binding.scrollingBackground
-  private val play get() = binding.play
+class TileDrawable(drawable: Drawable, tileMode: Shader.TileMode = Shader.TileMode.REPEAT) :
+  Drawable() {
 
-  override fun onCreate(savedInstanceState: Bundle?) {
-    super.onCreate(savedInstanceState)
-    scrollBackground.setImageDrawable(
-      AppCompatResources.getDrawable(this, R.drawable.pattern)?.let {
-        TileDrawable(
-          it
-        )
-      }
-    )
-    play.setOnClickListener {
-      startActivity(Intent(this, GameActivity::class.java))
-      finish()
+  private val paint: Paint
+
+  init {
+    paint = Paint().apply {
+      shader = BitmapShader(getBitmap(drawable), tileMode, tileMode)
     }
+  }
+
+  override fun draw(canvas: Canvas) {
+    canvas.drawPaint(paint)
+  }
+
+  override fun setAlpha(alpha: Int) {
+    paint.alpha = alpha
+  }
+
+  override fun getOpacity() = PixelFormat.TRANSLUCENT
+
+  override fun setColorFilter(colorFilter: ColorFilter?) {
+    paint.colorFilter = colorFilter
+  }
+
+  private fun getBitmap(drawable: Drawable): Bitmap {
+    if (drawable is BitmapDrawable) {
+      return drawable.bitmap
+    }
+    val bmp = Bitmap.createBitmap(
+      drawable.intrinsicWidth,
+      drawable.intrinsicHeight,
+      Bitmap.Config.ARGB_8888
+    )
+    val c = Canvas(bmp)
+    drawable.setBounds(0, 0, drawable.intrinsicWidth, drawable.intrinsicHeight)
+    drawable.draw(c)
+    return bmp
   }
 }

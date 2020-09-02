@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/roomFragment">
+
+    <fragment
+        android:id="@+id/roomFragment"
+        android:name="com.qifan.emojibattle.ui.battle.RoomFragment"
+        android:label="RoomFragment"
+        tools:layout="@layout/fragment_room">
+        <action
+            android:id="@+id/action_roomFragment_to_battleFragment"
+            app:destination="@id/battleFragment"
+            app:enterAnim="@anim/fragment_fade_enter"
+            app:exitAnim="@anim/fragment_fade_exit"
+            app:popEnterAnim="@anim/fragment_fade_enter"
+            app:popExitAnim="@anim/fragment_fade_exit" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/battleFragment"
+        android:name="com.qifan.emojibattle.ui.battle.BattleFragment"
+        android:label="BattleFragment"
+        tools:layout="@layout/fragment_battle">
+        <action
+            android:id="@+id/action_battleFragment_to_resultFragment"
+            app:destination="@id/resultFragment"
+            app:enterAnim="@anim/fragment_fade_enter"
+            app:exitAnim="@anim/fragment_fade_exit"
+            app:popEnterAnim="@anim/fragment_fade_enter"
+            app:popExitAnim="@anim/fragment_fade_exit" />
+        <argument
+            android:name="channel"
+            app:argType="string" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/resultFragment"
+        android:name="com.qifan.emojibattle.ui.battle.ResultFragment"
+        android:label="ResultFragment"
+        tools:layout="@layout/fragment_result">
+        <argument
+            android:name="result"
+            app:argType="boolean" />
+        <action
+            android:id="@+id/action_resultFragment_to_roomFragment2"
+            app:destination="@id/roomFragment"
+            app:popUpTo="@+id/roomFragment"
+            app:popUpToInclusive="true" />
+    </fragment>
+</navigation>

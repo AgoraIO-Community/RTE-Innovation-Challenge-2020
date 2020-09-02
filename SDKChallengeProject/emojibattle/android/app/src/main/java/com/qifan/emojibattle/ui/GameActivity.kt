@@ -23,34 +23,22 @@
  */
 package com.qifan.emojibattle.ui
 
-import android.content.Intent
-import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.appcompat.content.res.AppCompatResources
+import androidx.navigation.findNavController
 import com.qifan.emojibattle.R
-import com.qifan.emojibattle.databinding.ActivitySplashBinding
+import com.qifan.emojibattle.databinding.ActivityGameBinding
 import com.qifan.emojibattle.ui.base.BaseActivity
-import com.qifan.emojibattle.ui.view.TileDrawable
 
-class SplashActivity : BaseActivity<ActivitySplashBinding>() {
-  override val bindingInflater: (LayoutInflater, ViewGroup?, Boolean) -> ActivitySplashBinding =
-    ActivitySplashBinding::inflate
-  private val scrollBackground get() = binding.scrollingBackground
-  private val play get() = binding.play
+class GameActivity : BaseActivity<ActivityGameBinding>() {
+  override val bindingInflater: (LayoutInflater, ViewGroup?, Boolean) -> ActivityGameBinding =
+    ActivityGameBinding::inflate
 
-  override fun onCreate(savedInstanceState: Bundle?) {
-    super.onCreate(savedInstanceState)
-    scrollBackground.setImageDrawable(
-      AppCompatResources.getDrawable(this, R.drawable.pattern)?.let {
-        TileDrawable(
-          it
-        )
-      }
-    )
-    play.setOnClickListener {
-      startActivity(Intent(this, GameActivity::class.java))
+  override fun onBackPressed() {
+    val navController = findNavController(R.id.nav_host_fragment)
+    if (!navController.popBackStack()) {
       finish()
     }
+    super.onBackPressed()
   }
 }

@@ -23,17 +23,18 @@
  */
 package com.qifan.emojibattle.ui.battle
 
-import android.app.Activity
-import android.content.Intent
 import android.os.Bundle
+import android.view.LayoutInflater
 import android.view.View
-import androidx.appcompat.app.AppCompatActivity
+import android.view.ViewGroup
+import androidx.navigation.fragment.findNavController
+import androidx.navigation.fragment.navArgs
 import com.qifan.emojibattle.BuildConfig
 import com.qifan.emojibattle.R
-import com.qifan.emojibattle.databinding.ActivityBattleBinding
+import com.qifan.emojibattle.databinding.FragmentBattleBinding
 import com.qifan.emojibattle.engine.GameEngine.GameState.*
 import com.qifan.emojibattle.extension.debug
-import com.qifan.emojibattle.ui.ResultActivity.Companion.startResultActivity
+import com.qifan.emojibattle.ui.base.BaseFragment
 import com.squareup.picasso.Picasso
 import io.agora.rtc.IRtcEngineEventHandler
 import io.agora.rtc.RtcEngine
@@ -43,39 +44,25 @@ import org.koin.android.viewmodel.ext.android.viewModel
 import kotlin.properties.Delegates.notNull
 import kotlin.random.Random
 
-class BattleActivity : AppCompatActivity() {
-  private lateinit var binding: ActivityBattleBinding
+class BattleFragment : BaseFragment<FragmentBattleBinding>() {
+  override val bindingInflater: (LayoutInflater, ViewGroup?, Boolean) -> FragmentBattleBinding =
+    FragmentBattleBinding::inflate
   private val localSurfaceView get() = binding.localSurfaceView
   private val remoteSurfaceView get() = binding.remoteSurfaceView
   private val engineEmoji get() = binding.engineEmoji
   private val loading get() = binding.loading
-  private val localResult get() = binding.localResult
-  private val remoteResult get() = binding.remoteResult
 
   private val viewModel: BattleViewModel by viewModel()
 
   private val localUserId: Int by lazy { Random.nextInt() }
+  private val args: BattleFragmentArgs by navArgs()
   private var channel: String by notNull()
-  private val token = BuildConfig.Token
-  private val appId = BuildConfig.AppId
+  private val token = getString(R.string.token)
+  private val appId = getString(R.string.appId)
   private lateinit var rtcEngine: RtcEngine
 
-  companion object {
-    private const val CHANNEL = "Channel"
-
-    @JvmStatic
-    fun Activity.startBattleActivity(channel: String) {
-      startActivity(
-        Intent(this, BattleActivity::class.java)
-          .putExtra(CHANNEL, channel)
-      )
-    }
-  }
-
-  override fun onCreate(savedInstanceState: Bundle?) {
-    super.onCreate(savedInstanceState)
-    binding = ActivityBattleBinding.inflate(layoutInflater)
-    setContentView(binding.root)
+  override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+    super.onViewCreated(view, savedInstanceState)
     parseIntents()
     initAgoraEngineAndJoinChannel()
     initVideoRawData()
@@ -83,14 +70,14 @@ class BattleActivity : AppCompatActivity() {
   }
 
   private fun observerModel() {
-    viewModel.emoji.observe(this) { emoji ->
+    viewModel.emoji.observe(viewLifecycleOwner) { emoji ->
       Picasso.get()
         .load(emoji.battleRes)
         .centerCrop()
         .resize(200, 200)
         .into(engineEmoji)
     }
-    viewModel.gameStatus.observe(this) { state ->
+    viewModel.gameStatus.observe(viewLifecycleOwner) { state ->
       when (state) {
         IDLE -> {
           engineEmoji.visibility = View.GONE
@@ -103,13 +90,11 @@ class BattleActivity : AppCompatActivity() {
         END -> loading.visibility = View.VISIBLE
         WIN -> {
           loading.visibility = View.GONE
-          startResultActivity(true)
-          finish()
+          navResult(true)
         }
         LOSE -> {
           loading.visibility = View.GONE
-          startResultActivity(false)
-          finish()
+          navResult(false)
         }
         else -> {
         }
@@ -117,9 +102,12 @@ class BattleActivity : AppCompatActivity() {
     }
   }
 
+  private fun navResult(win: Boolean) {
+    findNavController().navigate(BattleFragmentDirections.actionBattleFragmentToResultFragment(win))
+  }
+
   private fun parseIntents() {
-    val contentChannel = intent.getStringExtra(CHANNEL)
-    requireNotNull(contentChannel)
+    val contentChannel = args.channel
     channel = contentChannel
   }
 
@@ -136,7 +124,8 @@ class BattleActivity : AppCompatActivity() {
 
   private fun initializeAgoraEngine() {
     try {
-      rtcEngine = RtcEngine.create(applicationContext, appId, RtcEngineEventHandler())
+      rtcEngine =
+        RtcEngine.create(requireActivity().applicationContext, appId, RtcEngineEventHandler())
     } catch (e: Exception) {
       error(e.stackTraceToString())
     }
@@ -156,7 +145,7 @@ class BattleActivity : AppCompatActivity() {
   }
 
   private fun setupLocalVideo() {
-    val surfaceView = RtcEngine.CreateRendererView(applicationContext)
+    val surfaceView = RtcEngine.CreateRendererView(requireActivity().applicationContext)
     surfaceView.setZOrderMediaOverlay(true)
     if (localSurfaceView.childCount > 0) {
       localSurfaceView.removeAllViews()
@@ -176,20 +165,20 @@ class BattleActivity : AppCompatActivity() {
     if (remoteSurfaceView.childCount >= 1) {
       remoteSurfaceView.removeAllViews()
     }
-    val surfaceView = RtcEngine.CreateRendererView(applicationContext)
+    val surfaceView = RtcEngine.CreateRendererView(requireActivity().applicationContext)
     remoteSurfaceView.addView(surfaceView)
     surfaceView.setZOrderMediaOverlay(true)
     rtcEngine.setupRemoteVideo(VideoCanvas(surfaceView, VideoCanvas.RENDER_MODE_HIDDEN, uid))
   }
 
-  override fun onDestroy() {
+  override fun onDestroyView() {
     rtcEngine.leaveChannel()
     rtcEngine.stopPreview()
     viewModel.emoji.removeObservers(this)
     viewModel.gameStatus.removeObservers(this)
     viewModel.destory()
     RtcEngine.destroy()
-    super.onDestroy()
+    super.onDestroyView()
   }
 
   inner class RtcEngineEventHandler : IRtcEngineEventHandler() {
@@ -215,6 +204,10 @@ class BattleActivity : AppCompatActivity() {
           )
         )
       }
+    }
+
+    private fun runOnUiThread(runnable: Runnable) {
+      requireActivity().runOnUiThread(runnable)
     }
   }
 }
