@@ -8,9 +8,9 @@ import com.qifan.emojibattle.R
 import com.qifan.emojibattle.databinding.ActivityResultBinding
 
 class ResultActivity : AppCompatActivity() {
+    private lateinit var binding: ActivityResultBinding
     private val result get() = binding.result
     private var isWinner: Boolean = false
-    private lateinit var binding: ActivityResultBinding
 
     companion object {
         private const val WINNER = "winner"
