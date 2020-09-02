@@ -31,7 +31,7 @@ UICollectionViewDataSource>
         [self addSubview:self.backView];
         [self.backView addSubview:self.btnClose];
         [self.backView addSubview:self.lblStatus];
-        self.lblStatus.text = @"分享飞鸟";
+        self.lblStatus.text = @"分享飞聊";
         
         
 //        UIView *cellView = [[UIView alloc]initWithFrame:CGRectMake(0, 50, self.frame.size.width, 50)];

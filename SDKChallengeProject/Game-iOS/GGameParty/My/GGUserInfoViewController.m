@@ -264,7 +264,7 @@ UICollectionViewDataSource>
     [self.backView addSubview:sex];
     self.sexImageView = sex;
     
-    UILabel *nameLabel = [SJUILabelFactory labelWithText:@"飞鸟新人" textColor:[UIColor whiteColor] font:[UIFont boldSystemFontOfSize:18]];
+    UILabel *nameLabel = [SJUILabelFactory labelWithText:@"飞聊新人" textColor:[UIColor whiteColor] font:[UIFont boldSystemFontOfSize:18]];
     nameLabel.frame = CGRectMake(0, CGRectGetMaxY(self.headImageView.frame) + 15, self.backView.frame.size.width, 25);
     nameLabel.textAlignment = NSTextAlignmentCenter;
     [self.backView addSubview:nameLabel];

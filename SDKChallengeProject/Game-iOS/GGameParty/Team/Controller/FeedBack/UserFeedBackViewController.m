@@ -66,7 +66,7 @@
         [obj saveInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
             if(succeeded)
             {
-                [XHToast showBottomWithText:@"你的反馈将会让飞鸟变得更好~"];
+                [XHToast showBottomWithText:@"你的反馈将会让飞聊变得更好~"];
                 [self.navigationController popViewControllerAnimated:YES];
             }
         }];

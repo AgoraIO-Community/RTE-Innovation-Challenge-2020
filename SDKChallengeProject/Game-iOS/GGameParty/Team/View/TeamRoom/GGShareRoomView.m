@@ -115,7 +115,7 @@ UICollectionViewDataSource>
                           @"icon_pengyouq"
                           ];
     NSArray *titleArr = @[@"复制链接",
-                          @"飞鸟好友",
+                          @"飞聊好友",
                           @"QQ",
                           @"微信",
                           @"朋友圈"

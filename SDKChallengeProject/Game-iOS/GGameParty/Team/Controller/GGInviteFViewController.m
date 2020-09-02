@@ -56,7 +56,7 @@
     tips.font = [UIFont systemFontOfSize:12];
     tips.numberOfLines = 0;
 //    tips.backgroundColor = [UIColor redColor ];
-    NSString *text = @"领取条件\n\n在应用商店中给app好评并评论：飞鸟昵称+评论内容\n\n工作人员在一周内核实后在此页面领取您的激活码";
+    NSString *text = @"领取条件\n\n在应用商店中给app好评并评论：飞聊昵称+评论内容\n\n工作人员在一周内核实后在此页面领取您的激活码";
     tips.text = text;
     [self.view addSubview:tips];
     

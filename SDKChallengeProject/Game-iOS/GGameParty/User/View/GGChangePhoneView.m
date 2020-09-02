@@ -143,7 +143,7 @@
                 if (objects.count == 0) {
                     AVShortMessageRequestOptions *options = [[AVShortMessageRequestOptions alloc] init];
                     options.TTL = 10;                      // 验证码有效时间为 10 分钟
-                    options.applicationName = @"飞鸟语音";  // 应用名称
+                    options.applicationName = @"飞聊语音";  // 应用名称
                     options.operation = @"修改账户手机号";        // 操作名称
                     [AVSMS requestShortMessageForPhoneNumber:phone
                                                      options:options

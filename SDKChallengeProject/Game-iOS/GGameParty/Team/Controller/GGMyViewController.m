@@ -124,7 +124,7 @@ CLLocationManagerDelegate>
     [topView addSubview:touxiangkuang];
     
     
-    UILabel *nameLabel = [SJUILabelFactory labelWithText:@"飞鸟新人" textColor:GGTitle_Color font:[UIFont boldSystemFontOfSize:23]];
+    UILabel *nameLabel = [SJUILabelFactory labelWithText:@"飞聊新人" textColor:GGTitle_Color font:[UIFont boldSystemFontOfSize:23]];
     nameLabel.frame = CGRectMake(CGRectGetMaxX(headBtn.frame)+10, 9.5, kScreenW - CGRectGetMaxX(headBtn.frame) - 10, 35);
     [topView addSubview:nameLabel];
     self.nameLabel = nameLabel;
@@ -237,7 +237,7 @@ CLLocationManagerDelegate>
    
     
     AVUser *user = [AVUser currentUser];
-    NSString *username = user.username.length == 0?@"飞鸟小白":[AVUser currentUser].username;
+    NSString *username = user.username.length == 0?@"飞聊小白":[AVUser currentUser].username;
     NSNumber *age = [user objectForKey:@"age"];
     BOOL sex = [[user objectForKey:@"sex"] boolValue];//1是男
     NSString *steamID = [user objectForKey:@"steamID"];
@@ -418,8 +418,8 @@ CLLocationManagerDelegate>
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
 #warning apple不允许有检查更新这个东西
-    static NSString *iden = @"dasdsa";//@"订阅飞鸟服务", @"icon_vip",
-    NSArray *arr = @[@[@"我的关注",@"邀请好友",@"给飞鸟好评"],
+    static NSString *iden = @"dasdsa";//@"订阅飞聊服务", @"icon_vip",
+    NSArray *arr = @[@[@"我的关注",@"邀请好友",@"给飞聊好评"],
                      @[@"账号与安全",@"意见反馈",@"隐私政策"]];
     NSArray *imageArr = @[@[@"icon_guanzhu",@"icon_yaoqing",@"icon_renwu"],//icon_datimy
                           @[@"icoin_anquan",@"icon_geren",@"icon_shengji"]];
@@ -475,7 +475,7 @@ CLLocationManagerDelegate>
 //        {
 //            GGVIPViewController *view = [[GGVIPViewController alloc]init];
 //            view.hidesBottomBarWhenPushed = YES;
-//            view.title = @"我的飞鸟";
+//            view.title = @"我的飞聊";
 //            [self.navigationController pushViewController: view animated:YES];
 //        }
         

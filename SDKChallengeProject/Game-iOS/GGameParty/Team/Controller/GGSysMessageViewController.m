@@ -144,7 +144,7 @@
     [obj setObject:@"2" forKey:@"type"];
     [obj setObject:[AVUser currentUser].objectId forKey:@"range"];
     [obj setObject:@"举报结果2" forKey:@"title"];
-    [obj setObject:@"你举报的用户经过核查已被封禁.感谢你的举报,飞鸟提倡绿色的游戏环境和游戏玩家" forKey:@"content"];
+    [obj setObject:@"你举报的用户经过核查已被封禁.感谢你的举报,飞聊提倡绿色的游戏环境和游戏玩家" forKey:@"content"];
     AVObject * relevantPersonne = [AVObject objectWithClassName:@"_User" objectId:@"5b59a1c10b616000312434f4"];
     [obj setObject:relevantPersonne forKey:@"relevantPersonne"];//相关人员
     [obj saveInBackground];
@@ -157,7 +157,7 @@
     [obj setObject:[AVUser currentUser] forKey:@"user"];//发布人
     [obj setObject:@"3" forKey:@"type"];
     [obj setObject:@"all" forKey:@"range"];//接收人
-    [obj setObject:@"[喜+1活动22]飞鸟全平台开放下载,所有用户可以进行邀请其他用户获得丰厚奖励" forKey:@"title"];
+    [obj setObject:@"[喜+1活动22]飞聊全平台开放下载,所有用户可以进行邀请其他用户获得丰厚奖励" forKey:@"title"];
     [obj setObject:@"www.toutiao.com" forKey:@"content"];
     [obj saveInBackground];
 }

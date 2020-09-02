@@ -899,7 +899,7 @@ AgoraRtcEngineDelegate,UIGestureRecognizerDelegate>
 
 - (void)pasteRoomUrl:(NSString *)url
 {
-    NSString *str = [NSString stringWithFormat:@"%@,%@",@"我正在使用飞鸟语音,无需注册打开后方链接一键加入我的开黑语音房间",url];
+    NSString *str = [NSString stringWithFormat:@"%@,%@",@"我正在使用飞聊语音,无需注册打开后方链接一键加入我的开黑语音房间",url];
     UIPasteboard *pasteboard = [UIPasteboard generalPasteboard];
     pasteboard.string = str;
     [XHToast showCenterWithText:@"复制成功"];

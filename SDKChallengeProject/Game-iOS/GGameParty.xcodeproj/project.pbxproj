@@ -846,7 +846,7 @@
 		571A6A0B21133B5200932C9D /* GGGameTypeModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GGGameTypeModel.m; sourceTree = "<group>"; };
 		571A6A0E21135BE900932C9D /* GGChatTeamRoomCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GGChatTeamRoomCell.h; sourceTree = "<group>"; };
 		571A6A0F21135BE900932C9D /* GGChatTeamRoomCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GGChatTeamRoomCell.m; sourceTree = "<group>"; };
-		571CCE5F2101739B003DA9A5 /* 飞聊语音.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "飞聊语音.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		571CCE5F2101739B003DA9A5 /* G游语音.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "G游语音.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		571CCE622101739B003DA9A5 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		571CCE632101739B003DA9A5 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		571CCE6B2101739B003DA9A5 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -2190,7 +2190,7 @@
 		571CCE602101739B003DA9A5 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				571CCE5F2101739B003DA9A5 /* 飞聊语音.app */,
+				571CCE5F2101739B003DA9A5 /* G游语音.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -5071,7 +5071,7 @@
 			);
 			name = GGameParty;
 			productName = GGameParty;
-			productReference = 571CCE5F2101739B003DA9A5 /* 飞聊语音.app */;
+			productReference = 571CCE5F2101739B003DA9A5 /* G游语音.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -5988,7 +5988,7 @@
 			baseConfigurationReference = C92FCD76A301DF4D685050FF /* Pods-GGameParty.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = YES;
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-1";
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = "LaunchImage-1";
 				CODE_SIGN_ENTITLEMENTS = GGameParty/GGameParty.entitlements;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -6029,7 +6029,7 @@
 				OTHER_CFLAGS = "";
 				OTHER_LDFLAGS = "-all_load";
 				PRODUCT_BUNDLE_IDENTIFIER = com.gu.audioapp;
-				PRODUCT_NAME = "飞聊语音";
+				PRODUCT_NAME = "G游语音";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				TARGETED_DEVICE_FAMILY = 1;
 				USER_HEADER_SEARCH_PATHS = "$(SRCROOT)/Pods/pop/** $(SRCROOT)";
@@ -6041,7 +6041,7 @@
 			baseConfigurationReference = C62001AEF3857E86DE7921D5 /* Pods-GGameParty.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = YES;
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-1";
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = "LaunchImage-1";
 				CODE_SIGN_ENTITLEMENTS = GGameParty/GGameParty.entitlements;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -6082,7 +6082,7 @@
 				OTHER_CFLAGS = "";
 				OTHER_LDFLAGS = "-all_load";
 				PRODUCT_BUNDLE_IDENTIFIER = com.gu.audioapp;
-				PRODUCT_NAME = "飞聊语音";
+				PRODUCT_NAME = "G游语音";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				TARGETED_DEVICE_FAMILY = 1;
 				USER_HEADER_SEARCH_PATHS = "$(SRCROOT)/Pods/pop/** $(SRCROOT)";
