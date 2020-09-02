@@ -1,0 +1,669 @@
+/*
+ * @Author: he.xiaoxue 
+ * @Date: 2018-08-31 23:31:16 
+ * @Last Modified by: he.xiaoxue
+ * @Last Modified time: 2018-10-03 17:40:05
+ */
+// @import './mixn.scss';
+/* 聊天室样式 */
+.room {
+  /* 聊调试背景 */
+  // -webkit-user-select: none;
+  // -moz-user-select: none;
+  // -ms-user-select: none;
+  // user-select: none;
+  .room-bg {
+    position: fixed;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center top;
+    z-index: -1;
+  }
+  .room-container {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: 1200px;
+    height: 720px;
+    margin-top: -360px;
+    margin-left: -600px;
+    background-color: #1a1b20;
+    border-radius: 10px;
+    overflow: hidden;
+    /* 头部 房间名称 房间设置 */
+    .header {
+      height: 66px;
+      line-height: 66px;
+      clear: both;
+      overflow: hidden;
+      padding: 0 30px;
+      font-size: 16px;
+      .left {
+        color: #aaa;
+        .title-img {
+          height: 26px;
+          width: 26px;
+          border-radius: 26px;
+          margin-right: 5px;
+        }
+      }
+      .right {
+        .option {
+          margin-left: 30px;
+          cursor: pointer;
+          &:last-child {
+            border-left: 1px solid #313236;
+            padding-left: 30px;
+            padding-right: 30px;
+            line-height: 33px;
+            display: inline-block;
+            background-repeat: no-repeat;
+            background-position: right center;
+          }
+        }
+      }
+    }
+    /* 房间详细信息 聊天室*/
+    .body {
+      clear: both;
+      overflow: hidden;
+      height: 655px; // 房间信息
+      .left {
+        width: 384px;
+        height: 605px;
+        text-align: left;
+        background-color: #242730;
+        padding: 30px 30px 20px 30px;
+        position: relative;
+        .title {
+          font-size: 24px;
+        }
+        // 调音 说话状态
+        .voicing {
+          height: 181px;
+          padding-top: 80px;
+          .speak-btn {
+            width: 384px;
+            height: 50px;
+            line-height: 50px;
+            background-color: #efca14;
+            border-radius: 4px;
+            color: #242730;
+            text-align: center;
+            font-weight: bold;
+          }
+          .tuning {
+            clear: both;
+            overflow: hidden;
+            margin-top: 20px;
+            .music,
+            .microphone {
+              width: 125px;
+              float: left;
+              vertical-align: middle;
+              padding-left: 35px;
+              padding-right: 30px;
+              .icon {
+                margin-right: 9px;
+                display: inline-block;
+              }
+              .bar {
+                width: 40px;
+                height: 15px;
+                border-radius: 15px;
+                background-color: #666666;
+                display: inline-block;
+                position: relative;
+                overflow: hidden;
+                top: 4px;
+                cursor: pointer;
+                .bar-inner {
+                  background-color: #e8e8e8;
+                  width: 0%;
+                  height: 2px;
+                  display: inline-block;
+                  position: absolute;
+                  left: 0;
+                  top: 0;
+                  height: 100%;
+                }
+                .switch {
+                  position: absolute;
+                  width: 12px;
+                  height: 15px;
+                  border-radius: 15px;
+                  background-color: #e8e8e8;
+                  display: inline-block;
+                  top: 0px;
+                }
+              }
+            }
+            .music {
+              img {
+                width: 16px;
+              }
+            }
+          }
+        }
+      }
+      .right {
+        width: 756px;
+        height: 635px;
+        background-color: #1e2027;
+        padding-top: 20px;
+        text-align: left;
+        .notice {
+          height: 40px;
+          line-height: 40px;
+          padding-left: 20px;
+          margin: 0 20px;
+          background-color: rgba($color: #fff, $alpha: 0.02);
+          border-radius: 4px;
+          cursor: pointer;
+        }
+        // 输入框组合
+        .input-content {
+          border-top: 1px solid #35373d;
+          padding-top: 20px;
+          padding-right: 20px;
+          padding-left: 20px;
+          margin-top: 20px;
+          font-size: 14px;
+          .input-area {
+            background: transparent;
+            width: 100%;
+            height: 100px;
+            border: none;
+            resize: none;
+            font-size: 14px;
+            color: #e8e8e8;
+            &:focus {
+              outline: none;
+            }
+          }
+          // 匿名用户展示
+          .anonymous {
+            height: 80px;
+            padding-top: 10px;
+            padding-bottom: 10px;
+            text-align: center;
+            .btn-login {
+              width: 126px;
+              height: 32px;
+              line-height: 34px;
+              margin-top: 16px;
+              border-radius: 18px;
+              display: inline-block;
+              cursor: pointer;
+              + .btn-login {
+                margin-left: 30px;
+              }
+              &.login-wechat {
+                background-color: #00c006;
+                color: #fff;
+              }
+              &.login-phone {
+                background-color: #e8e8e8;
+                color: #333333;
+              }
+              img {
+                vertical-align: middle;
+                margin-right: 5px;
+                position: relative;
+                top: -1px;
+              }
+            }
+          }
+          .btn-group {
+            clear: both;
+            overflow: hidden;
+            .left-btn {
+              float: left;
+              &.disabled {
+                color: #777;
+              }
+            }
+            .right-btn {
+              float: right;
+            }
+            .btn {
+              height: 36px;
+              line-height: 36px;
+              background-color: #242730;
+              border-radius: 4px;
+              display: inline-block;
+              padding: 0 15px;
+              cursor: pointer;
+              + .btn {
+                margin-left: 20px;
+              }
+              &.btn-bg {
+                background-color: #00d95f;
+                color: #1e2027;
+              }
+              &.disabled {
+                background-color: #777;
+              }
+              .icon-plus {
+                font-size: 28px;
+                vertical-align: middle;
+                position: relative;
+                margin-right: 3px;
+                // top:-1px;
+              }
+            }
+          }
+        }
+      }
+    }
+    .left {
+      float: left;
+    }
+    .right {
+      float: right;
+    }
+    // 历史聊天信息
+    .chat-content {
+      height: 380px;
+      padding-top: 20px;
+      font-size: 14px;
+      color: #777;
+      margin: 0 20px;
+      .tips,
+      .invite,
+      .chat-item {
+        margin-bottom: 14px;
+      }
+      .invite {
+        height: 34px;
+        line-height: 34px;
+        line-height: 34px;
+        clear: both;
+        .invite-inner {
+          float: left;
+          background-color: #23252c;
+          border-radius: 21px;
+          padding: 0 15px;
+        }
+      }
+      .chat-item {
+        line-height: 20px;
+      }
+      .m-l {
+        margin-left: 14px;
+      }
+      .m-r {
+        margin-right: 14px;
+      }
+    }
+    // 成员信息
+    .members {
+      clear: both;
+      // overflow: hidden;
+      margin-top: 60px;
+      min-height: 300px;
+      .member-item {
+        width: 66px;
+        height: 94px;
+        // overflow: hidden;
+        margin-bottom: 40px;
+        text-align: center;
+        position: relative;
+        + .member-item {
+          margin-left: 40px;
+        }
+        &:nth-child(5n + 0) {
+          margin-left: 0;
+        }
+        &.empty {
+          height: 66px;
+          border: 1px dashed #ffffff;
+          box-sizing: border-box;
+          -moz-box-sizing: border-box; /* Firefox */
+          -webkit-box-sizing: border-box; /* Safari */
+          border-radius: 50%;
+          position: relative;
+          opacity: 0.7;
+          text-align: center;
+          line-height: 66px;
+          color: #fff;
+          cursor: pointer;
+          margin-bottom: 70px;
+          &::after {
+            content: '+';
+            font-size: 45px;
+            font-weight: 100;
+          }
+        }
+        float: left;
+        .avatar {
+          width: 66px;
+          height: 66px;
+          border-radius: 50%;
+        }
+        .muted {
+          position: absolute;
+          top: 52px;
+          left: 9px;
+          .hide {
+            display: none;
+          }
+        }
+        .speak {
+          position: absolute;
+          top: -15px;
+          right: -20px;
+        }
+        .nickname {
+          padding-top: 8px;
+          color: #aaaaaa;
+          white-space: nowrap;
+          text-overflow: ellipsis;
+          overflow: hidden;
+        }
+      }
+    }
+  }
+  .mobile {
+    position: fixed;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    height: auto;
+    background-color: transparent;
+    width: 100%;
+    // height: 100%;
+    overflow: hidden;
+    margin: 0;
+    border-radius: 0;
+    transform: scale(1) !important;
+    font-family: PingFang SC;
+    background-image: url(../assets/room_bg_mobile.png);
+
+    .download-app {
+      img {
+        width: 100%;
+      }
+    }
+    .content {
+      padding: 15px;
+      text-align: left;
+      // 队伍基本信息
+      .team-info {
+        color: #aaaaaa;
+        font-size: 12px;
+        .title {
+          color: #ffffff;
+          font-size: 18px;
+          font-weight: bold;
+          margin-bottom: 8px;
+        }
+        .gamename {
+          display: inline-block;
+          color: #232323;
+          padding: 2px 10px;
+          margin-right: 9px;
+          border-radius: 3px;
+          background-color: rgba($color: #fff, $alpha: 0.6);
+        }
+        .look {
+          display: inline-block;
+          width: 26px;
+          height: 30px;
+          background: url(../assets/icon_lock.png) no-repeat;
+          background-position: center;
+          background-size: contain;
+        }
+        .notice {
+          background-color: rgba($color: #fff, $alpha: 0.1);
+          padding: 10px;
+          margin-left: -15px;
+          margin-right: -15px;
+          margin-top: 20px;
+        }
+      }
+      // 成员信息
+      .members {
+        margin-top: 0;
+        min-height: 230px;
+        .member-item {
+          width: 25%;
+          margin-top: 20px;
+          margin-bottom: 0;
+          img {
+            width: 72%;
+            height: auto;
+          }
+          + .member-item {
+            margin-left: 0;
+          }
+          .nickname {
+            width: 72%;
+            height: 20px;
+            line-height: 20px;
+            border-radius: 13px;
+            background-color: rgba($color: #fff, $alpha: 0.1);
+            padding: 0 3px;
+            margin: 6px auto;
+          }
+          .muted{
+            width: 55%;
+            bottom: 32px;
+            top: auto;
+            left: 22.5%;
+          }
+        }
+      }
+      // 聊天信息移动端
+      .chat-content {
+        padding-top: 0;
+        margin: 0;
+        font-size: 12px;
+        // margin-bottom: 100px;
+        padding-bottom: 150px;
+        height: 200px;
+        .invite {
+          line-height: 27px;
+          margin-bottom: 10px;
+          .invite-inner {
+          }
+        }
+        .message {
+          max-width: 70%;
+        }
+      }
+    }
+  }
+  .mobile-bg {
+    position: relative;
+    // height: 100%;
+    // background-image: url(../assets/room_bg_mobile.png);
+        z-index: 1;
+    // 移动端底部
+    .chat-footer {
+      position: fixed;
+      left: 15px;
+      bottom: 10px;
+      right: 15px;
+      .msg,
+      .music {
+        width: 35px;
+        height: 35px;
+        border-radius: 50%;
+        margin-right: 10px;
+        display: inline-block;
+        background-color: rgba($color: #fff, $alpha: 0.1);
+        background-position: center;
+        background-repeat: no-repeat;
+        vertical-align: middle;
+      }
+      .msg {
+        background-image: url(../assets/msg-d.png);
+        background-size: 22px 20px;
+      }
+      .music {
+        background-image: url(../assets/mobile-music.png);
+        background-size: 18px 18px;
+        &.off {
+          background-image: url(../assets/mobile-music-off.png);
+        }
+      }
+      .speak-btn {
+        width: calc(100% - 90px);
+        display: inline-block;
+        height: 35px;
+        line-height: 35px;
+        background-color: #ffffff;
+        border-radius: 25px;
+        font-size: 14px;
+        color: #333;
+        &.publish {
+          width: calc(100% - 92px);
+          background-color: transparent;
+          border: 1px solid $white;
+          color: $white;
+        }
+      }
+    }
+    // 移动端邀请好友
+    .share-content{
+      background-image: url(../assets/mobile-share.png);
+      background-repeat: no-repeat;
+      background-size: 100%;
+      position: fixed;
+      bottom: 95px;
+      right: 0;
+      width: 85px;
+      height: 35px;
+      line-height: 35px;
+      color: #fff;
+      .plus{
+        height: 18px;
+        width: 18px;
+        display: inline-block;
+        vertical-align: middle;
+        background: url(../assets/mobile-share-plus.png) no-repeat;
+        background-size: 100%;
+      }
+    }
+  }
+  // 房间底部
+  .room-footer {
+    width: px2rem(520);
+    min-width: 370px;
+    height: px2rem(70);
+    line-height: px2rem(70);
+    border-radius: 4px 4px 0px 0px;
+    position: fixed;
+    left: 50%;
+    bottom: 0;
+    margin-left: px2rem(-260);
+    background-image: url(../assets/download-bg.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+    color: #fff;
+    text-align: left;
+    font-size: px2rem(14);
+    span {
+      &:first-child {
+        margin-left: px2rem(59);
+      }
+      &.android,
+      &.ios {
+        padding: px2rem(6) px2rem(12);
+        border-radius: px2rem(20);
+        border: solid 1px #fff;
+        display: inline-block;
+        line-height: normal;
+        margin-left: px2rem(10);
+      }
+      &.android {
+        border: solid 1px #777777;
+        color: #777777;
+      }
+      &.ios {
+        cursor: pointer;
+        position: relative;
+        &:hover {
+          .platform {
+            display: block;
+          }
+        }
+        .platform {
+          position: absolute;
+          top: px2rem(-100);
+          display: none;
+          left: 50%;
+          margin-left: px2rem(-45);
+          .qrcode {
+            height: px2rem(90);
+            line-height: px2rem(90);
+            img {
+              vertical-align: middle;
+              max-width: px2rem(90);
+            }
+          }
+        }
+      }
+    }
+  }
+  .room-header {
+    position: fixed;
+    left: 50%;
+    margin-left: px2rem(-200);
+    background-color: #1a1b20;
+    border-radius: 0px 0px 4px 4px;
+    padding: px2rem(15) px2rem(26);
+    color: #aaa;
+    .copy-url {
+      background-color: rgba($color: #fff, $alpha: 0.1);
+      padding: 0 px2rem(34);
+      display: inline-block;
+      margin-right: px2rem(15);
+      margin-top: px2rem(15);
+      line-height: 26px;
+    }
+    .copy-btn {
+      line-height: 24px;
+      border-radius: 2px;
+      border: solid 1px #ffffff;
+      color: #fff;
+      padding: 0 px2rem(12);
+      display: inline-block;
+      cursor: pointer;
+    }
+  }
+  .qq-group {
+    position: fixed;
+    right: px2rem(15);
+    bottom: px2rem(15);
+    background-color: rgba($color: #fff, $alpha: 0.1);
+    border-radius: 4px;
+    padding: px2rem(10);
+    clear: both;
+    overflow: hidden;
+    img {
+      float: left;
+      margin-right: 2px;
+      vertical-align: middle;
+    }
+    .right {
+      float: left;
+      margin-top: 2px;
+      text-align: left;
+    }
+  }
+}
+.ios-href{
+  color: #fff;
+ text-decoration: none;
+ &:hover{
+   color: $green;
+   text-decoration: none;
+ }
+}

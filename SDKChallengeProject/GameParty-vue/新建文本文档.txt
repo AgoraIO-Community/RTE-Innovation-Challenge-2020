@@ -1,0 +1,64 @@
+{
+"workbench.colorTheme": "One Dark Pro",
+"files.autoSave": "off",
+"eslint.validate": [
+"javascript",
+"javascriptreact",
+{
+"language": "html",
+"autoFix": true
+},
+{
+"language": "vue",
+"autoFix": true
+}
+],
+"eslint.options": {
+"plugins": [
+"html"
+]
+},
+"emmet.syntaxProfiles": {
+"vue-html": "html",
+"vue": "html"
+},
+"eslint.autoFixOnSave": true,
+"workbench.iconTheme": "vscode-icons",
+"explorer.confirmDelete": false,
+"files.associations": {
+"*.wxss": "css",
+"*.wxml": "wxml"
+},
+"emmet.triggerExpansionOnTab": true,
+"fileheader.Author": "he.xiaoxue",
+"fileheader.LastModifiedBy": "he.xiaoxue",
+"vetur.format.defaultFormatter.html": "js-beautify-html",
+"vetur.format.defaultFormatter.js": "vscode-typescript",
+"docthis.authorName": "he.xiaoxue",
+"docthis.includeDescriptionTag": true,
+"docthis.includeAuthorTag": true,
+"todohighlight.include": [
+"**/*.js",
+"**/*.jsx",
+"**/*.ts",
+"**/*.tsx",
+"**/*.html",
+"**/*.php",
+"**/*.css",
+"**/*.scss",
+"**/*.vue"
+],
+"editor.multiCursorModifier": "alt",
+"liveServer.settings.donotShowInfoMsg": true,
+"editor.tabSize": 2,
+"html.format.wrapAttributes": "auto",
+"editor.quickSuggestions": {
+"strings": true
+},
+"element-helper.version": "2.3",
+"workbench.activityBar.visible": true,
+"window.menuBarVisibility": "default",
+"liveServer.settings.port": 5002,
+"[wxml]": {},
+"beautify.tabSize": 2
+}

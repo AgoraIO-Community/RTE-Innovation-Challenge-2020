@@ -1,0 +1,130 @@
+@import './variables.scss';
+// reset
+body,ol,ul,h1,h2,h3,h4,h5,h6,p,th,td,dl,dd,form,fieldset,legend,input,textarea,select{margin:0;padding:0; 
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+} 
+body{font:12px" Microsoft YaHei","Arial Narrow",HELVETICA;background:#fff;-webkit-text-size-adjust:100%;} 
+a{color:#2d374b;text-decoration:none} 
+a:hover{color:#cd0200;text-decoration:underline} 
+em{font-style:normal} 
+li{list-style:none} 
+img{border:0;vertical-align:middle} 
+table{border-collapse:collapse;border-spacing:0} 
+p{word-wrap:break-word}
+// 修改默认样式nprogress
+#nprogress .bar{
+  background: $green!important;
+}
+
+// btn
+@mixin colorBtn($color, $textColor) {
+  color: $textColor;
+  background: $color;
+  cursor: pointer;
+  display: inline-block;
+  &:hover {
+    &:before,
+    &:after {
+      background: $color;
+    }
+  }
+}
+.green-btn {
+  @include colorBtn($green, $black);
+}
+.yellow-btn {
+  @include colorBtn($yellow, $black);
+}
+
+.btn-xs {
+  border-radius: 17px;
+  padding: 0 20px;
+  line-height: 34px;
+  // font-size: 14px;
+  +.btn-xs{
+    margin-left: 20px;
+  }
+}
+
+.green {color: $green;}
+.yellow {color: $yellow;}
+.gray {color: $gray;}
+.white{color: $white;}
+
+// tool
+.c-p{cursor: pointer;}
+.blod{font-weight: bold;}
+.bloder{font-weight: bolder;}
+
+// font
+.large {font-size: 20px;}
+.middle {font-size: 18px;}
+.base {font-size: 16px;}
+.small {font-size: 14px;}
+.x-samll{font-size: 12px;}
+
+// 需要适配的屏幕宽度
+// $device-widths: 1024px, 1440px, 1680px, 1920px;
+iframe {
+  height:200px !important;
+  width: 200px !important;
+}
+@media screen and (min-width:0px) and (max-width:1300px){
+  .large {font-size: 16px;}
+  .middle {font-size: 15px;}
+  .base {font-size: 13px;}
+  .small {font-size: 12px;}
+  .x-samll{font-size: 12px;}
+}
+@media (min-width:  1300px) {
+  .large {font-size: 17px;}
+  .middle {font-size: 15px;}
+  .base {font-size: 13px;}
+  .small {font-size: 12px;}
+  .x-samll{font-size: 12px;}
+  iframe {
+  height: 130px !important;
+  width: 140px !important;
+  }
+}
+@media (min-width:  1440px) {
+  .large {font-size: 18px;}
+  .middle {font-size: 16px;}
+  .base {font-size: 14px;}
+  .small {font-size: 13px;}
+  .x-samll{font-size: 12px;}
+   iframe {
+    height: 130px !important;
+    width: 140px !important;
+  }
+
+}
+
+@media (min-width:  1680px) {
+  .large {font-size: 19px;}
+  .middle {font-size: 17px;}
+  .base {font-size: 15px;}
+  .small {font-size: 13px;}
+  .x-samll{font-size: 12px;}
+ iframe {
+    height: 150px !important;
+    width: 160px !important;
+  }
+}
+
+
+.impowerBox .qrcode {width: 150px;}
+.impowerBox .title {display: none;}
+.impowerBox .info {display: none;}
+.status_icon {display: none}
+@media (max-width:  1680px) {
+.impowerBox .qrcode {width: 130px;}
+}
+@media (max-width:  1440px) {
+.impowerBox .qrcode {width: 110px;}
+}
+@media (max-width:  1024px) {
+.impowerBox .qrcode {width: 100px;}
+}
