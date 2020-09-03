@@ -132,12 +132,10 @@
 
 #define LEANCLOUDAPPID @"NSnWnyEL3aKpDdMA5Co9Jbcy-gzGzoHsz"//9W79Xy319utC0YatiKrOsW22-gzGzoHsz
 #define LEANCLOUDCLIENTKEY @"FTQCB3XNYjvWaiivrg2DNSRj"
-#define GGAUDIOAPPID @"565813b5fefd4804a1303dc32d9e8a38"
 
-//测试的key
-//#define LEANCLOUDAPPID @"9W79Xy319utC0YatiKrOsW22-gzGzoHsz"//9W79Xy319utC0YatiKrOsW22-gzGzoHsz
-//#define LEANCLOUDCLIENTKEY @"1agi4BOW7kaw1wpXuoad4yv8"
-//#define GGAUDIOAPPID @"00d8c568abeb46e5b2a603df2555f28c"
+
+#define GGAUDIOAPPID @"此处填入Agora APPID"
+
 
 #define GGWECHATAPPKEY @"wx026896f699d2b222"
 #define GGWECHATAPPSERC @"1577c025b6c07c76b804825d9af88fac"
@@ -161,21 +159,6 @@
 #define IPHONE_TOPSENSOR_HEIGHT      (CGFloat)(IS_IPHONE_X ? (32) : (0))
 
 
-
-//#define YYISiPhoneX [[UIScreen mainScreen] bounds].size.width >=375.0f && [[UIScreen mainScreen] bounds].size.height >=812.0f&& YYIS_IPHONE
-//#define YYIS_IPHONE (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone)
-////状态栏高度
-//#define kStatusBarHeight    (CGFloat)(YYISiPhoneX?(44):(20))
-//// 状态栏和导航栏总高度
-//#define kNavBarHAbove7      (CGFloat)(YYISiPhoneX?(88):(64))
-//// TabBar高度
-//#define kTabBarHeight       (CGFloat)(YYISiPhoneX?(49+34):(49))
-//// 顶部安全区域远离高度
-//#define kTopBarSafeHeight   (CGFloat)(YYISiPhoneX?(44):(0))
-//// 底部安全区域远离高度
-//#define kBottomSafeHeight   (CGFloat)(YYISiPhoneX?(34):(0))
-//// iPhoneX的状态栏高度差值
-//#define kTopBarDifHeight    (CGFloat)(YYISiPhoneX?(24):(0))
 
 
 #define RGBCOLOR(r,g,b) [UIColor colorWithRed:r/255.0 green:g/255.0 blue:b/255.0 alpha:1]
