@@ -1,0 +1,14 @@
+<resources>
+    <string name="app_name">表情包Battle</string>
+    <string name="app_description">和好友进行一场紧张刺激的模仿表情包大赛吧</string>
+    <string name="create_channel">创建房间</string>
+    <string name="enter_room">进入房间</string>
+    <string name="permission_dialog_title">Battle权限</string>
+    <string name="permission_dialog_message">需要相应的权限才能发起battle</string>
+    <string name="introduction_1">这是一款朋友间模仿表情对战的小游戏</string>
+    <string name="introduction_2">在游戏中需要尽力模仿屏幕的表情</string>
+    <string name="introduction_3">完成后告诉你是否获胜</string>
+    <string name="play">开始游戏</string>
+    <string name="permission_denied">玩游戏需要通过相应的权限</string>
+    <string name="input_room_id">请输入正确的房间号</string>
+</resources>
