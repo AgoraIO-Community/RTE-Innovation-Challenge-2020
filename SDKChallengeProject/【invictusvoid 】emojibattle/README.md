@@ -13,7 +13,7 @@
 [Live video](https://github.com/underwindfall/blogAssets/raw/master/match/1599088412675314.mp4)
   
 ## 什么是Emoji Battle
-声网2020秋季开发者大赛参赛作品, 这是一款基于`RTC 视频开发`和`机器学习`人脸表情的娱乐性项目。
+声网RTE-2020开发者大赛参赛作品, 这是一款基于`RTC 视频开发`和`机器学习`人脸表情的娱乐性项目。
 
 ## 如何体验
 - 需要在`string-config.xml`下填写正确的`appId` 与 `token`
