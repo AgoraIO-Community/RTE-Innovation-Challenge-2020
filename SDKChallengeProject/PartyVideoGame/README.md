@@ -22,6 +22,10 @@
 - 浏览器： https://localhost
 
 ## 项目预览
+ - 欢迎
+
+<img src="/images/0.png"  width="250" height="210" border="2" />   
+
  - 开始游戏
 
  <img src="https://raw.githubusercontent.com/bryht/RTE-Innovation-Challenge-2020/master/SDKChallengeProject/PartyVideoGame/images/1.png"  width="250" height="210" border="2" />   
