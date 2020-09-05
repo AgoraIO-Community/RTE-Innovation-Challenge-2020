@@ -24,7 +24,7 @@
 ## 项目预览
  - 欢迎
 
-<img src="/images/0.png"  width="250" height="210" border="2" />   
+<img src="./images/0.png"  width="300" height="210" border="2" />   
 
  - 开始游戏
 
