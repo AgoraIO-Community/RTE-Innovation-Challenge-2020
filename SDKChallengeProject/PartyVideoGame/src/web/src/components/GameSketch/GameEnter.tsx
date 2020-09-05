@@ -114,7 +114,7 @@ export default class GameEnter extends React.Component<IGameEnterProps, IGameEnt
           </div>
           <div className={styles.right}>
             <div>Please join the game through the link using your phone:</div>
-            <div>https://letshaveaparty.online/game/{this.state.gameRoom.gameId}/join</div>
+            <div>https://localhost/game/{this.state.gameRoom.gameId}/join</div>
             <div>
               <a href="https://web.whatsapp.com/" target={"blank"} >Share to WhatsApp</a>
             </div>
