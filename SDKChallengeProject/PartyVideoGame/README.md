@@ -28,16 +28,16 @@
 
  - 开始游戏
 
- <img src="https://raw.githubusercontent.com/bryht/RTE-Innovation-Challenge-2020/master/SDKChallengeProject/PartyVideoGame/images/1.png"  width="250" height="210" border="2" />   
+ <img src="./images/1.png"  width="250" height="210" border="2" />   
  
  - 游戏中
 
- <img src="https://raw.githubusercontent.com/bryht/RTE-Innovation-Challenge-2020/master/SDKChallengeProject/PartyVideoGame/images/2-1.png"  width="270" height="180" border="2" /><img src="https://raw.githubusercontent.com/bryht/RTE-Innovation-Challenge-2020/master/SDKChallengeProject/PartyVideoGame/images/2-2.png"  width="240" height="180" border="2" /><img src="https://raw.githubusercontent.com/bryht/RTE-Innovation-Challenge-2020/master/SDKChallengeProject/PartyVideoGame/images/2-3.png"  width="240" height="100" border="2" />   
+ <img src="./images/2-1.png"  width="270" height="180" border="2" /><img src="./images/2-2.png"  width="240" height="180" border="2" /><img src="./images/2-3.png"  width="240" height="100" border="2" />   
 
 
  - 视频+游戏
 
- <img src="https://raw.githubusercontent.com/bryht/RTE-Innovation-Challenge-2020/master/SDKChallengeProject/PartyVideoGame/images/3.png"  width="240" height="180" border="2" /><img src="https://raw.githubusercontent.com/bryht/RTE-Innovation-Challenge-2020/master/SDKChallengeProject/PartyVideoGame/images/5.png"  width="240" height="180" border="2" />   
+ <img src="./images/3.png"  width="240" height="180" border="2" /><img src="./images/5.png"  width="240" height="180" border="2" />   
 
 ## 作者
 * Ming bryht@live.com
