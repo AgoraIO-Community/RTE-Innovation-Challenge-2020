@@ -14,12 +14,28 @@
 - google firebase
 - docker
 
-## 项目本地启动
+## 项目启动
 - 安装 docker, docker-compose
+- 找到`docker-compose.yml`文件，并替换相关参数
+    ```
+    - REACT_APP_APP_ID=${REACT_APP_APP_ID}
+    - REACT_APP_FIREBASE_KEY=${REACT_APP_FIREBASE_KEY}
+    - REACT_APP_FIREBASE_PROJECT_ID=${REACT_APP_FIREBASE_PROJECT_ID}
+    - REACT_APP_FIREBASE_APP_ID=${REACT_APP_FIREBASE_APP_ID}
+    - REACT_APP_FIREBASE_SENDER_ID=${REACT_APP_FIREBASE_SENDER_ID}
+    - REACT_APP_FIREBASE_MEASUREMENT_ID=${REACT_APP_FIREBASE_MEASUREMENT_ID}
+    ```
 - win环境下 `.\start.ps1`
     * 其他环境可以直接尝试脚本中的命令
 
 - 浏览器： https://localhost
+
+<br>
+<hr>
+
+
+- 或直接线上环境: https://letshaveaparty.online/ , 可能需要VPN，因调用了Firebase auth
+
 
 ## 项目预览
  - 欢迎
