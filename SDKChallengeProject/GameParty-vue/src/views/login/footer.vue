@@ -9,7 +9,7 @@
       </div>
     </div>
     <div class="left small">
-      <span>下载《飞聊语音》APP<br>免费领steam游戏大作</span>
+      <span>下载《G游语音》APP<br>免费领steam游戏大作</span>
     </div>
     <div class="right">
       <span class="btn-xs green-btn" @mouseover="showDownload=true" @mouseleave="showDownload=false">APP下载</span>

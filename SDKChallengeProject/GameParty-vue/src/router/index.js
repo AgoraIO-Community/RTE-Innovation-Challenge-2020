@@ -26,7 +26,7 @@ export default new Router({
       name: 'chatRoom',
       component: Room
       // meta: {
-      //   title: '飞聊语音房间'
+      //   title: 'G游语音房间'
       // }
     },
     {
@@ -35,7 +35,7 @@ export default new Router({
       component: Room,
       alias: '/:teamCode'
       // meta:{
-      //   title:'飞聊语音房间'
+      //   title:'G游语音房间'
       // }
     },
     {

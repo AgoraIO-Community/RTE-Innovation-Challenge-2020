@@ -3,8 +3,8 @@
     <div class="slidebar">
       <!-- LOGO -->
       <div class="logo green c-p" @click="reloadPage">
-        <img src="../../../assets/logo.png" alt="飞聊语音">
-        <h2 class="small">飞聊语音</h2>
+        <img src="../../../assets/logo.png" alt="G游语音">
+        <h2 class="small">G游语音</h2>
         <p>极速·轻便·简洁</p>
       </div>
       <!-- MENU -->

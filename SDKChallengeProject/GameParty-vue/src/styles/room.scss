@@ -1,8 +1,8 @@
 /*
  * @Author: he.xiaoxue 
  * @Date: 2018-08-31 23:31:16 
- * @Last Modified by: he.xiaoxue
- * @Last Modified time: 2018-10-03 17:40:05
+ * @Last Modified by: xiaoxuehe
+ * @Last Modified time: 2020-09-03 20:13:30
  */
 // @import './mixn.scss';
 /* 聊天室样式 */
@@ -29,7 +29,7 @@
     top: 50%;
     width: 1200px;
     height: 720px;
-    margin-top: -360px;
+    margin-top: -350px;
     margin-left: -600px;
     background-color: #1a1b20;
     border-radius: 10px;
@@ -569,6 +569,7 @@
     color: #fff;
     text-align: left;
     font-size: px2rem(14);
+    z-index: 9;
     span {
       &:first-child {
         margin-left: px2rem(59);

@@ -1,25 +1,25 @@
 /*
  * @Author: he.xiaoxue
  * @Date: 2018-08-30 15:58:03
- * @Last Modified by: he.xiaoxue
- * @Last Modified time: 2018-12-26 23:08:46
+ * @Last Modified by: xiaoxuehe
+ * @Last Modified time: 2020-09-03 20:12:17
  */
 <template>
   <div class="room">
     <!-- 房间背景 -->
-    <div class="room-bg" v-if="!isWeixin && !isMobile" :style="'background-image:url('+ roomBg+')'">
-      <div class="room-footer small">
-        <span>下载飞聊客户端</span>
-         <span class="ios"><a class="ios-href" href="http://file.guyuyin.com/b1005120761fbd26bb6d.zip">windows端</a></span>
-        <span class="ios">ios下载
-          <div class="platform">
-            <div class="qrcode">
-            <img :src="iosIcon" alt="">
-            </div>
+    <div class="room-footer small">
+      <span>下载G游客户端</span>
+        <span class="ios"><a class="ios-href" href="http://file.guyuyin.com/b1005120761fbd26bb6d.zip">windows端</a></span>
+      <span class="ios">ios下载
+        <div class="platform">
+          <div class="qrcode">
+          <img :src="iosIcon" alt="">
           </div>
-        </span>
-         <span class="android">安卓即将上线</span>
-      </div>
+        </div>
+      </span>
+        <span class="android">安卓即将上线</span>
+    </div>
+    <div class="room-bg" v-if="!isWeixin && !isMobile" :style="'background-image:url('+ roomBg+')'">
       <div class="room-header small">
         <p>复制房间链接给好友加入,无需登陆即可直接加入房间语音</p>
         <span class="copy-url">{{codeEncrypt}}</span>
@@ -1450,7 +1450,7 @@ export default {
 
       // 加密
       this.codeEncrypt = url
-      const clipText = '我正在使用飞聊语音,打开链接加入我的语音房间\(若被屏蔽请手动补充3w和点c欧m\)，' + url + ''
+      const clipText = '我正在使用G游语音,打开链接加入我的语音房间\(若被屏蔽请手动补充3w和点c欧m\)，' + url + ''
       if (event) {
         clip(clipText, event)
         if (event.currentTarget.className !== 'copy-btn') {

@@ -3,7 +3,7 @@
     <div class="mask_bg" @click="closeModal"></div>
     <div class="download-content">
       <img :src="closeIcon" alt="" class="close" @click="closeModal">
-      <img src="../../assets/xuanchuan.png" alt="飞聊语音" class="logo">
+      <img src="../../assets/xuanchuan.png" alt="G游语音" class="logo">
       <p class="word">下载APP即可使用全部功能</p>
       <a href="https://itunes.apple.com/cn/app/id1433790115?mt=8" target="_blank">
         <span class="btn" @click="downloadApp">下载APP

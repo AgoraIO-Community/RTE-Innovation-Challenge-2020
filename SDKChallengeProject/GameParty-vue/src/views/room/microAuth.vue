@@ -25,7 +25,7 @@
             <div class="title base white">您当前浏览器版本不支持语音，建议您:</div>
             <p class="chrome small text-left">1.将浏览器更新到最新版本</p>
             <p class="chrome small text-left">2.使用推荐的浏览器：<span class="green">Chrome浏览器</span>、<span class="green">搜狗浏览器</span>、<span class="green">QQ浏览器</span></p>
-            <p class="chrome small text-left">3.点击下载<a class="download-href" href= "http://file.guyuyin.com/b1005120761fbd26bb6d.zip"><span class="green">飞聊语音桌面版</span></a></p>
+            <p class="chrome small text-left">3.点击下载<a class="download-href" href= "http://file.guyuyin.com/b1005120761fbd26bb6d.zip"><span class="green">G游语音桌面版</span></a></p>
           </div>
           <div class="footer">
             <div class="btn-xs green-btn small" @click="closeModal">知道了</div>

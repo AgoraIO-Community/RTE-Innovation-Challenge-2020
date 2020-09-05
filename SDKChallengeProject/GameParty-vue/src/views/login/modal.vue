@@ -2,7 +2,7 @@
   <div class="login-modal">
     <div class="title">
       <img src="../../assets/logo.png" alt="" />
-      <p class="base green">飞聊语音·小众玩家聚集地</p>
+      <p class="base green">G游语音·小众玩家聚集地</p>
     </div>
     <div class="form small" v-show="loginByTel">
       <div class="form-group">
@@ -88,7 +88,7 @@ export default {
       const mobilePhoneNumber = this.phoneNumber
       this.AV.Cloud.requestSmsCode({
         mobilePhoneNumber: mobilePhoneNumber, // 目标手机号
-        sign: '飞聊社 ' // 控制台预设的短信签名
+        sign: 'G游社 ' // 控制台预设的短信签名
       }).then(
         function() {
           // 调用成功

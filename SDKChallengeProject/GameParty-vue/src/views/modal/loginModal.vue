@@ -2,8 +2,8 @@
  * 大厅用户登录
  * @Author: he.xiaoxue
  * @Date: 2018-09-28 23:26:49
- * @Last Modified by: he.xiaoxue
- * @Last Modified time: 2018-12-26 21:51:45
+ * @Last Modified by: xiaoxuehe
+ * @Last Modified time: 2020-09-03 16:17:09
  */
 <template>
   <transition name="mask-bg-fade">
@@ -21,10 +21,10 @@
             <img :src="closeIcon" alt="" class="close" @click="closeModal">
           </div>
             <div class="body small">
-              <p>飞聊为你提供了最纯粹的语音服务,使用 浏览器 即可与他人语音</p>
+              <p>G游为你提供了最纯粹的语音服务,使用 浏览器 即可与他人语音</p>
             </div>
             <div class="footer" v-if="way=='gift'">
-              <p class="small">现在,登录飞聊创建房间以 链接形式 邀请好友或陌生人加入</p>
+              <p class="small">现在,登录G游创建房间以 链接形式 邀请好友或陌生人加入</p>
               <div class="btn-group">
                 <span class="white-btn" @click="closeModal">先逛逛</span> 
                 <span class="green-btn" @click="loginBy('wechat')">微信登录</span>
@@ -81,6 +81,7 @@ export default {
 
 .modal-container {
   width: px2rem(380);
+  min-width: 260px;
   min-height: px2rem(220);
   margin-left: px2rem(-200);
   margin-top: px2rem(-130);
