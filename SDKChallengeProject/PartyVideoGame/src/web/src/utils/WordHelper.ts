@@ -1,4 +1,4 @@
-import sentencer from 'sentencer-fix';
+import sentencer from 'sentencer';
 
 export class WordHelper {
     static newNoun(): string {

@@ -1,2 +1,2 @@
 /// <reference types="react-scripts" />
-declare module 'sentencer-fix';
+declare module 'sentencer';
