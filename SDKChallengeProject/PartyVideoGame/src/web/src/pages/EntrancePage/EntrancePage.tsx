@@ -4,7 +4,7 @@ import styles from './EntrancePage.module.scss';
 import { IAuthProps } from "common/Authentication/IAuthProps";
 import { withAuth } from 'common/Connect/Connections';
 import { WordHelper } from 'utils/WordHelper';
-import FirebaseHelper from 'utils/FirebaseHelper';
+import ParseServerHelper from 'utils/ParseServerHelper';
 import { FaDribbbleSquare, FaGamepad, FaMitten } from 'react-icons/fa';
 import { IoMdCloseCircle } from 'react-icons/io';
 
@@ -16,10 +16,10 @@ interface IEntrancePageStates {
 }
 
 class EntrancePage extends React.Component<IEntrancePageProps, IEntrancePageStates> {
-    firebaseHelper: FirebaseHelper;
+    serviceHelper: ParseServerHelper;
     constructor(props: Readonly<IEntrancePageProps>) {
         super(props);
-        this.firebaseHelper = new FirebaseHelper();
+        this.serviceHelper = new ParseServerHelper();
         this.state = {
             roomId: WordHelper.newNoun(),
         }

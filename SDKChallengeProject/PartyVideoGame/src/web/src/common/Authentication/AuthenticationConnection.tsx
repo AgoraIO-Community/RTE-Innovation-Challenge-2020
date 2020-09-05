@@ -1,9 +1,9 @@
-import React from "react";
 import { User } from "common/Models/User";
-import { RouteComponentProps } from "react-router-dom";
-import FirebaseHelper from "utils/FirebaseHelper";
-import { IAuthProps } from "./IAuthProps";
 import Loading from "components/Loading/Loading";
+import React from "react";
+import { RouteComponentProps } from "react-router-dom";
+import ParseServerHelper from "utils/ParseServerHelper";
+import { IAuthProps } from "./IAuthProps";
 interface IAuthStates {
     currentUser?: User;
 }
@@ -15,25 +15,25 @@ export function AuthenticationConnection<TRouterParas>(ChildComponent: React.Com
     interface IWithAuthProps extends RouteComponentProps<TRouterParas> { }
 
     class WithAuthentication extends React.Component<IWithAuthProps, IAuthStates> {
-        firebaseHelper:FirebaseHelper;
+        serviceHelper: ParseServerHelper;
         constructor(props: Readonly<IWithAuthProps>) {
             super(props);
-            this.firebaseHelper=new FirebaseHelper();
+            this.serviceHelper = new ParseServerHelper();
             this.state = {
                 currentUser: undefined
             };
         }
         componentDidMount() {
-            this.firebaseHelper.onAuthStateChanged(user => {
+            this.serviceHelper.onAuthStateChanged = (user) => {
                 this.setState({ currentUser: user });
                 if (!user) {
                     this.redirectLogin();
                 }
-            })
+            }
         }
 
         componentWillUnmount() {
-            this.firebaseHelper.dispose();
+            this.serviceHelper.dispose();
         }
 
         componentDidUpdate() {
@@ -43,7 +43,7 @@ export function AuthenticationConnection<TRouterParas>(ChildComponent: React.Com
         }
 
         logout = () => {
-            this.firebaseHelper.signOut();
+            this.serviceHelper.signOut();
         }
 
         private redirectLogin = () => {

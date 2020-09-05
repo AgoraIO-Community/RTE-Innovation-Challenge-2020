@@ -11,12 +11,12 @@ import EntrancePage from 'pages/EntrancePage/EntrancePage';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import RoomPage from 'pages/RoomPage/RoomPage';
 import LoginPage from 'pages/LoginPage/LoginPage';
-import FirebaseHelper from 'utils/FirebaseHelper';
+import ParseServerHelper from 'utils/ParseServerHelper';
 import WelcomePage from 'pages/Welcome/WelcomePage';
 import GameSketchPage from 'pages/GameSketchPage/GameSketchPage';
 import GameSketchJoinPage from 'pages/GameSketchJoinPage/GameSketchJoinPage';
 
-FirebaseHelper.initial();
+ParseServerHelper.initial();
 
 ReactDOM.render(
   <Provider store={store()}>

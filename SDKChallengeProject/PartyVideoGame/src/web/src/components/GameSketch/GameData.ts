@@ -1,5 +1,5 @@
 import { GameUser } from "./Models/GameUser";
-import FirebaseHelper from "utils/FirebaseHelper";
+import ParseServerHelper from "utils/ParseServerHelper";
 import { GameRoom } from "./Models/GameRoom";
 import { SocketHelper } from "utils/SocketHelper";
 import Consts from "./Consts";
@@ -10,13 +10,13 @@ import { Line } from "./Models/Line";
 export class GameData {
 
     private socketHelper: SocketHelper;
-    private firebaseHelper: FirebaseHelper;
+    private serviceHelper: ParseServerHelper;
     public gameRoom: GameRoom;
     public gameRound: GameRound;
     public gameUsers: Array<GameUser>;
     constructor(gameId: string) {
         this.socketHelper = new SocketHelper(gameId);
-        this.firebaseHelper = new FirebaseHelper();
+        this.serviceHelper = new ParseServerHelper();
         this.gameRoom = new GameRoom(gameId);
         this.gameRound = new GameRound(gameId);
         this.gameUsers = [];
@@ -114,7 +114,7 @@ export class GameData {
     }
 
     dispose() {
-        this.firebaseHelper.dispose();
+        this.serviceHelper.dispose();
         this.socketHelper.dispose();
     }
 
