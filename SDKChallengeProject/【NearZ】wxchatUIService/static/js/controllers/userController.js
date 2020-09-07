@@ -9,7 +9,7 @@ client.on('MessageFromPeer', ({ text }, peerId) => { // text 为消息文本，p
     console.log(peerId, text)
     var html = '<li>' +
         '<div class="im-chat-user">' +
-        '<img src="/static/images/kefu.jpg"/>' +
+        '<img src="static/images/kefu.jpg"/>' +
         '<cite>客服' + peerId + '</cite>' +
         '</div>' +
         '<div class="im-chat-text">' + text + '</div>' +
@@ -224,7 +224,7 @@ $(function() {
 
         var html = '<li class="im-chat-mine">' +
             '<div class="im-chat-user">' +
-            '<img src="/static/images/guest.png"/>' +
+            '<img src="static/images/guest.png"/>' +
             '<cite>guest</cite>' +
             '</div>' +
             '<div class="im-chat-text">' + imContent($("#msg_text").val() || '&nbsp;') + '</div>' +
@@ -244,7 +244,7 @@ $(function() {
                 console.log(sendResult)
                 var html = '<li>' +
                     '<div class="im-chat-user">' +
-                    '<img src="/static/images/kefu.jpg"/>' +
+                    '<img src="static/images/kefu.jpg"/>' +
                     '<cite>客服</cite>' +
                     '</div>' +
                     '<div class="im-chat-text">' + '-----客服不在线-----' + '</div>' +
