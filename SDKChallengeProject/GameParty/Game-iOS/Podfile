@@ -1,0 +1,12 @@
+platform :ios, '8.0'
+def pods
+
+pod 'pop', '~> 1.0.9'
+
+
+
+end
+target 'GGameParty' do
+pods
+end
+
