@@ -1,0 +1,101 @@
+@import 'common';
+.main {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    position: relative;
+}
+
+.left {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    
+    .center {
+        display: flex;
+        flex: 1;
+        position: relative;
+        section{
+            display: flex;
+            flex: 1;
+        }
+        .toggleFullScreen {
+            position: absolute;
+            right: 0;
+            bottom: 0;
+            font-size: 38px;
+            margin: 6px;
+            color: gray;
+        }
+    }
+    
+    .bottom {
+        display: flex;
+        margin-top: auto;
+        align-self: center;
+        align-items: center;
+        height: 100px;
+        opacity: 0.8;
+        background-color: transparent;
+        
+        div {
+            display: flex;
+            width: 80px;
+            height: 80px;
+            margin: 0px 20px;
+            color: green;
+            border: 2px solid green;
+            background-color: lightcyan;
+            border-radius: 40px;
+            justify-content: center;
+            align-items: center;
+            font-size: 40px;
+            
+            &.mute {
+                color: red;
+                border-color: red;
+            }
+            
+            &.stop {
+                color: red;
+            }
+            &.game{
+                color: blue;
+            }
+        }
+        
+        &.fullScreen {
+            bottom: 0;
+            position: absolute;
+        }
+    }
+}
+
+.right {
+    margin-left: auto;
+    flex-direction: column;
+    width: 200px;
+    height: 100vh;
+    overflow: auto;
+    &::-webkit-scrollbar {
+        display: none;
+      }
+    &.fullScreen {
+        position: absolute;
+        right: 0;
+    }
+    
+    div {
+        margin: 2px;
+        height: 200px;
+        border: solid;
+        border-radius: 6px;
+        border-color: gray;
+        border-width: 2px;
+        overflow: hidden;
+        section {
+           width: 100%;
+           height: 100%;
+        }
+    }
+}

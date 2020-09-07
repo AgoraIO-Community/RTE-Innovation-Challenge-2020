@@ -1,0 +1,142 @@
+.draw {
+    display: flex;
+    flex: 1;
+    touch-action: none;
+
+    .control {
+        position: absolute;
+    }
+
+    canvas {
+        width: 100%;
+        height: 100%;
+        background-color: lightyellow;
+    }
+}
+
+.watch {
+    display: flex;
+    flex: 1;
+
+    .info {
+        position: absolute;
+    }
+
+    canvas {
+        flex: 1;
+        background-color: lightyellow;
+    }
+}
+
+.join {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    background-color: lightyellow;
+    justify-content: center;
+    align-items: center;
+}
+
+.enter {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    background-color: lightyellow;
+    justify-content: center;
+    align-items: center;
+
+    h1 {
+        font-family: 'Happy Sans', cursive;
+        font-size: 67px;
+        line-height: 100px;
+        font-weight: normal;
+        color: #201e79;
+        text-align: center;
+        margin: 0;
+        padding: 0;
+        text-shadow: 3px 3px 0px rgb(38, 218, 164);
+    }
+
+    .content {
+        display: flex;
+        flex-direction: row;
+        .left {
+            .card {
+                background-color: whitesmoke;
+                position: relative;
+                width: 300px;
+                margin: 20px;
+                box-shadow: 2px 2px 2px gray, -2px -2px 2px lightgray;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                padding-bottom: 30px;
+                button.close {
+                    border:none;
+                    background: none;
+                    position: absolute;
+                    width: 40px;
+                    height: 40px;
+                    top: -20px;
+                    right: -20px;
+                    svg{
+                        font-size: 40px;
+                        color: darkred;
+                        margin: 0px;
+                    }
+                }
+        
+                svg {
+                    font-size: 50px;
+                    margin: 20px;
+                    color: #3e0894;
+                }
+                button.control {
+                    border: none;
+                    background: none;
+                    border-radius: 1rem;
+                    padding: 10px 30px;
+                    transition: all 0.3s ease;
+                    display: inline-block;
+                    font-size: 1.5rem;
+                    color: #0c2d8f;
+                    font-weight: bolder;
+                    font-family: "Muli", sans-serif;
+                    text-decoration: none;
+                    margin-top: 20px;
+                    box-shadow:  inset 1px 1px 1px lightgray, inset -1px -1px 1px gray;
+                }
+        
+                button.control:hover,
+                button.control.active {
+                    box-shadow: inset 2px 2px 2px gray, inset -2px -2px 2px lightgray;
+                }
+            }
+        }
+
+        .right {
+            margin: 20px;
+            background: url('./Assets/mobile.svg');
+            background-size: 100%;
+            background-repeat: no-repeat;
+            height: 520px;
+            width: 260px;
+
+            div{
+                margin-top: 50px;
+                margin-left: 20px;
+                width: 220px;
+                word-wrap: break-word;;
+            }
+        }
+    }
+}
+
+.choose {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    background-color: lightyellow;
+    justify-content: center;
+    align-items: center;
+}
