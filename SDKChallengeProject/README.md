@@ -1,73 +1,104 @@
-[TOC]
-# G游语音/飞聊语音
-![wp93O1.png](https://s1.ax1x.com/2020/09/02/wp93O1.png)
-* 本项目主要使用Agora 语音通话SDK为基础开发的针对游戏玩家开发的语音通讯工具，是**针对游戏玩家的一款集组队，语音的综合性软件，解决玩家玩什么，怎么玩，跟谁玩的系统系列问题**
-* 主要SDK为```iOS AgoraAudioKit```、web端```AgoraRTCSDK-2.3.1.js```
+# RTE Programming Challenge 2020
 
-**极速体验G游语音**
->iOS：下载GGame-iOS并运行到你的iPhone中
-网页：https://www.guyuyin.com
+*English* | [中文](README.zh.md)
 
-## 1.项目介绍
-![-w738](https://s1.ax1x.com/2020/09/02/wS7e3T.png)
+## Introduction
 
-**G游语音：找基友，上G游**
+The RTC Programming Challenge is an online hackathon for RTC developers, programming enthusiasts and geeks worldwide.
 
-> G游语音希望为主机玩家提供一个社区化的解决方案，解决主机玩家不聚集，难以组队的痛点，帮助玩家完成从寻找队友-语音-开黑的一系列过程
+This Challenge will be held in the form of "Online Programming, Online Submissions, and Online Finals". We hope that the contestants will solve the practical problems in academic, commercial, and social areas while pursuing technological innovation, and use technology to create greater value for society.
 
-## 2.项目特色
-1. 极速开黑
-![wppRMR.png](https://s1.ax1x.com/2020/09/02/wppRMR.png)
-2.极速跨平台
-[![wp9ZwV.md.png](https://s1.ax1x.com/2020/09/02/wp9ZwV.md.png)](https://imgchr.com/i/wp9ZwV)
+## Challenge - Develop Application with Agora SDK
 
-## 3.运行展示
-* 参与匹配
-![](https://s1.ax1x.com/2020/09/02/wSbfNn.md.png)
+RTC technology has been widely used in real-time interactive scenarios such as video conferencing, online education, video conferencing, online medical, etc. In the context of the global epidemic, it has accelerated the birth of new scenes such as cloud dancing, cloud gathering sings. And we believe RTC technology can do much more than that.
 
-* 开黑语音
-![](https://s1.ax1x.com/2020/09/02/wSqAUA.md.png)
+This fall competition, in addition to the original SDK published on the official website of Agora, we will also provide more scene combination capabilities with the Special Version SDK, you can also combine with Go Pro and other hardware, to build more interesting scenes. Since the Special Version SDK is more complex to develop, so we'll give the corresponding work a certain amount of extra points.
 
-* 与PC端好友极速通讯
-![wSqmgf.png](https://s1.ax1x.com/2020/09/02/wSqmgf.png)
-
-* 打开浏览器极速开黑
-![wSqWrD.png](https://s1.ax1x.com/2020/09/02/wSqWrD.md.png)
-
-* 与更多游戏爱好者同屏沟通
-![wSLFMT.png](https://s1.ax1x.com/2020/09/02/wSLFMT.md.png)
-
-* 我的-维护你的游戏战场的形象
-[![wSLbk9.md.png](https://s1.ax1x.com/2020/09/02/wSLbk9.md.png)](https://imgchr.com/i/wSLbk9)
-
-## 4.项目运行
-### 1.iOS端
-1. download zip
-2. 解压打开```/GGameParty/Lib/libs.zip```
-3. 运行```GGameParty.xcworkspace```
-
-> 由于未使用pods，文件较大，耐心等待
-
-### 2.web端
-打开https://www.guyuyin.com即可试用Demo
-1. download zip
-2. ```npm install```
-3. ```npm serve```
-
-### 3.node端
-* 使用了https://leancloud.cn 的云引擎服务。
-1. download zip
-2. ```npm install```
-3. ```npm serve```
-
-## 4.其他
-每一个玩主机游戏的同学都知道，国内主机游戏环境极差，通常找玩家开黑流程：贴吧-加群-加好友-加steam好友-加游戏好友。
-G游的出发点想把这个逻辑变的极致简单-打开G游-找到好友-极速开黑；
-
-网页一键加入语音这个功能，有一些奇妙的用途。比如天下3，九阴，梦幻这一类不自带语音系统的游戏，使用一个链接用大厅内的人快速和你建立联系是一件很酷的事，如果不用G游语音，那么你需要先问他qq，再加他qq，再开语音。如果他用yy就更麻烦勒，你可能还没有安装YY。
-
-在一些主机游戏中，比如gta5等，我们常常碰到一些老外玩家，我就曾和一个俄罗斯玩家用蹩脚英语畅聊一天。感觉很奇妙。他们可没有wechat，qq，yy。但他们有G游语音，GGameparty。
-
-这大概就是G游语音的价值所在。
+[Download Speical Version SDK](./SpecialSDK/README.zh.md)
 
 
+## Project Submission
+* [Sign up](https://www.agora.io/en/) for Agora.io account
+* Fork the official repository to your personal GitHub( https://github.com/AgoraIO-Community/RTE-Innovation-Challenge-2020.git )
+* Clone the forked repository in your GitHub account to local. 
+* Create a new personal folder under SDKChallengeProject to store your project.
+* Submit Pull Request to the official repository.
+
+## Resources
+* [Agora Official Website](https://www.agora.io/en/)
+* [SDK Download](https://docs.agora.io/en/Agora%20Platform/downloads)
+* [Special SDK Download](./SpecialSDK/README.zh.md) 
+* [Agora Documents](https://docs.agora.io/en)
+* [Demos](https://rtcdeveloper.com/t/topic/12820)
+* [2019 Chanllenge Projects](https://github.com/AgoraIO-Community/AI-in-RTC_ProgrammingChallenge)
+* [2020 Spring Challenge Projects](https://github.com/AgoraIO-Community/RTC-Hackathon)
+* [RTC Developer Forum](https://rtcdeveloper.com/)
+
+## Schedule
+
+**Registration:** July 28 - September 10
+
+**Development Phase：** July 28 - September 10
+
+**Submission Phase：** September 1 - September 10
+
+**Demonstration（Online Finals）：** September 19
+
+Tips:
+
+(1) After registering on the official website, you can enter the team formation and development stage
+
+(2) After the work is submitted, it cannot be modified. For special needs, please contact the organizing committee
+
+## Online Finals
+
+14:00 - 14:30 Opening
+
+14:30 - 17:30 Showcase
+
+17:30 - 18:00 Judgement
+
+18:00 End of the Finals
+
+## Rewards
+Excellent teams can join the Agora recruitment green channel.
+
+**First Prize:** 30000 RMB *One Team
+
+**Second Prize:** 20000 RMB *One Team
+
+**Third Prize:** 10000 RMB *One Team
+
+**Outstanding Award：** 3000 RMB
+
+## Judge
+### Yuhua Gong
+Senior iOS development engineer at Agora. He graduated from Peking University and was a freelance writer before entering the Internet industry in 2012. He joined Agora in 2014 and previously developed a mobile-end electronic magazine reader, which was designated for integration by many third-party applications such as NetEase Cloud Reading.
+
+### Qianze Zhang
+R & D engineer of Agora Web. Graduated from Oxford University in the UK, former SAP software engineer, leading the design and development of SAP Anywhere mobile terminal architecture. Joined Sound Network in 2017 and is currently a senior architect of Sound Network Agora, devoted to the application and R & D of RTE technology in entertainment, live broadcast, and other industries.
+
+### Ning Qi
+SegmentFault CTO, the full-stack engineer, graduated from the Department of Telecommunications, Huazhong University of Science and Technology, No. 98 member of Huake Electric Team He has worked for Alibaba, the initiator and core organizer of the open-source content system Typecho, and has more than 10 years of experience in Internet product development.
+
+## Review Criteria
+
+All judges will review the projects based on Degree of completion, Creativity, Practicability, Potential commercial value.
+
+*Projects with the special version of Agora SDK will get a bonus*
+
+Degree of completion (40%): the degree of realization of the works provided by the participating teams.
+Creativity (20%): the degree of innovation of the entries. Whether it is fully innovative and different from similar products in the industry.
+Practicability (20%): The actual application degree of the entries in the application scenarios. Whether it can match the user's development demands and focus on user experience.
+Potential commercial value (20%): The commercial value that the entries can generate in daily work life. Whether it can attract industry attention and sufficient influence and create market benefits.
+
+## Participants
+College students, entrepreneurs, maker companies, individual developers, as long as you love Coding, we are welcome. (All people not employed by Agora.io can participate)
+### Submit Registration
+The developer registers as an individual, and each member of the team must register separately. After registration, the official will screen the applicants.
+### Team Requirement
+This competition requires to participate by teams, each team has 1-5 people, the maximum team limit is 5 people, 1 person can only participate in 1 team.
+
+## Licenses
+
+All applications are licensed under the MIT License (MIT). 
