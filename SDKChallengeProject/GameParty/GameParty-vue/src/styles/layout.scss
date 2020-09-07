@@ -1,0 +1,328 @@
+// 侧边栏
+.slidebar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  width: px2rem(144);
+  z-index: -1;
+  background-color: #1a1b20;
+  // logo
+  .logo {
+    font-size: 13px;
+    padding: 16px 0;
+    background: url('../assets/slidebar-bg.png') no-repeat;
+    background-size: cover;
+    background-position: top center;
+    .small {
+      font-weight: bold;
+      margin-top: 3px;
+      margin-bottom: 7px;
+    }
+    img {
+      width: px2rem(49);
+      height: px2rem(45);
+    }
+  }
+  //  游戏列表
+  .games {
+    clear: both;
+    overflow: hidden;
+    padding: px2rem(20) 0;
+
+    .game-group {
+      clear: both;
+      overflow: hidden;
+      height: px2rem(900);
+
+      .game-item {
+        // display: inline-block;
+        cursor: pointer;
+        margin-bottom: px2rem(30);
+        // float: left;
+        color: $gray;
+        &:last-child {
+          margin-bottom: px2rem(400);
+        }
+        &.isall {
+          img {
+            border: none !important;
+            width: px2rem(51) !important;
+            height: px2rem(51) !important;
+          }
+        }
+        &.active {
+          color: $green;
+          position: relative;
+          &::after {
+            content: '';
+            height: px2rem(60);
+            width: px2rem(6);
+            background-color: $green;
+            position: absolute;
+            left: 0;
+            top: 50%;
+            margin-top: px2rem(-30);
+            bottom: px2rem(-20);
+          }
+          img {
+            border: solid 2px #00d95f;
+            box-sizing: border-box;
+            -moz-box-sizing: border-box;
+            -webkit-box-sizing: border-box;
+          }
+        }
+        img {
+          width: px2rem(50);
+          height: px2rem(50);
+          border-radius: 100%;
+          margin-bottom: px2rem(10);
+        }
+      }
+    }
+  }
+  // 用户信息
+  .user {
+    color: #e8e8e8;
+    position: absolute;
+    bottom: 0;
+    width: px2rem(144);
+    // left: px2rem(25);
+    word-wrap: none;
+    white-space: nowrap;
+    padding: px2rem(30) 0;
+    background-color: #1a1b20;
+    &::before {
+      content: '';
+      position: absolute;
+      top: -2px;
+      left: px2rem(25);
+      right: px2rem(25);
+      height: 2px;
+      background-color: #27282d;
+    }
+    img {
+      width: px2rem(64);
+      height: px2rem(64);
+      border-radius: 100%;
+      margin-bottom: px2rem(10);
+    }
+    p {
+      text-overflow: ellipsis;
+      overflow: hidden;
+    }
+  }
+}
+// 导航栏
+.navbar {
+  position: fixed;
+  top: 0;
+  left: px2rem(144);
+  right: 0;
+  height: px2rem(120);
+  background-color: #1a1b20;
+  .menus {
+    padding-top: px2rem(32);
+  }
+  // 菜单
+  .menu {
+    float: left;
+    height: 100%;
+    .menu-item {
+      color: $gray;
+      height: 100%;
+      // margin-top: px2rem(50);
+      cursor: pointer;
+      margin-left: px2rem(84);
+      padding-bottom: px2rem(16);
+      float: left;
+      &:first-child {
+        // margin-top: px2rem(60);
+      }
+      &.active {
+        position: relative;
+        color: $green;
+        span {
+          width: px2rem(40);
+          height: 4px;
+          background-color: $green;
+          position: absolute;
+          bottom: 0;
+          left: 50%;
+          margin-left: px2rem(-20);
+        }
+        img {
+          &.area-icon {
+            border: solid 1px #00d95f;
+            box-sizing: border-box;
+          }
+        }
+      }
+      img {
+        width: px2rem(30);
+        margin-bottom: 6px;
+        &.area-icon {
+          width: px2rem(36);
+          //  margin-bottom: 0;
+          margin-top: px2rem(-6);
+          border-radius: 50%;
+        }
+      }
+    }
+  }
+  // 搜索
+  .serach {
+    float: right;
+    height: px2rem(76);
+    line-height: px2rem(76);
+    margin-right: px2rem(170);
+    background-image: url('../assets/search.png');
+    background-repeat: no-repeat;
+    background-position: 20px center;
+    position: relative;
+    &::before {
+      content: '';
+      height: px2rem(40);
+      width: 1px;
+      background: #353841;
+      position: absolute;
+      left: 0;
+      top: px2rem(18);
+    }
+    input {
+      margin-left: 50px;
+      border: none;
+      width: 200px;
+      background: transparent;
+      color: $white;
+      &:focus {
+        outline: none;
+      }
+    }
+  }
+
+  /* tab切换 */
+  .tabs {
+    line-height: px2rem(120);
+    font-size: px2rem(32);
+    color: $white;
+    text-align: left;
+    padding: 0 px2rem(40);
+    .tab-item {
+      display: inline-block;
+      position: relative;
+      + .tab-item {
+        margin-left: px2rem(60);
+      }
+      &.active {
+        color: $green;
+        &::after {
+          content: '';
+          position: absolute;
+          bottom: 0;
+          width: px2rem(26);
+          height: 4px;
+          background-color: $green;
+          left: 50%;
+          margin-left: -px2rem(13);
+        }
+      }
+    }
+  }
+}
+.app-main {
+  position: fixed;
+  top: px2rem(120);
+  left: px2rem(144);
+  bottom: 0;
+  right: 0;
+  padding: px2rem(40);
+  background-color: #1e2027;
+}
+// 大厅操作按钮集合
+.lobby-btns {
+  position: fixed;
+  right: px2rem(60);
+  bottom: px2rem(40);
+  clear: both;
+  overflow: hidden;
+  .btn-content {
+    height: px2rem(80);
+    background-color: #1a1b20;
+    border-radius: px2rem(40);
+    margin-left: px2rem(30);
+    float: left;
+    &.circle {
+      width: px2rem(80);
+      border-radius: px2rem(80);
+      cursor: pointer;
+      img {
+        width: 100%;
+      }
+    }
+    .room,
+    .team {
+      width: px2rem(144);
+      height: px2rem(50);
+      line-height: px2rem(50);
+      border-radius: px2rem(30);
+      font-size: px2rem(20);
+      font-weight: bold;
+      color: #1b1c1e;
+      margin: px2rem(15) px2rem(20);
+      display: inline-block;
+      cursor: pointer;
+      padding-left: px2rem(20);
+      background-repeat: no-repeat;
+      background-position: px2rem(20) center;
+      background-size: px2rem(18) px2rem(18);
+    }
+    .room {
+      background-color: $yellow;
+      background-image: url(../assets/plus.png);
+    }
+    .team {
+      background-color: $green;
+      background-image: url(../assets/speed.png);
+      background-size: px2rem(18) px2rem(30);
+    }
+  }
+}
+// 当前房间
+.current-room {
+  width: px2rem(275);
+  min-width: 200px;
+  height: px2rem(60);
+  padding: px2rem(10);
+  background-color: #1a1b20;
+  border-radius: px2rem(40);
+  border: solid 2px #00d95f;
+  position: fixed;
+  left: 1.88rem;
+  bottom: 0.4rem;
+  cursor: pointer;
+  .avatar {
+    width: px2rem(60);
+    height: px2rem(60);
+    border-radius: 50%;
+    float: left;
+  }
+  .title {
+    float: left;
+    line-height: px2rem(25);
+    margin-left: px2rem(10);
+    margin-top: px2rem(10);
+    text-align: left;
+  }
+  .arrow {
+    display: inline-block;
+    width: px2rem(32);
+    height: px2rem(32);
+    position: absolute;
+    right: px2rem(22);
+    top: px2rem(24);
+    background-image: url(../assets/cirle-arrow.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+}

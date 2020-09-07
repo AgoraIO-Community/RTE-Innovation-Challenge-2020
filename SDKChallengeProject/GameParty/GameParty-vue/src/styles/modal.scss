@@ -1,0 +1,135 @@
+/* 弹窗公共样式 */
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  .mask_bg {
+    width: 100%;
+    height: 100%;
+    background: rgba(1, 1, 1, 0.4);
+  }
+  .modal-container {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    background-color: #1e2027;
+    border-radius: 4px;
+    color: $gray;
+    .header {
+      .close {
+        position: absolute;
+        right: 13px;
+        top: 13px;
+        width: px2rem(26);
+        height: px2rem(26);
+        cursor: pointer;
+      }
+    }
+  }
+}
+/* endof 弹窗公共样式 */
+
+/* 用户信息弹窗 */
+.modal-container {
+  &.user-info {
+    width: px2rem(390);
+    // height: px2rem(432);
+    margin-top: px2rem(-210);
+    margin-left: px2rem(-226);
+    background: url('../assets/userinfo_bg.png') no-repeat;
+    background-color:#242730;
+    background-size: 100%;
+    padding: 15px 15px 0 15px;
+    .header {
+      text-align: left;
+    }
+    .body {
+      .avatar {
+        width: px2rem(88);
+        height: px2rem(88);
+        border-radius: 50%;
+        margin-bottom: 10px;
+      }
+      .stem-sex{
+        margin-top: px2rem(20);
+        line-height:1.8em;
+      }
+      .sex{
+        background: url('../assets/woman.png') no-repeat;
+        width: 16px;
+        height: 16px;
+        display: inline-block;
+        background-size: contain;
+        vertical-align: middle;
+        margin-right: 5px;
+        position: relative;
+        top: -2px;
+        &.man{
+           background: url('../assets/man.png') no-repeat;
+        }
+      }
+      /* 成就 */
+      .achievement{
+        clear: both;
+        overflow: hidden;
+        height: px2rem(84);
+        margin-top: px2rem(30);
+        >div{
+          width: 25%;
+          height: 100%;
+          float: left;
+          background-repeat: no-repeat;
+          background-size: px2rem(84) px2rem(84);
+          background-position: center;
+          font-family: 'PingFang';
+          font-weight: bold;
+          &.tdzl{
+            background-image: url('../assets/userinfo_01.png');
+          }
+          &.zjdy{
+            background-image: url('../assets/userinfo_02.png');
+          }
+          &.tdyh{
+            background-image: url('../assets/userinfo_03.png');
+          }
+          &.lyzr{
+            background-image: url('../assets/userinfo_04.png');
+          }
+          .count{
+            margin-top: px2rem(18);
+            line-height: px2rem(18);
+          }
+        }
+      }
+    }
+    .footer{
+      line-height: px2rem(60);
+      margin-top: px2rem(30);
+      margin-left: -15px;
+      margin-right: -15px;
+      border-top: 1px solid #3a3d45;
+      span{
+        display: inline-block;
+        cursor: pointer;
+       &.owner{
+        width: 49%;
+       }
+       &:hover{
+         color:$green;
+       }
+        +span{
+          border-left: 1px solid #3a3d45;
+         
+        }
+      }
+    }
+  }
+}
+.shareRoom{
+   background-image: url('../assets/share-bg.png');
+}
+.match-team{
+   background-image: url('../assets/match-bg.png');
+}

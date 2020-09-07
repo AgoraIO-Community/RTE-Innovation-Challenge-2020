@@ -1,0 +1,18 @@
+.slidebar{
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  width: px2rem(144);
+  background-color: #1a1b20;
+  .logo{
+    font-size: 13px;
+    .small{
+      font-weight: bold;
+    }
+    img{
+      width: px2rem(49);
+    	height: px2rem(45);
+    }
+  }
+}
