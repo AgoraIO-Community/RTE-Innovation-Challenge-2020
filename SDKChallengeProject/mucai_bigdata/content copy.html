@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>联系客服</title>
+    <link rel="stylesheet" href="css/rtm-styles.css" />
+</head>
+
+<body class="agora-theme">
+    <div id="app">
+
+
+        <!-- 模态框 -->
+        <div id="id01" class="modal" style="display:block" v-if="!login_status">
+            <!-- <span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal">&times;</span> -->
+
+            <!-- 内容 -->
+            <form class="modal-content animate" @submit.prevent="login">
+                <!-- <div class="imgcontainer">
+                    <img src="img_avatar2.png" alt="Avatar" class="avatar">
+                </div> -->
+
+                <div class="container">
+                    <label><b>用户名</b></label>
+                    <input type="text" class="rtm_uid" placeholder="请输入英文用户名" name="uid" v-model="rtm_uid" required>
+
+                    <!-- <label><b>密码</b></label>
+                    <input type="password" placeholder="请输入密码" name="psw" required> -->
+
+                    <button>寻找客服</button>
+                    <!-- <input type="checkbox" checked="checked">记住我 -->
+                </div>
+
+                <!-- <div class="container" style="background-color:#f1f1f1">
+                    <button type="button" onclick="document.getElementById('id01').style.display='none'" class="cancelbtn">取消</button>
+                    <span class="psw">忘记<a href="#">密码？</a></span>
+                </div> -->
+            </form>
+        </div>
+
+
+        <div v-else>
+            <div v-if="rtm_uid == 'kefu'">
+                <div class="box">
+                    <div class="left-box">
+                        <ul>
+                            <li v-for="(item,index) in navList" :class="{active:index ==num}" @click="tab(index)">
+                                {{item}}
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="right-box">
+                        <ol class="chat" v-for="(itemCon,index) in tabContents" v-show="index == num">
+                            <li class="other">
+                                <div class="avatar"><img src="images/DY6gND0.png" draggable="false" /></div>
+                                <div class="msg">
+                                    <p>Hola!</p>
+                                    <p>Te vienes a cenar al centro?
+                                        <emoji class="pizza" />
+                                    </p>
+                                    <time>20:17</time>
+                                </div>
+                            </li>
+                            <li class="self">
+                                <div class="avatar"><img src="images/HYcn9xO.png" draggable="false" /></div>
+                                <div class="msg">
+                                    <p>Puff...</p>
+                                    <p>Aún estoy haciendo el contexto de Góngora...
+                                        <emoji class="books" />
+                                    </p>
+                                    <p>Mejor otro día</p>
+                                    <time>20:18</time>
+                                </div>
+                            </li>
+                            <!-- <div class="day">Hoy</div> -->
+                        </ol>
+                        <input class="textarea" type="text" placeholder="请输入消息!" v-model="rtm_message" @keyup.enter="sendMsg" />
+                        <div class="emojis"></div>
+
+                    </div>
+                </div>
+            </div>
+
+
+
+            <div v-else>
+                <div class="menu">
+
+                    <div class="back"><i class="fa fa-chevron-left"></i> <img src="images/DY6gND0.png" draggable="false" /></div>
+
+                    <div class="name"></div>
+
+                    <div class="last">18:09</div>
+
+                </div>
+                <ol class="chat">
+                    <li class="other">
+                        <div class="avatar"><img src="images/DY6gND0.png" draggable="false" /></div>
+                        <div class="msg">
+                            <p>Hola!</p>
+                            <p>Te vienes a cenar al centro?
+                                <emoji class="pizza" />
+                            </p>
+                            <time>20:17</time>
+                        </div>
+                    </li>
+                    <li class="self">
+                        <div class="avatar"><img src="images/HYcn9xO.png" draggable="false" /></div>
+                        <div class="msg">
+                            <p>Puff...</p>
+                            <p>Aún estoy haciendo el contexto de Góngora...
+                                <emoji class="books" />
+                            </p>
+                            <p>Mejor otro día</p>
+                            <time>20:18</time>
+                        </div>
+                    </li>
+                    <li class="other">
+                        <div class="avatar"><img src="images/DY6gND0.png" draggable="false" /></div>
+                        <div class="msg">
+                            <p>Qué contexto de Góngora?
+                                <emoji class="suffocated" />
+                            </p>
+                            <time>20:18</time>
+                        </div>
+                    </li>
+                    <li class="self">
+                        <div class="avatar"><img src="images/HYcn9xO.png" draggable="false" /></div>
+                        <div class="msg">
+                            <p>El que mandó Marialu</p>
+                            <p>Es para mañana...</p>
+                            <time>20:18</time>
+                        </div>
+                    </li>
+                    <li class="other">
+                        <div class="avatar"><img src="images/DY6gND0.png" draggable="false" /></div>
+                        <div class="msg">
+                            <p>
+                                <emoji class="scream" />
+                            </p>
+                            <p>Pásamelo!
+                                <emoji class="please" />
+                            </p>
+                            <time>20:18</time>
+                        </div>
+                    </li>
+                    <li class="other">
+                        <div class="avatar"><img src="images/DY6gND0.png" draggable="false" /></div>
+                        <div class="msg">
+                            <p>Gracias!
+                                <emoji class="hearth_blue" />
+                            </p>
+                            <time>20:20</time>
+                        </div>
+                    </li>
+                    <div class="day">Hoy</div>
+                    <li class="self">
+                        <div class="avatar"><img src="images/HYcn9xO.png" draggable="false" /></div>
+                        <div class="msg">
+                            <p>Te apetece jugar a Minecraft?</p>
+                            <time>18:03</time>
+                        </div>
+                    </li>
+                    <li class="other">
+                        <div class="avatar"><img src="images/DY6gND0.png" draggable="false" /></div>
+                        <div class="msg">
+                            <p>Venga va, hace ya mucho que no juego...</p>
+                            <time>18:07</time>
+                        </div>
+                    </li>
+                    <li class="self">
+                        <div class="avatar"><img src="images/HYcn9xO.png" draggable="false" /></div>
+                        <div class="msg">
+                            <p>Ehh, me crashea el Launcher...
+                                <emoji class="cryalot" />
+                            </p>
+                            <time>18:08</time>
+                        </div>
+                    </li>
+                    <li class="other">
+                        <div class="avatar"><img src="images/DY6gND0.png" draggable="false" /></div>
+                        <div class="msg">
+                            <p>
+                                <emoji class="lmao" />
+                            </p>
+                            <time>18:08</time>
+                        </div>
+                    </li>
+                    <li class="self">
+                        <div class="avatar"><img src="images/HYcn9xO.png" draggable="false" /></div>
+                        <div class="msg">
+                            <p>Es broma</p>
+                            <p>Ataque Moai!</p>
+                            <p><span><emoji class="moai"/></span><span><emoji class="moai"/></span><span><emoji class="moai"/></span><span><emoji class="moai"/></span><span><emoji class="moai"/></span><span><emoji class="moai"/></span></p>
+                            <time>18:09</time>
+                        </div>
+                    </li>
+                    <li class="other">
+                        <div class="avatar"><img src="images/DY6gND0.png" draggable="false" /></div>
+                        <div class="msg">
+                            <p>Copón</p>
+                            <p>
+                                <emoji class="funny" />
+                            </p>
+                            <time>18:08</time>
+                        </div>
+                    </li>
+                </ol>
+                <input class="textarea" type="text" placeholder="请输入消息!" v-model="rtm_message" @keyup.enter="sendMsg" />
+                <div class="emojis"></div>
+            </div>
+        </div>
+    </div>
+</body>
+
+
+<script src="js/lib/jquery-3.3.1.min.js"></script>
+<script src="libs/agora-rtm-sdk-1.3.1.js"></script>
+<script src="js/lib/vue.min.js"></script>
+<script src="js/app.js"></script>
+<script type="module" src="js/controllers/content.js"></script>
+
+
+
+
+</html>
