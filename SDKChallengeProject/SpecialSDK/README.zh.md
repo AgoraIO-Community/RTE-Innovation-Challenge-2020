@@ -4,11 +4,11 @@
 
 ## SDK 下载
 
-[点击下载 Android](https://release.agoralab.co/disk/v2.7.1/android/2020-07-27/Agora_NG_RTE_SDK_for_Android_v2.7.1.2761_20200727_2231.zip)
+[点击下载 Android](https://download.agora.io/sdk/release/Agora_NG_RTE_SDK_for_Android_v2.7.1.2761_20200727_2231.zip)
 
-[点击下载 iOS](https://release.agoralab.co/disk/v2.7.1/ios/2020-07-28/Agora_NG_RTE_SDK_for_iOS_v2.7.1.21085_20200728_1157.zip)
+[点击下载 iOS](https://download.agora.io/sdk/release/Agora_NG_RTE_SDK_for_iOS_v2.7.1.21085_20200728_1157.zip         )
 
-[点击下载 Windows](https://release.agoralab.co/disk/v2.7.1/windows/2020-07-26/x86/Agora_NG_RTE_SDK_for_Windows_x86_v2.7.1.25414_20200726_2255.zip)
+[点击下载 Windows](https://download.agora.io/sdk/release/Agora_NG_RTE_SDK_for_Windows_x86_v2.7.1.25414_20200726_2255.zip)
 
 ## 功能 & 性能 亮点
 ### 加强频道管理  - 多频道，多视频流 - 新增和修改接口说明

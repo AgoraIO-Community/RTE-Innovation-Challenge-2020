@@ -1,0 +1,87 @@
+@import 'common';
+@import '~bootstrap/scss/alert';
+@import '~bootstrap/scss/input-group';
+@import '~bootstrap/scss/forms';
+
+.main {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    @include background-yellow;
+
+    .card {
+        background-color: whitesmoke;
+        position: relative;
+        width: 300px;
+        top: -50px;
+        margin: 20px;
+        box-shadow: 2px 2px 2px gray, -2px -2px 2px lightgray;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding-bottom: 30px;
+        .close {
+            position: absolute;
+            width: 40px;
+            height: 40px;
+            top: -20px;
+            right: -20px;
+            svg{
+                font-size: 40px;
+                color: darkred;
+                margin: 0px;
+            }
+        }
+        .roomName {
+            @extend .input-group,
+            .input-group-lg;
+            align-self: center;
+            width: 80%;
+
+            div {
+                @extend .input-group-prepend;
+
+                span {
+                    @extend .input-group-text;
+                }
+            }
+
+            input {
+                @extend .form-control;
+            }
+        }
+
+        svg {
+            font-size: 50px;
+            margin: 20px;
+            color: #3e0894;
+        }
+
+        a.button {
+            border-radius: 1rem;
+            border: none;
+            padding: 10px 30px;
+            transition: all 0.3s ease;
+            display: inline-block;
+            font-size: 1.5rem;
+            color: #0c2d8f;
+            font-weight: bolder;
+            font-family: "Muli", sans-serif;
+            text-decoration: none;
+            margin-top: 20px;
+            box-shadow:  inset 1px 1px 1px lightgray, inset -1px -1px 1px gray;
+        }
+
+        a.button:hover,
+        a.button.active {
+            box-shadow: inset 2px 2px 2px gray, inset -2px -2px 2px lightgray;
+        }
+
+       
+    }
+
+
+
+}

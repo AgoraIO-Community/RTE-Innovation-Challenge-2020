@@ -1,0 +1,12 @@
+{
+  "name": "game-server",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "express": "^4.17.1",
+    "socket.io": "^2.3.0"
+  },
+  "scripts": {
+    "start": "node ./server.js ."
+  }
+}

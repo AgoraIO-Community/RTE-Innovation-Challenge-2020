@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">压力粉碎机</string>
+    <string name="agora_access_token"></string>
+    <string name="agora_app_id">5397a042b90448cb85c7659303fd0625</string>
+</resources>
