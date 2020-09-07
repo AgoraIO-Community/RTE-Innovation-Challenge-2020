@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:background="@android:color/white"
+    android:gravity="center"
+    android:paddingBottom="20dp"
+    android:layout_height="wrap_content">
+
+
+    <FrameLayout
+        android:layout_marginTop="20dp"
+        android:id="@+id/btn_play"
+        android:visibility="visible"
+        android:layout_width="60dp"
+        android:background="@drawable/btn_circle_play_black"
+        android:padding="2dp"
+        android:layout_height="60dp">
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:background="@drawable/btn_circle_play_white"
+            android:padding="4dp"
+            android:layout_height="match_parent">
+            <ImageView
+                android:layout_width="match_parent"
+                android:src="@mipmap/img_record"
+                android:layout_height="match_parent">
+            </ImageView>
+        </FrameLayout>
+    </FrameLayout>
+
+    <LinearLayout
+        android:id="@+id/layout_recording"
+        android:layout_width="match_parent"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:visibility="visible"
+        android:layout_height="wrap_content">
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1px"
+            android:background="@android:color/darker_gray"/>
+
+        <TextView
+            android:layout_marginTop="20dp"
+            android:id="@+id/tv_record_name"
+            android:textSize="14dp"
+            android:textColor="@android:color/black"
+            android:text="这一刻最想说："
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:id="@+id/tv_recording"
+            android:textSize="14dp"
+            android:textColor="@android:color/darker_gray"
+            android:text="记录中..."
+            android:layout_marginTop="12dp"
+            android:layout_marginBottom="12dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <FrameLayout
+            android:id="@+id/btn_end"
+            android:layout_width="60dp"
+            android:background="@drawable/btn_circle_play_black"
+            android:padding="2dp"
+            android:layout_height="60dp">
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:background="@drawable/btn_circle_play_white"
+                android:padding="14dp"
+                android:layout_height="match_parent">
+                <FrameLayout
+                    android:layout_width="match_parent"
+                    android:background="@drawable/btn_corner_6_black"
+                    android:layout_height="match_parent">
+                </FrameLayout>
+            </FrameLayout>
+        </FrameLayout>
+
+    </LinearLayout>
+
+
+
+
+
+
+
+
+</LinearLayout>
