@@ -10,7 +10,7 @@
 
 ###### 			蛋糕percent：（按亩产1500斤玉米1块/斤）
 
-​			![农主](H:\exampleproject\aaaa_big_program\agora_challenge\RTE-Innovation-Challenge-2020\SDKChallengeProject\TAAS\pic\农主.png)
+​			![农主](http://182.92.164.242:8080/taas_app/%E5%86%9C%E4%B8%BB.png)
 
 ![流转](H:\exampleproject\aaaa_big_program\agora_challenge\RTE-Innovation-Challenge-2020\SDKChallengeProject\TAAS\pic\流转.png)
 
