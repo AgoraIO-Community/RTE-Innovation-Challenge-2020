@@ -6,6 +6,7 @@
   const { ipcRenderer } = require("electron");
   import WebEditor from "./WebEditor.svelte";
   import Story from "./Story.svelte";
+  import User from "./User.svelte";
   import { formatTime, genNewScene, genId } from "./utils";
   import type { Chapter, Scene } from "./utils";
   import PlusCircle from "./icons/plus-circle.svg";
@@ -217,20 +218,22 @@
     </button>
   </ul>
   <div id="content-wrapper" class="d-flex flex-column">
-    {#if currentStory}
-      <div id="content">
-        <nav
-          class="navbar navbar-expand navbar-light bg-white topbar static-top
-            mb-4 shadow justify-content-end">
-          {#if currentChapter}
-            <div class="navbar-nav mr-auto" transition:fade>
-              <span
-                role="button"
-                class="mr-2"
-                on:click={finishScene}>{@html ArrowLeft}</span>
-              <strong>{currentChapter.name}</strong>
-            </div>
-          {/if}
+    <div id="content">
+      <nav
+        class="navbar navbar-expand navbar-light bg-white topbar static-top mb-4
+          shadow justify-content-end">
+        {#if currentChapter}
+          <div class="navbar-nav mr-auto" transition:fade>
+            <span
+              role="button"
+              class="mr-2"
+              on:click={finishScene}>{@html ArrowLeft}</span>
+            <strong>{currentChapter.name}</strong>
+          </div>
+        {/if}
+        <User />
+        <button class="btn btn-success mr-3">协作</button>
+        {#if currentStory}
           <button
             class="btn btn-light mr-3"
             on:click={() => {
@@ -242,100 +245,100 @@
             }}>
             {previewStory ? '返回' : '预览'}
           </button>
-        </nav>
-        {#if previewStory}
-          <Story story={previewStory} />
-        {:else if currentChapter}
-          <div class="editor-wrapper" in:fly>
-            <WebEditor
-              chapter={currentChapter}
-              sceneIdx={currentChapter.sequence.indexOf(currentScene)}
-              on:update={flushStories} />
-          </div>
-        {:else}
-          <div class="container">
-            <h1
-              contenteditable
-              bind:innerHTML={currentStory.name}
-              placeholder="请输入故事标题"
-              on:blur={() => {
-                flushStories();
-              }} />
-            <div />
-            {#each currentStory.chapters as chapter}
-              <div class="chapter">
-                <h2
-                  contenteditable
-                  bind:innerHTML={chapter.name}
-                  placeholder="请输入章节标题"
-                  on:blur={() => {
-                    flushStories();
-                  }} />
-                <div class="chapters">
-                  {#each chapter.sequence as scene}
-                    {#if currentScene === scene}
-                      <div class="col-12" />
-                    {:else}
-                      <div class="col-3">
-                        <div
-                          class="card border-left-primary shadow h-100 py-2"
-                          on:click={() => editScene(chapter, scene)}
-                          role="button">
-                          <button
-                            class="btn btn-sm btn-danger btn-circle remove-btn"
-                            on:click|stopPropagation={() => removeScene(chapter, scene)}>
-                            {@html Cross}
-                          </button>
-                          <div class="card-body card-sm">
-                            <div class="row no-gutters align-items-center">
-                              <div class="col mr-2">
-                                <div
-                                  class="text-xs font-weight-bold text-primary
-                                    text-uppercase mb-1"
-                                  contenteditable
-                                  bind:innerHTML={scene.name}
-                                  placeholder="请输入场景名称"
-                                  on:blur={() => {
-                                    flushStories();
-                                  }}
-                                  on:click={(e) => e.stopPropagation()}>
-                                  {scene.name}
-                                </div>
-                                <div
-                                  class="h5 mb-0 font-weight-bold text-gray-800">
-                                  时长：{formatTime(scene.totalTime)}
-                                </div>
+        {/if}
+      </nav>
+      {#if !currentStory}
+        <div class="empty">
+          <button type="button" class="btn btn-primary" on:click={addStory}>
+            新增故事
+          </button>
+        </div>
+      {:else if previewStory}
+        <Story story={previewStory} />
+      {:else if currentChapter}
+        <div class="editor-wrapper" in:fly>
+          <WebEditor
+            chapter={currentChapter}
+            sceneIdx={currentChapter.sequence.indexOf(currentScene)}
+            on:update={flushStories} />
+        </div>
+      {:else}
+        <div class="container">
+          <h1
+            contenteditable
+            bind:innerHTML={currentStory.name}
+            placeholder="请输入故事标题"
+            on:blur={() => {
+              flushStories();
+            }} />
+          <div />
+          {#each currentStory.chapters as chapter}
+            <div class="chapter">
+              <h2
+                contenteditable
+                bind:innerHTML={chapter.name}
+                placeholder="请输入章节标题"
+                on:blur={() => {
+                  flushStories();
+                }} />
+              <div class="chapters">
+                {#each chapter.sequence as scene}
+                  {#if currentScene === scene}
+                    <div class="col-12" />
+                  {:else}
+                    <div class="col-3">
+                      <div
+                        class="card border-left-primary shadow h-100 py-2"
+                        on:click={() => editScene(chapter, scene)}
+                        role="button">
+                        <button
+                          class="btn btn-sm btn-danger btn-circle remove-btn"
+                          on:click|stopPropagation={() => removeScene(chapter, scene)}>
+                          {@html Cross}
+                        </button>
+                        <div class="card-body card-sm">
+                          <div class="row no-gutters align-items-center">
+                            <div class="col mr-2">
+                              <div
+                                class="text-xs font-weight-bold text-primary
+                                  text-uppercase mb-1"
+                                contenteditable
+                                bind:innerHTML={scene.name}
+                                placeholder="请输入场景名称"
+                                on:blur={() => {
+                                  flushStories();
+                                }}
+                                on:click={(e) => e.stopPropagation()}>
+                                {scene.name}
+                              </div>
+                              <div
+                                class="h5 mb-0 font-weight-bold text-gray-800">
+                                时长：{formatTime(scene.totalTime)}
                               </div>
                             </div>
                           </div>
                         </div>
                       </div>
-                    {/if}
-                  {/each}
-                  {#if !currentScene}
-                    <button
-                      class="btn btn-light add-scene"
-                      on:click={() => addScene(chapter)}>
-                      {@html PlusCircle}
-                    </button>
+                    </div>
                   {/if}
-                </div>
+                {/each}
+                {#if !currentScene}
+                  <button
+                    class="btn btn-light add-scene"
+                    on:click={() => addScene(chapter)}>
+                    {@html PlusCircle}
+                  </button>
+                {/if}
               </div>
-            {/each}
-            <div>
-              <button type="button" class="btn btn-light" on:click={addChapter}>
-                新增章节
-              </button>
             </div>
+          {/each}
+          <div>
+            <button type="button" class="btn btn-light" on:click={addChapter}>
+              新增章节
+            </button>
           </div>
-        {/if}
-      </div>
-    {:else}
-      <div class="empty">
-        <button type="button" class="btn btn-primary" on:click={addStory}>
-          新增故事
-        </button>
-      </div>
-    {/if}
+        </div>
+      {/if}
+    </div>
   </div>
 </div>

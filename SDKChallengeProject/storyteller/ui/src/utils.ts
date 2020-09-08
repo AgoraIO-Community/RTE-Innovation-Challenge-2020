@@ -80,3 +80,7 @@ export const genNewScene: () => Scene = () => ({
 export function genId() {
   return nanoid(8);
 }
+
+export type User = {
+  username: string;
+};
