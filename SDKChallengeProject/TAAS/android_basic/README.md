@@ -12,7 +12,7 @@
 
 #### 结构：	
 
-#### 		![android_architecture](http://www.anshunfeng.com.cn/android_architecture.png)	
+#### 		![android_architecture](https://www.anshunfeng.com.cn/android_architecture.png)	
 
 #### View：
 
