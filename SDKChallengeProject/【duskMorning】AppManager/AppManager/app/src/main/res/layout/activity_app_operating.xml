@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:layout_marginLeft="10dp"
+    android:layout_marginRight="10dp"
+    tools:context=".AppOperatingActivity">
+    <Button
+        style="@style/Base.TextAppearance.AppCompat.Widget.Button.Colored"
+        android:backgroundTint="#1fbaf3"
+        android:text="进入应用"
+        android:textSize="20sp"
+        android:onClick="enterApplication"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+    <Button
+        style="@style/Base.TextAppearance.AppCompat.Widget.Button.Colored"
+        android:backgroundTint="#1fbaf3"
+        android:text="卸载应用"
+        android:textSize="20sp"
+        android:onClick="uninstallApplication"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+    <Button
+        style="@style/Base.TextAppearance.AppCompat.Widget.Button.Colored"
+        android:backgroundTint="#1fbaf3"
+        android:text="应用详情"
+        android:textSize="20sp"
+        android:onClick="applicationDetails"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+    <Button
+        style="@style/Base.TextAppearance.AppCompat.Widget.Button.Colored"
+        android:backgroundTint="#1fbaf3"
+        android:text="提取图标"
+        android:textSize="20sp"
+        android:onClick="saveIcon"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+    <Button
+        style="@style/Base.TextAppearance.AppCompat.Widget.Button.Colored"
+        android:backgroundTint="#1fbaf3"
+        android:text="提取APK"
+        android:textSize="20sp"
+        android:onClick="saveAPK"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+    <Button
+        style="@style/Base.TextAppearance.AppCompat.Widget.Button.Colored"
+        android:backgroundTint="#1fbaf3"
+        android:text="分享应用"
+        android:textSize="20sp"
+        android:onClick="shareApp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+    <Button
+        style="@style/Base.TextAppearance.AppCompat.Widget.Button.Colored"
+        android:backgroundTint="#1fbaf3"
+        android:text="权限信息"
+        android:textSize="20sp"
+        android:onClick="permissionInfo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+    <Button
+        style="@style/Base.TextAppearance.AppCompat.Widget.Button.Colored"
+        android:backgroundTint="#1fbaf3"
+        android:text="在应用市场中查看"
+        android:textSize="20sp"
+        android:onClick="gotoAPPMarket"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+</LinearLayout>

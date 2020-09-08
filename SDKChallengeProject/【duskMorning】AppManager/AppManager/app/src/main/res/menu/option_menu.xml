@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/action_search"
+        android:title="搜索"
+        app:actionViewClass="android.widget.SearchView"
+        app:showAsAction="always"/>
+    <item android:title="显示系统应用" android:id="@+id/showApp"/>
+    <item android:title="按名称排序" android:id="@+id/sortByName"/>
+    <item android:title="按权限数量排序" android:id="@+id/sortByPermissions"/>
+    <item android:title="按总大小排序" android:id="@+id/sortByALLSize"/>
+    <item android:title="按apk大小排序" android:id="@+id/sortByAPKSize"/>
+    <item android:title="捐赠支持" android:id="@+id/donate"/>
+    <item android:title="在线交流" android:id="@+id/communication"/>
+    <item android:title="退出" android:id="@+id/exit"/>
+</menu>
