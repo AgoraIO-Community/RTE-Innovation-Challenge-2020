@@ -1,0 +1,55 @@
+.mui-content>.mui-table-view:first-child {
+    margin-top: 50px;
+}
+
+body {
+    background-color: rgba(235, 235, 235);
+}
+
+
+/***群聊列表***/
+
+.chat-list .wechat-avatar {
+    float: left;
+    margin-right: 0.62999rem;
+    line-height: 3rem;
+    max-width: 3rem;
+    height: 3rem;
+}
+
+.chat-list .wechat-avatar .mui-row {
+    background-color: #dddee0;
+    padding: 0.15rem;
+    border-radius: 0.2rem;
+    margin-left: -0.05rem;
+    margin-right: -0.05rem;
+}
+
+.chat-list .wechat-avatar .mui-row [class*=mui-col-xs-] {
+    padding: 0.05rem;
+}
+
+.chat-list .wechat-avatar .mui-row [class*=mui-col-xs-] img {
+    max-width: 100%;
+    width: 100%;
+    display: block;
+}
+
+.chat-list .wechat-avatar,
+.chat-list .wechat-avatar>img {
+    border-radius: 50%;
+}
+
+.chat-list .mui-media-body>.time {
+    float: right;
+    font-size: 0.9rem;
+    color: #999999;
+}
+
+.chat-list .mui-media-body>p {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    font-size: 0.9rem;
+    color: #999999;
+}

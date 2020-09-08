@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en" style="font-size: 79.375px;">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="renderer" content="webkit">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=no">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/animate.css">
+    <link rel="stylesheet" href="css/v-charts.min.css">
+    <link rel="stylesheet" href="css/css3.css">
+    <title>采购大数据</title>
+</head>
+
+<body style="visibility: visible;">
+
+    <div id="app" v-cloak>
+        <div class="container-flex contain2" tabindex="0" hidefocus="true">
+
+            <div class="header">
+                <div class="bg_header">
+                    <div class="header_nav fl t_title ">采购大数据
+                        <a class="content_company" @click="content_company">联系客服</a>
+                    </div>
+
+                </div>
+            </div>
+            <main class="t_main">
+
+                <!--<div class="t_main_left">
+            
+                <div class="t_left_box">
+                    <img class="t_l_line" src="img/left_line.png" alt="">
+                    <div class="t_mbox t_rbox">
+                        <div class="i"></div>
+                        <div class="span">今年合同数</div>
+                        <div class="animateNum n3">
+                			<span class="t_num number">
+            					<i ref="cy" v-for="item in contract_data.cy"></i>
+                			</span>
+                		</div>
+                    </div>
+                    <div class="t_mbox t_gbox">
+                        <div class="i"></div>
+                        <div class="span">今年到单数</div>
+                        <div class="animateNum n3">
+                			<span class="t_num number">
+            					<i ref="ly" v-for="item in contract_data.ly"></i>
+                			</span>
+                		</div>
+                    </div>
+                    <img class="t_r_line" src="img/right_line.png" alt="">
+                </div>
+                
+                
+                <div class="t_left_box t_left_bottom">
+                    <img class="t_l_line" src="img/left_line.png" alt="">
+                    <div class="t_mbox t_ybox">
+                        <div class="i"></div>
+                        <div class="span">当月合同数</div>
+                        <div class="animateNum n3">
+                			<span class="t_num number">
+            					<i ref="my" v-for="item in contract_data.my"></i>
+                			</span>
+                		</div>
+                    </div>
+                    <div class="t_mbox t_gbox">
+                        <div class="i"></div>
+                        <div class="span">当月到单数</div>
+                        <div class="animateNum n3">
+                			<span class="t_num number">
+            					<i ref="ml" v-for="item in contract_data.ml"></i>
+                			</span>
+                		</div>
+                    </div>
+                    <img class="t_r_line" src="img/right_line.png" alt="">
+                </div>
+            </div>-->
+
+
+                <div class="t_main_cen">
+
+                    <div class="t_left_box">
+                        <img class="t_l_line" src="img/left_line.png" alt="">
+                        <div class="t_mbox t_rbox">
+                            <div class="i"></div>
+                            <dl>
+                                <dd>
+                                    <div class="span">近12个月合同数</div>
+                                    <div class="animateNum n3">
+                                        <span class="t_num number">
+                                        <i ref="cy" v-for="item in contract_data.cy"></i>
+                                    </span>
+                                    </div>
+                                </dd>
+                            </dl>
+                        </div>
+                        <div class="t_mbox t_gbox">
+                            <div class="i"></div>
+                            <dl>
+                                <dd>
+                                    <div class="span">近12个月到单数</div>
+                                    <div class="animateNum n3">
+                                        <span class="t_num number">
+                                        <i ref="ly" v-for="item in contract_data.ly"></i>
+                                    </span>
+                                    </div>
+                                </dd>
+                            </dl>
+                        </div>
+                        <img class="t_r_line" src="img/right_line.png" alt="">
+                    </div>
+
+                    <div class="t_top_box">
+                        <img class="t_l_line" src="img/left_line.png" alt="">
+                        <ul class="t_nav">
+                            <li>
+                                <div class="t_nav_li">
+                                    <div class="span">方数（方）</div>
+                                    <div class="animateNum n3n animatettop3">
+                                        <span class="t_num number">
+                                        <i ref="volume" v-for="item in contract_data.volume"></i>
+                                    </span>
+                                    </div>
+                                </div>
+                                <div class="i"></div>
+                            </li>
+                            <li>
+                                <div class="t_nav_li">
+                                    <div class="span">件数（件）</div>
+                                    <div class="animateNum n3n animatettop3">
+                                        <span class="t_num number">
+                                        <i ref="qty" v-for="item in contract_data.qty"></i>
+                                    </span>
+                                    </div>
+                                </div>
+                                <div class="i"></div>
+                            </li>
+                            <li>
+                                <div class="t_nav_li">
+                                    <div class="span">金额（万元）</div>
+                                    <div class="animateNum n3n animatettop3">
+                                        <span class="t_num number">
+                                        <i ref="amount" v-for="item in contract_data.amount"></i>
+                                    </span>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                        <img class="t_r_line" src="img/right_line.png" alt="">
+                    </div>
+
+                    <div class="t_bottom_box">
+                        <img class="t_l_line" src="img/left_line.png" alt="">
+                        <div class="santit">采购原产地占比分析</div>
+                        <ve-pie :data="chartPieData" height="100%" width="100%" :settings="chartPieSettings" :after-config="afterPieConfig">
+                            <div v-show="chartPieData.rows.length == 0 " class="data-empty">加载中......</div>
+                        </ve-pie>
+                        <img class="t_r_line" src="img/right_line.png" alt="">
+                    </div>
+
+
+                </div>
+
+                <div class="t_main_rig">
+                    <div class="b_left_box">
+                        <img class="t_l_line" src="img/left_line.png" alt="">
+                        <div class="santit">近12个月采购趋势分析（方）</div>
+                        <ve-line :data="chartLine1Data" height="100%" width="98%" style="margin-top: 20px;" :settings="chartLineSettings" :extend="lineExtend" :after-config="afterLineConfig">
+                            <div v-show="chartLine1Data.rows.length == 0 " class="data-empty">加载中......</div>
+                        </ve-line>
+                        <img class="t_r_line" src="img/right_line.png" alt="">
+                    </div>
+
+                    <div class="b_bot_box">
+                        <img class="t_l_line" src="img/left_line.png" alt="">
+                        <div class="santit">近12个月原木、板材采购趋势分析（方）</div>
+                        <ve-line :data="chartLine2Data" height="100%" width="98%" style="margin-top: 20px;" :settings="chartLineSettings" :extend="lineExtend" :after-config="afterLineConfig">
+                            <div v-show="chartLine2Data.rows.length == 0 " class="data-empty">加载中......</div>
+                        </ve-line>
+
+                        <img class="t_r_line" src="img/right_line.png" alt="">
+                    </div>
+
+                </div>
+
+
+            </main>
+
+            <div class="sxan_rig">
+                <a href="2.html"><img src="images/about_jt_rig.png"></a>
+            </div>
+
+        </div>
+    </div>
+</body>
+
+
+<script type="text/javascript" src="js/lib/jquery-3.3.1.min.js"></script>
+<script type="text/javascript" src="js/lib/rem.js"></script>
+<script type="text/javascript" src="js/lib/numeral.js"></script>
+<script type="text/javascript" src="js/lib/digitalScroll.js"></script>
+<script type="text/javascript" src="js/lib/echarts.min.js"></script>
+<script type="text/javascript" src="js/lib/vue.min.js"></script>
+<script type="text/javascript" src="js/lib/v-charts.min.js"></script>
+<script type="text/javascript" src="js/lib/rowcol.js"></script>
+
+<!--
+	作者：bitamin.kim@gmail.com
+	时间：2018-09-27
+	描述：controller
+-->
+<script type="text/javascript" src="js/app.js"></script>
+<script type="text/javascript" src="js/Modules/1Module.js?version=20181030"></script>
+<script type="text/javascript" src="js/controllers/1Controller.js?version=20181030"></script>
+
+</html>

@@ -1,0 +1,10 @@
+<!--index.wxml-->
+<view class="container">
+  <canvas style="width:{{chartWidth}}rpx;height:{{chartHeight}}rpx;"/><canvas canvas-id="lineCanvas" disable-scroll="true" class="canvas" bindtouchstart="touchHandler" bindtouchmove="moveHandler" bindtouchend="touchEndHandler"></canvas>
+  <!-- <button type="primary" bindtap="updateData">更新数据</button> -->
+  <view class="botton-btn">
+    <button class="mini-btn" type="default" size="mini" data-item="today" bindtap="updateData">今天</button>
+    <button class="mini-btn" type="default" size="mini" data-item="week" bindtap="updateData">近一周</button>
+    <button class="mini-btn" type="default" size="mini" data-item="month" bindtap="updateData">近一月</button>
+  </view>
+</view>

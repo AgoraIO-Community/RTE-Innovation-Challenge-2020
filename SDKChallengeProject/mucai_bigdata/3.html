@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en" style="font-size: 79.375px;">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="renderer" content="webkit">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=no">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/animate.css">
+    <link rel="stylesheet" href="css/v-charts.min.css">
+    <title>物流配送大数据</title>
+</head>
+
+<body style="visibility:visible;">
+
+    <div id="app" v-cloak>
+        <div class="container-flex contain2" tabindex="0" hidefocus="true">
+            <div class="header">
+                <div class="bg_header">
+                    <div class="header_nav fl t_title">物流配送大数据
+                        <a class="content_company" @click="content_company">联系客服</a>
+                    </div>
+                </div>
+            </div>
+
+
+
+            <!-- 左侧区域 -->
+            <div class="box-left box-left3">
+
+                <div class="left-top">
+                    <div class="current-num">
+                        <div class="current-num_tit">平台车量</div>
+                        <!--<p>{{vehicle_data.truck | formatThousand}}</p>-->
+                        <div class="animateNum animatetwo animatettop">
+                            <span class="t_num number">
+            					<i ref="truck" v-for="item in vehicle_data.truck.length"></i>
+                			</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="leftcon2">
+
+                    <div class="left-center">
+                        <div class="title-box">
+                            <h6>当日配送</h6>
+                        </div>
+                        <div class="chart-box pie-chart">
+                            <dl class="ztnull">
+                                <dt>
+	                                <div class="ztnull_2">
+	                                    <h1>当日在途车辆（辆）</h1>
+	                                    <!--<h2>{{vehicle_data.onway_truck | formatThousand}}</h2>-->
+	                                    <div class="animateNum animatetwo">
+				                			<span class="t_num number3">
+				            					<i ref="onway_truck" v-for="item in vehicle_data.onway_truck.length"></i>
+				                			</span>
+				                		</div>
+	                                </div>
+	                            </dt>
+                                <dd>
+                                    <div class="ztnull_2">
+                                        <h1>当日在途方数（方）</h1>
+                                        <!--<h2>{{vehicle_data.onway_volume | formatThousand}}</h2>-->
+                                        <div class="animateNum animatetwo">
+                                            <span class="t_num number3">
+				            					<i ref="onway_volume" v-for="item in vehicle_data.onway_volume.length"></i>
+				                			</span>
+                                        </div>
+                                    </div>
+                                </dd>
+                            </dl>
+                        </div>
+                    </div>
+
+
+                    <div class="left-bottom">
+                        <div class="title-box">
+                            <h6>全年配送（今年）</h6>
+                        </div>
+                        <div class="chart-box checrsl">
+                            <dl class="ztnull2">
+                                <dt>
+	                                <div class="ztnull_2">
+	                                    <h1>累计配送车辆（辆）</h1>
+	                                    <!--<h2>{{vehicle_data.y_truck | formatThousand}}</h2>-->
+	                                    <div class="animateNum animatetwo">
+				                			<span class="t_num number1">
+				            					<i ref="y_truck" v-for="item in vehicle_data.y_truck.length"></i>
+				                			</span>
+				                		</div>
+	                                </div>
+	                            </dt>
+                                <dd>
+                                    <div class="ztnull_2">
+                                        <h1>累计配送方数（方）</h1>
+                                        <!--<h2>{{vehicle_data.y_volume | formatThousand}}</h2>-->
+                                        <div class="animateNum animatetwo">
+                                            <span class="t_num number1">
+				            					<i ref="y_volume" v-for="item in vehicle_data.y_volume.length"></i>
+				                			</span>
+                                        </div>
+                                    </div>
+                                </dd>
+                            </dl>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- 中间区域 -->
+            <div class="box-center">
+
+                <div class="left-center">
+                    <div class="title-box">
+                        <h6>出库趋势分析（方）</h6>
+                    </div>
+                    <ve-line :data="chartLine1Data" :data-zoom="lineDataZoom" height="95%" width="99%" style="margin-top: 10px;" :settings="chartLineSettings" :extend="lineExtend" :after-config="afterLineConfig">
+                        <div v-show="chartLine1Data.rows.length == 0 " class="data-empty">加载中......</div>
+                    </ve-line>
+                </div>
+
+                <div class="left-center left-center2">
+                    <div class="title-box">
+                        <h6>销售出库材种占比分析</h6>
+                    </div>
+                    <ve-pie :data="chartPie1Data" height="85%" width="94%" style="position: absolute;margin-left: 50px;margin-top: 10px;" :settings="chartPieSettings" :after-config="afterPieConfig">
+                        <div v-show="chartPie1Data.rows.length == 0 " class="data-empty">加载中......</div>
+                    </ve-pie>
+                </div>
+
+            </div>
+
+            <!-- 右侧区域 -->
+            <div class="box-right">
+
+                <div class="right-top">
+                    <div class="title-box">
+                        <h6 id="barTitle">入库趋势分析（方）</h6>
+                    </div>
+                    <ve-line :data="chartLine2Data" :data-zoom="lineDataZoom" height="95%" width="99%" style="margin-top: 10px;" :settings="chartLineSettings" :extend="lineExtend" :after-config="afterLineConfig">
+                        <div v-show="chartLine2Data.rows.length == 0 " class="data-empty">加载中......</div>
+                    </ve-line>
+                </div>
+
+                <div class="right-top right-top2">
+                    <div class="title-box">
+                        <h6 id="barTitle">采购入库材种占比分析</h6>
+                    </div>
+                    <ve-pie :data="chartPie2Data" :colors="chartPieColors" height="85%" width="94%" style="position: absolute;margin-left: 50px;margin-top: 10px;" :settings="chartPieSettings" :after-config="afterPieConfig">
+                        <div v-show="chartPie2Data.rows.length == 0 " class="data-empty">加载中......</div>
+                    </ve-pie>
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="sxan_left">
+            <a href="2.html"><img src="images/about_jt_left.png"></a>
+        </div>
+    </div>
+</body>
+
+<!--
+	作者：bitamin.kim@gmail.com
+	时间：2018-09-27
+	描述：lib
+-->
+
+<script type="text/javascript" src="js/lib/jquery-3.3.1.min.js"></script>
+<script type="text/javascript" src="js/lib/rem.js"></script>
+<script type="text/javascript" src="js/lib/numeral.js"></script>
+<script type="text/javascript" src="js/lib/digitalScroll.js"></script>
+<script type="text/javascript" src="js/lib/echarts.min.js"></script>
+<script type="text/javascript" src="js/lib/vue.min.js"></script>
+<script type="text/javascript" src="js/lib/v-charts.min.js"></script>
+<script type="text/javascript" src="js/lib/rowcol.js"></script>
+
+<!--
+	作者：bitamin.kim@gmail.com
+	时间：2018-09-27
+	描述：controller
+-->
+<script type="text/javascript" src="js/app.js"></script>
+<script type="text/javascript" src="js/Modules/3Module.js?version=20181030"></script>
+<script type="text/javascript" src="js/controllers/3Controller.js?version=20181030"></script>
+
+</html>
