@@ -10,7 +10,11 @@
     xmlns:motion="http://schemas.android.com/apk/res-auto">
 
     <Transition
+<<<<<<< HEAD
         motion:constraintSetEnd="@+id/half"
+=======
+        motion:constraintSetEnd="@+id/end"
+>>>>>>> 2c9bdf6c20703b9f2aab594ec9adac6c013f62b5
         motion:constraintSetStart="@id/start"
         motion:duration="100"
         android:id="@+id/to_show">
@@ -38,7 +42,11 @@
             android:layout_height="40dp"
             motion:layout_constraintTop_toTopOf="parent"
             motion:layout_constraintBottom_toTopOf="@id/content_container"
+<<<<<<< HEAD
             android:alpha="1"
+=======
+            android:alpha="0.8"
+>>>>>>> 2c9bdf6c20703b9f2aab594ec9adac6c013f62b5
             motion:layout_constraintVertical_bias="0" />
         <Constraint
             android:id="@+id/content_view"
@@ -48,6 +56,7 @@
             motion:layout_constraintTop_toBottomOf="@id/title_view"
             motion:layout_constraintBottom_toTopOf="parent"
             android:layout_marginTop="40dp" />
+<<<<<<< HEAD
         <Constraint
             android:layout_width="70dp"
             android:layout_height="35dp"
@@ -61,6 +70,11 @@
     </ConstraintSet>
 
     <ConstraintSet android:id="@+id/half">
+=======
+    </ConstraintSet>
+
+    <ConstraintSet android:id="@+id/end">
+>>>>>>> 2c9bdf6c20703b9f2aab594ec9adac6c013f62b5
         <Constraint
             android:id="@+id/title_view"
             android:layout_width="match_parent"
@@ -79,12 +93,17 @@
             android:layout_height="40dp"
             motion:layout_constraintTop_toTopOf="parent"
             motion:layout_constraintBottom_toTopOf="@id/content_container"
+<<<<<<< HEAD
             android:alpha="1" />
+=======
+            android:alpha="0.8" />
+>>>>>>> 2c9bdf6c20703b9f2aab594ec9adac6c013f62b5
         <Constraint
             android:id="@+id/content_view"
             android:layout_width="match_parent"
             android:layout_height="320dp"
             android:visibility="visible"
+<<<<<<< HEAD
             android:alpha="1"
             motion:layout_constraintTop_toBottomOf="@id/title_view"/>
         <Constraint
@@ -94,6 +113,10 @@
             motion:layout_constraintBottom_toBottomOf="parent"
             motion:visibilityMode="ignore"
             android:layout_marginBottom="45dp"/>
+=======
+            android:alpha="0.4"
+            motion:layout_constraintTop_toBottomOf="@id/title_view"/>
+>>>>>>> 2c9bdf6c20703b9f2aab594ec9adac6c013f62b5
     </ConstraintSet>
     <!--dialog warning sharing-->
     <ConstraintSet
@@ -114,6 +137,7 @@
             android:id="@+id/title_tv"
             android:layout_width="match_parent"
             android:layout_height="40dp"
+<<<<<<< HEAD
             android:alpha="1" />
         <Constraint
             android:id="@+id/content_view"
@@ -129,6 +153,16 @@
             motion:layout_constraintBottom_toBottomOf="parent"
             motion:visibilityMode="ignore"
             android:layout_marginBottom="45dp" />
+=======
+            android:alpha="0.4" />
+        <Constraint
+            android:id="@+id/content_view"
+            android:layout_width="match_parent"
+            android:layout_height="320dp"
+            android:visibility="visible"
+            android:alpha="0.4"
+            motion:layout_constraintTop_toBottomOf="@id/title_view" />
+>>>>>>> 2c9bdf6c20703b9f2aab594ec9adac6c013f62b5
 
     </ConstraintSet>
     <Transition
@@ -178,8 +212,12 @@
             motion:layout_constraintTop_toTopOf="parent"
             motion:layout_constraintBottom_toTopOf="@id/content_container"
             android:layout_width="match_parent"
+<<<<<<< HEAD
             android:layout_height="40dp"
             android:alpha="1" />
+=======
+            android:layout_height="40dp" />
+>>>>>>> 2c9bdf6c20703b9f2aab594ec9adac6c013f62b5
         <Constraint
             android:id="@+id/content_view"
             android:layout_width="match_parent"
@@ -187,6 +225,7 @@
             motion:layout_constraintTop_toBottomOf="@id/title_view"
             motion:layout_constraintStart_toStartOf="parent"
             motion:layout_constraintEnd_toEndOf="parent"
+<<<<<<< HEAD
             android:alpha="1"  />
         <Constraint
             android:id="@+id/confirm_btn"
@@ -196,6 +235,9 @@
             motion:visibilityMode="ignore"
             android:layout_marginBottom="45dp"/>
 
+=======
+            android:alpha="0.4"  />
+>>>>>>> 2c9bdf6c20703b9f2aab594ec9adac6c013f62b5
     </ConstraintSet>
     <ConstraintSet
         android:id="@+id/attention_end"
@@ -217,13 +259,18 @@
             motion:layout_constraintTop_toTopOf="parent"
             motion:layout_constraintBottom_toTopOf="@id/content_container"
             android:layout_width="match_parent"
+<<<<<<< HEAD
             android:layout_height="40dp"
             android:alpha="1" />
+=======
+            android:layout_height="40dp" />
+>>>>>>> 2c9bdf6c20703b9f2aab594ec9adac6c013f62b5
         <Constraint
             android:id="@+id/content_view"
             android:layout_width="match_parent"
             android:layout_height="260dp"
             android:visibility="visible"
+<<<<<<< HEAD
             android:alpha="1"
             motion:layout_constraintTop_toBottomOf="@id/title_view" />
         <Constraint
@@ -233,6 +280,10 @@
             motion:layout_constraintBottom_toBottomOf="parent"
             motion:visibilityMode="ignore"
             android:layout_marginBottom="45dp"/>
+=======
+            android:alpha="0.4"
+            motion:layout_constraintTop_toBottomOf="@id/title_view" />
+>>>>>>> 2c9bdf6c20703b9f2aab594ec9adac6c013f62b5
     </ConstraintSet>
     <!--dialog attention sharing-->
     <Transition

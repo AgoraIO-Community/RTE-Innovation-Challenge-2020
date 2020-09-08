@@ -1,6 +1,9 @@
 package com.young.businessmvvm.data.repository.network
 
+<<<<<<< HEAD
 import com.framing.module.customer.data.RecordBean
+=======
+>>>>>>> 2c9bdf6c20703b9f2aab594ec9adac6c013f62b5
 import com.framing.module.customer.data.bean.SimpleDataBean
 import com.framing.module.customer.data.bean.TestBean
 import com.young.bean.PageAllBean
@@ -19,6 +22,7 @@ import retrofit2.http.Url
  *
  */interface IReuqestApi {
 
+<<<<<<< HEAD
     @GET("/taas_app/app/page_all")
     fun getPageAllData( ) : Observable<SimpleDataBean<PageAllBean>>
 
@@ -29,6 +33,10 @@ import retrofit2.http.Url
     fun getRecord( ) : Observable<SimpleDataBean<List<RecordBean>>>
 
     //下载谷歌瓦片
+=======
+    @GET("/taas_brain/app/mappage")
+    fun getPageAllData( ) : Observable<SimpleDataBean<PageAllBean>>
+>>>>>>> 2c9bdf6c20703b9f2aab594ec9adac6c013f62b5
     @Streaming
     @GET
     fun downloadMap(@Url fileUrl: String?): Call<ResponseBody?>?

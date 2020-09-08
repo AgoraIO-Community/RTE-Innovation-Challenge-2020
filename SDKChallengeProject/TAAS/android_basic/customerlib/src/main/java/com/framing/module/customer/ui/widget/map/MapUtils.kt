@@ -1,5 +1,6 @@
 package com.framing.module.customer.ui.widget.map
 
+<<<<<<< HEAD
 import android.content.Context
 import com.amap.api.services.weather.LocalWeatherForecastResult
 import com.amap.api.services.weather.LocalWeatherLiveResult
@@ -8,6 +9,8 @@ import com.amap.api.services.weather.WeatherSearchQuery
 import com.framing.baselib.TLog
 import com.framing.module.customer.data.bean.WeatherLiveData
 
+=======
+>>>>>>> 2c9bdf6c20703b9f2aab594ec9adac6c013f62b5
 /*
  * Des  
  * Author Young
@@ -36,6 +39,7 @@ import com.framing.module.customer.data.bean.WeatherLiveData
         return stringBuilder?.toString()!!
     }
 
+<<<<<<< HEAD
     /*
     * 天气查询
     * placeName 查询地区
@@ -73,4 +77,7 @@ import com.framing.module.customer.data.bean.WeatherLiveData
         mweathersearch.searchWeatherAsyn() //异步搜索
 
     }
+=======
+
+>>>>>>> 2c9bdf6c20703b9f2aab594ec9adac6c013f62b5
 }

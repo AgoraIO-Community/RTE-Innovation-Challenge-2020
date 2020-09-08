@@ -57,7 +57,11 @@
             android:id="@+id/swipe_view"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+<<<<<<< HEAD
             android:translationY="770dp"
+=======
+            android:translationY="650dp"
+>>>>>>> 2c9bdf6c20703b9f2aab594ec9adac6c013f62b5
             android:alpha="0.4" />
         <Constraint
             android:id="@+id/logo_tv"

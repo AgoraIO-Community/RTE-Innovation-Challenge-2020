@@ -39,6 +39,10 @@
 
 #-导航
 -keep class com.amap.api.navi.**{*;}
+<<<<<<< HEAD
 -keep class com.autonavi.**{*;}
 #agroa
 -keep class io.agora.**{*;}
+=======
+-keep class com.autonavi.**{*;}
+>>>>>>> 2c9bdf6c20703b9f2aab594ec9adac6c013f62b5

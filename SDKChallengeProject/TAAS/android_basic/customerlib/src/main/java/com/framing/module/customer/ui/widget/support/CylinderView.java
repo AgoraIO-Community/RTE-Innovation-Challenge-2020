@@ -204,7 +204,7 @@ public class CylinderView extends View {
 
     //初始化 画笔
     private void initPaint() {
-        mainPaint =  new Paint(Paint.ANTI_ALIAS_FLAG | Paint.DITHER_FLAG | Paint.LINEAR_TEXT_FLAG);
+         mainPaint =  new Paint(Paint.ANTI_ALIAS_FLAG | Paint.DITHER_FLAG | Paint.LINEAR_TEXT_FLAG);
 
         mainPaint.setStyle(Paint.Style.FILL);
         mainPaint.setAntiAlias(true);
@@ -403,7 +403,7 @@ public class CylinderView extends View {
             }
             //竖直线
             mainPaint.setColor(Color.WHITE);
-            if (tempEntry.tag == CENTER) {
+             if (tempEntry.tag == CENTER) {
                 canvas.drawLine(lineStartX, lineStartY,
                         lineEndX, lineEndY,
                         mainPaint);

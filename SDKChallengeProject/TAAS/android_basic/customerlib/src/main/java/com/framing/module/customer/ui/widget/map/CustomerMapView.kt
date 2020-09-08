@@ -6,6 +6,7 @@ import android.graphics.Bitmap
 import android.graphics.Color
 import android.util.AttributeSet
 import android.view.Gravity
+<<<<<<< HEAD
 import android.view.View
 import androidx.core.util.component1
 import com.amap.api.maps.AMap
@@ -16,6 +17,19 @@ import com.amap.api.maps.utils.SpatialRelationUtil
 import com.amap.api.maps.utils.overlay.SmoothMoveMarker
 import com.framing.baselib.TLog
 import com.framing.commonlib.base.IBindingClickEvent
+=======
+import android.view.MotionEvent
+import android.view.View
+import android.widget.ImageView
+import com.amap.api.maps.AMap
+import com.amap.api.maps.CameraUpdateFactory
+import com.amap.api.maps.UiSettings
+import com.amap.api.maps.model.BitmapDescriptorFactory
+import com.amap.api.maps.model.LatLng
+import com.amap.api.maps.model.Marker
+import com.amap.api.maps.model.MarkerOptions
+import com.framing.baselib.TLog
+>>>>>>> 2c9bdf6c20703b9f2aab594ec9adac6c013f62b5
 import com.framing.commonlib.map.SimpleMapView
 import com.framing.commonlib.utils.DisplayUtils
 import com.framing.commonlib.utils.FileUtils
@@ -56,19 +70,29 @@ class CustomerMapView : SimpleMapView ,AMap.InfoWindowAdapter,AMap.OnInfoWindowC
     private val TEST_UAV_PRO=LatLng(37.30431463131708,112.0191075115756)//uav植保
     private val TEST_UAV_WATCH=LatLng(37.304451175429904,112.02055992773232)//uav植保
     private val TEST_TRACK_PRO=LatLng(37.30461332124187,112.01809900100325)//track植保
+<<<<<<< HEAD
     private val TEST_UAV_WATCH2=LatLng(37.30334601439925,112.0204580037915)//uav植保巡航
     private val TEST_UAV_WATCH3=LatLng(37.30346655881432,112.01902704530653)//uav植保巡航
+=======
+>>>>>>> 2c9bdf6c20703b9f2aab594ec9adac6c013f62b5
 
 
     private val localPath="/storage/emulated/0/TAAS_C/mapCache"
     private val googleUrl="http://mt2.google.cn/vt/lyrs=y&scale=2&hl=zh-CN&gl=cn&x=%d&s=&y=%d&z=%d"
     private var mFileDirName:String?=null
     private var mFileName:String?=null
+<<<<<<< HEAD
     private var maker:Marker?=null//添加的当前操作merker
     private var infoWindowView:MarkerView?=null//确保 getInfoContents 和infowindow 一个view
     private val markerOption = MarkerOptions()
     private lateinit var click: IBindingClickEvent<Any>
     private var smoothMarker:SmoothMoveMarker?=null
+=======
+    private var isLock=true//锁定map
+    private var maker:Marker?=null//添加的当前操作merker
+    private var infoWindowView:MarkerView?=null//确保 getInfoContents 和infowindow 一个view
+    private val markerOption = MarkerOptions()
+>>>>>>> 2c9bdf6c20703b9f2aab594ec9adac6c013f62b5
 
     private fun addView(){
         TLog.log("map_addView","1111")
@@ -81,6 +105,7 @@ class CustomerMapView : SimpleMapView ,AMap.InfoWindowAdapter,AMap.OnInfoWindowC
         map.setOnInfoWindowClickListener(this@CustomerMapView)
         isClickable=true
     }
+<<<<<<< HEAD
     fun toCenterCam(){
         map.animateCamera(
             CameraUpdateFactory.newLatLngZoom(
@@ -88,6 +113,9 @@ class CustomerMapView : SimpleMapView ,AMap.InfoWindowAdapter,AMap.OnInfoWindowC
             )//放大级别
         )
     }
+=======
+
+>>>>>>> 2c9bdf6c20703b9f2aab594ec9adac6c013f62b5
     override fun urlFilePath(x: Int, y: Int, zoom: Int): String {
         mFileDirName = String.format("L%02d/", zoom + 1)
         mFileName = String.format(
@@ -145,7 +173,11 @@ class CustomerMapView : SimpleMapView ,AMap.InfoWindowAdapter,AMap.OnInfoWindowC
             TLog.log("downto",i.toString())
             if(i==1) {
                 infoWindowView?.viewType(MarkerView.MakerType.UAV_WATCH)
+<<<<<<< HEAD
 //                makerLogic("","",TEST_UAV_WATCH,true)
+=======
+                makerLogic("","",TEST_UAV_WATCH,true)
+>>>>>>> 2c9bdf6c20703b9f2aab594ec9adac6c013f62b5
             }else if(i==2){
                 infoWindowView?.viewType(MarkerView.MakerType.UAV_PRO)
                 makerLogic("","", TEST_UAV_PRO,false)
@@ -155,7 +187,10 @@ class CustomerMapView : SimpleMapView ,AMap.InfoWindowAdapter,AMap.OnInfoWindowC
             }
 
         }
+<<<<<<< HEAD
         moveMarker()
+=======
+>>>>>>> 2c9bdf6c20703b9f2aab594ec9adac6c013f62b5
     }
     /*
     * 如果返回的View不为空且View的background不为null，
@@ -174,6 +209,7 @@ class CustomerMapView : SimpleMapView ,AMap.InfoWindowAdapter,AMap.OnInfoWindowC
             maker?.showInfoWindow()
         }
     }
+<<<<<<< HEAD
     private fun moveMarker(){
         // 获取轨迹坐标点
         val points = ArrayList<LatLng>()
@@ -205,6 +241,8 @@ class CustomerMapView : SimpleMapView ,AMap.InfoWindowAdapter,AMap.OnInfoWindowC
             }
         }
     }
+=======
+>>>>>>> 2c9bdf6c20703b9f2aab594ec9adac6c013f62b5
     override fun moveCamera(mAmap: AMap,delay:Int) {
         GlobalScope.launch {
             Thread.sleep(delay.toLong())
@@ -223,6 +261,21 @@ class CustomerMapView : SimpleMapView ,AMap.InfoWindowAdapter,AMap.OnInfoWindowC
             isZoomControlsEnabled=false//放大缩小按钮
         }
     }
+<<<<<<< HEAD
+=======
+    /*
+    * 锁定地图 保证主页交互
+    * */
+    fun isLock():Boolean{
+        if(isLock) {
+            isLock=false
+        }else{
+            isLock=true
+            moveCamera(map,0)
+        }
+        return isLock
+    }
+>>>>>>> 2c9bdf6c20703b9f2aab594ec9adac6c013f62b5
 
     override fun getInfoContents(p0: Marker?): View {
         return infoWindowView!!
@@ -244,9 +297,12 @@ class CustomerMapView : SimpleMapView ,AMap.InfoWindowAdapter,AMap.OnInfoWindowC
                 TLog.log("getInfoWindow","TEST_UAV_WATCH"+(p0?.position))
                 infoWindowView?.viewType(MarkerView.MakerType.UAV_WATCH)
             }
+<<<<<<< HEAD
             else->{
                 infoWindowView?.viewType(MarkerView.MakerType.UAV_WATCH)
             }
+=======
+>>>>>>> 2c9bdf6c20703b9f2aab594ec9adac6c013f62b5
         }
         return  infoWindowView!!
     }
@@ -256,6 +312,7 @@ class CustomerMapView : SimpleMapView ,AMap.InfoWindowAdapter,AMap.OnInfoWindowC
     *
     * */
     override fun onInfoWindowClick(p0: Marker?) {
+<<<<<<< HEAD
         p0.run {
             TLog.log("onInfoWindowClick","${p0?.position}")
             when(p0?.position){
@@ -267,6 +324,16 @@ class CustomerMapView : SimpleMapView ,AMap.InfoWindowAdapter,AMap.OnInfoWindowC
                 }
             }
             click.onClick(this@CustomerMapView,p0!!,3)
+=======
+        TLog.log("onInfoWindowClick","$p0")
+        when(p0?.position){
+            TEST_TRACK_PRO->{
+            }
+            TEST_UAV_PRO->{
+            }
+            TEST_UAV_WATCH->{
+            }
+>>>>>>> 2c9bdf6c20703b9f2aab594ec9adac6c013f62b5
         }
     }
 
@@ -280,17 +347,31 @@ class CustomerMapView : SimpleMapView ,AMap.InfoWindowAdapter,AMap.OnInfoWindowC
                 makerLogic("","",TEST_UAV_PRO,true)
             }
             TEST_UAV_WATCH->{
+<<<<<<< HEAD
 //                makerLogic("","",TEST_UAV_WATCH,true)
                 moveMarker()
             }
             else->{
                 moveMarker()
+=======
+                makerLogic("","",TEST_UAV_WATCH,true)
+>>>>>>> 2c9bdf6c20703b9f2aab594ec9adac6c013f62b5
             }
         }
         return true
     }
 
+<<<<<<< HEAD
     fun onclick(click: IBindingClickEvent<Any>){
         this.click=click
     }
+=======
+    override fun dispatchTouchEvent(ev: MotionEvent?): Boolean {
+        return if(isLock) true else super.dispatchTouchEvent(ev)
+    }
+
+//    override fun onInterceptTouchEvent(ev: MotionEvent?): Boolean {
+//        return isLock
+//    }
+>>>>>>> 2c9bdf6c20703b9f2aab594ec9adac6c013f62b5
 }

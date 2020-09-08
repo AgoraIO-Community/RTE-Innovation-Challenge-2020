@@ -18,6 +18,7 @@ import com.airbnb.lottie.LottieAnimationView
         defStyleAttr
     )
 
+<<<<<<< HEAD
     fun weatherStyle(verfiy:String){
         var style= WeatherStyle.WT_SUNNY
         if(verfiy.contains("晴")){
@@ -35,6 +36,9 @@ import com.airbnb.lottie.LottieAnimationView
         }else if(verfiy.contains("霾")){
             style= WeatherStyle.WT_MIST
         }
+=======
+    fun weatherStyle(style:WeatherStyle){
+>>>>>>> 2c9bdf6c20703b9f2aab594ec9adac6c013f62b5
         when(style){//可区分黑白天
             WeatherStyle.WT_SUNNY->{
                 setAnimation("weather_sunny.json")

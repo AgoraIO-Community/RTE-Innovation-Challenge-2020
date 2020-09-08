@@ -7,7 +7,10 @@ import com.framing.commonlib.network.IRequestHeaderInfo
 import com.framing.commonlib.network.error.ExceptionError
 import com.framing.commonlib.network.error.LoadType
 import com.framing.commonlib.network.observer.BaseObserver
+<<<<<<< HEAD
 import com.framing.commonlib.widget.StatusLayout
+=======
+>>>>>>> 2c9bdf6c20703b9f2aab594ec9adac6c013f62b5
 import com.framing.module.customer.data.bean.SimpleDataBean
 import com.young.aac.base.BaseDataViewModel
 import io.reactivex.Observable
@@ -55,15 +58,25 @@ class NetRequestManager : BaseRequestApi, IRemoteRequest {
         ApiSubscribe(data, object : BaseObserver<SimpleDataBean<T>>() {
             override fun onError(e: ExceptionError.ResponeThrowable?) {
                 TLog.log("netrequest_onerror","${e.toString()}")
+<<<<<<< HEAD
                 dataVM.loadType.postValue(StatusLayout.StatusType.NO_INTERNET)
+=======
+                dataVM.loadType.postValue(LoadType.NET_ERROR)
+>>>>>>> 2c9bdf6c20703b9f2aab594ec9adac6c013f62b5
             }
             override fun onNext(t: SimpleDataBean<T>) {
                 TLog.log("netrequest_onNext","${t}")
                 if(t.code==0){
+<<<<<<< HEAD
                     dataVM.loadType.postValue(StatusLayout.StatusType.HIDE)
                     mt(t.data)
                 }else{
                     dataVM.loadType.postValue(StatusLayout.StatusType.ERROR)
+=======
+                    mt(t.data)
+                }else{
+                    dataVM.loadType.postValue(LoadType.SERVER_FAIL)
+>>>>>>> 2c9bdf6c20703b9f2aab594ec9adac6c013f62b5
                 }
             }
         })

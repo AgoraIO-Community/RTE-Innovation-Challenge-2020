@@ -12,9 +12,12 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
+<<<<<<< HEAD
         <com.framing.commonlib.agora.AgoraLiviView
             android:id="@+id/live_view"
             android:layout_width="match_parent"
             android:layout_height="match_parent"></com.framing.commonlib.agora.AgoraLiviView>
+=======
+>>>>>>> 2c9bdf6c20703b9f2aab594ec9adac6c013f62b5
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

@@ -4,8 +4,11 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.framing.baselib.TLog
 import com.framing.commonlib.helper.ProjectLiveData
+<<<<<<< HEAD
 import com.framing.commonlib.widget.StatusLayout
 import com.framing.module.customer.data.bean.WeatherLiveData
+=======
+>>>>>>> 2c9bdf6c20703b9f2aab594ec9adac6c013f62b5
 import com.young.aac.base.BaseDataViewModel
 import com.young.bean.BottomBean
 import com.young.bean.ContentListBean
@@ -30,8 +33,12 @@ class CContainerDataVM : BaseDataViewModel{
     * focusData righttip
     * isShowDialog 强展示dialog
     * dialogLev 弹窗级别
+<<<<<<< HEAD
     * weatherData 实时天气数据
     * weaFutureData 未来天气数据
+=======
+    *
+>>>>>>> 2c9bdf6c20703b9f2aab594ec9adac6c013f62b5
     * */
     var pageAllBean=ProjectLiveData<PageAllBean>()
     var bottomData=ProjectLiveData<BottomBean>()
@@ -40,14 +47,20 @@ class CContainerDataVM : BaseDataViewModel{
     var isShowDialog=MutableLiveData<Boolean>()
     var dialogLev=MutableLiveData<Int>()
     var dialogData=MutableLiveData<DialogBean>()
+<<<<<<< HEAD
     var weatherData=MutableLiveData<WeatherLiveData>()
     var weaFutureData=MutableLiveData<WeatherLiveData>()
+=======
+>>>>>>> 2c9bdf6c20703b9f2aab594ec9adac6c013f62b5
 
     /*
     * 请求首页全部
     * */
     fun requestData(){
+<<<<<<< HEAD
         loadType.postValue(StatusLayout.StatusType.LOADING)
+=======
+>>>>>>> 2c9bdf6c20703b9f2aab594ec9adac6c013f62b5
         viewModelScope.launch {
             val ob=NetRequestManager.get().reuqestApiInterface.getPageAllData()
             NetRequestManager.get().getResult (ob,this@CContainerDataVM){

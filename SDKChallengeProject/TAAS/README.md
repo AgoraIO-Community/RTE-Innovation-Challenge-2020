@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 ---
 typora-copy-images-to: pic
 ---
@@ -47,3 +48,6 @@ typora-copy-images-to: pic
 #### 思路总结：
 
 ​		前期整合多种种植方式提供技术农机支持，依靠积累大量的视频数据、采集数据完成数据分析生产力赋能。
+=======
+TAAS(technology as a service)对现在农业生产模式，利用数据技术服务赋能
+>>>>>>> 2c9bdf6c20703b9f2aab594ec9adac6c013f62b5

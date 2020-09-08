@@ -18,6 +18,7 @@
 
 # If you keep the line number information, uncomment this to
 # hide the original source file name.
+<<<<<<< HEAD
 #-renamesourcefileattribute SourceFile
 # ServiceLoader support
 -keepnames class kotlinx.coroutines.internal.MainDispatcherFactory {}
@@ -46,3 +47,6 @@
 
 # Animal Sniffer compileOnly dependency to ensure APIs are compatible with older versions of Java.
 -dontwarn org.codehaus.mojo.animal_sniffer.*
+=======
+#-renamesourcefileattribute SourceFile
+>>>>>>> 2c9bdf6c20703b9f2aab594ec9adac6c013f62b5

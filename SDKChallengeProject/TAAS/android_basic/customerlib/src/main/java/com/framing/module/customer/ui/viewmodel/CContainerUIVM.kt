@@ -14,6 +14,9 @@ class CContainerUIVM : BaseUIViewModel<CContainerActivityBinding>{
     }
     val isStartHide=MutableLiveData<Boolean>()//控制启动页 和首页 切换
     val isDialogShow=MutableLiveData<Boolean>()//控制弹窗显示
+<<<<<<< HEAD
     var isGoClick=MutableLiveData<Boolean>()//控制弹窗点击暴露给fragment
     var isConainerBgShow=MutableLiveData<Boolean>()//container bg 切换背景
+=======
+>>>>>>> 2c9bdf6c20703b9f2aab594ec9adac6c013f62b5
 }

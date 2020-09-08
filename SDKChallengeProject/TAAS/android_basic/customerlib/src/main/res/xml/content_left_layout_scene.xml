@@ -154,6 +154,7 @@
             app:layout_constraintGuide_percent="0.5"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
+<<<<<<< HEAD
         <Constraint
             android:id="@+id/title_tv"
             android:layout_width="wrap_content"
@@ -162,6 +163,8 @@
             android:layout_marginTop="70dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent" />
+=======
+>>>>>>> 2c9bdf6c20703b9f2aab594ec9adac6c013f62b5
     </ConstraintSet>
 
     <Transition

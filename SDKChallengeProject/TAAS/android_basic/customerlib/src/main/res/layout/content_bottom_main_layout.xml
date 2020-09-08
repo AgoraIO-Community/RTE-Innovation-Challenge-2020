@@ -38,6 +38,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="@color/color_menu_science"></View>
+<<<<<<< HEAD
 
         <TextView
             android:id="@+id/description_tv"
@@ -57,5 +58,7 @@
             app:layout_constraintTop_toBottomOf="@+id/title_view"
             tools:layout_editor_absoluteX="205dp"></com.framing.module.customer.ui.widget.element.DataPercentView>
 
+=======
+>>>>>>> 2c9bdf6c20703b9f2aab594ec9adac6c013f62b5
     </androidx.constraintlayout.motion.widget.MotionLayout>
 </layout>

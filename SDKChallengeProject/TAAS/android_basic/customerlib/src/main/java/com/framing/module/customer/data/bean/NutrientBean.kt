@@ -22,11 +22,18 @@ package com.framing.module.customer.data.bean
                            var phosphorus:String,
                            var potassium:String,
                            var organic:String,
+<<<<<<< HEAD
                            var ph:String,
                            var boron:String,
                            var mo:String,
                            var copper:String,
                            var iron:String,
+=======
+                           var boron:String,
+                           var mo:String,
+                           var copper:String,
+                           var Iron:String,
+>>>>>>> 2c9bdf6c20703b9f2aab594ec9adac6c013f62b5
                            var manganese:String,
                            var zinc:String,
                            var calcium:String,

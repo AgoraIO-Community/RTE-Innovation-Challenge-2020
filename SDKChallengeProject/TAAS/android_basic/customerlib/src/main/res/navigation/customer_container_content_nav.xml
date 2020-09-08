@@ -7,6 +7,7 @@
     <fragment
         android:id="@+id/mapFragment"
         android:name="com.framing.module.customer.ui.fragment.MapFragment"
+<<<<<<< HEAD
         android:label="MapFragment" >
         <action
             android:id="@+id/action_mapFragment_to_userSettingFragment"
@@ -45,4 +46,7 @@
             android:id="@+id/action_agroaFragment_to_materialFragment"
             app:destination="@id/materialFragment" />
     </fragment>
+=======
+        android:label="MapFragment" />
+>>>>>>> 2c9bdf6c20703b9f2aab594ec9adac6c013f62b5
 </navigation>

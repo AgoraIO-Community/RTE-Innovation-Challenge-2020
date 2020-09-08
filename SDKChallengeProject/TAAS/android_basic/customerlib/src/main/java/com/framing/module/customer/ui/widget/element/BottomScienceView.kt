@@ -4,6 +4,7 @@ import android.content.Context
 import android.os.Build
 import android.util.AttributeSet
 import android.view.LayoutInflater
+<<<<<<< HEAD
 import android.view.View
 import androidx.annotation.RequiresApi
 import androidx.databinding.DataBindingUtil
@@ -14,12 +15,23 @@ import com.framing.module.customer.R
 import com.framing.module.customer.databinding.ContentBottomMainLayoutBinding
 import com.young.bean.BottomBean
 import kotlinx.coroutines.*
+=======
+import android.widget.FrameLayout
+import androidx.annotation.RequiresApi
+import androidx.databinding.DataBindingUtil
+import com.framing.module.customer.R
+import com.framing.module.customer.databinding.ContentBottomMainLayoutBinding
+>>>>>>> 2c9bdf6c20703b9f2aab594ec9adac6c013f62b5
 
 /*
  * Des  主页 底部滑动 科技
  * Author Young
  * Date 
+<<<<<<< HEAD
  */class BottomScienceView : BaseObserverView {
+=======
+ */class BottomScienceView : FrameLayout{
+>>>>>>> 2c9bdf6c20703b9f2aab594ec9adac6c013f62b5
     constructor(context: Context) : super(context){
         initView()
     }
@@ -45,6 +57,7 @@ import kotlinx.coroutines.*
     private fun initView(){
         binding = DataBindingUtil.inflate(LayoutInflater.from(context), R.layout.content_bottom_main_layout,this,true);
     }
+<<<<<<< HEAD
     //根据外部加载的进度初始化
     fun progress(progress:Float){
         binding?.motionLayout?.progress=progress
@@ -101,4 +114,9 @@ import kotlinx.coroutines.*
         }
     }
 
+=======
+    fun progress(progress:Float){
+        binding?.motionLayout?.progress=progress
+    }
+>>>>>>> 2c9bdf6c20703b9f2aab594ec9adac6c013f62b5
 }
