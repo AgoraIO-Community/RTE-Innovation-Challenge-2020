@@ -4,10 +4,7 @@ import android.annotation.SuppressLint
 import android.os.Bundle
 import android.os.Handler
 import android.os.HandlerThread
-<<<<<<< HEAD
 import android.view.KeyEvent
-=======
->>>>>>> 2c9bdf6c20703b9f2aab594ec9adac6c013f62b5
 import android.view.View
 import androidx.constraintlayout.motion.widget.MotionLayout
 import androidx.core.os.HandlerCompat.postDelayed
@@ -21,10 +18,7 @@ import com.framing.commonlib.inject.policy.PermissionPolicy
 import com.framing.commonlib.network.HeaderInfoInit
 import com.framing.commonlib.network.RequestBuild
 import com.framing.commonlib.utils.BarUtils
-<<<<<<< HEAD
 import com.framing.commonlib.widget.StatusLayout
-=======
->>>>>>> 2c9bdf6c20703b9f2aab594ec9adac6c013f62b5
 import com.young.aac.base.MvvmBaseActivity
 import com.framing.module.customer.databinding.CContainerActivityBinding
 import com.framing.module.customer.ui.viewmodel.CContainerUIVM
@@ -52,10 +46,7 @@ class CContainerActivity :  MvvmBaseActivity<CContainerActivityBinding, CContain
 
     override  fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-<<<<<<< HEAD
         getBinding().loadHide=StatusLayout.StatusType.HIDE
-=======
->>>>>>> 2c9bdf6c20703b9f2aab594ec9adac6c013f62b5
         appShareVM=getAppViewModelProvider()?.get(CustomerShareVM::class.java)
         contentNavCtrl=findNavController(R.id.content_fragment_host)
         startNavCtrl=findNavController(R.id.launch_fragment_host)
@@ -64,7 +55,6 @@ class CContainerActivity :  MvvmBaseActivity<CContainerActivityBinding, CContain
         permissionRun(PermissionPolicy.P_LOC){
             //权限请求
         }
-<<<<<<< HEAD
         permissionRun(PermissionPolicy.P_CAM){
             
         }
@@ -73,13 +63,6 @@ class CContainerActivity :  MvvmBaseActivity<CContainerActivityBinding, CContain
             appShareVM?.isStartHide?.postValue(true) //执行完了
         }
         getDataViewModel()?.requestData()//all
-=======
-        GlobalScope?.launch{
-            delay(5000)
-            appShareVM?.isStartHide?.postValue(true) //执行完了
-        }
-        getDataViewModel()?.requestData()
->>>>>>> 2c9bdf6c20703b9f2aab594ec9adac6c013f62b5
     }
 
     /*
@@ -95,18 +78,9 @@ class CContainerActivity :  MvvmBaseActivity<CContainerActivityBinding, CContain
                 getUIViewModel().isStartHide.postValue(true)
             }
         })
-<<<<<<< HEAD
         //观察 控制 交给Uivm dialog
         getDataViewModel()?.isShowDialog?.observe(this, Observer {
             TLog.log("dialog_post","111$it")
-=======
-        //通知UIload状态
-        getDataViewModel()?.loadType?.observe(this, Observer {
-            getUIViewModel().loadType.postValue(it)
-        })
-        //观察 控制 交给Uivm dialog
-        getDataViewModel()?.isShowDialog?.observe(this, Observer {
->>>>>>> 2c9bdf6c20703b9f2aab594ec9adac6c013f62b5
             getUIViewModel().isDialogShow.postValue(it)
         })
         //观察 做dialog 显示逻辑
@@ -151,27 +125,19 @@ class CContainerActivity :  MvvmBaseActivity<CContainerActivityBinding, CContain
     }
     private fun initDialog(){
         getBinding().dialogView.run {
-<<<<<<< HEAD
             getDataViewModel()?.dialogData?.value?.run {
                 setData(this)
             }
-=======
-            setData(getDataViewModel()?.dialogData?.value!!)
->>>>>>> 2c9bdf6c20703b9f2aab594ec9adac6c013f62b5
             clickLisen(this@CContainerActivity)
         }
     }
     override fun onClick(view: View, data: Any, position: Int) {
-<<<<<<< HEAD
         TLog.log("activity_onclick",view.toString())
         when(view.id){
             R.id.confirm_btn->{
                 getUIViewModel().isGoClick.value=true
             }
         }
-=======
-        TLog.log("CContainerActivity","onclick$view")
->>>>>>> 2c9bdf6c20703b9f2aab594ec9adac6c013f62b5
     }
     override fun getUIViewModel(): CContainerUIVM {
         return getActivityViewModelProvider(this).get(CContainerUIVM::class.java)
@@ -183,7 +149,6 @@ class CContainerActivity :  MvvmBaseActivity<CContainerActivityBinding, CContain
         get() = BR.cContainerUIVM
     override val layoutId: Int
         get() = R.layout.c_container_activity
-<<<<<<< HEAD
     /*
     * 自定义返回
     * 过滤返回keyback 定义新的手势推出交互
@@ -217,7 +182,4 @@ class CContainerActivity :  MvvmBaseActivity<CContainerActivityBinding, CContain
         }
         return super.onKeyDown(keyCode, event)
     }
-=======
-
->>>>>>> 2c9bdf6c20703b9f2aab594ec9adac6c013f62b5
 }

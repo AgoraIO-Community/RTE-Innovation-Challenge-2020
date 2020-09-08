@@ -11,29 +11,19 @@ import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
-<<<<<<< HEAD
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import com.framing.baselib.TLog
 import com.framing.commonlib.base.CommonBaseFragment
-=======
-import androidx.lifecycle.ViewModelProvider
-import androidx.navigation.NavController
-import androidx.navigation.fragment.NavHostFragment
->>>>>>> 2c9bdf6c20703b9f2aab594ec9adac6c013f62b5
 
 /*
 * BaseUIViewMode  UI 管理
 * BaseDataViewModel 业务数据管理 可以未null
 * */
 abstract class MvvmBaseFragment  <V : ViewDataBinding, UVM : BaseUIViewModel<V>,DVM:BaseDataViewModel?> :
-<<<<<<< HEAD
     CommonBaseFragment {
-=======
-    Fragment {
->>>>>>> 2c9bdf6c20703b9f2aab594ec9adac6c013f62b5
 
     constructor() : super()
 
@@ -42,11 +32,7 @@ abstract class MvvmBaseFragment  <V : ViewDataBinding, UVM : BaseUIViewModel<V>,
     protected var mActivity: AppCompatActivity? = null
     private var viewDataBinding: V? = null
     private var mFragmentLogTag = ""
-<<<<<<< HEAD
     private var isInit=true//第一次
-=======
-
->>>>>>> 2c9bdf6c20703b9f2aab594ec9adac6c013f62b5
 
     abstract val bindingVariable: Int//BR id 绑定layout 和UIViewmode
     @get:LayoutRes
@@ -61,13 +47,9 @@ abstract class MvvmBaseFragment  <V : ViewDataBinding, UVM : BaseUIViewModel<V>,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-<<<<<<< HEAD
         if(isInit) {
             viewDataBinding = DataBindingUtil.inflate(inflater, layoutId, container, false)
         }
-=======
-        viewDataBinding = DataBindingUtil.inflate(inflater, layoutId, container, false)
->>>>>>> 2c9bdf6c20703b9f2aab594ec9adac6c013f62b5
         return viewDataBinding?.getRoot()
     }
 
@@ -76,7 +58,6 @@ abstract class MvvmBaseFragment  <V : ViewDataBinding, UVM : BaseUIViewModel<V>,
         savedInstanceState: Bundle?
     ) {
         super.onViewCreated(view, savedInstanceState)
-<<<<<<< HEAD
         TLog.log("isInit",isInit.toString())
         if(isInit) {
             UIVM = getUIViewModel()
@@ -93,16 +74,6 @@ abstract class MvvmBaseFragment  <V : ViewDataBinding, UVM : BaseUIViewModel<V>,
             })
             isInit=false
         }
-=======
-        UIVM = getUIViewModel()
-        dataVM=getDataViewModel()
-        UIVM?.withBinding(viewDataBinding!!,this)
-        if (bindingVariable > 0 && UIVM != null) {
-            viewDataBinding?.setVariable(bindingVariable, UIVM)
-        } else {
-        }
-        viewDataBinding?.lifecycleOwner = this
->>>>>>> 2c9bdf6c20703b9f2aab594ec9adac6c013f62b5
     }
 
     //拿到app级别的共享VM
@@ -133,8 +104,4 @@ abstract class MvvmBaseFragment  <V : ViewDataBinding, UVM : BaseUIViewModel<V>,
     protected open fun nav(): NavController? {
         return NavHostFragment.findNavController(this)
     }
-<<<<<<< HEAD
-
-=======
->>>>>>> 2c9bdf6c20703b9f2aab594ec9adac6c013f62b5
 }

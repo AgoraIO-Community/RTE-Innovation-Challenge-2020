@@ -3,7 +3,6 @@
     <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
         <!-- Customize your theme here. -->
-<<<<<<< HEAD
         <item name="colorPrimary">@color/color_menu_science_dip_alpha</item>
         <item name="colorPrimaryDark">@color/color_menu_science_dip_alpha</item>
         <item name="colorAccent">@color/color_menu_science_dip_alpha</item>
@@ -12,11 +11,6 @@
     <style name="Theme.AppStartLoadTranslucent" parent="android:Theme">
         <item name="android:windowIsTranslucent">true</item>
         <item name="android:windowNoTitle">true</item>
-=======
-        <item name="colorPrimary">@color/color_menu_science_dip</item>
-        <item name="colorPrimaryDark">@color/color_menu_science</item>
-        <item name="colorAccent">@color/color_main_science</item>
->>>>>>> 2c9bdf6c20703b9f2aab594ec9adac6c013f62b5
     </style>
     <!-- Base application theme. -->
     <style name="Lanucher" parent="@style/Theme.AppCompat.NoActionBar">

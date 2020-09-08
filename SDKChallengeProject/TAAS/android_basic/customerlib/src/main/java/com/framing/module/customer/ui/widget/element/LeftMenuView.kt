@@ -8,13 +8,10 @@ import android.view.ViewGroup
 import android.widget.FrameLayout
 import androidx.annotation.RequiresApi
 import androidx.databinding.DataBindingUtil
-<<<<<<< HEAD
 import com.framing.baselib.TLog
 import com.framing.commonlib.base.IBindingViewClick
 import com.framing.commonlib.base.IViewBindingClick
 import com.framing.commonlib.widget.BaseObserverView
-=======
->>>>>>> 2c9bdf6c20703b9f2aab594ec9adac6c013f62b5
 import com.framing.module.customer.R
 import com.framing.module.customer.databinding.ContentLeftLayoutBinding
 
@@ -22,11 +19,7 @@ import com.framing.module.customer.databinding.ContentLeftLayoutBinding
  * Des  主页面左侧menu 控件元素
  * Author Young
  * Date 
-<<<<<<< HEAD
  */class LeftMenuView : BaseObserverView {
-=======
- */class LeftMenuView :FrameLayout{
->>>>>>> 2c9bdf6c20703b9f2aab594ec9adac6c013f62b5
     constructor(context: Context) : super(context){
         initView()
     }
@@ -48,16 +41,11 @@ import com.framing.module.customer.databinding.ContentLeftLayoutBinding
     ) : super(context, attrs, defStyleAttr, defStyleRes)
 
     private lateinit var binding:ContentLeftLayoutBinding
-<<<<<<< HEAD
     private  var click:IViewBindingClick?=null
-=======
-
->>>>>>> 2c9bdf6c20703b9f2aab594ec9adac6c013f62b5
 
     private fun initView(){
         binding = DataBindingUtil.inflate(LayoutInflater.from(context), R.layout.content_left_layout,this,true);
     }
-<<<<<<< HEAD
     fun progress(pro:Float){
         binding.motionLayout.progress=pro
     }
@@ -71,11 +59,4 @@ import com.framing.module.customer.databinding.ContentLeftLayoutBinding
             click.onClick(this)
         }
     }
-=======
-    fun showHide(isShow:Boolean){
-    }
-    fun progress(pro:Float){
-        binding.motionLayout.progress=pro
-    }
->>>>>>> 2c9bdf6c20703b9f2aab594ec9adac6c013f62b5
 }

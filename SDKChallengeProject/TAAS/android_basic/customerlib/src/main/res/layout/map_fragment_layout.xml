@@ -2,10 +2,6 @@
 <layout xmlns:tools="http://schemas.android.com/tools"
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
-<<<<<<< HEAD
-=======
-
->>>>>>> 2c9bdf6c20703b9f2aab594ec9adac6c013f62b5
     <data>
         <variable
             name="onClick"
@@ -17,16 +13,12 @@
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-<<<<<<< HEAD
         <!--map info-->
-=======
->>>>>>> 2c9bdf6c20703b9f2aab594ec9adac6c013f62b5
         <com.framing.module.customer.ui.widget.map.CustomerMapView
             android:id="@+id/map_view"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             ></com.framing.module.customer.ui.widget.map.CustomerMapView>
-<<<<<<< HEAD
         <com.framing.module.customer.ui.widget.TouchMotionLayout
             android:id="@+id/motion_layout"
             android:layout_width="match_parent"
@@ -34,14 +26,6 @@
             android:clickable="true"
             app:layoutDescription="@xml/map_fragment_layout_scene">
             <!--top view show live-->
-=======
-        <androidx.constraintlayout.motion.widget.MotionLayout
-            android:id="@+id/motion_layout"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            app:layoutDescription="@xml/map_fragment_layout_scene">
-            <!--map info-->
->>>>>>> 2c9bdf6c20703b9f2aab594ec9adac6c013f62b5
             <!--left user center menu-->
             <com.framing.module.customer.ui.widget.element.LeftMenuView
                 android:id="@+id/left_layout"
@@ -57,27 +41,20 @@
             <com.framing.module.customer.ui.widget.element.ScienceRightTip
                 android:id="@+id/right_one"
                 app:title_name="@string/app_customer_right_tip_one"
-<<<<<<< HEAD
                 android:clickable="true"
-=======
->>>>>>> 2c9bdf6c20703b9f2aab594ec9adac6c013f62b5
                 android:layout_width="100dp"
                 android:layout_height="40dp"></com.framing.module.customer.ui.widget.element.ScienceRightTip>
             <com.framing.module.customer.ui.widget.element.ScienceRightTip
                 android:id="@+id/right_two"
                 android:layout_width="100dp"
                 android:layout_height="40dp"
-<<<<<<< HEAD
                 android:clickable="true"
-=======
->>>>>>> 2c9bdf6c20703b9f2aab594ec9adac6c013f62b5
                 app:title_name="@string/app_customer_right_tip_two"
                 ></com.framing.module.customer.ui.widget.element.ScienceRightTip>
             <com.framing.module.customer.ui.widget.element.ScienceRightTip
                 android:id="@+id/right_three"
                 android:layout_width="100dp"
                 android:layout_height="40dp"
-<<<<<<< HEAD
                 android:clickable="true"
                 app:title_name="@string/app_customer_right_tip_three"
                 ></com.framing.module.customer.ui.widget.element.ScienceRightTip>
@@ -98,23 +75,5 @@
             android:layout_width="28dp"
             android:layout_height="28dp"
             android:src="@mipmap/map_lock" />
-=======
-                app:title_name="@string/app_customer_right_tip_three"
-                ></com.framing.module.customer.ui.widget.element.ScienceRightTip>
-            <!--mapview lock -->
-            <ImageView
-                android:onClick="@{(view)->onClick.onClick(view)}"
-                android:alpha="0.6"
-                android:id="@+id/map_lock_img"
-                android:layout_marginTop="15dp"
-                android:layout_marginRight="15dp"
-                android:layout_width="28dp"
-                android:layout_height="28dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                android:src="@mipmap/map_lock" />
-        </androidx.constraintlayout.motion.widget.MotionLayout>
-
->>>>>>> 2c9bdf6c20703b9f2aab594ec9adac6c013f62b5
     </FrameLayout>
 </layout>

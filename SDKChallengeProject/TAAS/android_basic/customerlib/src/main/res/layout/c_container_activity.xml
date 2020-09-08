@@ -8,12 +8,9 @@
         <variable
             name="cContainerUIVM"
             type="com.framing.module.customer.ui.viewmodel.CContainerUIVM" />
-<<<<<<< HEAD
         <variable
             name="loadHide"
             type="com.framing.commonlib.widget.StatusLayout.StatusType" />
-=======
->>>>>>> 2c9bdf6c20703b9f2aab594ec9adac6c013f62b5
     </data>
 
     <androidx.constraintlayout.motion.widget.MotionLayout
@@ -41,7 +38,6 @@
             android:id="@+id/content_container"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-<<<<<<< HEAD
             android:clickable="true"
             android:background="@color/color_main_science_alphy"
             android:visibility="@{cContainerUIVM.isStartHide()?View.VISIBLE:View.GONE}">
@@ -54,10 +50,6 @@
                 android:alpha="0.4"
                 android:visibility="@{cContainerUIVM.isConainerBgShow()?View.VISIBLE:View.GONE}"
                 app:lottie_fileName="bg_science.json"></com.airbnb.lottie.LottieAnimationView>
-=======
-            android:visibility="@{cContainerUIVM.isStartHide()?View.VISIBLE:View.GONE}">
-
->>>>>>> 2c9bdf6c20703b9f2aab594ec9adac6c013f62b5
             <fragment
                 android:id="@+id/content_fragment_host"
                 android:name="androidx.navigation.fragment.NavHostFragment"
@@ -69,7 +61,6 @@
         <!--application dialog attention -->
         <com.framing.module.customer.ui.widget.element.ScienceDialog
             android:id="@+id/dialog_view"
-<<<<<<< HEAD
             android:clickable="true"
             android:layout_width="220dp"
             android:layout_height="290dp"></com.framing.module.customer.ui.widget.element.ScienceDialog>
@@ -80,13 +71,5 @@
             android:clickable="true"
             android:layout_width="match_parent"
             android:layout_height="match_parent"></com.framing.commonlib.widget.StatusLayout>
-=======
-            android:layout_width="220dp"
-            android:layout_height="290dp"></com.framing.module.customer.ui.widget.element.ScienceDialog>
-        <com.framing.commonlib.agora.AgoraLiviView
-            android:id="@+id/livi_view"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"></com.framing.commonlib.agora.AgoraLiviView>
->>>>>>> 2c9bdf6c20703b9f2aab594ec9adac6c013f62b5
     </androidx.constraintlayout.motion.widget.MotionLayout>
 </layout>

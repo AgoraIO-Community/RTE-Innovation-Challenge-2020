@@ -20,14 +20,11 @@
             android:id="@+id/dialog_view"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toEndOf="parent" />
-<<<<<<< HEAD
         <Constraint
             android:id="@+id/loading"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             app:visibilityMode="ignore" />
-=======
->>>>>>> 2c9bdf6c20703b9f2aab594ec9adac6c013f62b5
     </ConstraintSet>
 
     <ConstraintSet android:id="@+id/left">
@@ -42,14 +39,11 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             app:visibilityMode="ignore"/>
-<<<<<<< HEAD
         <Constraint
             android:id="@+id/loading"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             app:visibilityMode="ignore" />
-=======
->>>>>>> 2c9bdf6c20703b9f2aab594ec9adac6c013f62b5
     </ConstraintSet>
 
     <Transition
@@ -67,25 +61,18 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent" />
-<<<<<<< HEAD
         <Constraint
             android:id="@+id/loading"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             app:visibilityMode="ignore"/>
-=======
->>>>>>> 2c9bdf6c20703b9f2aab594ec9adac6c013f62b5
     </ConstraintSet>
     <Transition
         android:id="@+id/to_dialog"
         app:constraintSetStart="@+id/start"
         app:constraintSetEnd="@+id/dialog"
         app:duration="400">
-<<<<<<< HEAD
         <OnClick app:targetId="@id/dialog_view"
             app:clickAction="toggle" />
-=======
-        <OnClick app:targetId="@id/dialog_view" />
->>>>>>> 2c9bdf6c20703b9f2aab594ec9adac6c013f62b5
     </Transition>
 </MotionScene>

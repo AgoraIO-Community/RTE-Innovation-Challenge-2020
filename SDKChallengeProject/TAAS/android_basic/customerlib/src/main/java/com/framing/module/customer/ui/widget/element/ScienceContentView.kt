@@ -3,21 +3,12 @@ package com.framing.module.customer.ui.widget.element
 import android.content.Context
 import android.os.Build
 import android.util.AttributeSet
-<<<<<<< HEAD
 import android.view.LayoutInflater
 import android.view.View
 import androidx.annotation.RequiresApi
 import androidx.databinding.DataBindingUtil
 import com.framing.commonlib.base.IBindingClickEvent
 import com.framing.commonlib.widget.BaseObserverView
-=======
-import android.view.Gravity
-import android.view.LayoutInflater
-import android.widget.FrameLayout
-import androidx.annotation.RequiresApi
-import androidx.databinding.DataBindingUtil
-import com.framing.commonlib.base.IBindingClickEvent
->>>>>>> 2c9bdf6c20703b9f2aab594ec9adac6c013f62b5
 import com.framing.module.customer.R
 import com.framing.module.customer.databinding.ScicenceContentParentLayoutBinding
 
@@ -25,12 +16,8 @@ import com.framing.module.customer.databinding.ScicenceContentParentLayoutBindin
  * Des  科幻载体
  * Author Young
  * Date 
-<<<<<<< HEAD
  */open class ScienceContentView :
     BaseObserverView {
-=======
- */open class ScienceContentView : FrameLayout {
->>>>>>> 2c9bdf6c20703b9f2aab594ec9adac6c013f62b5
     constructor(context: Context) : super(context){
         initView(null)
     }
@@ -57,10 +44,7 @@ import com.framing.module.customer.databinding.ScicenceContentParentLayoutBindin
 
     open fun initView(attrs: AttributeSet?){
         binding = DataBindingUtil.inflate(LayoutInflater.from(context), R.layout.scicence_content_parent_layout,this,true);
-<<<<<<< HEAD
         binding?.confirmBtn?.visibility= View.GONE
-=======
->>>>>>> 2c9bdf6c20703b9f2aab594ec9adac6c013f62b5
     }
     /*
     * 根据外层执行进度

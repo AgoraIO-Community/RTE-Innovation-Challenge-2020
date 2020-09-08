@@ -4,10 +4,7 @@ import android.annotation.SuppressLint
 import android.content.Context
 import android.graphics.Color
 import android.os.Build
-<<<<<<< HEAD
 import android.transition.Transition
-=======
->>>>>>> 2c9bdf6c20703b9f2aab594ec9adac6c013f62b5
 import android.util.AttributeSet
 import android.view.Gravity
 import android.view.LayoutInflater
@@ -16,10 +13,7 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.LinearLayout
 import androidx.annotation.RequiresApi
-<<<<<<< HEAD
 import androidx.constraintlayout.motion.widget.MotionLayout
-=======
->>>>>>> 2c9bdf6c20703b9f2aab594ec9adac6c013f62b5
 import com.framing.baselib.TLog
 import com.framing.commonlib.base.IBindingClickEvent
 import com.framing.commonlib.utils.DisplayUtils
@@ -74,7 +68,6 @@ import java.util.ArrayList
 
     @SuppressLint("ResourceAsColor")
     private fun addViewLogic(){
-<<<<<<< HEAD
         binding?.confirmBtn?.text="GO"
 //        val param= LayoutParams(DisplayUtils.dp2px(160f), DisplayUtils.dp2px(60f))
 //        param.gravity=Gravity.BOTTOM
@@ -85,17 +78,6 @@ import java.util.ArrayList
 //        btn?.gravity=Gravity.CENTER
 //        btn?.setBackgroundColor(R.color.color_menu_science)
 //        addView(btn,childCount,param)
-=======
-        val param= LayoutParams(DisplayUtils.dp2px(160f), DisplayUtils.dp2px(60f))
-        param.gravity=Gravity.BOTTOM
-        param.gravity=Gravity.CENTER_HORIZONTAL
-        btn=Button(context)
-        btn?.alpha=0.4f
-        btn?.text="go"
-        btn?.gravity=Gravity.CENTER
-        btn?.setBackgroundColor(R.color.color_menu_science)
-        addView(btn,childCount,param)
->>>>>>> 2c9bdf6c20703b9f2aab594ec9adac6c013f62b5
     }
     /*
    * 根据外层执行进度
@@ -108,18 +90,14 @@ import java.util.ArrayList
         this.data=data
         dataToUi()
     }
-<<<<<<< HEAD
     /*
     * 闪烁级别
     * */
-=======
->>>>>>> 2c9bdf6c20703b9f2aab594ec9adac6c013f62b5
     private fun styleAni(progress:Float){
         if(progress==1f){
             binding?.constraintLayout?.run {
                 data?.run {
                     when(dialogLevel){
-<<<<<<< HEAD
 //                        1->{//最高级别
 //                            setTransition(R.id.to_warning)
 //                            binding?.titleTv?.text="Warning"
@@ -135,21 +113,6 @@ import java.util.ArrayList
                             binding?.titleTv?.text="Foucs"
                             transitionToEnd()
                         }
-=======
-                        1->{
-                            setTransition(R.id.to_warning)
-                            binding?.titleTv?.text="Warning"
-                            transitionToEnd()
-                        }
-                        2->{
-                            setTransition(R.id.to_attention)
-                            binding?.titleTv?.text="Attention"
-                            transitionToEnd()
-                        }
-                        3->{
-                            binding?.titleTv?.text="Foucs"
-                        }
->>>>>>> 2c9bdf6c20703b9f2aab594ec9adac6c013f62b5
                     }
                 }
                 dataToUi()
@@ -158,51 +121,32 @@ import java.util.ArrayList
     }
 
     private fun dataToUi() {
-<<<<<<< HEAD
         binding?.contentView?.alpha=1f
-=======
->>>>>>> 2c9bdf6c20703b9f2aab594ec9adac6c013f62b5
         data?.run {
             binding?.contentView?.contentBinding()?.run {
                 if(subtitle.isEmpty()){
                     leftTipTv.visibility= View.GONE
                 }else{
                     leftTipTv.visibility= View.VISIBLE
-<<<<<<< HEAD
                     leftTipTv.text="$subtitle :"
-=======
-                    leftTipTv.text=subtitle
->>>>>>> 2c9bdf6c20703b9f2aab594ec9adac6c013f62b5
                 }
                 if(content.isEmpty()){
                     centerTv.visibility= View.GONE
                 }else{
                     centerTv.visibility= View.VISIBLE
-<<<<<<< HEAD
                     centerTv.text=content
                 }
             }
         }
         binding?.confirmBtn?.visibility=View.VISIBLE
-=======
-                    leftTipTv.text=content
-                }
-            }
-        }
->>>>>>> 2c9bdf6c20703b9f2aab594ec9adac6c013f62b5
     }
 
     override fun  clickLisen(click: IBindingClickEvent<Any>) {
         super.clickLisen(click)
-<<<<<<< HEAD
         binding?.confirmBtn?.setOnClickListener {
             data?.run {
                 click.onClick(it,data!!,0)
             }
-=======
-        btn?.setOnClickListener {
-            click.onClick(it,data!!,0)
->>>>>>> 2c9bdf6c20703b9f2aab594ec9adac6c013f62b5
         }
     }
 }

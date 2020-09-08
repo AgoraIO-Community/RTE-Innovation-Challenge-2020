@@ -8,10 +8,7 @@ import android.view.SurfaceView
 import android.view.TextureView
 import android.widget.FrameLayout
 import androidx.annotation.RequiresApi
-<<<<<<< HEAD
 import com.framing.baselib.TLog
-=======
->>>>>>> 2c9bdf6c20703b9f2aab594ec9adac6c013f62b5
 import com.framing.commonlib.utils.DisplayUtils
 import io.agora.mediaplayer.*
 import io.agora.mediaplayer.Constants.PLAYER_RENDER_MODE_FIT
@@ -28,17 +25,10 @@ import kotlinx.coroutines.launch
  * Date 
  */class AgoraMediaKit : TextureView, MediaPlayerObserver, AudioFrameObserver , VideoFrameObserver {
     constructor(context: Context?) : super(context!!){
-<<<<<<< HEAD
 //        initConfig()
     }
     constructor(context: Context?, attrs: AttributeSet?) : super(context!!, attrs){
 //        initConfig()
-=======
-        initConfig()
-    }
-    constructor(context: Context?, attrs: AttributeSet?) : super(context!!, attrs){
-        initConfig()
->>>>>>> 2c9bdf6c20703b9f2aab594ec9adac6c013f62b5
     }
     constructor(context: Context?, attrs: AttributeSet?, defStyleAttr: Int) : super(
         context!!,
@@ -57,13 +47,9 @@ import kotlinx.coroutines.launch
 
     private var playerKit:AgoraMediaPlayerKit?=null
 
-<<<<<<< HEAD
     fun isPlaying():Boolean{
         return playerKit?.state==3
     }
-=======
-
->>>>>>> 2c9bdf6c20703b9f2aab594ec9adac6c013f62b5
     private fun initConfig(){
         createKit()
     }
@@ -74,13 +60,10 @@ import kotlinx.coroutines.launch
         playerKit?.registerVideoFrameObserver(this)//video 回调
         playerKit?.setView(this@AgoraMediaKit)
         playerKit?.setRenderMode(PLAYER_RENDER_MODE_HIDDEN)
-<<<<<<< HEAD
-=======
         GlobalScope.launch {
 //            Thread.sleep(6000)
 //            startWith("https://video.beilezx.com/upload%2Fa%2F2020%2F0426%2F1587875341249_15.mp4")
         }
->>>>>>> 2c9bdf6c20703b9f2aab594ec9adac6c013f62b5
     }
 
     /*
@@ -88,7 +71,6 @@ import kotlinx.coroutines.launch
     * url
     * */
     fun startWith(url:String){
-<<<<<<< HEAD
         if(playerKit==null){
             initConfig()
         }
@@ -99,9 +81,6 @@ import kotlinx.coroutines.launch
     }
     fun pause(){
         playerKit?.pause()
-=======
-        playerKit?.open(url,0)
->>>>>>> 2c9bdf6c20703b9f2aab594ec9adac6c013f62b5
     }
     /*
     * 结束
@@ -112,10 +91,7 @@ import kotlinx.coroutines.launch
         playerKit?.unregisterPlayerObserver(this)
         playerKit?.unregisterVideoFrameObserver(this)
         playerKit?.destroy()
-<<<<<<< HEAD
         playerKit==null
-=======
->>>>>>> 2c9bdf6c20703b9f2aab594ec9adac6c013f62b5
     }
     /*
     * start MediaPlayerObserver
@@ -129,10 +105,7 @@ import kotlinx.coroutines.launch
         p0: Constants.MediaPlayerState?,
         p1: Constants.MediaPlayerError?
     ) {
-<<<<<<< HEAD
         TLog.log("agroa_media_state","$p0---$p1")
-=======
->>>>>>> 2c9bdf6c20703b9f2aab594ec9adac6c013f62b5
         when(p0){
             Constants.MediaPlayerState.PLAYER_STATE_OPEN_COMPLETED->{
                 playerKit?.play()

@@ -3,13 +3,9 @@ package com.framing.commonlib.agora
 import android.content.Context
 import android.os.Build
 import android.util.AttributeSet
-<<<<<<< HEAD
 import android.view.SurfaceView
 import android.widget.FrameLayout
 import android.widget.RelativeLayout
-=======
-import android.widget.FrameLayout
->>>>>>> 2c9bdf6c20703b9f2aab594ec9adac6c013f62b5
 import androidx.annotation.RequiresApi
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleObserver
@@ -22,10 +18,7 @@ import com.framing.commonlib.agora.rtc.AgoraEventHandler
 import com.framing.commonlib.agora.rtc.EngineConfig
 import com.framing.commonlib.agora.rtc.EventHandler
 import com.framing.commonlib.agora.status.StatsManager
-<<<<<<< HEAD
 import com.framing.commonlib.widget.BaseObserverView
-=======
->>>>>>> 2c9bdf6c20703b9f2aab594ec9adac6c013f62b5
 import io.agora.rtc.Constants
 import io.agora.rtc.IRtcEngineEventHandler
 import io.agora.rtc.RtcEngine
@@ -36,19 +29,10 @@ import io.agora.rtc.video.VideoEncoderConfiguration
  * Author Young
  * Date 
  */
-<<<<<<< HEAD
 abstract class AgoraBaseView :BaseObserverView ,EventHandler,LifecycleObserver {
     constructor(context: Context) : super(context){
     }
     constructor(context: Context, attrs: AttributeSet?) : super(context, attrs){
-=======
-open class AgoraBaseView :FrameLayout ,EventHandler,LifecycleObserver {
-    constructor(context: Context) : super(context){
-        initEngine()
-    }
-    constructor(context: Context, attrs: AttributeSet?) : super(context, attrs){
-        initEngine()
->>>>>>> 2c9bdf6c20703b9f2aab594ec9adac6c013f62b5
     }
     constructor(context: Context, attrs: AttributeSet?, defStyleAttr: Int) : super(
         context,
@@ -65,7 +49,6 @@ open class AgoraBaseView :FrameLayout ,EventHandler,LifecycleObserver {
     ) : super(context, attrs, defStyleAttr, defStyleRes)
 
 
-<<<<<<< HEAD
 
     override fun onRemoteAudioStats(stats: IRtcEngineEventHandler.RemoteAudioStats?) {
         TLog.log("TAAS_GROUP","onRemoteAudioStats${stats}")
@@ -100,42 +83,6 @@ open class AgoraBaseView :FrameLayout ,EventHandler,LifecycleObserver {
 
     override fun onJoinChannelSuccess(channel: String?, uid: Int, elapsed: Int) {
         TLog.log("TAAS_GROUP","onJoinChannelSuccess${channel}--${elapsed}")
-=======
-    override fun onRemoteAudioStats(stats: IRtcEngineEventHandler.RemoteAudioStats?) {
-        TLog.log("TAAS_GROUP","onRemoteAudioStats")
-    }
-
-    override fun onRtcStats(stats: IRtcEngineEventHandler.RtcStats?) {
-        TLog.log("TAAS_GROUP","onRtcStats")
-    }
-
-    override fun onUserJoined(uid: Int, elapsed: Int) {
-        TLog.log("TAAS_GROUP","onUserJoined")
-    }
-
-    override fun onLocalVideoStats(stats: IRtcEngineEventHandler.LocalVideoStats?) {
-        TLog.log("TAAS_GROUP","onLocalVideoStats")
-    }
-
-    override fun onUserOffline(uid: Int, reason: Int) {
-        TLog.log("TAAS_GROUP","onUserOffline")
-    }
-
-    override fun onRemoteVideoStats(stats: IRtcEngineEventHandler.RemoteVideoStats?) {
-        TLog.log("TAAS_GROUP","onRemoteVideoStats")
-    }
-
-    override fun onNetworkQuality(uid: Int, txQuality: Int, rxQuality: Int) {
-        TLog.log("TAAS_GROUP","onNetworkQuality")
-    }
-
-    override fun onLastmileProbeResult(result: IRtcEngineEventHandler.LastmileProbeResult?) {
-        TLog.log("TAAS_GROUP","onLastmileProbeResult")
-    }
-
-    override fun onJoinChannelSuccess(channel: String?, uid: Int, elapsed: Int) {
-        TLog.log("TAAS_GROUP","onJoinChannelSuccess")
->>>>>>> 2c9bdf6c20703b9f2aab594ec9adac6c013f62b5
     }
 
     override fun onLastmileQuality(quality: Int) {
@@ -143,7 +90,6 @@ open class AgoraBaseView :FrameLayout ,EventHandler,LifecycleObserver {
     }
 
     override fun onFirstRemoteVideoDecoded(uid: Int, width: Int, height: Int, elapsed: Int) {
-<<<<<<< HEAD
         TLog.log("TAAS_GROUP","onFirstRemoteVideoDecoded${elapsed}")
         setupRemoteVideo(uid)
     }
@@ -190,29 +136,15 @@ open class AgoraBaseView :FrameLayout ,EventHandler,LifecycleObserver {
     override fun onRemoteVideoStateChanged(i: Int, i1: Int, i2: Int, i3: Int) {
         TLog.log("TAAS_GROUP","onRemoteVideoStateChanged$i1---$i2")
     }
-=======
-        TLog.log("TAAS_GROUP","onFirstRemoteVideoDecoded")
-    }
-
-    override fun onLeaveChannel(stats: IRtcEngineEventHandler.RtcStats?) {
-        TLog.log("TAAS_GROUP","onLeaveChannel")
-    }
-
-
->>>>>>> 2c9bdf6c20703b9f2aab594ec9adac6c013f62b5
     @OnLifecycleEvent(Lifecycle.Event.ON_CREATE)
     fun onCreate(){
 
     }
     @OnLifecycleEvent(Lifecycle.Event.ON_DESTROY)
     fun onDestory(){
-<<<<<<< HEAD
         mRtcEngine?.leaveChannel()
         RtcEngine.destroy()
         destoryView()
-=======
-        RtcEngine.destroy()
->>>>>>> 2c9bdf6c20703b9f2aab594ec9adac6c013f62b5
     }
 
     private var mRtcEngine:RtcEngine?=null
@@ -220,11 +152,7 @@ open class AgoraBaseView :FrameLayout ,EventHandler,LifecycleObserver {
     private val mHandler: AgoraEventHandler = AgoraEventHandler()
     private val mStatsManager: StatsManager = StatsManager()
 
-<<<<<<< HEAD
     fun initEngine(){
-=======
-    private fun initEngine(){
->>>>>>> 2c9bdf6c20703b9f2aab594ec9adac6c013f62b5
         TLog.log("TAAS_GROUP","initEngine")
         try {
             mRtcEngine = RtcEngine.create(
@@ -260,10 +188,6 @@ open class AgoraBaseView :FrameLayout ,EventHandler,LifecycleObserver {
         configuration.mirrorMode = VIDEO_MIRROR_MODES.get(0)
         mEngine().setVideoEncoderConfiguration(configuration)
     }
-<<<<<<< HEAD
     abstract  fun setupRemoteVideo(uid: Int)
     abstract fun destoryView()
-=======
-
->>>>>>> 2c9bdf6c20703b9f2aab594ec9adac6c013f62b5
 }

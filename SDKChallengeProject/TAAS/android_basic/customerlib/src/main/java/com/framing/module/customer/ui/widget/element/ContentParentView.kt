@@ -14,11 +14,7 @@ import com.framing.module.customer.databinding.ContentStyleParentLayoutBinding
  * Des  内容载体
  * Author Young
  * Date 
-<<<<<<< HEAD
  */open class ContentParentView :FrameLayout {
-=======
- */class ContentParentView :FrameLayout {
->>>>>>> 2c9bdf6c20703b9f2aab594ec9adac6c013f62b5
     constructor(context: Context) : super(context){
         initLayout()
     }

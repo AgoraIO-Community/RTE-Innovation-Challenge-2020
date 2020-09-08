@@ -7,11 +7,8 @@
             android:id="@+id/left_layout"
             app:layout_constraintEnd_toStartOf="parent"
             android:layout_width="200dp"
-<<<<<<< HEAD
             app:layout_constraintBottom_toTopOf="parent"
             app:layout_constraintTop_toBottomOf="parent"
-=======
->>>>>>> 2c9bdf6c20703b9f2aab594ec9adac6c013f62b5
             android:layout_height="match_parent" />
         <Constraint
             android:id="@+id/map_view"
@@ -29,15 +26,9 @@
             android:id="@+id/right_one"
             android:layout_width="100dp"
             android:layout_height="40dp"
-<<<<<<< HEAD
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             android:layout_marginBottom="110dp"
-=======
-            app:layout_constraintBottom_toTopOf="@+id/bottom_layout"
-            app:layout_constraintEnd_toEndOf="parent"
-            android:layout_marginBottom="60dp"
->>>>>>> 2c9bdf6c20703b9f2aab594ec9adac6c013f62b5
             app:layout_constraintStart_toEndOf="parent" />
         <Constraint
             android:id="@+id/right_two"
@@ -46,12 +37,7 @@
             app:layout_constraintBottom_toTopOf="@+id/right_one"
             app:layout_constraintEnd_toEndOf="parent"
             android:layout_marginBottom="20dp"
-<<<<<<< HEAD
             app:layout_constraintStart_toEndOf="parent" />
-=======
-            app:layout_constraintStart_toEndOf="parent"
-            />
->>>>>>> 2c9bdf6c20703b9f2aab594ec9adac6c013f62b5
         <Constraint
             android:id="@+id/right_three"
             android:layout_width="100dp"
@@ -67,17 +53,13 @@
             android:id="@+id/left_layout"
             android:layout_width="200dp"
             android:layout_height="match_parent"
-<<<<<<< HEAD
             app:layout_constraintBottom_toTopOf="parent"
             app:layout_constraintTop_toBottomOf="parent"
-=======
->>>>>>> 2c9bdf6c20703b9f2aab594ec9adac6c013f62b5
             app:layout_constraintStart_toStartOf="parent" />
         <Constraint
             android:id="@+id/map_view"
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
-<<<<<<< HEAD
         <Constraint
             android:id="@+id/bottom_layout"
             android:layout_width="match_parent"
@@ -110,8 +92,6 @@
             app:layout_constraintEnd_toEndOf="parent"
             android:layout_marginBottom="20dp"
             app:layout_constraintStart_toEndOf="parent"  />
-=======
->>>>>>> 2c9bdf6c20703b9f2aab594ec9adac6c013f62b5
     </ConstraintSet>
 
     <Transition
@@ -131,7 +111,6 @@
             android:layout_width="match_parent"
             android:layout_height="450dp"
             app:layout_constraintBottom_toBottomOf="parent" />
-<<<<<<< HEAD
         <Constraint
             android:id="@+id/right_one"
             android:layout_width="100dp"
@@ -157,8 +136,6 @@
             android:layout_marginBottom="20dp"
             app:layout_constraintStart_toEndOf="parent"  />
 
-=======
->>>>>>> 2c9bdf6c20703b9f2aab594ec9adac6c013f62b5
     </ConstraintSet>
     <Transition
         android:id="@+id/to_bottom"
@@ -176,7 +153,6 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent" />
-<<<<<<< HEAD
         <Constraint
             android:id="@+id/bottom_layout"
             android:layout_width="match_parent"
@@ -201,21 +177,13 @@
             app:layout_constraintEnd_toEndOf="parent"
             android:layout_marginBottom="20dp"
             app:layout_constraintStart_toEndOf="parent"  />
-=======
->>>>>>> 2c9bdf6c20703b9f2aab594ec9adac6c013f62b5
     </ConstraintSet>
     <Transition
         android:id="@+id/to_right_one"
         app:constraintSetStart="@+id/start"
-<<<<<<< HEAD
         app:constraintSetEnd="@+id/right_one_end"
         app:duration="300">
         <OnClick app:targetId="@id/right_one" />
-=======
-        app:constraintSetEnd="@+id/right_one_end" >
-        <OnClick app:targetId="@id/right_one" />
-        <OnSwipe />
->>>>>>> 2c9bdf6c20703b9f2aab594ec9adac6c013f62b5
     </Transition>
     <ConstraintSet
         android:id="@+id/right_two_end" >
@@ -227,7 +195,6 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent" />
-<<<<<<< HEAD
         <Constraint
             android:id="@+id/bottom_layout"
             android:layout_width="match_parent"
@@ -252,18 +219,12 @@
             app:layout_constraintEnd_toEndOf="parent"
             android:layout_marginBottom="80dp"
             app:layout_constraintStart_toEndOf="parent"  />
-=======
->>>>>>> 2c9bdf6c20703b9f2aab594ec9adac6c013f62b5
     </ConstraintSet>
     <Transition
         android:id="@+id/to_right_two"
         app:constraintSetStart="@+id/start"
-<<<<<<< HEAD
         app:constraintSetEnd="@+id/right_two_end"
         app:duration="300">
-=======
-        app:constraintSetEnd="@+id/right_two_end" >
->>>>>>> 2c9bdf6c20703b9f2aab594ec9adac6c013f62b5
         <OnClick app:targetId="@id/right_two" />
     </Transition>
     <ConstraintSet
@@ -276,7 +237,6 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent" />
-<<<<<<< HEAD
         <Constraint
             android:id="@+id/bottom_layout"
             android:layout_width="match_parent"
@@ -301,19 +261,14 @@
             app:layout_constraintEnd_toEndOf="parent"
             android:layout_marginBottom="20dp"
             app:layout_constraintStart_toEndOf="parent"/>
-=======
->>>>>>> 2c9bdf6c20703b9f2aab594ec9adac6c013f62b5
     </ConstraintSet>
     <Transition
         android:id="@+id/to_right_three"
         app:constraintSetStart="@+id/start"
-<<<<<<< HEAD
         app:constraintSetEnd="@+id/right_three_end"
         app:duration="300">
         <OnClick app:targetId="@id/right_three"
             app:clickAction="toggle" />
-=======
-        app:constraintSetEnd="@+id/right_three_end" >
         <OnClick app:targetId="@id/right_three" />
 >>>>>>> 2c9bdf6c20703b9f2aab594ec9adac6c013f62b5
     </Transition>

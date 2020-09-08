@@ -4,7 +4,6 @@ import android.content.Context
 import android.os.Build
 import android.util.AttributeSet
 import android.view.Gravity
-<<<<<<< HEAD
 import android.view.View
 import android.widget.Toast
 import androidx.annotation.RequiresApi
@@ -19,10 +18,6 @@ import kotlinx.android.synthetic.main.scicence_content_parent_layout.view.*
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
-=======
-import androidx.annotation.RequiresApi
-import com.framing.module.customer.R
->>>>>>> 2c9bdf6c20703b9f2aab594ec9adac6c013f62b5
 
 /*
  * Des  
@@ -47,10 +42,7 @@ import com.framing.module.customer.R
 
 
     private var titleName:String?=null//标题名
-<<<<<<< HEAD
     private var contentListBean:ContentListBean?=null//业务数据 ui展示
-=======
->>>>>>> 2c9bdf6c20703b9f2aab594ec9adac6c013f62b5
 
     override fun initView(attrs: AttributeSet?) {
         super.initView(attrs)
@@ -61,17 +53,13 @@ import com.framing.module.customer.R
             this.gravity=Gravity.CENTER_VERTICAL
             text=titleName
         }
-<<<<<<< HEAD
         isClickable=true
-=======
->>>>>>> 2c9bdf6c20703b9f2aab594ec9adac6c013f62b5
     }
     /*
    * 根据外层执行进度
    * */
     override fun progress(progress:Float){
         titleLogic(progress)
-<<<<<<< HEAD
         binding?.constraintLayout?.run {
             setProgress(progress)
         }
@@ -91,40 +79,19 @@ import com.framing.module.customer.R
 //                    transitionToStart()
 //                }
 //            }
-=======
-    }
-    fun complete(isComplete:Boolean){
-        if(isComplete){
-            binding?.constraintLayout?.run {
-                setTransition(R.id.to_show)
-                transitionToEnd()
-            }
-        }else{
-            binding?.constraintLayout?.run {
-                setTransition(R.id.to_show)
-                transitionToStart()
-            }
->>>>>>> 2c9bdf6c20703b9f2aab594ec9adac6c013f62b5
         }
     }
     /*
     * 处理title内容 贴边居右 居中居中
     * */
     override fun titleLogic(progress:Float){
-<<<<<<< HEAD
         if(progress>=1f) {
             binding?.titleTv?.gravity = Gravity.CENTER
         }else if(progress<=0.1f){
-=======
-        if(progress==1f) {
-            binding?.titleTv?.gravity = Gravity.CENTER
-        }else if(progress==0f){
->>>>>>> 2c9bdf6c20703b9f2aab594ec9adac6c013f62b5
             binding?.titleTv?.gravity = Gravity.LEFT
             binding?.titleTv?.gravity = Gravity.CENTER_VERTICAL
         }
     }
-<<<<<<< HEAD
     //一般业务数据处理 区别于weather
     fun setSimpleData(data:ContentListBean){
         contentListBean = data
@@ -207,6 +174,4 @@ import com.framing.module.customer.R
             click.onClick(it,titleName!!,2)
         }
     }
-=======
->>>>>>> 2c9bdf6c20703b9f2aab594ec9adac6c013f62b5
 }
