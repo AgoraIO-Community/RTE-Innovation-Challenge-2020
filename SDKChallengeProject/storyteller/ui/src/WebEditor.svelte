@@ -4,8 +4,8 @@
   import type { playerMetaData } from "rrweb/typings/types";
   import { onMount, createEventDispatcher, tick } from "svelte";
   import { pannable } from "./pannable";
-  import { formatTime, newScene } from "./utils";
-  import type { Chapter, Scene, Tooltip, Skip } from "./utils";
+  import { formatTime, genNewScene } from "./utils";
+  import type { Chapter, Scene, Tooltip, Skip, Effect } from "./utils";
   import Modal from "./Modal.svelte";
   import Play from "./icons/play.svg";
   import Pause from "./icons/pause.svg";
@@ -121,14 +121,14 @@
   };
 
   const saveTooltip = () => {
-    scene.tooltips = [
-      ...scene.tooltips,
-      {
+    scene.effects = scene.effects.concat({
+      type: "tooltip",
+      payload: {
         content: tooltipPayload.content,
         timeOffset: tooltipPayload.timeOffset,
         id: tooltipPayload.id,
       },
-    ];
+    });
     finishTooltip();
   };
 
@@ -295,28 +295,31 @@
       }
     | null = null;
 
-  function editTooltip(tooltip: Tooltip, idx: number) {
+  function editEffect(effect: Effect, idx: number) {
     modalPayload = {
-      type: "tooltip",
-      payload: tooltip,
+      ...effect,
       index: idx,
     };
   }
 
-  function removeTooltip(tooltip: Tooltip) {
-    scene.tooltips = scene.tooltips.filter((t) => t !== tooltip);
+  function removeEffect(effect: Effect) {
+    scene.effects = scene.effects.filter((e) => e !== effect);
   }
 
-  function editSkip(skip: Skip, idx: number) {
-    modalPayload = {
-      type: "skip",
-      payload: skip,
-      index: idx,
-    };
-  }
-
-  function removeSkip(skip: Skip) {
-    scene.skips = scene.skips.filter((t) => t !== skip);
+  function saveEffect() {
+    const { type, payload, index } = modalPayload;
+    if (type === "tooltip") {
+      scene.effects[index].payload = payload;
+    }
+    if (type === "skip") {
+      index === -1
+        ? (scene.effects = scene.effects.concat({
+            type,
+            payload,
+          } as Effect))
+        : (scene.effects[index].payload = payload);
+    }
+    modalPayload = null;
   }
 
   let webview:
@@ -345,6 +348,7 @@
   }
 
   function addScene() {
+    const newScene = genNewScene();
     chapter.sequence = chapter.sequence.concat(newScene);
     sceneIdx = chapter.sequence.length - 1;
   }
@@ -633,48 +637,47 @@
         <div
           class="we-tracks-handler"
           style="transform: translateX({tracksWidth * percent}px)" />
-        {#each scene.tooltips as tooltip, idx}
-          <div class="we-tooltip-track we-track">
-            <div
-              class="alert alert-info mb-0 mr-1"
-              style="transform: translateX({Math.max(0, (tracksWidth * tooltip.timeOffset) / scene.totalTime)}px)"
-              on:click|stopPropagation={() => editTooltip(tooltip, idx)}
-              role="button">
-              <div class="flex-fill">
-                {@html ChatLeftText}
-                {tooltip.content}
+        {#each scene.effects as effect, idx}
+          <div class="we-{effect.type}-track we-track">
+            {#if effect.type === 'tooltip'}
+              <div
+                class="alert alert-info mb-0 mr-1"
+                style="transform: translateX({Math.max(0, (tracksWidth * effect.payload.timeOffset) / scene.totalTime)}px)"
+                on:click|stopPropagation={() => editEffect(effect, idx)}
+                role="button">
+                <div class="flex-fill">
+                  {@html ChatLeftText}
+                  {effect.payload.content}
+                </div>
+                <button
+                  type="button"
+                  class="close"
+                  data-dismiss="alert"
+                  aria-label="Close"
+                  on:click|stopPropagation={() => removeEffect(effect)}>
+                  <span aria-hidden="true">&times;</span>
+                </button>
               </div>
-              <button
-                type="button"
-                class="close"
-                data-dismiss="alert"
-                aria-label="Close"
-                on:click|stopPropagation={() => removeTooltip(tooltip)}>
-                <span aria-hidden="true">&times;</span>
-              </button>
-            </div>
-          </div>
-        {/each}
-        {#each scene.skips || [] as skip, idx}
-          <div class="we-skip-track we-track">
-            <div
-              class="alert alert-danger mb-0 mr-1"
-              style="transform: translateX({Math.max(0, (tracksWidth * skip.timeOffset) / scene.totalTime)}px);width: {(tracksWidth * skip.duration) / scene.totalTime}px"
-              on:click|stopPropagation={() => editSkip(skip, idx)}
-              role="button">
-              <div class="flex-fill">
-                {@html Scissors}
-                {formatTime(skip.duration)}
+            {:else if effect.type === 'skip'}
+              <div
+                class="alert alert-danger mb-0 mr-1"
+                style="transform: translateX({Math.max(0, (tracksWidth * effect.payload.timeOffset) / scene.totalTime)}px);width: {(tracksWidth * effect.payload.duration) / scene.totalTime}px"
+                on:click|stopPropagation={() => editEffect(effect, idx)}
+                role="button">
+                <div class="flex-fill">
+                  {@html Scissors}
+                  {formatTime(effect.payload.duration)}
+                </div>
+                <button
+                  type="button"
+                  class="close"
+                  data-dismiss="alert"
+                  aria-label="Close"
+                  on:click|stopPropagation={() => removeEffect(effect)}>
+                  <span aria-hidden="true">&times;</span>
+                </button>
               </div>
-              <button
-                type="button"
-                class="close"
-                data-dismiss="alert"
-                aria-label="Close"
-                on:click|stopPropagation={() => removeSkip(skip)}>
-                <span aria-hidden="true">&times;</span>
-              </button>
-            </div>
+            {/if}
           </div>
         {/each}
       </div>
@@ -683,20 +686,7 @@
 </div>
 
 {#if modalPayload}
-  <Modal
-    on:close={() => (modalPayload = null)}
-    on:ok={() => {
-      if (modalPayload.type === 'tooltip') {
-        scene.tooltips[modalPayload.index] = modalPayload.payload;
-      }
-      if (modalPayload.type === 'skip') {
-        if (!scene.skips) {
-          scene.skips = [];
-        }
-        modalPayload.index === -1 ? (scene.skips = scene.skips.concat(modalPayload.payload)) : (scene.skips[modalPayload.index] = modalPayload.payload);
-      }
-      modalPayload = null;
-    }}>
+  <Modal on:close={() => (modalPayload = null)} on:ok={saveEffect}>
     <div slot="title">
       {{ tooltip: '编辑 Tooltip', skip: '编辑快进' }[modalPayload.type] || ''}
     </div>

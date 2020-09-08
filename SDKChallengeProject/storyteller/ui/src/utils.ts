@@ -1,4 +1,5 @@
 import type { eventWithTime } from "rrweb/typings/types";
+import { nanoid } from "nanoid";
 
 function padZero(num: number, len = 2): string {
   let str = String(num);
@@ -40,14 +41,23 @@ export type Skip = {
   duration: number;
 };
 
+export type Effect =
+  | {
+      type: "tooltip";
+      payload: Tooltip;
+    }
+  | {
+      type: "skip";
+      payload: Skip;
+    };
+
 export type Scene = {
   id: string;
   name: string;
   type: "web";
   url: string;
   events: eventWithTime[];
-  tooltips: Tooltip[];
-  skips?: Skip[];
+  effects: Effect[];
   totalTime: number;
 };
 
@@ -57,13 +67,16 @@ export type Chapter = {
   sequence: Array<Scene>;
 };
 
-export const newScene: Scene = {
-  id: "",
+export const genNewScene: () => Scene = () => ({
+  id: genId(),
   name: "new scene",
   type: "web",
   url: null,
   events: [],
-  tooltips: [],
-  skips: [],
+  effects: [],
   totalTime: 0,
-};
+});
+
+export function genId() {
+  return nanoid(8);
+}

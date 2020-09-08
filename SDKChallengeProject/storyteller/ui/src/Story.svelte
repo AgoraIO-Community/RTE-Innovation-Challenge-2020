@@ -3,7 +3,7 @@
   import Replayer from "rrweb-player";
   import { mirror } from "rrweb";
   import { onMount, tick } from "svelte";
-  import type { Chapter } from "./utils";
+  import type { Chapter, Tooltip, Skip } from "./utils";
   import { each } from "svelte/internal";
 
   let playerEl: HTMLDivElement;
@@ -12,13 +12,19 @@
   $: chapter = story.chapters[chapterIdx];
   let sceneIdx = 0;
   $: scene = chapter?.sequence[sceneIdx];
+  $: tooltips = scene.effects
+    .filter((e) => e.type === "tooltip")
+    .map((e) => e.payload) as Tooltip[];
+  $: skips = scene.effects
+    .filter((e) => e.type === "skip")
+    .map((e) => e.payload) as Skip[];
   let tooltipIdx = 0;
-  $: nextTooltip = scene?.tooltips[tooltipIdx];
+  $: nextTooltip = tooltips[tooltipIdx];
   let tooltipEl: HTMLDivElement;
   let tooltipTargetEl: HTMLElement;
   let tooltipTargetMaskEl: HTMLDivElement;
   let skipIdx = 0;
-  $: nextSkip = scene?.skips?.[skipIdx];
+  $: nextSkip = skips[skipIdx];
 
   export let story: {
     id: string;
@@ -208,7 +214,7 @@
       <div bind:this={tooltipEl} class="story-tooltip">
         {#if nextTooltip}
           <div>{nextTooltip.content}</div>
-          <div>{tooltipIdx + 1}/{scene.tooltips.length}</div>
+          <div>{tooltipIdx + 1}/{tooltips.length}</div>
         {/if}
       </div>
       <div

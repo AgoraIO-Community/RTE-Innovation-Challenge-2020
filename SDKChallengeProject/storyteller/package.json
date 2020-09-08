@@ -10,8 +10,7 @@
     "dist": "electron-builder"
   },
   "dependencies": {
-    "electron-store": "^6.0.0",
-    "rrweb": "^0.9.0"
+    "electron-store": "^6.0.0"
   },
   "devDependencies": {
     "electron": "^10.1.0",

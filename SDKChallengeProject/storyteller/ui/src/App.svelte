@@ -6,7 +6,7 @@
   const { ipcRenderer } = require("electron");
   import WebEditor from "./WebEditor.svelte";
   import Story from "./Story.svelte";
-  import { formatTime, newScene } from "./utils";
+  import { formatTime, genNewScene, genId } from "./utils";
   import type { Chapter, Scene } from "./utils";
   import PlusCircle from "./icons/plus-circle.svg";
   import Cross from "./icons/cross.svg";
@@ -22,11 +22,11 @@
 
   function addStory() {
     const newStory = {
-      id: "s" + (stories.length + 1),
+      id: genId(),
       name: "",
       chapters: [
         {
-          id: "",
+          id: genId(),
           name: "",
           sequence: [],
         },
@@ -40,7 +40,7 @@
 
   function addChapter() {
     const newChapter = {
-      id: "",
+      id: genId(),
       name: "",
       sequence: [],
     };
@@ -51,6 +51,7 @@
 
   function addScene(chapter: Chapter) {
     currentChapter = chapter;
+    const newScene = genNewScene();
     chapter.sequence = chapter.sequence.concat(newScene);
     currentScene = newScene;
   }
