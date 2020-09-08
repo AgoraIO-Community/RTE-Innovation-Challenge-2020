@@ -1,0 +1,27 @@
+{
+  "name": "storyteller",
+  "version": "1.0.0",
+  "main": "index.js",
+  "author": "Yanzhen Yu <yanzhen@smartx.com>",
+  "license": "MIT",
+  "scripts": {
+    "start-app": "electron ./index.js",
+    "pack": "electron-builder --dir",
+    "dist": "electron-builder"
+  },
+  "dependencies": {
+    "electron-store": "^6.0.0",
+    "rrweb": "^0.9.0"
+  },
+  "devDependencies": {
+    "electron": "^10.1.0",
+    "electron-builder": "^22.8.0",
+    "electron-rebuild": "^2.0.1"
+  },
+  "build": {
+    "appId": "com.electron.storyteller",
+    "mac": {
+      "category": "storyteller.app.category.type"
+    }
+  }
+}
