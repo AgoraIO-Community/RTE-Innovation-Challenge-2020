@@ -12,11 +12,11 @@
 
 #### 结构：	
 
-#### 		![android_architecture](C:\Users\VULCAN\Desktop\安顺丰丰\agroa\android_architecture.png)	
+#### 		![android_architecture](http://182.92.164.242:8080/taas_app/android_architecture.png)	
 
 #### View：
 
-​			![android_view](C:\Users\VULCAN\Desktop\安顺丰丰\agroa\android_view.png)
+​			![android_view](http://182.92.164.242:8080/taas_app/android_view.png)
 
 ​	Google 瓦片+Agroa直播非常有场景感
 
