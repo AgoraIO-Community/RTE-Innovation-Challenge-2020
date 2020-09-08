@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <item>
+        <shape>
+            <solid android:color="@color/color_main_science_alphy"/>
+        </shape>
+    </item>
+    <item android:gravity="center">
+        <bitmap android:src="@drawable/live_room_bg_logo" />
+    </item>
+</layer-list>

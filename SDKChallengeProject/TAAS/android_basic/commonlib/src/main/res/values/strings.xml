@@ -1,0 +1,30 @@
+<resources>
+    <string name="app_business_name">TAAS_B</string>
+    <string name="app_customer_name">TAAS</string>
+    <string name="app_customer_logo_slogn">Build Agricultural Science</string>
+    <string name="app_business_logo_slogn">for business</string>
+    <string name="app_customer_menu_title">User Center</string>
+    <string name="app_customer_menu_one">土地管理</string>
+    <string name="app_customer_menu_two">管理作业</string>
+    <string name="app_customer_right_tip_one">Science</string>
+    <string name="app_customer_right_tip_two">Weather</string>
+    <string name="app_customer_right_tip_three">Focus</string>
+    <string name="app_customer_dialog_warning">Warning</string>
+    <string name="app_customer_right_dialog_attention">Attention</string>
+    <string name="app_customer_right_dialog_Focus">Focus</string>
+    <string name="app_customer_bottom_title">TAAS Immediacy Data</string>
+    <string name="app_customer_bottom_title_right">about</string>
+
+    <string name="app_customer_uav_pro">无人机植保中</string>
+    <string name="app_customer_uav_watch">无人机采集中</string>
+    <string name="app_customer_track_pro">植保耕收作业中</string>
+    <string name="app_customer_load_more">more</string>
+
+
+    <string name="app_attention_live">别急，没开始了！</string>
+    <string name="app_loading_tx">加载中</string>
+    <string name="app_loading_no_network">检查检查网络吧！</string>
+    <string name="app_loading_empty">未录个人入模拟数据！</string>
+    <string name="app_loading_error">爆缸了！加载失败</string>
+
+</resources>

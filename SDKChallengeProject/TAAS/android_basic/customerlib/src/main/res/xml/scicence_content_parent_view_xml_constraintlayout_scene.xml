@@ -1,0 +1,258 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--父science 包括所有view 动效-->
+    <!--title_view-->
+        <!--content_container-->
+    <!--to_show 正常显示动效 start 为优先起点 -->
+    <!--to_warning to_attention 弹窗的闪动 需代码设置trasition 启动-->
+<!---->
+<MotionScene 
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:motion="http://schemas.android.com/apk/res-auto">
+
+    <Transition
+        motion:constraintSetEnd="@+id/half"
+        motion:constraintSetStart="@id/start"
+        motion:duration="100"
+        android:id="@+id/to_show">
+    </Transition>
+
+    <ConstraintSet android:id="@+id/start">
+        <Constraint
+            android:id="@+id/title_view"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            motion:layout_constraintTop_toTopOf="parent"
+            motion:layout_constraintBottom_toTopOf="@id/content_container"
+            android:alpha="0.4" />
+        <Constraint
+            android:id="@+id/content_container"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:alpha="0.4"
+            motion:layout_constraintTop_toBottomOf="@id/title_view"
+            motion:layout_constraintBottom_toTopOf="parent"
+            android:layout_marginTop="40dp" />
+        <Constraint
+            android:id="@+id/title_tv"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            motion:layout_constraintTop_toTopOf="parent"
+            motion:layout_constraintBottom_toTopOf="@id/content_container"
+            android:alpha="1"
+            motion:layout_constraintVertical_bias="0" />
+        <Constraint
+            android:id="@+id/content_view"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:alpha="0.4"
+            motion:layout_constraintTop_toBottomOf="@id/title_view"
+            motion:layout_constraintBottom_toTopOf="parent"
+            android:layout_marginTop="40dp" />
+        <Constraint
+            android:layout_width="70dp"
+            android:layout_height="35dp"
+            motion:layout_constraintBottom_toBottomOf="parent"
+            android:layout_marginBottom="45dp"
+            android:alpha="1"
+            android:id="@+id/confirm_btn"
+            motion:layout_constraintStart_toStartOf="parent"
+            motion:layout_constraintEnd_toEndOf="parent"
+            motion:visibilityMode="ignore" />
+    </ConstraintSet>
+
+    <ConstraintSet android:id="@+id/half">
+        <Constraint
+            android:id="@+id/title_view"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:alpha="0.4" />
+        <Constraint
+            android:id="@+id/content_container"
+            android:layout_width="match_parent"
+            android:layout_height="320dp"
+            android:visibility="visible"
+            android:alpha="0.4"
+            motion:layout_constraintTop_toBottomOf="@id/title_view" />
+        <Constraint
+            android:id="@+id/title_tv"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            motion:layout_constraintTop_toTopOf="parent"
+            motion:layout_constraintBottom_toTopOf="@id/content_container"
+            android:alpha="1" />
+        <Constraint
+            android:id="@+id/content_view"
+            android:layout_width="match_parent"
+            android:layout_height="320dp"
+            android:visibility="visible"
+            android:alpha="1"
+            motion:layout_constraintTop_toBottomOf="@id/title_view"/>
+        <Constraint
+            android:id="@+id/confirm_btn"
+            android:layout_width="70dp"
+            android:layout_height="35dp"
+            motion:layout_constraintBottom_toBottomOf="parent"
+            motion:visibilityMode="ignore"
+            android:layout_marginBottom="45dp"/>
+    </ConstraintSet>
+    <!--dialog warning sharing-->
+    <ConstraintSet
+        android:id="@+id/warning_end">
+        <Constraint
+            android:id="@+id/content_container"
+            android:layout_width="match_parent"
+            android:layout_height="260dp"
+            android:visibility="visible"
+            android:alpha="0.4"
+            motion:layout_constraintTop_toBottomOf="@id/title_view" />
+        <Constraint
+            android:id="@+id/title_view"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:alpha="0.4" />
+        <Constraint
+            android:id="@+id/title_tv"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:alpha="1" />
+        <Constraint
+            android:id="@+id/content_view"
+            android:layout_width="match_parent"
+            android:layout_height="260dp"
+            android:visibility="visible"
+            android:alpha="1"
+            motion:layout_constraintTop_toBottomOf="@id/title_view" />
+        <Constraint
+            android:id="@+id/confirm_btn"
+            android:layout_width="70dp"
+            android:layout_height="35dp"
+            motion:layout_constraintBottom_toBottomOf="parent"
+            motion:visibilityMode="ignore"
+            android:layout_marginBottom="45dp" />
+
+    </ConstraintSet>
+    <Transition
+        android:id="@+id/to_warning"
+        motion:constraintSetStart="@+id/style_start"
+        motion:constraintSetEnd="@+id/warning_end"
+        motion:duration="3000">
+        <KeyFrameSet >
+            <KeyAttribute
+                motion:motionTarget="@+id/content_container"
+                motion:framePosition="20"
+                android:alpha="0.8" />
+            <KeyAttribute
+                motion:motionTarget="@+id/content_container"
+                motion:framePosition="35"
+                android:alpha="0.4" />
+            <KeyAttribute
+                motion:motionTarget="@+id/content_container"
+                motion:framePosition="50"
+                android:alpha="0.8" />
+            <KeyAttribute
+                motion:motionTarget="@+id/content_container"
+                motion:framePosition="65"
+                android:alpha="0.4" />
+            <KeyAttribute
+                motion:motionTarget="@+id/content_container"
+                motion:framePosition="80"
+                android:alpha="0.8" />
+        </KeyFrameSet>
+    </Transition>
+    <ConstraintSet android:id="@+id/style_start" >
+        <Constraint
+            android:id="@+id/content_container"
+            android:layout_width="match_parent"
+            android:layout_height="260dp"
+            motion:layout_constraintTop_toBottomOf="@id/title_view"
+            motion:layout_constraintStart_toStartOf="parent"
+            motion:layout_constraintEnd_toEndOf="parent"
+            android:alpha="0.4" />
+        <Constraint
+            android:id="@+id/title_view"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:alpha="0.4" />
+        <Constraint
+            android:id="@+id/title_tv"
+            motion:layout_constraintTop_toTopOf="parent"
+            motion:layout_constraintBottom_toTopOf="@id/content_container"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:alpha="1" />
+        <Constraint
+            android:id="@+id/content_view"
+            android:layout_width="match_parent"
+            android:layout_height="260dp"
+            motion:layout_constraintTop_toBottomOf="@id/title_view"
+            motion:layout_constraintStart_toStartOf="parent"
+            motion:layout_constraintEnd_toEndOf="parent"
+            android:alpha="1"  />
+        <Constraint
+            android:id="@+id/confirm_btn"
+            android:layout_width="70dp"
+            android:layout_height="35dp"
+            motion:layout_constraintBottom_toBottomOf="parent"
+            motion:visibilityMode="ignore"
+            android:layout_marginBottom="45dp"/>
+
+    </ConstraintSet>
+    <ConstraintSet
+        android:id="@+id/attention_end"
+        motion:deriveConstraintsFrom="@+id/style_start" >
+        <Constraint
+            android:id="@+id/content_container"
+            android:layout_width="match_parent"
+            android:layout_height="260dp"
+            android:visibility="visible"
+            android:alpha="0.4"
+            motion:layout_constraintTop_toBottomOf="@id/title_view" />
+        <Constraint
+            android:id="@+id/title_view"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:alpha="0.4" />
+        <Constraint
+            android:id="@+id/title_tv"
+            motion:layout_constraintTop_toTopOf="parent"
+            motion:layout_constraintBottom_toTopOf="@id/content_container"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:alpha="1" />
+        <Constraint
+            android:id="@+id/content_view"
+            android:layout_width="match_parent"
+            android:layout_height="260dp"
+            android:visibility="visible"
+            android:alpha="1"
+            motion:layout_constraintTop_toBottomOf="@id/title_view" />
+        <Constraint
+            android:id="@+id/confirm_btn"
+            android:layout_width="70dp"
+            android:layout_height="35dp"
+            motion:layout_constraintBottom_toBottomOf="parent"
+            motion:visibilityMode="ignore"
+            android:layout_marginBottom="45dp"/>
+    </ConstraintSet>
+    <!--dialog attention sharing-->
+    <Transition
+        android:id="@+id/to_attention"
+        motion:constraintSetStart="@+id/style_start"
+        motion:constraintSetEnd="@+id/attention_end">
+        <KeyFrameSet >
+            <KeyAttribute
+                motion:motionTarget="@+id/content_container"
+                motion:framePosition="25"
+                android:alpha="0.8" />
+            <KeyAttribute
+                motion:motionTarget="@+id/content_container"
+                motion:framePosition="50"
+                android:alpha="0.4" />
+            <KeyAttribute
+                motion:motionTarget="@+id/content_container"
+                motion:framePosition="75"
+                android:alpha="0.8" />
+        </KeyFrameSet>
+
+    </Transition>
+</MotionScene>

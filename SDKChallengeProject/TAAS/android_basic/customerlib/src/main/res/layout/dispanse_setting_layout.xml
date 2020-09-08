@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:tools="http://schemas.android.com/tools"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <variable
+            name="userSettingUIVM"
+            type="com.framing.module.customer.ui.viewmodel.UserSettingUIVM" />
+    </data>
+
+    <androidx.constraintlayout.motion.widget.MotionLayout
+        android:id="@+id/constraintLayout3"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:clickable="true"
+        app:layoutDescription="@xml/dispanse_setting_layout_xml_constraintlayout3_scene">
+
+        <View
+            android:id="@+id/view_bg"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"></View>
+
+        <com.framing.commonlib.widget.StatusLayout
+            android:id="@+id/status_layout"
+            loadingStatus="@{userSettingUIVM.loadType}"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"></com.framing.commonlib.widget.StatusLayout>
+
+        <com.airbnb.lottie.LottieAnimationView
+            android:id="@+id/attetion_view"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintBottom_toTopOf="parent"
+            app:lottie_autoPlay="true"
+            app:lottie_fileName="arrow_miss.json"></com.airbnb.lottie.LottieAnimationView>
+    </androidx.constraintlayout.motion.widget.MotionLayout>
+</layout>

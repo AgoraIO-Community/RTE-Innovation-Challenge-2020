@@ -1,0 +1,11 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.framing.customer">
+    <application
+        android:name=".CustomerApplication"
+        android:allowBackup="true"
+        android:icon="@mipmap/icon_lanucher"
+        android:label="@string/app_customer_name"
+        android:roundIcon="@mipmap/icon_lanucher"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.AppStartLoadTranslucent"></application>
+</manifest>

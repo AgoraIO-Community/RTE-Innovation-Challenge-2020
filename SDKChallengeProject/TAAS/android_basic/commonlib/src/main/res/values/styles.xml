@@ -1,0 +1,19 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/color_menu_science_dip_alpha</item>
+        <item name="colorPrimaryDark">@color/color_menu_science_dip_alpha</item>
+        <item name="colorAccent">@color/color_menu_science_dip_alpha</item>
+    </style>
+    <!--surfaceview 半透明-->
+    <style name="Theme.AppStartLoadTranslucent" parent="android:Theme">
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowNoTitle">true</item>
+    </style>
+    <!-- Base application theme. -->
+    <style name="Lanucher" parent="@style/Theme.AppCompat.NoActionBar">
+        <item name="android:windowBackground">@color/color_main_science</item>
+    </style>
+</resources>
