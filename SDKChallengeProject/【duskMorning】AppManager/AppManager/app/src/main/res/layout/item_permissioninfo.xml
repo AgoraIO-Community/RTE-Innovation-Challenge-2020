@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TextView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:text="test312kj31kj3h1j2k3h12jkh31jkh31j2h3j1kh31jk2h31jk2h3jk1h3jk12h3jk12h312jk3h"
+    android:textSize="16sp"
+    android:inputType="none"
+    android:textIsSelectable="true"
+    android:gravity="center_vertical"
+    android:paddingTop="5dp"
+    android:paddingLeft="10dp"
+    android:background="@null"
+    android:paddingBottom="5dp"
+    android:layout_height="wrap_content">
+
+</TextView>
