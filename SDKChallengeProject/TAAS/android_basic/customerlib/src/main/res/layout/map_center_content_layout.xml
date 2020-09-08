@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintLayout2"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/live_room_bg">
+        <com.framing.module.customer.ui.widget.element.ContentParentView
+            android:id="@+id/container_view"
+            android:alpha="0.4"
+            android:visibility="gone"
+            android:background="@color/color_main_science"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"></com.framing.module.customer.ui.widget.element.ContentParentView>
+        <com.framing.commonlib.agora.AgoraLiviView
+            android:id="@+id/live_view"
+            android:alpha="0.8"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"></com.framing.commonlib.agora.AgoraLiviView>
+        <com.framing.commonlib.agora.AgoraMediaKit
+            android:id="@+id/medial_view"
+            android:visibility="gone"
+            android:alpha="0.8"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"></com.framing.commonlib.agora.AgoraMediaKit>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/record_list"
+            android:layout_width="match_parent"
+            android:layout_height="75dp"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent"></androidx.recyclerview.widget.RecyclerView>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

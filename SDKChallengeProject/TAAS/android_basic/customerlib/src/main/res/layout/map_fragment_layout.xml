@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:tools="http://schemas.android.com/tools"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <data>
+        <variable
+            name="onClick"
+            type="com.framing.commonlib.base.IViewBindingClick" />
+        <variable
+            name="mapUIVM"
+            type="com.framing.module.customer.ui.viewmodel.MapUIVM" />
+    </data>
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <!--map info-->
+        <com.framing.module.customer.ui.widget.map.CustomerMapView
+            android:id="@+id/map_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            ></com.framing.module.customer.ui.widget.map.CustomerMapView>
+        <com.framing.module.customer.ui.widget.TouchMotionLayout
+            android:id="@+id/motion_layout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:clickable="true"
+            app:layoutDescription="@xml/map_fragment_layout_scene">
+            <!--top view show live-->
+            <!--left user center menu-->
+            <com.framing.module.customer.ui.widget.element.LeftMenuView
+                android:id="@+id/left_layout"
+                android:layout_width="200dp"
+                android:layout_height="match_parent"
+                app:layout_constraintEnd_toStartOf="parent"></com.framing.module.customer.ui.widget.element.LeftMenuView>
+            <!--bottom up view -->
+            <com.framing.module.customer.ui.widget.element.BottomScienceView
+                android:id="@+id/bottom_layout"
+                android:layout_width="match_parent"
+                android:layout_height="450dp"></com.framing.module.customer.ui.widget.element.BottomScienceView>
+            <!--right tip  and ani to center one to three bottom to top -->
+            <com.framing.module.customer.ui.widget.element.ScienceRightTip
+                android:id="@+id/right_one"
+                app:title_name="@string/app_customer_right_tip_one"
+                android:clickable="true"
+                android:layout_width="100dp"
+                android:layout_height="40dp"></com.framing.module.customer.ui.widget.element.ScienceRightTip>
+            <com.framing.module.customer.ui.widget.element.ScienceRightTip
+                android:id="@+id/right_two"
+                android:layout_width="100dp"
+                android:layout_height="40dp"
+                android:clickable="true"
+                app:title_name="@string/app_customer_right_tip_two"
+                ></com.framing.module.customer.ui.widget.element.ScienceRightTip>
+            <com.framing.module.customer.ui.widget.element.ScienceRightTip
+                android:id="@+id/right_three"
+                android:layout_width="100dp"
+                android:layout_height="40dp"
+                android:clickable="true"
+                app:title_name="@string/app_customer_right_tip_three"
+                ></com.framing.module.customer.ui.widget.element.ScienceRightTip>
+        </com.framing.module.customer.ui.widget.TouchMotionLayout>
+        <com.framing.module.customer.ui.widget.element.MainContentView
+            android:id="@+id/content_container"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:visibility="gone"></com.framing.module.customer.ui.widget.element.MainContentView>
+        <!--mapview lock -->
+        <ImageView
+            android:onClick="@{(view)->onClick.onClick(view)}"
+            android:alpha="0.6"
+            android:layout_gravity="right"
+            android:id="@+id/map_lock_img"
+            android:layout_marginTop="15dp"
+            android:layout_marginRight="15dp"
+            android:layout_width="28dp"
+            android:layout_height="28dp"
+            android:src="@mipmap/map_lock" />
+    </FrameLayout>
+</layout>

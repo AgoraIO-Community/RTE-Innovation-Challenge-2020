@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MotionScene xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <ConstraintSet android:id="@+id/start">
+        <Constraint android:id="@+id/widget" />
+        <Constraint
+            android:id="@+id/start_container"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:visibilityMode="ignore"/>
+        <Constraint
+            android:id="@+id/content_container"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:visibilityMode="ignore"/>
+        <Constraint
+            android:layout_height="1dp"
+            android:layout_width="1dp"
+            android:id="@+id/dialog_view"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="parent" />
+        <Constraint
+            android:id="@+id/loading"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:visibilityMode="ignore" />
+    </ConstraintSet>
+
+    <ConstraintSet android:id="@+id/left">
+        <Constraint android:id="@id/widget" />
+        <Constraint
+            android:id="@+id/start_container"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:visibilityMode="ignore" />
+        <Constraint
+            android:id="@+id/content_container"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:visibilityMode="ignore"/>
+        <Constraint
+            android:id="@+id/loading"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:visibilityMode="ignore" />
+    </ConstraintSet>
+
+    <Transition
+        app:constraintSetEnd="@id/left"
+        app:constraintSetStart="@+id/start"
+        app:duration="5000" />
+    <ConstraintSet
+        android:id="@+id/dialog"
+        app:deriveConstraintsFrom="@+id/start" >
+        <Constraint
+            android:id="@+id/dialog_view"
+            android:layout_width="220dp"
+            android:layout_height="260dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent" />
+        <Constraint
+            android:id="@+id/loading"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:visibilityMode="ignore"/>
+    </ConstraintSet>
+    <Transition
+        android:id="@+id/to_dialog"
+        app:constraintSetStart="@+id/start"
+        app:constraintSetEnd="@+id/dialog"
+        app:duration="400">
+        <OnClick app:targetId="@id/dialog_view"
+            app:clickAction="toggle" />
+    </Transition>
+</MotionScene>

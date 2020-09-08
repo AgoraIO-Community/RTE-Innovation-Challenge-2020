@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:tools="http://schemas.android.com/tools"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <import type="android.view.View"></import>
+        <variable
+            name="bUIVM"
+            type="com.framing.module.business.ui.viewmodel.BConmtainerUIVM" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/motion_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <FrameLayout
+            android:id="@+id/content_container"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:visibility="@{bUIVM.isStartHide()?View.VISIBLE:View.GONE}">
+
+            <fragment
+                android:id="@+id/content_fragment_host"
+                android:name="androidx.navigation.fragment.NavHostFragment"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:defaultNavHost="true"
+                app:navGraph="@navigation/business_container_content_nav" />
+        </FrameLayout>
+
+        <FrameLayout
+            android:id="@+id/start_container"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:visibility="@{bUIVM.isStartHide()?View.GONE:View.VISIBLE}">
+
+            <fragment
+                android:id="@+id/launch_fragment_host"
+                android:name="androidx.navigation.fragment.NavHostFragment"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:defaultNavHost="true"
+                app:navGraph="@navigation/business_start_logic_navigation" />
+        </FrameLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

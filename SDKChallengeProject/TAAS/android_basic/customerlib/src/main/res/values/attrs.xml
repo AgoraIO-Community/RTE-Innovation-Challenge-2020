@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="ScienceRightTip">
+        <attr name="title_name" format="string"/>
+    </declare-styleable>
+    <declare-styleable name="AgoraLiviView">
+        <attr name="attentionShow" format="boolean"/>
+    </declare-styleable>
+</resources>

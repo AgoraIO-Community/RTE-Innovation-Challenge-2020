@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:tools="http://schemas.android.com/tools"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <import type="android.view.View"></import>
+        <variable
+            name="cContainerUIVM"
+            type="com.framing.module.customer.ui.viewmodel.CContainerUIVM" />
+        <variable
+            name="loadHide"
+            type="com.framing.commonlib.widget.StatusLayout.StatusType" />
+    </data>
+
+    <androidx.constraintlayout.motion.widget.MotionLayout
+        android:id="@+id/motion_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layoutDescription="@xml/c_container_activity_scene">
+
+        <FrameLayout
+            android:id="@+id/start_container"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:visibility="@{cContainerUIVM.isStartHide()?View.GONE:View.VISIBLE}">
+
+            <fragment
+                android:id="@+id/launch_fragment_host"
+                android:name="androidx.navigation.fragment.NavHostFragment"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:defaultNavHost="true"
+                app:navGraph="@navigation/customer_start_logic_navigation" />
+        </FrameLayout>
+
+        <FrameLayout
+            android:id="@+id/content_container"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:clickable="true"
+            android:background="@color/color_main_science_alphy"
+            android:visibility="@{cContainerUIVM.isStartHide()?View.VISIBLE:View.GONE}">
+            <com.airbnb.lottie.LottieAnimationView
+                android:id="@+id/bg_science"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:lottie_autoPlay="true"
+                app:lottie_loop="true"
+                android:alpha="0.4"
+                android:visibility="@{cContainerUIVM.isConainerBgShow()?View.VISIBLE:View.GONE}"
+                app:lottie_fileName="bg_science.json"></com.airbnb.lottie.LottieAnimationView>
+            <fragment
+                android:id="@+id/content_fragment_host"
+                android:name="androidx.navigation.fragment.NavHostFragment"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:defaultNavHost="true"
+                app:navGraph="@navigation/customer_container_content_nav" />
+        </FrameLayout>
+        <!--application dialog attention -->
+        <com.framing.module.customer.ui.widget.element.ScienceDialog
+            android:id="@+id/dialog_view"
+            android:clickable="true"
+            android:layout_width="220dp"
+            android:layout_height="290dp"></com.framing.module.customer.ui.widget.element.ScienceDialog>
+        <com.framing.commonlib.widget.StatusLayout
+            android:id="@+id/loading"
+            loadingStatus="@{cContainerUIVM.isStartHide()? cContainerUIVM.loadType : loadHide}"
+            android:visibility="gone"
+            android:clickable="true"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"></com.framing.commonlib.widget.StatusLayout>
+    </androidx.constraintlayout.motion.widget.MotionLayout>
+</layout>

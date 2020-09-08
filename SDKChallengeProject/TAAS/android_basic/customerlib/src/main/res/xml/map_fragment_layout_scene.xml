@@ -1,0 +1,275 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MotionScene xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <ConstraintSet android:id="@+id/start">
+        <Constraint
+            android:id="@+id/left_layout"
+            app:layout_constraintEnd_toStartOf="parent"
+            android:layout_width="200dp"
+            app:layout_constraintBottom_toTopOf="parent"
+            app:layout_constraintTop_toBottomOf="parent"
+            android:layout_height="match_parent" />
+        <Constraint
+            android:id="@+id/map_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+        <Constraint
+            android:id="@+id/bottom_layout"
+            android:layout_width="match_parent"
+            android:layout_height="450dp"
+            app:layout_constraintVertical_bias="0.1"
+            app:layout_constraintTop_toBottomOf="parent"
+            app:layout_constraintBottom_toTopOf="parent"
+            app:flow_verticalBias="0.1" />
+        <Constraint
+            android:id="@+id/right_one"
+            android:layout_width="100dp"
+            android:layout_height="40dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginBottom="110dp"
+            app:layout_constraintStart_toEndOf="parent" />
+        <Constraint
+            android:id="@+id/right_two"
+            android:layout_width="100dp"
+            android:layout_height="40dp"
+            app:layout_constraintBottom_toTopOf="@+id/right_one"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginBottom="20dp"
+            app:layout_constraintStart_toEndOf="parent" />
+        <Constraint
+            android:id="@+id/right_three"
+            android:layout_width="100dp"
+            android:layout_height="40dp"
+            app:layout_constraintBottom_toTopOf="@+id/right_two"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginBottom="20dp"
+            app:layout_constraintStart_toEndOf="parent"  />
+    </ConstraintSet>
+
+    <ConstraintSet android:id="@+id/left_end">
+        <Constraint
+            android:id="@+id/left_layout"
+            android:layout_width="200dp"
+            android:layout_height="match_parent"
+            app:layout_constraintBottom_toTopOf="parent"
+            app:layout_constraintTop_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+        <Constraint
+            android:id="@+id/map_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+        <Constraint
+            android:id="@+id/bottom_layout"
+            android:layout_width="match_parent"
+            android:layout_height="450dp"
+            app:layout_constraintVertical_bias="0.1"
+            app:layout_constraintTop_toBottomOf="parent"
+            app:layout_constraintBottom_toTopOf="parent"
+            app:flow_verticalBias="0.1" />
+        <Constraint
+            android:id="@+id/right_one"
+            android:layout_width="100dp"
+            android:layout_height="40dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginBottom="110dp"
+            app:layout_constraintStart_toEndOf="parent" />
+        <Constraint
+            android:id="@+id/right_two"
+            android:layout_width="100dp"
+            android:layout_height="40dp"
+            app:layout_constraintBottom_toTopOf="@+id/right_one"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginBottom="20dp"
+            app:layout_constraintStart_toEndOf="parent" />
+        <Constraint
+            android:id="@+id/right_three"
+            android:layout_width="100dp"
+            android:layout_height="40dp"
+            app:layout_constraintBottom_toTopOf="@+id/right_two"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginBottom="20dp"
+            app:layout_constraintStart_toEndOf="parent"  />
+    </ConstraintSet>
+
+    <Transition
+        app:constraintSetEnd="@id/left_end"
+        app:constraintSetStart="@+id/start"
+        android:id="@+id/to_left">
+        <OnSwipe app:dragDirection="dragRight" />
+    </Transition>
+    <ConstraintSet
+        android:id="@+id/bottom_end">
+        <Constraint
+            android:id="@+id/map_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+        <Constraint
+            android:id="@+id/bottom_layout"
+            android:layout_width="match_parent"
+            android:layout_height="450dp"
+            app:layout_constraintBottom_toBottomOf="parent" />
+        <Constraint
+            android:id="@+id/right_one"
+            android:layout_width="100dp"
+            android:layout_height="40dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginBottom="110dp"
+            app:layout_constraintStart_toEndOf="parent" />
+        <Constraint
+            android:id="@+id/right_two"
+            android:layout_width="100dp"
+            android:layout_height="40dp"
+            app:layout_constraintBottom_toTopOf="@+id/right_one"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginBottom="20dp"
+            app:layout_constraintStart_toEndOf="parent" />
+        <Constraint
+            android:id="@+id/right_three"
+            android:layout_width="100dp"
+            android:layout_height="40dp"
+            app:layout_constraintBottom_toTopOf="@+id/right_two"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginBottom="20dp"
+            app:layout_constraintStart_toEndOf="parent"  />
+
+    </ConstraintSet>
+    <Transition
+        android:id="@+id/to_bottom"
+        app:constraintSetStart="@+id/start"
+        app:constraintSetEnd="@+id/bottom_end" >
+        <OnSwipe app:dragDirection="dragUp" />
+    </Transition>
+    <ConstraintSet
+        android:id="@+id/right_one_end">
+        <Constraint
+            android:id="@+id/right_one"
+            android:layout_width="320dp"
+            android:layout_height="400dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent" />
+        <Constraint
+            android:id="@+id/bottom_layout"
+            android:layout_width="match_parent"
+            android:layout_height="450dp"
+            app:layout_constraintVertical_bias="0.1"
+            app:layout_constraintTop_toBottomOf="parent"
+            app:layout_constraintBottom_toTopOf="parent"
+            app:flow_verticalBias="0.1" />
+        <Constraint
+            android:id="@+id/right_two"
+            android:layout_width="100dp"
+            android:layout_height="40dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginBottom="170dp"
+            app:layout_constraintStart_toEndOf="parent" />
+        <Constraint
+            android:id="@+id/right_three"
+            android:layout_width="100dp"
+            android:layout_height="40dp"
+            app:layout_constraintBottom_toTopOf="@+id/right_two"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginBottom="20dp"
+            app:layout_constraintStart_toEndOf="parent"  />
+    </ConstraintSet>
+    <Transition
+        android:id="@+id/to_right_one"
+        app:constraintSetStart="@+id/start"
+        app:constraintSetEnd="@+id/right_one_end"
+        app:duration="300">
+        <OnClick app:targetId="@id/right_one" />
+    </Transition>
+    <ConstraintSet
+        android:id="@+id/right_two_end" >
+        <Constraint
+            android:id="@+id/right_two"
+            android:layout_width="320dp"
+            android:layout_height="400dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent" />
+        <Constraint
+            android:id="@+id/bottom_layout"
+            android:layout_width="match_parent"
+            android:layout_height="450dp"
+            app:layout_constraintVertical_bias="0.1"
+            app:layout_constraintTop_toBottomOf="parent"
+            app:layout_constraintBottom_toTopOf="parent"
+            app:flow_verticalBias="0.1" />
+        <Constraint
+            android:id="@+id/right_one"
+            android:layout_width="100dp"
+            android:layout_height="40dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginBottom="110dp"
+            app:layout_constraintStart_toEndOf="parent" />
+        <Constraint
+            android:id="@+id/right_three"
+            android:layout_width="100dp"
+            android:layout_height="40dp"
+            app:layout_constraintBottom_toTopOf="@+id/right_one"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginBottom="80dp"
+            app:layout_constraintStart_toEndOf="parent"  />
+    </ConstraintSet>
+    <Transition
+        android:id="@+id/to_right_two"
+        app:constraintSetStart="@+id/start"
+        app:constraintSetEnd="@+id/right_two_end"
+        app:duration="300">
+        <OnClick app:targetId="@id/right_two" />
+    </Transition>
+    <ConstraintSet
+        android:id="@+id/right_three_end">
+        <Constraint
+            android:id="@+id/right_three"
+            android:layout_width="320dp"
+            android:layout_height="400dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent" />
+        <Constraint
+            android:id="@+id/bottom_layout"
+            android:layout_width="match_parent"
+            android:layout_height="450dp"
+            app:layout_constraintVertical_bias="0.1"
+            app:layout_constraintTop_toBottomOf="parent"
+            app:layout_constraintBottom_toTopOf="parent"
+            app:flow_verticalBias="0.1" />
+        <Constraint
+            android:id="@+id/right_one"
+            android:layout_width="100dp"
+            android:layout_height="40dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginBottom="110dp"
+            app:layout_constraintStart_toEndOf="parent" />
+        <Constraint
+            android:id="@+id/right_two"
+            android:layout_width="100dp"
+            android:layout_height="40dp"
+            app:layout_constraintBottom_toTopOf="@+id/right_one"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginBottom="20dp"
+            app:layout_constraintStart_toEndOf="parent"/>
+    </ConstraintSet>
+    <Transition
+        android:id="@+id/to_right_three"
+        app:constraintSetStart="@+id/start"
+        app:constraintSetEnd="@+id/right_three_end"
+        app:duration="300">
+        <OnClick app:targetId="@id/right_three"
+            app:clickAction="toggle" />
+        <OnClick app:targetId="@id/right_three" />
+>>>>>>> 2c9bdf6c20703b9f2aab594ec9adac6c013f62b5
+    </Transition>
+</MotionScene>

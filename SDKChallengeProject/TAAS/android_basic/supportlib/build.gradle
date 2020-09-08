@@ -1,0 +1,41 @@
+apply plugin: 'com.android.library'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+
+def config=this.getRootProject().ext
+
+android {
+    compileSdkVersion config.androidCompileSdkVersion
+    buildToolsVersion config.androidBuildToolsVersion
+
+    defaultConfig {
+        minSdkVersion config.androidMinSdkVersion
+        targetSdkVersion config.androidTargetSdkVersion
+        versionCode config.versionCode
+        versionName config.versionName
+
+
+        consumerProguardFiles "consumer-rules.pro"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    sourceSets {
+        main {
+            jniLibs.srcDirs = ['libs']
+        }
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: "libs", include: ["*.jar"])
+    //多平台公共的支持依赖 地图定位，lottie等
+    api files('libs/Android_Map3D_SDK_V7.5.0_20200610.jar')
+    api files('libs\\AgoraMediaPlayer.jar')
+    api files('libs\\agora-rtc-sdk.jar')
+    api files('libs\\AMap_Search_V7.4.0_20200723.jar')
+}

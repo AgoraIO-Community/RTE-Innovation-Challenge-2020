@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#6200EE</color>
+    <color name="colorPrimaryDark">#3700B3</color>
+    <color name="colorAccent">#03DAC5</color>
+    <color name="color_main_science">#72d2f5</color>
+    <color name="color_main_science_alphy">#8072d2f5</color>
+    <color name="color_menu_science">#006e7f</color>
+    <color name="color_menu_science_alpha">#80006e7f</color>
+    <color name="color_menu_science_dip">#006acc</color>
+    <color name="color_menu_science_dip_alpha">#80006acc</color>
+    <color name="color_white">#ffffff</color>
+</resources>

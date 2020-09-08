@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+    <data>
+        <variable
+            name="data"
+            type="com.framing.module.customer.data.RecordBean" />
+        <variable
+            name="click"
+            type="com.framing.commonlib.base.IBindingClick" />
+    </data>
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:onClick="@{()->click.onClick(data)}">
+        <ImageView
+            android:id="@+id/holder_img"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            imgLoad="@{data.component4()}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"></ImageView>
+        <TextView
+            android:id="@+id/name_tv"
+            android:textSize="12sp"
+            android:text="@{data.component1()}"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="@+id/holder_img"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            android:layout_marginBottom="5dp"
+            app:layout_constraintStart_toStartOf="parent"></TextView>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

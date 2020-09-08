@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:tools="http://schemas.android.com/tools"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <variable
+            name="agroaUIVM"
+            type="com.framing.module.customer.ui.viewmodel.AgroaUIVM" />
+        <variable
+            name="click"
+            type="com.framing.commonlib.base.IViewBindingClick" />
+    </data>
+
+    <androidx.constraintlayout.motion.widget.MotionLayout
+        android:id="@+id/constraintLayout5"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layoutDescription="@xml/fragment_agroa_layout_xml_constraintlayout5_scene">
+
+        <com.framing.commonlib.agora.AgoraLiviView
+            android:id="@+id/live_view"
+            app:attentionShow="false"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"></com.framing.commonlib.agora.AgoraLiviView>
+        <com.framing.commonlib.agora.AgoraMediaKit
+            android:id="@+id/medial_view"
+            android:visibility="gone"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"></com.framing.commonlib.agora.AgoraMediaKit>
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/record_list"
+            android:layout_width="match_parent"
+            android:layout_height="75dp"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent"></androidx.recyclerview.widget.RecyclerView>
+        <com.airbnb.lottie.LottieAnimationView
+            android:id="@+id/attetion_view"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintBottom_toTopOf="parent"
+            app:lottie_autoPlay="true"
+            app:lottie_fileName="arrow_miss.json"></com.airbnb.lottie.LottieAnimationView>
+        <com.airbnb.lottie.LottieAnimationView
+            android:id="@+id/data_view"
+            android:layout_width="55dp"
+            android:layout_height="55dp"
+            android:onClick="@{(view)->click.onClick(view)}"
+            app:lottie_loop="true"
+            app:lottie_autoPlay="true"
+            app:lottie_fileName="to_science.json"></com.airbnb.lottie.LottieAnimationView>
+    </androidx.constraintlayout.motion.widget.MotionLayout>
+</layout>

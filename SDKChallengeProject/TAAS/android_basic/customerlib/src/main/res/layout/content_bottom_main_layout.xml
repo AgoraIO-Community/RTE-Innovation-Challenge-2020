@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <androidx.constraintlayout.motion.widget.MotionLayout
+        android:id="@+id/motion_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layoutDescription="@xml/content_bottom_main_layout_xml_constraintlayout_scene">
+
+        <View
+            android:id="@+id/title_view"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:background="@color/color_menu_science_dip"></View>
+
+        <TextView
+            android:id="@+id/title_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:gravity="center"
+            android:text="@string/app_customer_bottom_title"
+            android:textSize="16sp"
+            tools:layout_editor_absoluteX="126dp"></TextView>
+
+        <TextView
+            android:id="@+id/title_right_view"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:gravity="center"
+            android:text="@string/app_customer_bottom_title_right"
+            android:textSize="15sp"
+            android:visibility="gone"></TextView>
+
+        <View
+            android:id="@+id/bg_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/color_menu_science"></View>
+
+        <TextView
+            android:id="@+id/description_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center|left"
+            android:text="土壤养分"
+            android:visibility="gone"
+            app:layout_constraintBottom_toTopOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/percen_two"
+            tools:layout_editor_absoluteX="177dp"></TextView>
+
+        <com.framing.module.customer.ui.widget.element.DataPercentView
+            android:id="@+id/percen_one"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:layout_constraintTop_toBottomOf="@+id/title_view"
+            tools:layout_editor_absoluteX="205dp"></com.framing.module.customer.ui.widget.element.DataPercentView>
+
+    </androidx.constraintlayout.motion.widget.MotionLayout>
+</layout>

@@ -1,0 +1,10 @@
+include ':architecture_mvvm'/*mvvm base 封装 为了使用插件需要提到最上层base*/
+include ':supportlib'/*第三方业务支持*/
+include ':customerlib'/*客户端业务*/
+include ':businesslib'/*作业端业务*/
+include ':business'/*app壳*/
+include ':customer'/*app壳*/
+include ':commonlib'/*公共业务*/
+include ':architecture_aac'/*aac jetpack 依赖公共管理*/
+include ':baselib'/*基础架构控制*/
+rootProject.name = "Framing"
