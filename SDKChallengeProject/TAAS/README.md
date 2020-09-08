@@ -12,9 +12,9 @@
 
 ​			![农主](http://182.92.164.242:8080/taas_app/%E5%86%9C%E4%B8%BB.png)
 
-![流转](H:\exampleproject\aaaa_big_program\agora_challenge\RTE-Innovation-Challenge-2020\SDKChallengeProject\TAAS\pic\流转.png)
+![流转](http://182.92.164.242:8080/taas_app/流转.png)
 
-![托管](H:\exampleproject\aaaa_big_program\agora_challenge\RTE-Innovation-Challenge-2020\SDKChallengeProject\TAAS\pic\托管.png)
+![托管](http://182.92.164.242:8080/taas_app/托管.png)
 
 
 
@@ -22,11 +22,11 @@
 
 ###### 	业务:
 
-![TAAS_business](H:\exampleproject\aaaa_big_program\agora_challenge\RTE-Innovation-Challenge-2020\SDKChallengeProject\TAAS\pic\TAAS_business.png)
+![TAAS_business](http://182.92.164.242:8080/taas_app/TAAS_business.png)
 
 ###### 	技术：
 
-​			![_TAAS_tec](H:\exampleproject\aaaa_big_program\agora_challenge\RTE-Innovation-Challenge-2020\SDKChallengeProject\TAAS\pic\_TAAS_tec.png)
+​			![_TAAS_tec](http://182.92.164.242:8080/taas_app/TAAS_tec.png)
 
 ###### android_basic:
 
