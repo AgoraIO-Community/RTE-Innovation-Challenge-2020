@@ -1,6 +1,3 @@
-
-<<<<<<< HEAD
-
 # 		android_basic
 
 #### 简述：
@@ -30,5 +27,3 @@
 ​	
 
 apk 下载 https://www.pgyer.com/w4Uu
-=======
->>>>>>> 2c9bdf6c20703b9f2aab594ec9adac6c013f62b5
