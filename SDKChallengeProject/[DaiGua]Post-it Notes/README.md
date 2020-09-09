@@ -48,7 +48,9 @@ Agora云录制
 
 ##### 4.演示
 
-演示视频地址https://cmz-daigua.oss-cn-beijing.aliyuncs.com/Post-it-notes.mp4，可以点击查看
+演示视频地址https://cmz-daigua.oss-cn-beijing.aliyuncs.com/Post-it-notes.mp4
+
+
 
 [](https://cmz-daigua.oss-cn-beijing.aliyuncs.com/Post-it-notes.mp4)
 
