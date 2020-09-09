@@ -1,0 +1,67 @@
+@import url('./basic/flex.css');
+@import url('./basic/rect.css');
+@import url('./basic/adjust.css');
+@import url('./basic/color.css');
+@import url('./basic/animation.css');
+@import url('./basic/text.css');
+/* @import url('./reset.css'); */
+@import url('./themes/basic.css');
+
+.shadow-light {
+  box-shadow: -0.25rem 0.25rem 0.15rem rgba(111, 111, 111, 0.3);
+}
+.shadow-all {
+  box-shadow: 0.1rem -0.1rem 0.1rem rgb(247, 244, 244, 0.1),
+    -0.1rem 0.25rem 0.1rem rgba(114, 112, 112, 0.2);
+}
+
+.absolute {
+  position: absolute;
+}
+.bd1b {
+  border-bottom: 1px solid rgba(222, 222, 222, 0.8);
+}
+.bd1 {
+  border: 1px solid darkgray;
+}
+.pointer {
+  cursor: pointer;
+}
+.cursor {
+  cursor: pointer;
+}
+.btn {
+  cursor: pointer;
+  user-select: none;
+}
+.pointer:hover {
+  font-size: 110%;
+  font-weight: 600;
+}
+.unselect {
+  -ms-user-select: none;
+  -moz-user-select: none;
+  -webkit-user-select: none;
+}
+
+.label {
+  margin-left: 8px;
+  background-color: aquamarine;
+  color: white;
+  padding: 2px 8px;
+  line-height: 1.2;
+  border-radius: 8px 2px;
+  font-size: 14px;
+  word-break: keep-all;
+  align-self: center;
+}
+.label.rect {
+  border-radius: 4px;
+}
+.chinese {
+  font-family: Helvetica, 'Hiragino Sans GB', 'Microsoft Yahei', '微软雅黑',
+    Arial, sans-serif;
+}
+.english {
+  font-family: Arial, Helvetica, sans-serif;
+}

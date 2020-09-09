@@ -1,0 +1,39 @@
+.mg20b {
+  margin-bottom: 20px;
+}
+.mg20v {
+  margin-bottom: 20px;
+  margin-top: 20px;
+}
+.mg20h {
+  margin: 0 20px;
+}
+.mg20l {
+  margin-left: 20px;
+}
+.mg20 {
+  margin: 20px;
+}
+.mg10 {
+  margin: 10px;
+}
+.mg0 {
+  margin: 0;
+}
+
+.pd20 {
+  padding: 20px;
+}
+.pd10 {
+  padding: 10px;
+}
+.pd0 {
+  padding: 0;
+}
+
+.mg{
+  margin: 1rem;
+}
+.pd{
+  padding: 1rem;
+}

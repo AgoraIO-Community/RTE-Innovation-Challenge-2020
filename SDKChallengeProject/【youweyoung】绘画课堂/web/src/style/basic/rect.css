@@ -1,0 +1,22 @@
+.rect400 {
+  width: 400px;
+  height: 400px;
+}
+.h5w {
+  height: 5rem;
+  padding: 0.5rem;
+}
+.fs-fix {
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+}
+.mask {
+  flex: 1;
+  background-color: rgba(174, 231, 109, 0.6);
+}
+.w100p{
+  width:100%;
+}
