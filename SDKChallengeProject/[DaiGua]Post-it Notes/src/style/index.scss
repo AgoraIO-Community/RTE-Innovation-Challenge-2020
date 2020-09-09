@@ -1,0 +1,116 @@
+
+
+body {
+  font-size: 14px;
+  height: 100%;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  font-family: Helvetica Neue, Helvetica, PingFang SC, Hiragino Sans GB, Microsoft YaHei, Arial, sans-serif;
+}
+
+label {
+  font-weight: 700;
+}
+h1{
+  font-size: 50px;
+}
+h4{
+  font-size: 34px;
+}
+html {
+  height: 100%;
+  box-sizing: border-box;
+}
+
+#app {
+  height: 100%;
+}
+
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+}
+
+a:focus,
+a:active {
+  outline: none;
+}
+
+a,
+a:focus,
+a:hover {
+  cursor: pointer;
+  color: inherit;
+  text-decoration: none;
+}
+
+div:focus {
+  outline: none;
+}
+
+.clearfix {
+  &:after {
+    visibility: hidden;
+    display: block;
+    font-size: 0;
+    content: " ";
+    clear: both;
+    height: 0;
+  }
+}
+.col-direction {
+  display: flex;
+  flex-direction: column;
+}
+.row-direction {
+  display: flex;
+  flex-direction: row;
+}
+.flex1 {
+  display: flex;
+  flex: 1;
+}
+.flex-end {
+  display: flex;
+  justify-content: flex-end;
+}
+.col-center {
+  display: flex;
+  align-items: center;
+}
+.row-center{
+  display: flex;
+  justify-content: center;
+}
+.col-margin-10{
+margin-top: 10px;
+margin-bottom: 10px;
+}
+.row-margin-10{
+  margin-left: 10px;
+  margin-right: 10px;
+  }
+  .label{
+    margin-right: 10px;
+    width:120px;
+  }
+  .pramirytext{
+    color: RGB(47,127,247);
+  }
+  .blod{
+    font-weight: bold;
+  }
+.center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+// main-container global css
+.app-container {
+  padding: 20px;
+}
+.cursor{
+  cursor:pointer;
+}
