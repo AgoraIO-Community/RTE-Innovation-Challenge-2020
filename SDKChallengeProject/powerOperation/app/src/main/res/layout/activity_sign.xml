@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/bg_content_color"
+    android:orientation="vertical">
+
+    <include layout="@layout/content_toolbar_view" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="7dp"
+        android:background="@drawable/shape_card_bg_white"
+        android:orientation="vertical"
+        android:padding="@dimen/dp_10">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:visibility="gone">
+
+            <TextView
+                style="@style/font_detail_title"
+                android:text="签到时间:" />
+
+            <TextView
+                android:id="@+id/tv_time"
+                style="@style/font_detail_value" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                style="@style/font_detail_title"
+                android:text="打卡位置:" />
+
+            <TextView
+                android:id="@+id/tv_address"
+                style="@style/font_detail_value"
+                android:layout_height="wrap_content"
+                android:drawableLeft="@drawable/icon_location_black"
+                android:drawablePadding="@dimen/dp_10"
+                android:minHeight="30dp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                style="@style/font_detail_title"
+                android:text="签到类型:" />
+
+
+            <TextView
+                android:id="@+id/tv_sign_view"
+                android:layout_width="120dp"
+                android:layout_height="25dp"
+                android:layout_marginLeft="@dimen/dp_10"
+                android:background="@drawable/shape_bg_white_line_gray"
+                android:drawableRight="@drawable/icon_arrow_down"
+                android:drawablePadding="@dimen/dp_5"
+                android:gravity="center"
+                android:hint="请选择"
+                android:paddingLeft="@dimen/dp_10"
+                android:paddingRight="@dimen/dp_10"
+                android:textSize="@dimen/sp_12" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginTop="@dimen/dp_4"
+            android:orientation="horizontal">
+
+            <TextView
+                style="@style/font_detail_title"
+                android:text="上报体温:" />
+
+            <EditText
+                android:id="@+id/edt_temp"
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:layout_marginLeft="@dimen/dp_10"
+                android:background="@drawable/shape_bg_white_line_gray"
+                android:hint="请输入真实测量体温"
+                android:inputType="numberDecimal"
+                android:textColorHint="@color/font_gray_light"
+                android:textSize="@dimen/sp_14" />
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+    <RelativeLayout
+        android:id="@+id/rl_sign"
+        android:layout_width="180dp"
+        android:layout_height="180dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="30dp"
+        android:background="@drawable/bg_sign">
+
+        <TextView
+            android:id="@+id/tv_sign"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_centerInParent="true"
+            android:background="@drawable/shape_sign_bg"
+            android:gravity="center"
+            android:text="签到\n打卡"
+            android:textColor="@color/white"
+            android:textSize="@dimen/sp_16"
+            android:visibility="visible" />
+    </RelativeLayout>
+
+
+</LinearLayout>

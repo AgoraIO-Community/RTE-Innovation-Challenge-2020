@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/bg_content_color"
+    android:orientation="vertical">
+
+    <include layout="@layout/content_toolbar_view" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:id="@+id/ll_photo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="@dimen/dp_20"
+            android:orientation="horizontal">
+
+            <com.xylib.base.widgets.roundedimageview.RoundedImageView
+                android:id="@+id/img_photo"
+                android:layout_width="75dp"
+                android:layout_height="75dp"
+                android:src="@drawable/default_photo"
+
+                app:riv_oval="true" />
+
+            <TextView
+                style="@style/font_detail_value"
+                android:layout_gravity="center_vertical"
+                android:text="点击修改" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <RelativeLayout
+        style="@style/detail_item_style"
+        android:orientation="horizontal">
+
+        <TextView
+            style="@style/font_detail_title"
+            android:text="姓名:" />
+
+        <TextView
+            android:id="@+id/tv_name"
+            style="@style/font_detail_value"
+            android:layout_alignParentRight="true" />
+    </RelativeLayout>
+
+        <RelativeLayout
+            style="@style/detail_item_style"
+            android:orientation="horizontal">
+
+            <TextView
+                style="@style/font_detail_title"
+                android:text="电话:" />
+
+            <TextView
+                android:id="@+id/tv_address"
+                style="@style/font_detail_value"
+                android:layout_alignParentRight="true"
+                android:text="" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            style="@style/detail_item_style"
+            android:orientation="horizontal">
+
+            <TextView
+                style="@style/font_detail_title"
+                android:text="法人代表:" />
+
+            <TextView
+                android:id="@+id/tv_legal_username"
+                style="@style/font_detail_value"
+                android:layout_alignParentRight="true"
+                android:text="" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            style="@style/detail_item_style"
+            android:orientation="horizontal">
+
+            <TextView
+                style="@style/font_detail_title"
+                android:text="法人电话:" />
+
+            <TextView
+                android:id="@+id/tv_legal_phone"
+                style="@style/font_detail_value"
+                android:layout_alignParentRight="true"
+                android:text="" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            style="@style/detail_item_style"
+            android:orientation="horizontal">
+
+            <TextView
+                style="@style/font_detail_title"
+                android:text="紧急联系人:" />
+
+            <TextView
+                android:id="@+id/tv_emergency_name"
+                style="@style/font_detail_value"
+                android:layout_alignParentRight="true"
+                android:text="" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            style="@style/detail_item_style"
+            android:orientation="horizontal">
+
+            <TextView
+                style="@style/font_detail_title"
+                android:text="联系电话:" />
+
+            <TextView
+                android:id="@+id/tv_emergency_phone"
+                style="@style/font_detail_value"
+                android:layout_alignParentRight="true"
+                android:text="" />
+        </RelativeLayout>
+
+</LinearLayout>

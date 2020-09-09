@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="@dimen/dp_10"
+    android:background="@drawable/shape_bg_white"
+    android:orientation="vertical"
+    android:padding="10dp">
+
+    <TextView
+        android:id="@+id/tv_name"
+        style="@style/font_detail_title"
+        android:text="变电站" />
+
+    <TextView
+        android:id="@+id/tv_status"
+        style="@style/font_detail_title"
+        android:text=""
+        android:layout_alignParentRight="true"/>
+
+    <TextView
+        android:id="@+id/tv_year"
+        style="@style/font_detail_title"
+        android:layout_marginTop="@dimen/dp_5"
+        android:layout_below="@+id/tv_name"
+        android:text="出厂年份：" />
+
+    <TextView
+        android:id="@+id/tv_vol"
+        style="@style/font_detail_title"
+        android:layout_marginTop="@dimen/dp_5"
+        android:layout_below="@+id/tv_status"
+        android:layout_alignParentRight="true"
+        android:text="电压等级：" />
+
+    <TextView
+        android:id="@+id/tv_level"
+        style="@style/font_detail_title"
+        android:layout_below="@+id/tv_name"
+        android:visibility="gone" />
+</RelativeLayout>

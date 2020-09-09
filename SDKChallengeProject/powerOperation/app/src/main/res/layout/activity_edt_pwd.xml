@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/bg_content_color"
+    android:orientation="vertical">
+
+    <include layout="@layout/include_title" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:orientation="vertical">
+
+        <EditText
+            android:id="@+id/edt_old_password"
+            android:layout_width="match_parent"
+            android:layout_height="44dp"
+            android:layout_marginTop="@dimen/line_1"
+            android:background="@color/white"
+            android:hint="请输入原密码"
+            android:paddingLeft="10dp"
+            android:textColor="@color/font_title_black"
+            android:textColorHint="@color/font_gray"
+            android:textSize="@dimen/sp_14" />
+
+        <EditText
+            android:id="@+id/edt_new_password"
+            android:layout_width="match_parent"
+            android:layout_height="44dp"
+            android:layout_marginTop="@dimen/line_1"
+            android:background="@color/white"
+            android:hint="请输入新密码"
+            android:paddingLeft="10dp"
+            android:textColor="@color/font_title_black"
+            android:textColorHint="@color/font_gray"
+            android:textSize="@dimen/sp_14" />
+
+        <EditText
+            android:id="@+id/edt_confirm_password"
+            android:layout_width="match_parent"
+            android:layout_height="44dp"
+            android:layout_marginTop="@dimen/line_1"
+            android:background="@color/white"
+            android:hint="请确认新密码"
+            android:paddingLeft="10dp"
+            android:textColor="@color/font_title_black"
+            android:textColorHint="@color/font_gray"
+            android:textSize="@dimen/sp_14" />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/tv_submit"
+        style="@style/btn_style_submit"
+        android:layout_gravity="bottom"
+        android:layout_marginBottom="60dp"
+        android:text="确认" />
+</LinearLayout>
