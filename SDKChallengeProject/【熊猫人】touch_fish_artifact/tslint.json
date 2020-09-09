@@ -1,0 +1,44 @@
+{
+  "defaultSeverity": "warning",
+  "extends": [
+    "tslint:recommended"
+  ],
+  "linterOptions": {
+    "exclude": [
+      "node_modules/**",
+      "**/*.json"
+    ]
+  },
+  "rules": {
+    "max-line-length": [
+      true,
+      {
+        "limit": 200,
+        "ignore-pattern": "^import [^,]+ from |^export | implements | //"
+      }
+    ],
+    "indent": [true, "spaces", 2],
+    "interface-name": false,
+    "no-consecutive-blank-lines": false,
+    "object-literal-sort-keys": false,
+    "ordered-imports": false,
+    "quotemark": [true, "jsx-single"],
+    "only-arrow-functions": false,
+    "no-console": false,
+    "triple-equals": {
+      "severity": "error"
+    },
+    "trailing-comma": [
+      true,
+      {
+        "multiline": {
+          "objects": "never",
+          "arrays": "never",
+          "functions": "never",
+          "typeLiterals": "ignore"
+        },
+        "esSpecCompliant": true
+      }
+    ]
+  }
+}
