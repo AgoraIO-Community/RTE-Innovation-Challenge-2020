@@ -1,0 +1,24 @@
+{
+    "name": "UDTEditor",
+    "references": [
+        "GUID:5b730339290ba0f459f8410b34f31514"
+    ],
+    "includePlatforms": [
+        "Editor"
+    ],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [
+        "VUFORIA_ENABLED"
+    ],
+    "versionDefines": [
+        {
+            "name": "com.ptc.vuforia.engine",
+            "expression": "1.0.0",
+            "define": "VUFORIA_ENABLED"
+        }
+    ]
+}
