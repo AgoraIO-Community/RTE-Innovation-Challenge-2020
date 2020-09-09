@@ -7,8 +7,8 @@ var { RtcTokenBuilder, RtmTokenBuilder, RtcRole, RtmRole } = require('./index.js
 var PORT = 8000;
 
 // Fill the appID and appCertificate key given by Agora.io
-var appID = "c5002f33fc8341c994ca66e208e99855";
-var appCertificate = "7c0b9924b5974f8084bf247aa39ede68";
+var appID = "";
+var appCertificate = "";
 
 // token expire time, hardcode to 3600 seconds = 1 hour
 var expirationTimeInSeconds = 3600
