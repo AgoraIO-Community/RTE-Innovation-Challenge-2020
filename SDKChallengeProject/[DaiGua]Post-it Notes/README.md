@@ -48,7 +48,9 @@ Agora云录制
 
 ##### 4.演示
 
-项目根目录下有演示视频，可以点击查看
+演示视频地址https://cmz-daigua.oss-cn-beijing.aliyuncs.com/Post-it-notes.mp4，可以点击查看
+
+[](https://cmz-daigua.oss-cn-beijing.aliyuncs.com/Post-it-notes.mp4)
 
 注意： 目前此版本只支持扬声器的音频输入，对耳机等外设的音频输入还有缺陷
 
