@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="280dp">
+
+    <include
+        android:id="@+id/picker_gender_inc_bg"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        layout="@layout/include_picker_bg"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="性别"
+        android:textStyle="bold"
+        android:textSize="17dp"
+        android:layout_marginTop="26dp"
+        android:textColor="@color/black_1A"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+        <LinearLayout
+            android:id="@+id/optionspicker"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:minHeight="150dp"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:layout_marginTop="20dp"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent">
+
+            <ImageView
+                android:id="@+id/picker_gender_iv_icon"
+                android:layout_width="14dp"
+                android:layout_height="14dp"
+                android:layout_marginRight="50dp"
+                app:layout_constraintTop_toTopOf="@+id/optionspicker"
+                app:layout_constraintBottom_toBottomOf="@+id/optionspicker"
+                app:layout_constraintLeft_toLeftOf="@+id/optionspicker"
+                app:layout_constraintRight_toRightOf="@+id/optionspicker"/>
+        </LinearLayout>
+
+</android.support.constraint.ConstraintLayout>

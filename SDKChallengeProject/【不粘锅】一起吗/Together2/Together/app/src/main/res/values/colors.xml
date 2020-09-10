@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#008577</color>
+    <color name="colorPrimaryDark">#00574B</color>
+    <color name="colorAccent">#D81B60</color>
+    <color name="balck">#000000</color>
+
+    <!-- 常用颜色值 -->
+    <color name="white">#FFFFFF</color>
+    <color name="transparent">#00000000</color>
+    <color name="black_alpha_128">#80000000</color>
+    <color name="list_item_background_pressed">#FCFCFC</color>
+    <color name="title_bule">#03A9F4</color>
+    <color name="text_bule">#85DCF1</color>
+    <color name="text_dark_blue">#0D6980</color>
+    <color name="black">#000000</color>
+
+    <!-- 下拉刷新时，颜色值 -->
+    <color name="swiperefresh_color4">#ffaa66cc</color>
+
+    <!--  created by  fei -->
+    <color name="text_secondary_color">#9d9d9d</color>
+
+    <!-- 新版登录模块-->
+    <color name="login_line_color">#dededf</color>
+    <color name="login_input_active">#31b968</color>
+    <color name="login_other_color">#cacaca</color>
+    <color name="account_input_bg_color">#33ffffff</color>
+    <color name="account_lock_bg">#ff43815c</color>
+    <color name="account_lock_font_color">#FF68997C</color>
+    <color name="account_input_color">#c9c9c9</color>
+    <color name="account_pressed_true">#2FD56A</color>
+
+    <color name="bg_press">#ebebeb</color>
+    <color name="bg_press_material">#d4d4d4</color>
+
+    <color name="black_1A">#1A1A1A</color>
+    <color name="gray_9A">#9A9A9A</color>
+    <color name="gray_F1">#F1F1F1</color>
+
+    <!-- Chat Activity -->
+    <color name="localBackground">#827b92</color>
+    <color name="remoteBackground">#484258</color>
+</resources>

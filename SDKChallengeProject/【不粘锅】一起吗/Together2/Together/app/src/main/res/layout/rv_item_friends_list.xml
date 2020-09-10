@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <ImageView
+        android:id="@+id/rv_friends_bg"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@drawable/selector_cliced_list_item"
+        app:layout_constraintTop_toTopOf="parent"/>
+
+    <ImageView
+        android:id="@+id/rv_friends_headImg"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginLeft="12dp"
+        android:src="@drawable/default_head_img"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/rv_friends_bg"
+        app:layout_constraintBottom_toBottomOf="@+id/rv_friends_bg"/>
+
+    <TextView
+        android:id="@+id/rv_friends_noteName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="16dp"
+        android:text="备注"
+        android:textColor="@color/black"
+        android:textSize="14dp"
+        app:layout_constraintLeft_toRightOf="@+id/rv_friends_headImg"
+        app:layout_constraintTop_toTopOf="@+id/rv_friends_bg"
+        app:layout_constraintBottom_toBottomOf="@+id/rv_friends_bg"/>
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/bg_press_material"
+        android:layout_marginLeft="50dp"
+        app:layout_constraintLeft_toLeftOf="@+id/rv_friends_noteName"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/rv_friends_bg"/>
+
+
+</android.support.constraint.ConstraintLayout>
