@@ -1,0 +1,194 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingTop="30dp"
+    android:paddingStart="20dp"
+    android:paddingEnd="20dp"
+    tools:context=".view.activity.mainActivity.GameFragment">
+
+    <RelativeLayout
+        android:id="@+id/user_card"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+        >
+        <com.makeramen.roundedimageview.RoundedImageView
+            android:id="@+id/user_avatar"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:scaleType="centerCrop"
+            android:layout_centerVertical="true"
+            android:src="@mipmap/room_hall_icon"
+            app:riv_oval="true"
+            app:riv_corner_radius="100dp"
+            app:riv_border_color="#000000"
+            app:riv_border_width="2dp"
+            />
+
+        <RelativeLayout
+            android:layout_toEndOf="@id/user_avatar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:padding="10dp"
+            >
+            <TextView
+                android:id="@+id/user_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="未命名"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                />
+
+            <TextView
+                android:id="@+id/uidtext"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="UID:"
+                android:textSize="15sp"
+                android:layout_below="@id/user_name"
+                />
+            <TextView
+                android:id="@+id/user_uid"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="15sp"
+                android:layout_toEndOf="@id/uidtext"
+                android:layout_below="@id/user_name"
+                />
+            <Button
+                android:id="@+id/see_course"
+                android:layout_width="70dp"
+                android:layout_height="30dp"
+                android:background="@drawable/see_course"
+                android:text="重看教程"
+                android:textSize="10sp"
+                android:layout_marginTop="3dp"
+                android:textColor="#FFFFFF"
+                android:layout_below="@+id/user_uid"
+                />
+        </RelativeLayout>
+
+    </RelativeLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/user_card"
+        android:orientation="vertical">
+
+        <com.qgmodel.qggame.utils.ConflictBanner
+            android:id="@+id/main_banner"
+            android:layout_below="@+id/user_card"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:layout_marginTop="20dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp"
+            />
+
+
+        <LinearLayout
+            android:id="@+id/main_choice_layout"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:layout_marginTop="20dp"
+            android:padding="10dp"
+            >
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="5dp"
+                android:layout_weight="1"
+                android:padding="3dp"
+                android:background="@drawable/stroke_yellow"
+                >
+
+                <com.qgmodel.qggame.utils.RoundImageView
+                    android:id="@+id/main_room_hall"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:tint="#33000000"
+                    android:src="@mipmap/room_hall_icon"
+                    android:scaleType="centerCrop"
+                    />
+
+                <TextView
+                    android:text="@string/room_hall"
+                    style="@style/main_choice_big_text"
+                    />
+            </RelativeLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_marginLeft="5dp"
+                android:layout_weight="1"
+                >
+
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_marginBottom="5dp"
+                    android:padding="3dp"
+                    android:background="@drawable/stroke_green"
+                    >
+
+                    <com.qgmodel.qggame.utils.RoundImageView
+                        android:id="@+id/main_notice"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:tint="#33000000"
+                        android:src="@mipmap/notice_icon"
+                        android:scaleType="centerCrop"
+                        />
+
+                    <TextView
+                        android:text="@string/notice"
+                        style="@style/main_choice_small_text"
+                        />
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_marginTop="5dp"
+                    android:padding="3dp"
+                    android:background="@drawable/stroke_pink"
+                    >
+
+                    <com.qgmodel.qggame.utils.RoundImageView
+                        android:id="@+id/main_fast_ready"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:tint="#33000000"
+                        android:src="@mipmap/fast_ready_icon"
+                        android:scaleType="centerCrop"
+                        />
+
+                    <TextView
+                        android:text="@string/fast_ready"
+                        style="@style/main_choice_small_text"
+                        />
+
+                </RelativeLayout>
+
+            </LinearLayout>
+        </LinearLayout>
+
+    </LinearLayout>
+</RelativeLayout>
