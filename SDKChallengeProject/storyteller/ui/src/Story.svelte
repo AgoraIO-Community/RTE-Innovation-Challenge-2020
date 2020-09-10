@@ -3,8 +3,11 @@
   import Replayer from "rrweb-player";
   import { mirror } from "rrweb";
   import { onMount, tick } from "svelte";
-  import type { Chapter, Tooltip, Skip } from "./utils";
-  import { each } from "svelte/internal";
+  import videojs from "video.js";
+  import type { Tooltip, Skip, Story, RtcVideo } from "./utils";
+  import { env } from "./store";
+  // @ts-ignore
+  require("@videojs/http-streaming");
 
   let playerEl: HTMLDivElement;
   let player: Replayer;
@@ -18,6 +21,9 @@
   $: skips = scene.effects
     .filter((e) => e.type === "skip")
     .map((e) => e.payload) as Skip[];
+  $: videos = scene.effects
+    .filter((e) => e.type === "rtc-video")
+    .map((e) => e.payload) as RtcVideo[];
   let tooltipIdx = 0;
   $: nextTooltip = tooltips[tooltipIdx];
   let tooltipEl: HTMLDivElement;
@@ -25,12 +31,10 @@
   let tooltipTargetMaskEl: HTMLDivElement;
   let skipIdx = 0;
   $: nextSkip = skips[skipIdx];
+  let videoIdx = 0;
+  $: nextVideo = videos[videoIdx];
 
-  export let story: {
-    id: string;
-    name: string;
-    chapters: Array<Chapter>;
-  };
+  export let story: Story;
 
   let percent = 0;
 
@@ -96,7 +100,8 @@
     });
     player.addEventListener("ui-update-current-time", (event) => {
       if (nextTooltip && nextTooltip.timeOffset <= event.payload) {
-        player.toggle();
+        player.pause();
+        videoPlayer?.pause();
         tooltipTargetEl = (mirror.getNode(
           nextTooltip.id
         ) as unknown) as HTMLElement;
@@ -126,6 +131,10 @@
         player.goto(nextTimeOffset);
         skipIdx++;
       }
+      if (nextVideo && nextVideo.timeOffset <= event.payload) {
+        playVideo(nextVideo.file);
+        videoIdx++;
+      }
     });
   }
 
@@ -141,7 +150,36 @@
       display: "none",
     });
     tooltipIdx++;
-    player.toggle();
+    player.play();
+    videoPlayer?.play();
+  }
+
+  let videoPlaceholder: HTMLDivElement;
+  let videoPlayer;
+  function playVideo(file: string) {
+    const videoEl = document.createElement("video");
+    videoEl.id = "player";
+    videoEl.width = 150;
+    videoEl.height = 150;
+    videoEl.classList.add("video-js", "vjs-default-skin");
+    videoPlaceholder.appendChild(videoEl);
+    videoPlaceholder.style.display = "block";
+    videoPlayer = videojs("#player");
+    player?.pause();
+    videoPlayer.ready(() => {
+      videoPlayer.play();
+      videoPlayer.on("canplay", () => {
+        player?.play();
+      });
+    });
+    videoPlayer.on("ended", function () {
+      this.dispose();
+      videoPlaceholder.style.display = "none";
+    });
+    videoPlayer.src({
+      type: "application/x-mpegURL",
+      src: `${$env.STORAGE_BUCKET_URL}/${file}`,
+    });
   }
 
   onMount(() => {
@@ -155,7 +193,7 @@
 <style>
   .story-wrapper {
     padding: 0.5em;
-    height: calc(100vh - 3.875rem);
+    height: calc(100vh - 78px);
   }
 
   .story-player {
@@ -205,6 +243,17 @@
     background: rgba(78, 115, 223, 0.5);
     border-radius: 1px;
   }
+
+  .story-video-placeholder {
+    position: absolute;
+    right: 2em;
+    bottom: 2em;
+    width: 150px;
+    height: 150px;
+    border-radius: 75px;
+    overflow: hidden;
+    display: none;
+  }
 </style>
 
 <div class="story-wrapper row">
@@ -221,6 +270,7 @@
         bind:this={tooltipTargetMaskEl}
         class="story-tooltip-target-mask"
         on:click={next} />
+      <div class="story-video-placeholder" bind:this={videoPlaceholder} />
     </div>
   </div>
   <div class="col-3">

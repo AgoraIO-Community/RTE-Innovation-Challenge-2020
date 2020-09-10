@@ -7,22 +7,19 @@
   import WebEditor from "./WebEditor.svelte";
   import Story from "./Story.svelte";
   import User from "./User.svelte";
+  import Share from "./Share.svelte";
   import { formatTime, genNewScene, genId } from "./utils";
-  import type { Chapter, Scene } from "./utils";
+  import type { Chapter, Scene, Story as StoryType } from "./utils";
   import PlusCircle from "./icons/plus-circle.svg";
   import Cross from "./icons/cross.svg";
   import ArrowLeft from "./icons/arrow-left.svg";
 
-  let stories: Array<{
-    id: string;
-    name: string;
-    chapters: Array<Chapter>;
-  }> = [];
+  let stories: Array<StoryType> = [];
   let currentStory = stories.length ? stories[0] : null;
   let previewStory: typeof stories[0] | null = null;
 
   function addStory() {
-    const newStory = {
+    const newStory: StoryType = {
       id: genId(),
       name: "",
       chapters: [
@@ -103,6 +100,8 @@
       addStylesheetRules(scrollbarArr);
     }
   }
+
+  let showShare = false;
 
   onMount(async () => {
     patchStyle();
@@ -232,7 +231,9 @@
           </div>
         {/if}
         <User />
-        <button class="btn btn-success mr-3">协作</button>
+        <button
+          class="btn btn-success mr-3"
+          on:click={() => (showShare = true)}>协作</button>
         {#if currentStory}
           <button
             class="btn btn-light mr-3"
@@ -342,3 +343,8 @@
     </div>
   </div>
 </div>
+
+<Share
+  visible={showShare}
+  on:close={() => (showShare = false)}
+  story={currentStory} />

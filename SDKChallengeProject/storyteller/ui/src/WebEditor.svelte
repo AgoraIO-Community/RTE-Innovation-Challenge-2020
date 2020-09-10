@@ -5,13 +5,23 @@
   import { onMount, createEventDispatcher, tick } from "svelte";
   import { pannable } from "./pannable";
   import { formatTime, genNewScene } from "./utils";
-  import type { Chapter, Scene, Tooltip, Skip, Effect } from "./utils";
+  import type {
+    Chapter,
+    Scene,
+    Tooltip,
+    Skip,
+    Effect,
+    RtcVideoEffect,
+  } from "./utils";
   import Modal from "./Modal.svelte";
+  import RtcVideo from "./RtcVideo.svelte";
+  import { rtc } from "./store";
   import Play from "./icons/play.svg";
   import Pause from "./icons/pause.svg";
   import ChatLeftText from "./icons/chat-left-text.svg";
   import Scissors from "./icons/scissors.svg";
   import PlusCircle from "./icons/plus-circle.svg";
+  import CameraVideo from "./icons/camera-video.svg";
 
   export let chapter: Chapter;
   export let sceneIdx = 0;
@@ -282,6 +292,22 @@
     };
   }
 
+  let rtcVideo = false;
+  function handleRtcVideo() {
+    replayer.pause();
+    rtcVideo = true;
+  }
+  function handleRtcVideoFinish(event) {
+    rtcVideo = false;
+    scene.effects = scene.effects.concat({
+      type: "rtc-video",
+      payload: {
+        timeOffset: Math.round(currentTime),
+        ...event.detail,
+      },
+    });
+  }
+
   let modalPayload:
     | {
         type: "tooltip";
@@ -295,7 +321,7 @@
       }
     | null = null;
 
-  function editEffect(effect: Effect, idx: number) {
+  function editEffect(effect: Exclude<Effect, RtcVideoEffect>, idx: number) {
     modalPayload = {
       ...effect,
       index: idx,
@@ -550,6 +576,12 @@
     right: 1em;
     bottom: 1em;
   }
+
+  .we-video-wrapper {
+    position: absolute;
+    right: 2em;
+    bottom: 2em;
+  }
 </style>
 
 <div class="web-editor">
@@ -581,6 +613,12 @@
           </div>
         </div>
         <div bind:this={mask} class="we-mask" />
+        <div class="we-video-wrapper">
+          <RtcVideo
+            visible={rtcVideo}
+            on:close={() => (rtcVideo = false)}
+            on:finish={handleRtcVideoFinish} />
+        </div>
       </div>
     {:else}
       <input
@@ -598,7 +636,12 @@
           {@html playerState === 'paused' ? Play : Pause}
         </div>
         <div class="we-panel-effects">
-          <div class="icon mr-2" on:click={handleSelect}>
+          {#if $rtc.localStream}
+            <div class="icon mr-4" on:click={handleRtcVideo}>
+              {@html CameraVideo}
+            </div>
+          {/if}
+          <div class="icon mr-4" on:click={handleSelect}>
             {@html ChatLeftText}
           </div>
           <div class="icon" on:click={handleSkip}>
@@ -677,6 +720,24 @@
                   <span aria-hidden="true">&times;</span>
                 </button>
               </div>
+            {:else if effect.type === 'rtc-video'}
+              <div
+                class="alert alert-warning mb-0 mr-1"
+                style="transform: translateX({Math.max(0, (tracksWidth * effect.payload.timeOffset) / scene.totalTime)}px);width: {(tracksWidth * effect.payload.duration) / scene.totalTime}px"
+                role="button">
+                <div class="flex-fill">
+                  {@html CameraVideo}
+                  {formatTime(effect.payload.duration)}
+                </div>
+                <button
+                  type="button"
+                  class="close"
+                  data-dismiss="alert"
+                  aria-label="Close"
+                  on:click|stopPropagation={() => removeEffect(effect)}>
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
             {/if}
           </div>
         {/each}
@@ -686,17 +747,20 @@
 </div>
 
 {#if modalPayload}
-  <Modal on:close={() => (modalPayload = null)} on:ok={saveEffect}>
+  <Modal
+    on:close={() => {
+      modalPayload = null;
+    }}
+    on:ok={saveEffect}>
     <div slot="title">
-      {{ tooltip: '编辑 Tooltip', skip: '编辑快进' }[modalPayload.type] || ''}
+      {{ tooltip: '编辑 Tooltip', skip: '编辑快进', 'rtc-video': '录制视频旁白' }[modalPayload.type] || ''}
     </div>
     <div slot="body">
       {#if modalPayload.type === 'tooltip'}
         <textarea
           class="form-control form-control-sm mb-1"
           bind:value={modalPayload.payload.content} />
-      {/if}
-      {#if modalPayload.type === 'skip'}
+      {:else if modalPayload.type === 'skip'}
         <div class="form-row">
           <div class="col">
             <input

@@ -5,11 +5,12 @@
   "author": "Yanzhen Yu <yanzhen@smartx.com>",
   "license": "MIT",
   "scripts": {
-    "start-app": "electron ./index.js",
+    "start-app": "electron -r dotenv/config ./index.js",
     "pack": "electron-builder --dir",
     "dist": "electron-builder"
   },
   "dependencies": {
+    "dotenv": "^8.2.0",
     "electron-store": "^6.0.0"
   },
   "devDependencies": {

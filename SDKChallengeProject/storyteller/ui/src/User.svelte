@@ -66,7 +66,6 @@
 
   onMount(async () => {
     const storedUser = await ipcRenderer.invoke("getStoreValue", "user");
-    console.log(storedUser);
     if (storedUser) {
       user = storedUser;
     }

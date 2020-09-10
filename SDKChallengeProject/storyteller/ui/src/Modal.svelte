@@ -2,6 +2,8 @@
   import { createEventDispatcher } from "svelte";
   import { fly } from "svelte/transition";
 
+  export let showFooter: boolean = true;
+
   const dispatch = createEventDispatcher();
 
   function handleClose() {
@@ -14,7 +16,7 @@
 </script>
 
 <div class="modal" tabindex="-1" transition:fly>
-  <div class="modal-dialog">
+  <div class="modal-dialog shadow">
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title">
@@ -32,16 +34,18 @@
       <div class="modal-body">
         <slot name="body" />
       </div>
-      <div class="modal-footer">
-        <button
-          type="button"
-          class="btn btn-secondary"
-          data-dismiss="modal"
-          on:click={handleClose}>取消</button>
-        <button type="button" class="btn btn-primary" on:click={handleOk}>
-          <slot name="ok" />
-        </button>
-      </div>
+      {#if showFooter}
+        <div class="modal-footer">
+          <button
+            type="button"
+            class="btn btn-secondary"
+            data-dismiss="modal"
+            on:click={handleClose}>取消</button>
+          <button type="button" class="btn btn-primary" on:click={handleOk}>
+            <slot name="ok" />
+          </button>
+        </div>
+      {/if}
     </div>
   </div>
 </div>

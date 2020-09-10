@@ -41,15 +41,26 @@ export type Skip = {
   duration: number;
 };
 
-export type Effect =
-  | {
-      type: "tooltip";
-      payload: Tooltip;
-    }
-  | {
-      type: "skip";
-      payload: Skip;
-    };
+export type RtcVideo = {
+  duration: number;
+  timeOffset: number;
+  file: string;
+};
+
+export type TooltipEffect = {
+  type: "tooltip";
+  payload: Tooltip;
+};
+export type SkipEffect = {
+  type: "skip";
+  payload: Skip;
+};
+export type RtcVideoEffect = {
+  type: "rtc-video";
+  payload: RtcVideo;
+};
+
+export type Effect = TooltipEffect | SkipEffect | RtcVideoEffect;
 
 export type Scene = {
   id: string;
@@ -65,6 +76,12 @@ export type Chapter = {
   id: string;
   name: string;
   sequence: Array<Scene>;
+};
+
+export type Story = {
+  id: string;
+  name: string;
+  chapters: Array<Chapter>;
 };
 
 export const genNewScene: () => Scene = () => ({

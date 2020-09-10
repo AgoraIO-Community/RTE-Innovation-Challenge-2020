@@ -2,7 +2,7 @@ const { app, BrowserWindow, ipcMain } = require("electron");
 const Store = require("electron-store");
 
 const store = new Store({
-  name: process.env.STORYTELLER_STORAGE_KEY,
+  name: process.env.STORYTELLER_STORAGE_KEY || undefined,
 });
 ipcMain.handle("getStoreValue", (event, key) => {
   return store.get(key);
