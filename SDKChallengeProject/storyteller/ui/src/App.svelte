@@ -7,9 +7,11 @@
   import WebEditor from "./WebEditor.svelte";
   import Story from "./Story.svelte";
   import User from "./User.svelte";
+  import ReadonlyUser from "./ReadonlyUser.svelte";
   import Share from "./Share.svelte";
   import { formatTime, genNewScene, genId } from "./utils";
   import type { Chapter, Scene, Story as StoryType } from "./utils";
+  import { users, remoteStory, readonlyUsersMap, rtm } from "./store";
   import PlusCircle from "./icons/plus-circle.svg";
   import Cross from "./icons/cross.svg";
   import ArrowLeft from "./icons/arrow-left.svg";
@@ -17,6 +19,17 @@
   let stories: Array<StoryType> = [];
   let currentStory = stories.length ? stories[0] : null;
   let previewStory: typeof stories[0] | null = null;
+
+  let originalCurrentStory;
+  remoteStory.subscribe((newValue) => {
+    if (newValue) {
+      originalCurrentStory = currentStory;
+      currentStory = newValue;
+    } else {
+      currentStory = originalCurrentStory;
+      originalCurrentStory = null;
+    }
+  });
 
   function addStory() {
     const newStory: StoryType = {
@@ -103,6 +116,39 @@
 
   let showShare = false;
 
+  function inScene(id: string) {
+    users.update((prev) =>
+      prev.map((u) => {
+        if (u.readonly) {
+          return u;
+        }
+        return {
+          ...u,
+          uiMap: {
+            sceneId: id,
+          },
+        };
+      })
+    );
+    $rtm?.syncUiMaps($users);
+  }
+  function outScene() {
+    users.update((prev) =>
+      prev.map((u) => {
+        if (u.readonly) {
+          return u;
+        }
+        return {
+          ...u,
+          uiMap: {
+            sceneId: undefined,
+          },
+        };
+      })
+    );
+    $rtm?.syncUiMaps($users);
+  }
+
   onMount(async () => {
     patchStyle();
     stories = (await ipcRenderer.invoke("getStoreValue", "stories")) || [];
@@ -179,6 +225,12 @@
     flex: 1;
     position: relative;
   }
+
+  .stick-users {
+    position: absolute;
+    right: -0.5em;
+    bottom: -0.5em;
+  }
 </style>
 
 <div id="wrapper">
@@ -230,6 +282,11 @@
             <strong>{currentChapter.name}</strong>
           </div>
         {/if}
+        {#each $users.filter((u) => u.readonly) as ru}
+          <div class="mr-1">
+            <ReadonlyUser user={ru} />
+          </div>
+        {/each}
         <User />
         <button
           class="btn btn-success mr-3"
@@ -271,6 +328,13 @@
             placeholder="请输入故事标题"
             on:blur={() => {
               flushStories();
+              $rtm.syncStory({
+                op: 'set-story-name',
+                value: {
+                  id: currentStory.id,
+                  name: currentStory.name,
+                },
+              });
             }} />
           <div />
           {#each currentStory.chapters as chapter}
@@ -281,13 +345,20 @@
                 placeholder="请输入章节标题"
                 on:blur={() => {
                   flushStories();
+                  $rtm.syncStory({
+                    op: 'set-chapter-name',
+                    value: {
+                      id: chapter.id,
+                      name: chapter.name,
+                    },
+                  });
                 }} />
               <div class="chapters">
                 {#each chapter.sequence as scene}
                   {#if currentScene === scene}
                     <div class="col-12" />
                   {:else}
-                    <div class="col-3">
+                    <div class="col-lg-3 col-md-6">
                       <div
                         class="card border-left-primary shadow h-100 py-2"
                         on:click={() => editScene(chapter, scene)}
@@ -308,13 +379,28 @@
                                 placeholder="请输入场景名称"
                                 on:blur={() => {
                                   flushStories();
+                                  outScene();
+                                  $rtm.syncStory({
+                                    op: 'set-scene-name',
+                                    value: {
+                                      id: scene.id,
+                                      name: scene.name,
+                                      chapterId: chapter.id,
+                                    },
+                                  });
                                 }}
-                                on:click={(e) => e.stopPropagation()}>
+                                on:click={(e) => e.stopPropagation()}
+                                on:focus={() => inScene(scene.id)}>
                                 {scene.name}
                               </div>
                               <div
                                 class="h5 mb-0 font-weight-bold text-gray-800">
                                 时长：{formatTime(scene.totalTime)}
+                                <div class="stick-users">
+                                  {#each $readonlyUsersMap.scenes[scene.id] || [] as user}
+                                    <ReadonlyUser {user} />
+                                  {/each}
+                                </div>
                               </div>
                             </div>
                           </div>

@@ -101,3 +101,49 @@ export function genId() {
 export type User = {
   username: string;
 };
+
+export function sleep(ms: number) {
+  return new Promise((resolve) =>
+    setTimeout(() => {
+      resolve();
+    }, ms)
+  );
+}
+
+function djb2(str: string) {
+  var hash = 5381;
+  for (var i = 0; i < str.length; i++) {
+    hash = (hash << 5) + hash + str.charCodeAt(i); /* hash * 33 + c */
+  }
+  return hash;
+}
+
+export function hashStringToColor(str: string) {
+  var hash = djb2(str);
+  var r = (hash & 0xff0000) >> 16;
+  var g = (hash & 0x00ff00) >> 8;
+  var b = hash & 0x0000ff;
+  return (
+    "#" +
+    ("0" + r.toString(16)).substr(-2) +
+    ("0" + g.toString(16)).substr(-2) +
+    ("0" + b.toString(16)).substr(-2)
+  );
+}
+
+export function invertColor(hex: string) {
+  if (hex.indexOf("#") === 0) {
+    hex = hex.slice(1);
+  }
+  // convert 3-digit hex to 6-digits.
+  if (hex.length === 3) {
+    hex = hex[0] + hex[0] + hex[1] + hex[1] + hex[2] + hex[2];
+  }
+  if (hex.length !== 6) {
+    throw new Error("Invalid HEX color.");
+  }
+  var r = parseInt(hex.slice(0, 2), 16),
+    g = parseInt(hex.slice(2, 4), 16),
+    b = parseInt(hex.slice(4, 6), 16);
+  return r * 0.299 + g * 0.587 + b * 0.114 > 186 ? "#000000" : "#FFFFFF";
+}

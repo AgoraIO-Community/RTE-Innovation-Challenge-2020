@@ -2,7 +2,7 @@
   import Replayer from "rrweb-player";
   import type { Replayer as _Replayer } from "rrweb";
   import type { playerMetaData } from "rrweb/typings/types";
-  import { onMount, createEventDispatcher, tick } from "svelte";
+  import { onMount, createEventDispatcher, tick, onDestroy } from "svelte";
   import { pannable } from "./pannable";
   import { formatTime, genNewScene } from "./utils";
   import type {
@@ -15,7 +15,8 @@
   } from "./utils";
   import Modal from "./Modal.svelte";
   import RtcVideo from "./RtcVideo.svelte";
-  import { rtc } from "./store";
+  import ReadonlyUser from "./ReadonlyUser.svelte";
+  import { rtc, users, rtm, readonlyUsersMap, remoteStory } from "./store";
   import Play from "./icons/play.svg";
   import Pause from "./icons/pause.svg";
   import ChatLeftText from "./icons/chat-left-text.svg";
@@ -25,6 +26,18 @@
 
   export let chapter: Chapter;
   export let sceneIdx = 0;
+
+  remoteStory.subscribe((newValue) => {
+    const chapterInNewValue = newValue.chapters.find(
+      (c) => c.id === chapter.id
+    );
+    chapter = chapterInNewValue;
+  });
+
+  $: {
+    const _s = chapter.sequence[sceneIdx];
+    inScene(_s.id);
+  }
 
   let scene: Scene;
   $: scene = chapter.sequence[sceneIdx];
@@ -131,15 +144,25 @@
   };
 
   const saveTooltip = () => {
-    scene.effects = scene.effects.concat({
+    const newEffect = {
       type: "tooltip",
       payload: {
         content: tooltipPayload.content,
         timeOffset: tooltipPayload.timeOffset,
         id: tooltipPayload.id,
       },
-    });
+    } as const;
+    scene.effects = scene.effects.concat(newEffect);
     finishTooltip();
+    $rtm.syncStory({
+      op: "add-effect",
+      value: {
+        chapterId: chapter.id,
+        sceneId: scene.id,
+        previousIdx: scene.effects.length - 2,
+        effect: newEffect,
+      },
+    });
   };
 
   const cancelSelect = () => {
@@ -299,11 +322,21 @@
   }
   function handleRtcVideoFinish(event) {
     rtcVideo = false;
-    scene.effects = scene.effects.concat({
+    const newEffect = {
       type: "rtc-video",
       payload: {
         timeOffset: Math.round(currentTime),
         ...event.detail,
+      },
+    } as const;
+    scene.effects = scene.effects.concat(newEffect);
+    $rtm.syncStory({
+      op: "add-effect",
+      value: {
+        chapterId: chapter.id,
+        sceneId: scene.id,
+        previousIdx: scene.effects.length - 2,
+        effect: newEffect,
       },
     });
   }
@@ -329,21 +362,62 @@
   }
 
   function removeEffect(effect: Effect) {
+    const idx = scene.effects.indexOf(effect);
     scene.effects = scene.effects.filter((e) => e !== effect);
+    if (idx > -1) {
+      $rtm.syncStory({
+        op: "remove-effect",
+        value: {
+          chapterId: chapter.id,
+          sceneId: scene.id,
+          idx,
+        },
+      });
+    }
   }
 
   function saveEffect() {
     const { type, payload, index } = modalPayload;
     if (type === "tooltip") {
       scene.effects[index].payload = payload;
+      $rtm.syncStory({
+        op: "update-effect",
+        value: {
+          chapterId: chapter.id,
+          sceneId: scene.id,
+          idx: index,
+          effect: scene.effects[index],
+        },
+      });
     }
     if (type === "skip") {
-      index === -1
-        ? (scene.effects = scene.effects.concat({
-            type,
-            payload,
-          } as Effect))
-        : (scene.effects[index].payload = payload);
+      if (index === -1) {
+        const newEffect = {
+          type,
+          payload,
+        } as Effect;
+        scene.effects = scene.effects.concat(newEffect);
+        $rtm.syncStory({
+          op: "add-effect",
+          value: {
+            chapterId: chapter.id,
+            sceneId: scene.id,
+            previousIdx: scene.effects.length - 2,
+            effect: newEffect,
+          },
+        });
+      } else {
+        scene.effects[index].payload = payload;
+        $rtm.syncStory({
+          op: "update-effect",
+          value: {
+            chapterId: chapter.id,
+            sceneId: scene.id,
+            idx: index,
+            effect: scene.effects[index],
+          },
+        });
+      }
     }
     modalPayload = null;
   }
@@ -369,19 +443,72 @@
       scene.events[scene.events.length - 1].timestamp -
       scene.events[0].timestamp;
     chapter.sequence = chapter.sequence.slice();
+    $rtm.syncStory({
+      op: "update-scene",
+      value: {
+        chapterId: chapter.id,
+        scene,
+      },
+    });
     await tick();
     playScene(scene);
   }
 
   function addScene() {
     const newScene = genNewScene();
+    const previousId = chapter.sequence.length
+      ? chapter.sequence[chapter.sequence.length - 1].id
+      : null;
     chapter.sequence = chapter.sequence.concat(newScene);
     sceneIdx = chapter.sequence.length - 1;
+    $rtm.syncStory({
+      op: "add-scene",
+      value: {
+        chapterId: chapter.id,
+        previousId,
+        scene: newScene,
+      },
+    });
+  }
+
+  function inScene(id: string) {
+    users.update((prev) =>
+      prev.map((u) => {
+        if (u.readonly) {
+          return u;
+        }
+        return {
+          ...u,
+          uiMap: {
+            sceneId: id,
+          },
+        };
+      })
+    );
+    $rtm?.syncUiMaps($users);
+  }
+  function outScene() {
+    users.update((prev) =>
+      prev.map((u) => {
+        if (u.readonly) {
+          return u;
+        }
+        return {
+          ...u,
+          uiMap: {
+            sceneId: undefined,
+          },
+        };
+      })
+    );
+    $rtm?.syncUiMaps($users);
   }
 
   onMount(() => {
     playScene(scene);
   });
+
+  onDestroy(() => outScene());
 </script>
 
 <style>
@@ -582,6 +709,12 @@
     right: 2em;
     bottom: 2em;
   }
+
+  .stick-users {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+  }
 </style>
 
 <div class="web-editor">
@@ -665,6 +798,11 @@
                   class="we-scene-progress-step"
                   style="width: {idx < sceneIdx ? 100 : idx > sceneIdx ? 0 : 100 * percent}%" />
               </div>
+            </div>
+            <div class="stick-users">
+              {#each $readonlyUsersMap.scenes[scene.id] || [] as user}
+                <ReadonlyUser {user} small />
+              {/each}
             </div>
           </div>
         {/each}

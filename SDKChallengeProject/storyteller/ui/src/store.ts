@@ -1,5 +1,7 @@
-import { writable, readable } from "svelte/store";
+import { writable, readable, derived } from "svelte/store";
 import type AgoraRTC from "agora-rtc-sdk";
+import type { Story } from "./utils";
+import type { AgoraRtmTransporter } from "./agora-rtm";
 
 const defaultRtc: {
   client: AgoraRTC.Client | null;
@@ -37,3 +39,34 @@ export const staticEnv: {
   STORAGE_BUCKET_URL: globalThis.process.env.STORAGE_BUCKET_URL,
 };
 export const env = readable(staticEnv, () => {});
+
+export type User = {
+  username: string;
+  readonly: boolean;
+  uid: string | number;
+  uiMap: {
+    sceneId?: string;
+  };
+};
+const defaultUsers: Array<User> = [];
+
+export const users = writable(defaultUsers);
+
+export const remoteStory = writable<Story | null>(null);
+
+export const readonlyUsersMap = derived(users, ($users) => {
+  const scenes: Record<string, User[]> = {};
+  for (const u of $users) {
+    if (u.readonly && u.uiMap.sceneId) {
+      if (!scenes[u.uiMap.sceneId]) {
+        scenes[u.uiMap.sceneId] = [];
+      }
+      scenes[u.uiMap.sceneId].push(u);
+    }
+  }
+  return {
+    scenes,
+  };
+});
+
+export const rtm = writable<AgoraRtmTransporter | null>(null);
