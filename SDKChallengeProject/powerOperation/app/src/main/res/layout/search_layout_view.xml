@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="45dp"
+    android:background="@color/white"
+    android:paddingLeft="@dimen/dp_10"
+    android:paddingRight="@dimen/dp_10">
+
+    <EditText
+        android:id="@+id/edt_search"
+        android:layout_width="0dp"
+        android:layout_height="30dp"
+        android:layout_gravity="center_vertical"
+        android:layout_marginLeft="@dimen/dp_10"
+        android:layout_marginRight="@dimen/dp_10"
+        android:layout_weight="1"
+        android:background="@drawable/shape_search_view"
+        android:cursorVisible="true"
+        android:drawableLeft="@drawable/icon_search_gray"
+        android:drawablePadding="@dimen/dp_5"
+        android:hint=""
+        android:imeOptions="actionSearch"
+        android:inputType="text"
+        android:maxLines="1"
+        android:paddingLeft="@dimen/dp_5"
+        android:textColor="@color/font_title_black"
+        android:textColorHint="@color/font_gray"
+        android:textCursorDrawable="@drawable/shape_edt_cursor"
+        android:textSize="11sp"
+        tools:ignore="Autofill" />
+
+    <TextView
+        android:id="@+id/tv_cancel"
+        style="@style/font_14_style"
+        android:layout_marginLeft="@dimen/dp_10"
+        android:layout_marginRight="@dimen/dp_10"
+        android:text="取消"
+        android:textColor="@color/colorPrimary"
+        android:visibility="gone" />
+</LinearLayout>

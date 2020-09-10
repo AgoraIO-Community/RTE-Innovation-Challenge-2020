@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/bg_content_color"
+    android:orientation="vertical">
+
+    <include layout="@layout/content_toolbar_view" />
+
+    <LinearLayout
+        style="@style/detail_item_style"
+
+        android:orientation="horizontal">
+
+        <TextView
+            style="@style/font_detail_title"
+            android:text="设备编号:" />
+
+        <TextView
+            android:id="@+id/tv_device_code"
+            style="@style/font_detail_value" />
+    </LinearLayout>
+
+    <LinearLayout
+        style="@style/detail_item_style"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/tv_title_label"
+            style="@style/font_detail_title"
+            android:text="设备名称:" />
+
+        <TextView
+            android:id="@+id/tv_device_name"
+            style="@style/font_detail_value" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/ll_status"
+        style="@style/detail_item_style"
+        android:orientation="horizontal">
+
+        <TextView
+            style="@style/font_detail_title"
+            android:text="运行状态:" />
+
+        <TextView
+            android:id="@+id/tv_status"
+            style="@style/font_detail_value"
+            android:layout_weight="1" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        style="@style/detail_item_style"
+        android:orientation="horizontal">
+
+        <TextView
+            style="@style/font_detail_title"
+            android:text="电压等级:" />
+
+        <TextView
+            android:id="@+id/tv_level"
+            style="@style/font_detail_value" />
+    </LinearLayout>
+
+    <LinearLayout
+        style="@style/detail_item_style"
+        android:orientation="horizontal"
+        android:visibility="gone">
+
+        <TextView
+            style="@style/font_detail_title"
+            android:text="设备型号:" />
+
+        <TextView
+            android:id="@+id/tv_model"
+            style="@style/font_detail_value" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/ll_time"
+        style="@style/detail_item_style"
+        android:orientation="horizontal">
+
+        <TextView
+            style="@style/font_detail_title"
+            android:text="投运时间:" />
+
+        <TextView
+            android:id="@+id/tv_time"
+            style="@style/font_detail_value"
+            android:layout_weight="1" />
+    </LinearLayout>
+
+
+</LinearLayout>

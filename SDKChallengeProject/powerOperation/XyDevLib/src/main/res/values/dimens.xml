@@ -1,0 +1,32 @@
+<resources>
+    <!-- 顶部按钮栏高度 -->
+    <dimen name="pickerview_topbar_height">44dp</dimen>
+
+    <!-- 顶部按钮padding -->
+    <dimen name="pickerview_topbar_padding">20dp</dimen>
+
+    <!-- 顶部按钮文字大小 -->
+    <dimen name="pickerview_topbar_btn_textsize">17sp</dimen>
+    <dimen name="pickerview_topbar_title_textsize">18sp</dimen>
+    <!-- 选项文字大小 -->
+    <dimen name="pickerview_textsize">20sp</dimen>
+
+
+
+    <dimen name="local_preview_width">88dp</dimen>
+    <dimen name="local_preview_height">117dp</dimen>
+    <dimen name="local_back_icon_size">50dp</dimen>
+    <dimen name="remote_back_icon_size">100dp</dimen>
+    <dimen name="remote_back_icon_margin_bottom">90dp</dimen>
+
+    <!-- buttons -->
+    <dimen name="control_bottom_margin">24dp</dimen>
+    <dimen name="control_bottom_horizontal_margin">30dp</dimen>
+
+
+    <dimen name="log_back_corner_radius">16dp</dimen>
+    <dimen name="log_item_vertical_padding">6dp</dimen>
+    <dimen name="log_item_horizontal_padding">10dp</dimen>
+    <dimen name="log_text_size">10dp</dimen>
+    <dimen name="log_item_offset">3dp</dimen>
+</resources>

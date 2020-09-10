@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="gray">#9e9e9e</color>
+
+    <color name="white">#FFFFFF</color>
+    <color name="black">#000000</color>
+    <color name="transparent">#00000000</color>
+    <color name="bg_gray_color">#f2f2f2</color>
+
+    <!-- 文字颜色 -->
+    <!-- 用于顶部导航栏文字信息，标题和重要文字信息 -->
+    <color name="main_font">#333333</color>
+    <!-- 用于顶部导航栏icon默认颜色，普通级文字信息 -->
+    <color name="normal_font">#666666</color>
+    <!-- 用于辅助、次要的文字信息 -->
+    <color name="assist_font">#999999</color>
+
+    <!-- 重要颜色 -->
+    <!-- 用于特别需要强调和突出的文字、按钮、链接、icon -->
+    <color name="theme_green">#009B78</color>
+    <color name="login_btn_un_enable">#4CB9A0</color>
+    <!-- 用于未读消息提示和特别需要强调的信息 -->
+    <color name="theme_red">#FF6767</color>
+
+    <!-- 一般类颜色 -->
+    <color name="normal_blue">#789CE6</color>
+    <color name="normal_orange">#FE8743</color>
+    <color name="normal_yellow">#FBC752</color>
+    <!-- 用于信息字体颜色 -->
+    <color name="info_green">#99009b78</color>
+    <!-- 用于信息标签背景 -->
+    <color name="info_green_bg">#19009b78</color>
+
+
+    <!-- 分割线颜色 -->
+    <color name="divider">#dcdcdc</color>
+    <!-- 输入框背景色 -->
+    <color name="bg_input_color">#F8F8F8</color>
+    <!-- 按钮不可用时的颜色 -->
+    <color name="submit_btn_invalid_color">#4D009B78</color>
+    <!-- 按钮可用时的颜色 -->
+    <color name="submit_btn_valid_color">#009B78</color>
+    <!-- 按钮可用时的颜色 -->
+    <color name="submit_btn_press_color">#007C60</color>
+
+
+
+    <!-- Logs -->
+    <color name="logInfo">#4a90e2</color>
+    <color name="logWarn">#fedd56</color>
+    <color name="logError">#fe375f</color>
+</resources>

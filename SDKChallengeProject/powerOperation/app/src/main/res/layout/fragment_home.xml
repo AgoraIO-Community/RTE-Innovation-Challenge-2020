@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/bg_content_color"
+    android:orientation="vertical">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/common_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:background="@color/white"
+        app:layout_scrollFlags="scroll|enterAlways">
+
+
+        <TextView
+            android:id="@+id/tv_toolbar_title_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="设备"
+            android:textColor="@color/colorPrimary"
+            android:textSize="@dimen/sp_16" />
+
+
+        <TextView
+            android:id="@+id/tv_right"
+            android:layout_width="wrap_content"
+            android:layout_height="30dp"
+            android:layout_gravity="end"
+            android:layout_marginEnd="@dimen/dp_10"
+            android:layout_marginRight="@dimen/dp_10"
+            android:gravity="center"
+            android:textColor="@color/colorPrimary"
+            android:textSize="@dimen/sp_14"
+            android:visibility="gone" />
+    </androidx.appcompat.widget.Toolbar>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="3"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="15dp"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tv_1"
+                style="@style/home_menu_style"
+                android:layout_weight="3"
+                android:background="@drawable/icon_home_biandianzhan"
+                android:text="变电站" />
+
+            <TextView
+                android:id="@+id/tv_2"
+                style="@style/home_menu_style"
+                android:layout_weight="2"
+                android:background="@drawable/icon_home_bianyaqi"
+                android:text="配电房" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tv_3"
+                style="@style/home_menu_style"
+                android:layout_weight="2"
+                android:background="@drawable/icon_home_kaibisuo"
+                android:text="开闭所" />
+
+            <TextView
+
+                android:id="@+id/tv_4"
+                style="@style/home_menu_style"
+                android:layout_weight="3"
+                android:background="@drawable/icon_home_xiangshibianyaqi"
+                android:text="箱式变压器" />
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/tv_5"
+        style="@style/home_menu_style"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:layout_marginBottom="50dp"
+        android:background="@drawable/icon_home_xianlu"
+        android:text="线路" />
+
+
+</LinearLayout>

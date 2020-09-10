@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!--    //00aea0-->
+    <!--    //3FA862-->
+    <color name="colorPrimary">#00aea0</color>
+    <color name="colorPrimaryDark">#00aea0</color>
+    <color name="colorAccent">#00aea0</color>
+    <color name="white">#FFFFFF</color>
+
+    <color name="transparent">@android:color/transparent</color>
+    <color name="theme_color">#0077FF</color>
+    <color name="red">#F44336</color>
+    <color name="red_light">#FF6C54</color>
+    <color name="green_light">#20C5B7</color>
+    <color name="accent">#FFC107</color>
+    <color name="bg_content_color">#F5F5F5</color>
+    <color name="color_theme_blue">#3A5AFD</color>
+    <color name="blue_light">#526EE3</color>
+    <color name="blue_dark">#3149A5</color>
+    <color name="blue_top">#3A5AFD</color>
+
+    <!--font color-->
+    <color name="font_title_black">#333333</color>
+    <color name="font_content_black">#707070</color>
+    <color name="font_white">#FFFFFF</color>
+    <color name="font_gray">#838383</color>
+    <color name="font_gray_666666">#666666</color>
+    <color name="font_gray_light">#BCBCBC</color>
+    <color name="font_red">#FC6058</color>
+    <color name="font_yellow">#FFB000</color>
+    <color name="font_blue">#3A5AFD</color>
+    <color name="font_green">#20C5B7</color>
+    <color name="font_gray_dark">#4C4C4C</color>¬
+
+
+    <color name="drop_down_selected">#7B1FA2</color>
+    <color name="drop_down_unselected">#111111</color>
+    <color name="check_bg">#f2f2f2</color>
+    <color name="mask_color">#88888888</color>
+    <color name="recorder_bg">#F4511E</color>
+
+
+    <!--    列表背景色-->
+    <color name="view_gray">#cdcdcd</color>
+    <color name="view_red">#f1084c</color>
+    <color name="view_yellow">#f4ea2a</color>
+    <color name="view_green">#bdeac5</color>
+    <color name="black">#000000</color>
+    <color name="bg_gray_color">#f2f2f2</color>
+
+    <!-- 文字颜色 -->
+    <!-- 用于顶部导航栏文字信息，标题和重要文字信息 -->
+    <color name="main_font">#333333</color>
+    <!-- 用于顶部导航栏icon默认颜色，普通级文字信息 -->
+    <color name="normal_font">#666666</color>
+    <!-- 用于辅助、次要的文字信息 -->
+    <color name="assist_font">#999999</color>
+
+    <!-- 重要颜色 -->
+    <!-- 用于特别需要强调和突出的文字、按钮、链接、icon -->
+    <color name="theme_green">#009B78</color>
+    <color name="login_btn_un_enable">#4CB9A0</color>
+    <!-- 用于未读消息提示和特别需要强调的信息 -->
+    <color name="theme_red">#FF6767</color>
+
+    <!-- 一般类颜色 -->
+    <color name="normal_blue">#789CE6</color>
+    <color name="normal_orange">#FE8743</color>
+    <color name="normal_yellow">#FBC752</color>
+    <!-- 用于信息字体颜色 -->
+    <color name="info_green">#99009b78</color>
+    <!-- 用于信息标签背景 -->
+    <color name="info_green_bg">#19009b78</color>
+
+
+    <!-- 分割线颜色 -->
+    <color name="divider">#dcdcdc</color>
+    <!-- 输入框背景色 -->
+    <color name="bg_input_color">#F8F8F8</color>
+    <!-- 按钮不可用时的颜色 -->
+    <color name="submit_btn_invalid_color">#4D009B78</color>
+    <!-- 按钮可用时的颜色 -->
+    <color name="submit_btn_valid_color">#009B78</color>
+    <!-- 按钮可用时的颜色 -->
+    <color name="submit_btn_press_color">#007C60</color>
+
+
+
+    <color name="white_ru">#D2E9FF</color>
+    <color name="blue">#32c5f3</color>
+    <color name="green">#4ACC60</color>
+    <color name="pink">#6A2290</color>
+    <color name="yellow">#FF7F24</color>
+    <color name="pink_dark">#4B0082</color>
+</resources>

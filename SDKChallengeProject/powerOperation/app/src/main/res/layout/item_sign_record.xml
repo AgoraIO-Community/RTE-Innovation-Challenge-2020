@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginLeft="@dimen/dp_10"
+    android:layout_marginTop="5dp"
+    android:layout_marginRight="@dimen/dp_10"
+    android:background="@drawable/shape_bg_white"
+    android:padding="5dp">
+
+    <TextView
+        android:id="@+id/tv_name"
+        style="@style/font_14_style"
+        android:layout_height="30dp"
+        android:layout_marginLeft="5dp"
+        android:layout_toRightOf="@+id/img_icon"
+        android:text="签到类型："
+        android:textColor="@color/font_title_black" />
+
+    <TextView
+        android:id="@+id/tv_address"
+        style="@style/font_12_style"
+        android:layout_height="30dp"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="@dimen/dp_10"
+        android:text=""
+        android:textColor="@color/font_gray" />
+
+    <TextView
+        android:id="@+id/tv_content"
+        style="@style/font_12_style"
+        android:layout_below="@+id/tv_name"
+        android:layout_marginLeft="5dp"
+        android:layout_toRightOf="@+id/img_icon"
+        android:text=""
+        android:textColor="@color/font_gray" />
+
+    <TextView
+        android:id="@+id/tv_time"
+        style="@style/font_12_style"
+        android:layout_below="@+id/tv_address"
+        android:layout_alignParentRight="true"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="@dimen/dp_10"
+        android:text=""
+        android:textColor="@color/font_gray" />
+</RelativeLayout>

@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="40dp"
+    android:layout_marginTop="@dimen/line_1"
+    android:background="@color/white"
+    android:orientation="vertical"
+    android:paddingLeft="@dimen/dp_10"
+    android:paddingRight="@dimen/dp_10">
+
+    <com.xylib.base.widgets.font.IconTextView
+        android:id="@+id/img_type"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:textColor="@color/color_theme_blue"
+        android:textSize="20dp" />
+
+    <TextView
+        android:id="@+id/tv_type"
+        style="@style/font_detail_title"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="5dp"
+        android:layout_toRightOf="@+id/img_type"
+        android:text="变电站" />
+
+    <TextView
+        android:id="@+id/tv_num"
+        style="@style/font_detail_value"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:drawableRight="@drawable/icon_font_right"
+        android:text="20" />
+</RelativeLayout>
