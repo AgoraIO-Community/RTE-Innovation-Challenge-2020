@@ -1,0 +1,32 @@
+<!--
+  ~ Copyright (C) 2020 xuexiangjys(xuexiangjys@163.com)
+  ~
+  ~ Licensed under the Apache License, Version 2.0 (the "License");
+  ~ you may not use this file except in compliance with the License.
+  ~ You may obtain a copy of the License at
+  ~
+  ~       http://www.apache.org/licenses/LICENSE-2.0
+  ~
+  ~ Unless required by applicable law or agreed to in writing, software
+  ~ distributed under the License is distributed on an "AS IS" BASIS,
+  ~ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  ~ See the License for the specific language governing permissions and
+  ~ limitations under the License.
+  ~
+  -->
+
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="24dp"
+    android:height="24dp"
+    android:viewportWidth="1024"
+    android:viewportHeight="1024">
+  <path
+      android:pathData="M779.2,472.8c-15.46,0 -28,12.54 -28,28C751.2,633.25 643.45,741 511,741S270.8,633.25 270.8,500.8c0,-15.46 -12.54,-28 -28,-28s-28,12.54 -28,28c0,79.12 30.81,153.5 86.75,209.45 46.4,46.4 105.5,75.49 169.45,84.07A300.63,300.63 0,0 0,511 797c13.49,0 26.85,-0.92 40,-2.68 63.95,-8.58 123.04,-37.67 169.45,-84.07 55.94,-55.94 86.76,-130.33 86.76,-209.45 0,-15.46 -12.54,-28 -28,-28zM471,803.32v77.39c0,18.45 17.91,33.4 40,33.4s40,-14.95 40,-33.4v-77.39a359.35,359.35 0,0 1,-40 2.24c-13.49,0 -26.85,-0.77 -40,-2.24z"
+      android:fillColor="#000000"/>
+  <path
+      android:pathData="M511,672c106.97,0 194,-87.03 194,-194V292c0,-106.97 -87.03,-194 -194,-194s-194,87.03 -194,194v186c0,106.97 87.03,194 194,194zM373,433V292c0,-7.14 0.55,-14.15 1.6,-21 10.14,-66.16 67.45,-117 136.4,-117 76.09,0 138,61.91 138,138v186c0,76.09 -61.91,138 -138,138 -76.09,0 -138,-61.91 -138,-138v-45z"
+      android:fillColor="#000000"/>
+  <path
+      android:pathData="M569,299c0,-15.46 -12.54,-28 -28,-28H384.6A138.51,138.51 0,0 0,383 292v35h158c15.46,0 28,-12.54 28,-28zM569,405c0,-15.46 -12.54,-28 -28,-28H383v56h158c15.46,0 28,-12.54 28,-28z"
+      android:fillColor="#000000"/>
+</vector>

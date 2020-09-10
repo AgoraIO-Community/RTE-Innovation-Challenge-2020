@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@mipmap/bg_login"
+    tools:context="com.hwm.together.view.activity.LoginActivity">
+
+    <include
+        android:id="@+id/login_in_top_bar"
+        layout="@layout/activity_main_login_navigation_bar"
+        app:layout_constraintTop_toTopOf="parent"/>
+
+    <include
+        android:id="@+id/register_in_account"
+        layout="@layout/include_account_edit"
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:layout_marginTop="160dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/login_tv_forget"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/login_forget_hint"
+        android:onClick="goForgetActivity"
+        android:layout_marginLeft="48dp"
+        android:textColor="@color/login_line_color"
+        app:layout_constraintLeft_toLeftOf="@+id/register_in_account"
+        app:layout_constraintTop_toTopOf="@+id/tv_login_go_register"
+        app:layout_constraintBottom_toBottomOf="@+id/tv_login_go_register"/>
+
+    <TextView
+        android:id="@+id/tv_login_go_register"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/login_go_to_register"
+        android:gravity="center"
+        android:onClick="goRegisterActivity"
+        android:layout_marginTop="30dp"
+        android:layout_marginRight="48dp"
+        android:textColor="@color/balck"
+        android:drawableRight="@drawable/icon_go_right"
+        app:layout_constraintRight_toRightOf="@+id/register_in_account"
+        app:layout_constraintTop_toBottomOf="@+id/register_in_account"/>
+
+    <Button
+        android:id="@+id/bt_login_submit"
+        android:layout_width="match_parent"
+        android:layout_height="52dp"
+        android:layout_marginLeft="24dp"
+        android:layout_marginRight="24dp"
+        android:background="@drawable/bg_login_submit"
+        android:elevation="0dp"
+        android:outlineProvider="none"
+        android:text="@string/login"
+        android:onClick="login"
+        android:textColor="@color/white"
+        android:textSize="@dimen/font_18"
+        android:translationZ="0dp"
+        tools:targetApi="lollipop"
+        android:layout_marginTop="380dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
+
+</android.support.constraint.ConstraintLayout>

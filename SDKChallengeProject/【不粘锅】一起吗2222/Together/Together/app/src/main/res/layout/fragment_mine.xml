@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/navigation_bg_shade">
+
+    <TextView
+        android:id="@+id/mine_fragment_tv_head"
+        android:layout_width="match_parent"
+        android:layout_height="130dp"
+        android:text="昵称昵称昵称昵称"
+        android:textSize="20dp"
+        android:textColor="@color/balck"
+        android:gravity="center_vertical"
+        android:background="@color/white"
+        android:paddingLeft="120dp"
+        android:paddingRight="16dp"
+        android:drawableRight="@drawable/icon_go_right"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
+
+    <ImageView
+        android:id="@+id/mine_fg_headImg"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_marginLeft="16dp"
+        app:layout_constraintLeft_toLeftOf="@+id/mine_fragment_tv_head"
+        app:layout_constraintTop_toTopOf="@+id/mine_fragment_tv_head"
+        app:layout_constraintBottom_toBottomOf="@+id/mine_fragment_tv_head"/>
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/bg_press_material"
+        app:layout_constraintLeft_toLeftOf="@+id/mine_fragment_tv_head"
+        app:layout_constraintTop_toBottomOf="@+id/mine_fragment_tv_head"/>
+
+    <TextView
+        android:id="@+id/mine_fg_tv_gender"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="性别"
+        android:textSize="14dp"
+        android:textColor="@color/balck"
+        android:paddingTop="14dp"
+        android:paddingBottom="14dp"
+        android:layout_marginTop="21dp"
+        android:background="@color/white"
+        android:paddingLeft="16dp"
+        android:paddingRight="16dp"
+        android:drawablePadding="10dp"
+        android:gravity="center_vertical"
+        android:drawableLeft="@drawable/text_icon_gender"
+        app:layout_constraintLeft_toLeftOf="@+id/mine_fragment_tv_head"
+        app:layout_constraintTop_toBottomOf="@+id/mine_fragment_tv_head"/>
+
+    <TextView
+        android:id="@+id/mine_fg_tv_get_gender"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="14dp"
+        android:text="待完善"
+        android:background="@color/white"
+        android:layout_marginRight="20dp"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/mine_fg_tv_gender"
+        app:layout_constraintBottom_toBottomOf="@+id/mine_fg_tv_gender"/>
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/bg_press_material"
+        android:layout_marginLeft="16dp"
+        app:layout_constraintLeft_toLeftOf="@+id/mine_fg_tv_gender"
+        app:layout_constraintTop_toBottomOf="@+id/mine_fg_tv_gender"/>
+
+    <TextView
+        android:id="@+id/mine_fg_tv_birthday"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="生日"
+        android:textSize="14dp"
+        android:textColor="@color/balck"
+        android:paddingTop="14dp"
+        android:paddingBottom="14dp"
+        android:layout_marginTop="1dp"
+        android:background="@color/white"
+        android:gravity="center_vertical"
+        android:paddingLeft="16dp"
+        android:paddingRight="16dp"
+        android:drawablePadding="10dp"
+        android:drawableLeft="@drawable/text_icon_birthday"
+        app:layout_constraintLeft_toLeftOf="@+id/mine_fg_tv_gender"
+        app:layout_constraintTop_toBottomOf="@+id/mine_fg_tv_gender"/>
+
+    <TextView
+        android:id="@+id/mine_fg_tv_get_birthday"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="14dp"
+        android:text="待完善"
+        android:background="@color/white"
+        android:layout_marginRight="20dp"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/mine_fg_tv_birthday"
+        app:layout_constraintBottom_toBottomOf="@+id/mine_fg_tv_birthday"/>
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/bg_press_material"
+        android:layout_marginLeft="16dp"
+        app:layout_constraintLeft_toLeftOf="@+id/mine_fg_tv_birthday"
+        app:layout_constraintTop_toBottomOf="@+id/mine_fg_tv_birthday"/>
+
+    <TextView
+        android:id="@+id/mine_fg_tv_location"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="地区"
+        android:textSize="14dp"
+        android:textColor="@color/balck"
+        android:paddingTop="14dp"
+        android:paddingBottom="14dp"
+        android:layout_marginTop="1dp"
+        android:background="@color/white"
+        android:gravity="center_vertical"
+        android:paddingLeft="16dp"
+        android:paddingRight="16dp"
+        android:drawablePadding="10dp"
+        android:drawableLeft="@drawable/text_icon_location"
+        app:layout_constraintLeft_toLeftOf="@+id/mine_fg_tv_birthday"
+        app:layout_constraintTop_toBottomOf="@+id/mine_fg_tv_birthday"/>
+
+    <TextView
+        android:id="@+id/mine_fg_tv_get_location"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="14dp"
+        android:text="待完善"
+        android:background="@color/white"
+        android:layout_marginRight="20dp"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/mine_fg_tv_location"
+        app:layout_constraintBottom_toBottomOf="@+id/mine_fg_tv_location"/>
+
+    <TextView
+        android:id="@+id/mine_fg_tv_reset_passwd"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="修改密码"
+        android:textSize="14dp"
+        android:textColor="@color/balck"
+        android:paddingTop="14dp"
+        android:paddingBottom="14dp"
+        android:layout_marginTop="21dp"
+        android:background="@drawable/selector_cliced_list_item"
+        android:gravity="center_vertical"
+        android:paddingLeft="16dp"
+        android:paddingRight="16dp"
+        android:drawablePadding="10dp"
+        android:drawableLeft="@drawable/text_icon_resetpd"
+        android:drawableRight="@drawable/icon_go_right"
+        app:layout_constraintLeft_toLeftOf="@+id/mine_fg_tv_location"
+        app:layout_constraintTop_toBottomOf="@+id/mine_fg_tv_location"/>
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/bg_press_material"
+        android:layout_marginLeft="16dp"
+        app:layout_constraintLeft_toLeftOf="@+id/mine_fg_tv_reset_passwd"
+        app:layout_constraintTop_toBottomOf="@+id/mine_fg_tv_reset_passwd"/>
+
+    <TextView
+        android:id="@+id/mine_fg_tv_setup"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="设置"
+        android:textSize="14dp"
+        android:textColor="@color/balck"
+        android:paddingTop="14dp"
+        android:paddingBottom="14dp"
+        android:layout_marginTop="1dp"
+        android:background="@drawable/selector_cliced_list_item"
+        android:gravity="center_vertical"
+        android:paddingLeft="16dp"
+        android:paddingRight="16dp"
+        android:drawablePadding="10dp"
+        android:drawableLeft="@drawable/text_icon_setup"
+        android:drawableRight="@drawable/icon_go_right"
+        app:layout_constraintLeft_toLeftOf="@+id/mine_fg_tv_reset_passwd"
+        app:layout_constraintTop_toBottomOf="@+id/mine_fg_tv_reset_passwd"/>
+
+
+
+</android.support.constraint.ConstraintLayout>

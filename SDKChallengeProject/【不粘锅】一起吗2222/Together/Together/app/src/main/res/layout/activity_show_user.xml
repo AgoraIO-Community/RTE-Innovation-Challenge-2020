@@ -1,0 +1,232 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.hwm.together.view.activity.ShowUserActivity">
+
+    <include
+        android:id="@+id/show_user_in_top_bar"
+        layout="@layout/include_title_black"
+        app:layout_constraintTop_toTopOf="parent"/>
+
+
+    <ImageView
+        android:id="@+id/show_user_img_head_bg"
+        android:layout_width="match_parent"
+        android:layout_height="130dp"
+        android:text="备注"
+        android:textSize="24dp"
+        android:textColor="@color/balck"
+        android:gravity="top"
+        android:background="@color/white"
+        android:paddingLeft="120dp"
+        android:paddingRight="16dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/show_user_in_top_bar"/>
+
+    <ImageView
+        android:id="@+id/show_user_headImg"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_marginLeft="16dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/show_user_img_head_bg"
+        app:layout_constraintBottom_toBottomOf="@+id/show_user_img_head_bg"/>
+
+    <TextView
+        android:id="@+id/show_user_tv_noteName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="备注"
+        android:textSize="24dp"
+        android:textStyle="bold"
+        android:textColor="@color/balck"
+        android:gravity="top"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="20dp"
+        android:background="@color/white"
+        app:layout_constraintLeft_toRightOf="@+id/show_user_headImg"
+        app:layout_constraintTop_toTopOf="@+id/show_user_img_head_bg"/>
+
+    <EditText
+        android:id="@+id/show_user_et_inputNoteName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:hint="请输入备注"
+        android:textSize="24dp"
+        android:textStyle="bold"
+        android:textColor="@color/balck"
+        android:gravity="top"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="20dp"
+        android:background="@color/white"
+        app:layout_constraintLeft_toRightOf="@+id/show_user_headImg"
+        app:layout_constraintTop_toTopOf="@+id/show_user_img_head_bg"
+        android:visibility="gone"/>
+
+    <TextView
+        android:id="@+id/show_user_tv_nickName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="昵称:"
+        android:textSize="18dp"
+        android:gravity="top"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="20dp"
+        android:background="@color/white"
+        app:layout_constraintLeft_toRightOf="@+id/show_user_headImg"
+        app:layout_constraintTop_toBottomOf="@+id/show_user_tv_noteName"/>
+
+    <TextView
+        android:id="@+id/show_user_tv_gender"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="性别"
+        android:textSize="14dp"
+        android:textColor="@color/balck"
+        android:paddingTop="14dp"
+        android:paddingBottom="14dp"
+        android:layout_marginTop="21dp"
+        android:background="@color/white"
+        android:paddingLeft="16dp"
+        android:paddingRight="16dp"
+        android:drawablePadding="10dp"
+        android:gravity="center_vertical"
+        android:drawableLeft="@drawable/text_icon_gender"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/show_user_img_head_bg"/>
+
+    <TextView
+        android:id="@+id/show_user_tv_get_gender"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="14dp"
+        android:text="未设置"
+        android:background="@color/white"
+        android:layout_marginRight="20dp"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/show_user_tv_gender"
+        app:layout_constraintBottom_toBottomOf="@+id/show_user_tv_gender"/>
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/bg_press_material"
+        android:layout_marginLeft="16dp"
+        app:layout_constraintLeft_toLeftOf="@+id/show_user_tv_gender"
+        app:layout_constraintTop_toBottomOf="@+id/show_user_tv_gender"/>
+
+    <TextView
+        android:id="@+id/show_user_tv_birthday"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="生日"
+        android:textSize="14dp"
+        android:textColor="@color/balck"
+        android:paddingTop="14dp"
+        android:paddingBottom="14dp"
+        android:layout_marginTop="1dp"
+        android:background="@color/white"
+        android:gravity="center_vertical"
+        android:paddingLeft="16dp"
+        android:paddingRight="16dp"
+        android:drawablePadding="10dp"
+        android:drawableLeft="@drawable/text_icon_birthday"
+        app:layout_constraintLeft_toLeftOf="@+id/show_user_tv_gender"
+        app:layout_constraintTop_toBottomOf="@+id/show_user_tv_gender"/>
+
+    <TextView
+        android:id="@+id/show_user_tv_get_birthday"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="14dp"
+        android:text="未设置"
+        android:background="@color/white"
+        android:layout_marginRight="20dp"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/show_user_tv_birthday"
+        app:layout_constraintBottom_toBottomOf="@+id/show_user_tv_birthday"/>
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/bg_press_material"
+        android:layout_marginLeft="16dp"
+        app:layout_constraintLeft_toLeftOf="@+id/show_user_tv_birthday"
+        app:layout_constraintTop_toBottomOf="@+id/show_user_tv_birthday"/>
+
+    <TextView
+        android:id="@+id/show_user_tv_location"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="地区"
+        android:textSize="14dp"
+        android:textColor="@color/balck"
+        android:paddingTop="14dp"
+        android:paddingBottom="14dp"
+        android:layout_marginTop="1dp"
+        android:background="@color/white"
+        android:gravity="center_vertical"
+        android:paddingLeft="16dp"
+        android:paddingRight="16dp"
+        android:drawablePadding="10dp"
+        android:drawableLeft="@drawable/text_icon_location"
+        app:layout_constraintLeft_toLeftOf="@+id/show_user_tv_birthday"
+        app:layout_constraintTop_toBottomOf="@+id/show_user_tv_birthday"/>
+
+    <TextView
+        android:id="@+id/show_user_tv_get_location"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="14dp"
+        android:text="未设置"
+        android:background="@color/white"
+        android:layout_marginRight="20dp"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/show_user_tv_location"
+        app:layout_constraintBottom_toBottomOf="@+id/show_user_tv_location"/>
+
+    <TextView
+        android:id="@+id/show_user_tv_addFriends"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="添加好友"
+        android:textSize="14dp"
+        android:textColor="@color/text_dark_blue"
+        android:paddingTop="14dp"
+        android:paddingBottom="14dp"
+        android:layout_marginTop="21dp"
+        android:onClick="addFriends"
+        android:background="@drawable/selector_cliced_list_item"
+        android:gravity="center"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/show_user_tv_location"/>
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/bg_press_material"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/show_user_tv_addFriends"/>
+
+    <TextView
+        android:id="@+id/show_user_tv_updateNoteName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="修改备注"
+        android:textSize="14dp"
+        android:textColor="@color/text_dark_blue"
+        android:paddingTop="14dp"
+        android:paddingBottom="14dp"
+        android:layout_marginTop="1dp"
+        android:onClick="updateNoteName"
+        android:background="@drawable/selector_cliced_list_item"
+        android:gravity="center"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/show_user_tv_addFriends"
+        android:visibility="gone"/>
+
+
+</android.support.constraint.ConstraintLayout>

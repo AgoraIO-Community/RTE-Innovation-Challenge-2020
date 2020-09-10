@@ -1,0 +1,17 @@
+<resources>
+    <dimen name="font_12">12.0dip</dimen>
+    <dimen name="font_16">16.0dip</dimen>
+    <dimen name="font_18">18.0dip</dimen>
+
+    <dimen name="lay_12">12.0dip</dimen>
+    <dimen name="lay_16">16.0dip</dimen>
+
+    <dimen name="activity_horizontal_margin">16dp</dimen>
+    <dimen name="activity_vertical_margin">16dp</dimen>
+    <dimen name="local_preview_margin_top">28dp</dimen>
+    <dimen name="local_preview_margin_right">24dp</dimen>
+
+    <!-- buttons -->
+    <dimen name="call_button_size">60dp</dimen>
+    <dimen name="other_button_size">54dp</dimen>
+</resources>

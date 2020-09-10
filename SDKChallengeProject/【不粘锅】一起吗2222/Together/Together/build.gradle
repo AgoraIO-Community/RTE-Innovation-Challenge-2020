@@ -1,0 +1,37 @@
+// Top-level build file where you can add configuration options common to all sub-projects/modules.
+
+buildscript {
+    repositories {
+        google()
+        jcenter()
+        
+    }
+    dependencies {
+        classpath 'com.android.tools.build:gradle:3.4.1'
+        classpath 'org.greenrobot:greendao-gradle-plugin:3.2.2'
+
+        // NOTE: Do not place your application dependencies here; they belong
+        // in the individual module build.gradle files
+    }
+}
+
+allprojects {
+    repositories {
+        // Msc.jar线上maven地址
+        maven{
+            url 'http://libmsc.xfyun.cn/repository/maven-releases/'
+        }
+        maven {
+            url "http://mvn.gt.getui.com/nexus/content/repositories/releases/"
+        }
+        jcenter()
+        mavenCentral()
+        google()
+        jcenter()
+        
+    }
+}
+
+task clean(type: Delete) {
+    delete rootProject.buildDir
+}
