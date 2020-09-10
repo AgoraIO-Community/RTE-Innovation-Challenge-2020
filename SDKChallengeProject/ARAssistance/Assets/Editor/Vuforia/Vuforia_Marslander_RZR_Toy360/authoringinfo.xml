@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<QCARInfo>
+<TargetSet version="17.0" toolVersion="9.0.0">
+<ModelTarget name="Vuforia_MarsLander" targetId="1b4ab4cb460b4d5da9cb19b15b28a476" version="11.1" toolVersion="9.0.0" bbox="-0.076974 0.000075 -0.054268 0.073280 0.110221 0.076523" previewImage="1b4ab4cb460b4d5da9cb19b15b28a476_preview.jpg"/>
+<ModelTarget name="Vuforia_RZR_Toy" targetId="bb1cf8f64dc54f759687d193f19ee4af" version="11.1" toolVersion="9.0.0" bbox="-0.046301 0.012037 -0.202827 0.046299 0.115624 -0.035509" previewImage="bb1cf8f64dc54f759687d193f19ee4af_preview.jpg"/>
+
+</TargetSet>
+
+<Assembly name="Vuforia_MarsLanders_assembly" assemblyId="d47e9b97bf9b4ecd8afe939754eec55f">
+<Part name="Vuforia_MarsLander" translation="0 0 0" rotation="AD: 0 0 1 0"/>
+<EntryPoint name="viewpoint_0000" translation="0.00200198 0.0532643 0.375181" rotation="AD: -0.026831746404356264 -1.0352826248360243 3.84414633502294 179.792" image="Vuforia_MarsLander_viewpoint_0000.png" trained="yes">
+
+</EntryPoint>
+
+</Assembly>
+<Assembly name="Vuforia_RZR_Toys_assembly" assemblyId="531fd89ee0b74baa86c1e50d877121e1">
+<Part name="Vuforia_RZR_Toy" translation="0 0 0" rotation="AD: 0 0 1 0"/>
+<EntryPoint name="viewpoint_0000" translation="-0.0949364 0.0703138 0.241212" rotation="AD: 0.9987332639052284 0.1122936832084448 -0.5154161808947686 201.809" image="Vuforia_RZR_Toy_viewpoint_0000.png" trained="yes">
+
+</EntryPoint>
+
+</Assembly>
+<ModelTargetDatabase mtDBid="c62e74cf86d14228b4e03617c007a6db" name="Vuforia_Marslander_RZR_Toy360" toolVersion="13.0" version="13.0">
+    <RecognitionResult assemblyId="531fd89ee0b74baa86c1e50d877121e1" assemblyName="Vuforia_RZR_Toy" entryPoint="viewpoint_0000" />
+    <RecognitionResult assemblyId="d47e9b97bf9b4ecd8afe939754eec55f" assemblyName="Vuforia_MarsLander" entryPoint="viewpoint_0000" />
+</ModelTargetDatabase>
+
+</QCARInfo>

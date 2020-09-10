@@ -1,0 +1,23 @@
+{
+    "name": "SamplesScripts",
+    "references": [
+        "GUID:4aa734a563557450591d3fe58a62a120",
+        "GUID:d233edb6b891ca54f802dc57043ba374"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [
+        "VUFORIA_ENABLED"
+    ],
+    "versionDefines": [
+        {
+            "name": "com.ptc.vuforia.engine",
+            "expression": "1.0.0",
+            "define": "VUFORIA_ENABLED"
+        }
+    ]
+}
