@@ -1,0 +1,54 @@
+{
+  "name": "touch_fish_artifact",
+  "version": "0.4.12",
+  "license": "MIT",
+  "author": "wujun<1004996598@qq.com>",
+  "description": "Touch Fish Artifact",
+  "scripts": {
+    "serve": "vue-cli-service serve",
+    "build": "vue-cli-service build",
+    "lint": "vue-cli-service lint",
+    "preelectron:build": "rm -rf ./dist_electron",
+    "electron:build": "vue-cli-service electron:build",
+    "electron:serve": "vue-cli-service electron:serve",
+    "postinstall": "electron-builder install-app-deps",
+    "postuninstall": "electron-builder install-app-deps"
+  },
+  "main": "background.js",
+  "dependencies": {
+    "@types/mousetrap": "^1.6.3",
+    "agora-access-token": "^2.0.4",
+    "agora-electron-sdk": "^3.0.0-build.661",
+    "core-js": "^3.6.5",
+    "flv.js": "^1.5.0",
+    "lottie-web": "^5.7.3",
+    "mousetrap": "^1.6.5",
+    "vue": "^2.6.11",
+    "vue-class-component": "^7.2.3",
+    "vue-property-decorator": "^8.4.2",
+    "vue-router": "^3.2.0",
+    "vuetify": "^2.2.11",
+    "vuex": "^3.4.0"
+  },
+  "devDependencies": {
+    "@types/electron-devtools-installer": "^2.2.0",
+    "@vue/cli-plugin-babel": "~4.5.0",
+    "@vue/cli-plugin-router": "~4.5.0",
+    "@vue/cli-plugin-typescript": "~4.5.0",
+    "@vue/cli-plugin-vuex": "~4.5.0",
+    "@vue/cli-service": "~4.5.0",
+    "electron": "7.1.2",
+    "electron-devtools-installer": "^3.1.1",
+    "native-ext-loader": "^2.3.0",
+    "node-sass": "^4.12.0",
+    "sass": "^1.19.0",
+    "sass-loader": "^8.0.2",
+    "typescript": "~3.9.3",
+    "vue-cli-plugin-electron-builder": "~2.0.0-rc.4",
+    "vue-template-compiler": "^2.6.11"
+  },
+  "agora_electron": {
+    "electron_version": "7.1.2",
+    "prebuilt": true
+  }
+}
