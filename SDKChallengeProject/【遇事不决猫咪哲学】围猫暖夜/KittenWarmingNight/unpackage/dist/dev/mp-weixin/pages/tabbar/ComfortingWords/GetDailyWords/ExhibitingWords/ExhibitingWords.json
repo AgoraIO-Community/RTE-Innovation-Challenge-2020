@@ -1,0 +1,6 @@
+{
+  "navigationBarTitleText": "每日一签",
+  "usingComponents": {
+    "hch-poster": "/components/hch-poster/hch-poster"
+  }
+}

@@ -1,0 +1,20 @@
+{
+  "name": "kitten-warming-night",
+  "version": "1.0.1",
+  "description": "<table>\r <img src=\"https://huangchunhongzz.gitee.io/imgs/poster/poster_gif.gif\" height = 400 div  />\r </table>\r ## 使用方法（主要看pages/hch-poster页面的例子里面有详细说明）",
+  "main": "main.js",
+  "directories": {
+    "lib": "lib"
+  },
+  "dependencies": {
+    "axios": "^0.20.0",
+    "js-md5": "^0.7.3",
+    "vuex": "^3.5.1"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "zrh",
+  "license": "ISC"
+}

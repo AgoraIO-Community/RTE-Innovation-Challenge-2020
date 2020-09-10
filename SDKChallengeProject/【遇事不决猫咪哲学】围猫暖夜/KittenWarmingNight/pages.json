@@ -1,0 +1,106 @@
+{
+	"easycom": {
+		"^u-(.*)": "@/uview-ui/components/u-$1/u-$1.vue"
+	},
+	"pages": [ //pages数组中第一项表示应用启动页，参考：https://uniapp.dcloud.io/collocation/pages
+		{
+			"path": "pages/tabbar/index/index",
+			"style": {
+				"navigationBarTitleText": "首页"
+			}
+		},{
+			"path": "pages/tabbar/ComfortingWords/ComfortingWords",
+			"style": {
+				"navigationBarTitleText": "签语"
+			}
+		},
+		{
+			"path": "pages/tabbar/my/my",
+			"style": {
+				"navigationBarTitleText": "我的"
+			}
+		}
+		
+        ,{
+            "path" : "pages/tabbar/ComfortingWords/GetDailyWords/GetDailyWords",
+            "style" : {
+				"navigationBarTitleText": "每日一签"
+			}
+        }
+        ,{
+            "path" : "pages/tabbar/ComfortingWords/HearingWords/HearingWords",
+            "style" : {
+				"navigationBarTitleText": "语音漂流瓶"
+			}
+        }
+        ,{
+            "path" : "pages/tabbar/ComfortingWords/HearingWords/uploading/uploading",
+            "style" : {
+				"navigationBarTitleText": "语音漂流"
+			}
+        }
+        ,{
+            "path" : "pages/tabbar/index/MeetingRoom/MeetingRoom",
+            "style" : {
+				"navigationBarTitleText": "私语空间"
+			}
+        }
+        ,{
+            "path" : "pages/tabbar/index/AnonymousChatting/AnonymousChatting",
+            "style" : {
+				"navigationBarTitleText": "语海寻真"
+			}
+        }
+        ,{
+            "path" : "pages/tabbar/ComfortingWords/GetDailyWords/ExhibitingWords/ExhibitingWords",
+            "style" : {
+				"navigationBarTitleText": "每日一签"
+			}
+        }
+        ,{
+            "path" : "pages/tabbar/my/qualify/qualify",
+            "style" : {
+				"navigationBarTitleText": "资格认证"
+			}
+        }
+        ,{
+            "path" : "pages/tabbar/ComfortingWords/GetDailyWords/UploadingWords/UploadingWords",
+            "style" : {
+				"navigationBarTitleText": "上传妙言"
+			}
+        }
+        ,{
+            "path" : "pages/tabbar/my/Feedback/Feedback",
+            "style" : {
+				"navigationBarTitleText": "意见反馈"
+			}
+        }
+    ],
+	"globalStyle": {
+		"navigationBarTextStyle": "black",
+		"navigationBarTitleText": "uni-app",
+		"navigationBarBackgroundColor": "#FECC79",
+		"backgroundColor": "#E6E6E6"
+	},
+	"tabBar": {
+		"color": "#666",
+		"selectedColor":"#F8B33A",
+		"backgroundColor": "#fff",
+		"list":[{
+			"pagePath":"pages/tabbar/index/index",
+			"iconPath":"static/首页-未点击.png",
+			"selectedIconPath":"static/首页.png",
+			"text": "首页"
+		},{
+			"pagePath":"pages/tabbar/ComfortingWords/ComfortingWords",
+			"iconPath":"static/签语-未点击.png",
+			"selectedIconPath":"static/签语.png",
+			"text": "签语"
+		},{
+			"pagePath":"pages/tabbar/my/my",
+			"iconPath":"static/我的-未点击.png",
+			"selectedIconPath":"static/我的.png",
+			"text": "我的"
+		}]
+	}
+}

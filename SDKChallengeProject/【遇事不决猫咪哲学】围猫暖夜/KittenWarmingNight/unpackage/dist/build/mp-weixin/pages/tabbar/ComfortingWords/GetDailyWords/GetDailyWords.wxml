@@ -1,0 +1,1 @@
+<view class="content"><view class="container"><view class="container-box"><image class="image" src="{{image}}" mode="scaleToFill"></image><button data-event-opts="{{[['tap',[['open',['$event']]]]]}}" class="button-normal" bindtap="__e">抽签</button><button data-event-opts="{{[['tap',[['upload',['$event']]]]]}}" class="button-normal" bindtap="__e">上传签文</button></view></view></view>
