@@ -1,14 +1,18 @@
 <resources>
-    <string name="app_name">漫友</string>
+    <!--    <string name="app_name">漫友</string>-->
+    <string name="app_name">一起吗</string>
 
-    <string name="app_id">5d8b164c</string>
+    <string name="app_id"></string>
+    <!--  声网APPID  -->
+    <string name="agora_app_id"></string>
     <!--新版登录专用-->
     <string name="login">登录</string>
     <string name="login_input_username_hint">用户名</string>
-    <string name="hint_password">密码</string>
+    <string name="hint_password">密码(6-16位数字/字母)</string>
     <string name="login_hold_hint">自动登录</string>
     <string name="login_forget_hint">忘记密码？</string>
     <string name="login_register_hint">注册</string>
+    <string name="login_go_to_register">快速注册</string>
     <string name="login_other_hint">其他方式登录</string>
     <string name="register_input_username_hint">手机号</string>
     <string name="register_username_hint">用户名</string>
@@ -30,4 +34,14 @@
     <string name="message_username_null">用户名未填写！！！</string>
 
     <string name="chat_press_to_speak">按住 说话</string>
+    <string name="click_again_to_exit">再按一次退出应用</string>
+
+    <string name="no_phone_number">请输入手机号</string>
+    <string name="no_password">请输入密码</string>
+    <string name="wrong_format_phone_number">手机号格式不正确</string>
+    <string name="wrong_format_password">请输入6-16位密码</string>
+    <string name="no_agreement">请勾选同意协议</string>
+    <string name="password_not_same">两次密码输入不一致</string>
+
+    <string name="loading_location_data">地址数据正在加载，请稍等</string>
 </resources>

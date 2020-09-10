@@ -7,4 +7,11 @@
             <solid android:color="#E96893"/>
         </shape>
     </item>
+
+    <item android:state_pressed="true">
+        <shape>
+            <corners android:radius="26dp"/>
+            <solid android:color="#FA78A3"/>
+        </shape>
+    </item>
 </selector>

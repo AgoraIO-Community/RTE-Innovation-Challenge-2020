@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    package="com.example.myapplication">
+    package="com.hwm.together">
 
+    <uses-permission android:name="android.permission.DISABLE_KEYGUARD" />
     <uses-permission android:name="android.permission.RECORD_AUDIO" />
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
@@ -11,38 +12,97 @@
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.READ_CONTACTS" />
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-<!--    <uses-permission android:name="android.permission.WRITE_SETTINGS"-->
-<!--        tools:ignore="ProtectedPermissions" />-->
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" /> <!-- <uses-permission android:name="android.permission.WRITE_SETTINGS" -->
+    <!-- tools:ignore="ProtectedPermissions" /> -->
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
-    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" /> <!-- 定位 -->
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" /> <!-- 解锁 -->
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+
+    <uses-feature android:name="android.hardware.camera" />
+    <uses-feature android:name="android.hardware.camera.autofocus" />
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.RECORD_AUDIO" />
+    <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.BLUETOOTH" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
     <application
         android:name=".MyApplication"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
+        android:networkSecurityConfig="@xml/network_config"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MainActivity"
+        <activity android:name=".view.activity.TetrisActivity"></activity>
+        <activity android:name=".view.activity.WatchMovieActivity" />
+        <activity android:name=".view.activity.NewFriendsActivity" />
+        <activity android:name=".view.activity.SetNoteNameActivity" />
+        <activity android:name=".view.activity.ApplyFriendActivity" />
+        <activity android:name=".view.activity.ShowUserActivity" />
+        <activity
+            android:name=".view.activity.PersonalInfoActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".view.activity.ForgetPasswordActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".view.activity.LoginActivity"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".MainActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/ImageTranslucentTheme">
+            android:theme="@style/FullscreenTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
         <activity
-            android:name=".view.RegisterActivity"
+            android:name=".view.activity.RegisterActivity"
             android:launchMode="singleTop"
+            android:screenOrientation="portrait" /> <!-- android:theme="@style/Account_Base.App.Theme.NoTitle" -->
+        <activity
+            android:name=".view.activity.ChatActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".view.activity.NavigationFragmentActivity"
+            android:launchMode="singleTask"
             android:screenOrientation="portrait"
-            android:theme="@style/ImageTranslucentTheme"/>
-<!--        android:theme="@style/Account_Base.App.Theme.NoTitle"-->
-        <activity android:name=".view.ChatActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/ImageTranslucentTheme"></activity>
+            android:windowSoftInputMode="adjustPan" /> <!-- android:windowSoftInputMode="adjustResize|stateHidden" -->
+        <activity
+            android:name=".view.activity.RingingActivity"
+            android:screenOrientation="portrait" /> <!-- 服务 -->
+        <service android:name=".service.RingService" /> <!-- autosize适配：尺寸配置 -->
+        <meta-data
+            android:name="design_width_in_dp"
+            android:value="360" />
+        <meta-data
+            android:name="design_height_in_dp"
+            android:value="640" /> <!-- 7.0以上摄像头调取 -->
+        <provider
+            android:name="android.support.v4.content.FileProvider"
+            android:authorities="com.hwm.together.fileprovider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/file_paths" />
+        </provider>
+
+        <service
+            android:name=".service.GTManageService"
+            android:permission="android.permission.BIND_JOB_SERVICE" />
     </application>
 
 </manifest>

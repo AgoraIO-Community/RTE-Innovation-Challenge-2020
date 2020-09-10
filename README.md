@@ -1,22 +1,11 @@
-# RTE Innovation Challenge 2020
+# Together
 
-*English* | [中文](README.zh.md)
 
-## Introduction
+appId 位置 string.xml下
+<string name="agora_app_id"></string>
 
-The RTE 2020 Innovation Challenge is a Data Algorithms and Innovative Applications Challenge launched by Agora and the RTC developer community，for developers all around the world.
-
-Our original goal is to find out the developers who are interested in the technology boundaries of RTC, who love technology innovation, and who want to challenge themselves.
-
-There are two different tracks of the challenge, the Super Resolution Image Quality Algorithm Challenge, and the Programming Challenge, where developers are free to sign up.
-
-We hope that the contestants will solve practical problems in academic, commercial, and social areas while pursuing technological innovation and performance, and use technology to create greater value for society.
-
-Repository|Track
--|-
-[SDKChallengeProject](./SDKChallengeProject)| Programming Challenge
-[AlgorithmChanllengeProject](./AlgorithmChanllengeProject)|Super Resolution Image Quality Algorithm Challenge
-
-## License
-
-All applications are licensed under the MIT License (MIT).
+介绍：
+1.注册、登录功能
+2.好友功能
+3.和好友一起看电影，视频通话同时观看同一部电影
+4.双人实时音频玩游戏（暂未实现双人）

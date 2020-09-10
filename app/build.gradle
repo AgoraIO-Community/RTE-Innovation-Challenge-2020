@@ -1,23 +1,37 @@
 apply plugin: 'com.android.application'
+apply plugin: 'org.greenrobot.greendao'
 
 android {
     compileSdkVersion 28
     defaultConfig {
-        applicationId "com.example.myapplication"
+        applicationId "com.hwm.myapplication"
         minSdkVersion 19
         targetSdkVersion 28
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
 
+        manifestPlaceholders = [
+                //个推应用参数，请填写您申请的 GETUI_APP_ID，GETUI_APP_KEY，GETUI_APP_SECRET 值
+                GETUI_APP_ID : "9GMm0gJnzo9pbmNkWoqMM",
+                GETUI_APP_KEY : "QarAzytWAF8m7yrAITkss1",
+                GETUI_APP_SECRET : "nW14iBGL2b86Ttp2",
+        ]
+
         ndk {
-            abiFilters 'armeabi-v7a'//,'arm64-v8a'    //只生成armv7的so
+            abiFilters 'armeabi-v7a',"armeabi", "x86_64", "x86"//,'arm64-v8a'    //只生成armv7的so
         }
     }
     buildTypes {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+
+        greendao {
+            schemaVersion 1
+            daoPackage 'com.hwm.myapplication.greendao.dao' // 一般为app包名+生成文件的文件夹名
+            targetGenDir 'src/main/java'
         }
     }
 
@@ -41,5 +55,29 @@ dependencies {
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
+    //讯飞语音
     compile files('libs/Msc.jar')
+    //图片轮播
+    implementation 'com.youth.banner:banner:1.4.10'
+    //glide图片框架
+    implementation 'com.github.bumptech.glide:glide:4.5.0'
+    //autosize(今日头条适配)
+    implementation 'me.jessyan:autosize:1.1.2'
+    //retrofit网络框架
+    implementation 'com.squareup.retrofit2:retrofit:2.6.2'
+    implementation 'com.squareup.retrofit2:converter-gson:2.6.1'
+    //eventbus
+    implementation 'org.greenrobot:eventbus:3.1.1'
+    implementation 'com.android.support:recyclerview-v7:28.0.0'
+    //greendao数据库框架
+    implementation 'org.greenrobot:greendao:3.2.2'
+    implementation 'org.greenrobot:greendao-generator:3.2.2'
+    //PickerView 选择器
+    implementation 'com.contrarywind:Android-PickerView:4.1.9'
+    //谷歌Gson
+    implementation 'com.google.code.gson:gson:2.8.6'
+    //个推
+    implementation 'com.getui:sdk:2.14.1.0'
+    //声网视频通话
+    implementation 'io.agora.rtc:full-sdk:3.1.1'
 }

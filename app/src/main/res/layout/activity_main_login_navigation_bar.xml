@@ -1,19 +1,34 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@color/transparent"
-    android:orientation="horizontal">
+    android:fitsSystemWindows="true"
+    android:background="@color/transparent">
 
     <ImageButton
         android:id="@+id/ib_navigation_back"
-        android:layout_width="48dp"
-        android:layout_height="48dp"
-        android:layout_marginTop="20dp"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_marginTop="6dp"
+        android:layout_marginLeft="6dp"
         android:background="@drawable/bg_login_navigation_bar"
         android:contentDescription="@null"
-        app:srcCompat="@mipmap/btn_back_normal" />
+        android:src="@mipmap/btn_back_normal"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
 
-</LinearLayout>
+    <TextView
+        android:id="@+id/ib_navigation_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="18sp"
+        android:textColor="@color/white"
+        android:text="滴滴"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/ib_navigation_back"
+        app:layout_constraintBottom_toBottomOf="@+id/ib_navigation_back"/>
+
+</android.support.constraint.ConstraintLayout>
