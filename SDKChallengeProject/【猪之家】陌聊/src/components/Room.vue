@@ -22,7 +22,7 @@
 
 <script>
 import Player from "./Player";
-import { log } from "../utils/utils";
+const log = console.log
 import { rtc, createStream } from "../share";
 
 export default {
