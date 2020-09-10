@@ -16,13 +16,16 @@ graph TD
     B --> |网页跳转| E(多人语音视频聊天)
 ```
 
-由此, 我们队通过 uniapp 开发了围猫暖夜这款微信小程序. 围猫暖夜涵盖了陌生人互相匹配的多人语音聊天、和专业咨询师沟通的私语空间、每日一签和语音漂流瓶等社交功能, 以声音作为交互的主要媒介, 页面色彩明丽, 插画生动可爱, 以猫咪为主题, 让使用者感到放松和舒适.具体使用见demo.mp4.
+由此, 我们队通过 uniapp 开发了围猫暖夜这款微信小程序. 围猫暖夜涵盖了陌生人互相匹配的多人语音聊天、和专业咨询师沟通的私语空间、每日一签和语音漂流瓶等社交功能, 以声音作为交互的主要媒介, 页面色彩明丽, 插画生动可爱, 以猫咪为主题, 让使用者感到放松和舒适.
 
 <img src="https://github.com/xjywq/picgo/blob/master/%E5%9B%B4%E7%8C%AB%E6%9A%96%E5%A4%9C/page1.jpg?raw=true" alt = "示例图片1" width="32%">
 <img src="https://github.com/xjywq/picgo/blob/master/%E5%9B%B4%E7%8C%AB%E6%9A%96%E5%A4%9C/page2.jpg?raw=true" alt = "示例图片2" width="32%">
 <img src="https://github.com/xjywq/picgo/blob/master/%E5%9B%B4%E7%8C%AB%E6%9A%96%E5%A4%9C/share.jpg?raw=true" alt = "示例图片3" width="32%">
 
 另外还有彩蛋功能！为正在写代码的秃头（bushi）程序员提供安慰和鼓励！
+
+## Demo 展示
+[Demo 跳转](https://jbox.sjtu.edu.cn/l/r1KU5s)
 
 ## Web 端多人语音聊天——私语空间(H5)
 
