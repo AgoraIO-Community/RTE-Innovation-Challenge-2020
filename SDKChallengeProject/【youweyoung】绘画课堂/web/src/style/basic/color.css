@@ -1,0 +1,32 @@
+.bg-white {
+  background-color: white;
+  color: black;
+}
+.bg-black {
+  background-color: black;
+  color: white;
+}
+.bg-red {
+  background-color: red;
+  color: white;
+}
+.bg-gray {
+  background-color: gray;
+  color: white;
+}
+.bg-dark {
+  background-color: gray;
+  color: white;
+}
+.white {
+  color: white;
+}
+.red {
+  color: red;
+}
+.blue {
+  color: rgb(58, 202, 221);
+}
+.black{
+  background-color: black;
+}

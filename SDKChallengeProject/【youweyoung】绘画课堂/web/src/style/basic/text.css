@@ -1,0 +1,39 @@
+.strong {
+  font-weight: 800;
+}
+.font-xs {
+  font-size: 0.5rem;
+}
+.font-s {
+  font-size: 0.75rem;
+}
+.font-m {
+  font-size: 1rem;
+}
+.font-l {
+  font-size: 1.25rem;
+}
+.font-x {
+  font-size: 1.5rem;
+}
+.tleft {
+  text-align: left;
+}
+.tright {
+  text-align: right;
+}
+.tcent {
+  text-align: center;
+}
+.tjust {
+  text-align: justify;
+}
+.tloose {
+  line-height: 2;
+  letter-spacing: 1px;
+  padding: 0 8px;
+}
+.tkeep{
+  word-break: keep-all;
+  white-space: nowrap;
+}

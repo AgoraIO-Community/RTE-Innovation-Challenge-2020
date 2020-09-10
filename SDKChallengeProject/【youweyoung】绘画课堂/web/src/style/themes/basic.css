@@ -1,0 +1,10 @@
+.block-main {
+  background-color: white;
+  color: black;
+  padding: 1rem;
+}
+.lead{
+    font-weight: 700;
+    font-size: 1.2rem;
+    margin-right: 1rem;
+}
