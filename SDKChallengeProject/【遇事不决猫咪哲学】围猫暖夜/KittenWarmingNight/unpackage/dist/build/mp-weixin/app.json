@@ -1,0 +1,50 @@
+{
+  "pages": [
+    "pages/tabbar/index/index",
+    "pages/tabbar/ComfortingWords/ComfortingWords",
+    "pages/tabbar/my/my",
+    "pages/tabbar/ComfortingWords/GetDailyWords/GetDailyWords",
+    "pages/tabbar/ComfortingWords/HearingWords/HearingWords",
+    "pages/tabbar/ComfortingWords/HearingWords/uploading/uploading",
+    "pages/tabbar/index/MeetingRoom/MeetingRoom",
+    "pages/tabbar/index/AnonymousChatting/AnonymousChatting",
+    "pages/tabbar/ComfortingWords/GetDailyWords/ExhibitingWords/ExhibitingWords",
+    "pages/tabbar/my/qualify/qualify",
+    "pages/tabbar/ComfortingWords/GetDailyWords/UploadingWords/UploadingWords",
+    "pages/tabbar/my/Feedback/Feedback"
+  ],
+  "subPackages": [],
+  "window": {
+    "navigationBarTextStyle": "black",
+    "navigationBarTitleText": "uni-app",
+    "navigationBarBackgroundColor": "#FECC79",
+    "backgroundColor": "#E6E6E6"
+  },
+  "tabBar": {
+    "color": "#666",
+    "selectedColor": "#F8B33A",
+    "backgroundColor": "#fff",
+    "list": [
+      {
+        "pagePath": "pages/tabbar/index/index",
+        "iconPath": "static/首页-未点击.png",
+        "selectedIconPath": "static/首页.png",
+        "text": "首页"
+      },
+      {
+        "pagePath": "pages/tabbar/ComfortingWords/ComfortingWords",
+        "iconPath": "static/签语-未点击.png",
+        "selectedIconPath": "static/签语.png",
+        "text": "签语"
+      },
+      {
+        "pagePath": "pages/tabbar/my/my",
+        "iconPath": "static/我的-未点击.png",
+        "selectedIconPath": "static/我的.png",
+        "text": "我的"
+      }
+    ]
+  },
+  "usingComponents": {},
+  "sitemapLocation": "sitemap.json"
+}

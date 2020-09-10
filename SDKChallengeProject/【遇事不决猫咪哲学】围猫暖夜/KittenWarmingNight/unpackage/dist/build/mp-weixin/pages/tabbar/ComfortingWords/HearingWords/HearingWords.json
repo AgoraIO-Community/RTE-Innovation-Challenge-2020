@@ -1,0 +1,6 @@
+{
+  "navigationBarTitleText": "语音漂流瓶",
+  "usingComponents": {
+    "wyb-drop-down": "/components/wyb-drop-down/wyb-drop-down"
+  }
+}
