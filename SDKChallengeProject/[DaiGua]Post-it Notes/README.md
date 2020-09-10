@@ -2,19 +2,27 @@
 
 #### 一、 快速开始
 
-1. 在项目根目录下的 .env文件中输入自己在声网控制台中生成的APP_ID，同时保证自己的项目已经开通云录制权限
+1. 快速搭建开发环境
+   1. 在前端项目（daiguaFront）根目录下的 .env文件中输入自己在声网控制台中生成的APP_ID，同时保证自己的项目已经开通云录制权限
 
-2. 在项目根目录下打开终端输入npm install，执行成功后文件夹中会自动生成node_modules文件夹
+   2. 在前端项目目录下打开终端输入npm install，执行成功后文件夹中会自动生成node_modules文件夹
 
-3. 在终端中输入npm run serve ，即可运行项目
+   3. 在终端中输入npm run serve ，即可运行项目
 
-   （项目默认账号密码有以下几组）
+      （项目默认账号密码有以下几组）
 
-   | 账号   | 密码   |
-   | ------ | ------ |
-   | dandan | 123456 |
-   | tantan | 123456 |
-   | banban | 123456 |
+      | 账号   | 密码   |
+      | ------ | ------ |
+      | dandan | 123456 |
+      | tantan | 123456 |
+      | banban | 123456 |
+
+
+2. 推荐：**直接观看演示视频**
+
+   演示视频地址https://cmz-daigua.oss-cn-beijing.aliyuncs.com/Post-it-notes.mp4
+
+   或者点击[这里](https://cmz-daigua.oss-cn-beijing.aliyuncs.com/Post-it-notes.mp4)跳转视频观看
 
 
 
@@ -64,13 +72,7 @@ Agora音视频通话SDK
 
 Agora云录制
 
-##### 4.演示
-
-演示视频地址https://cmz-daigua.oss-cn-beijing.aliyuncs.com/Post-it-notes.mp4
-
-或者点击[这里](https://cmz-daigua.oss-cn-beijing.aliyuncs.com/Post-it-notes.mp4)跳转视频观看
-
-注意： 目前此版本只支持扬声器的音频输入，对耳机等外设的音频输入还有缺陷
+（说明： 目前此项目开发版本只支持扬声器的音频输入，对耳机等外设的音频输入还有缺陷）
 
 
 
