@@ -328,7 +328,7 @@
             placeholder="请输入故事标题"
             on:blur={() => {
               flushStories();
-              $rtm.syncStory({
+              $rtm?.syncStory({
                 op: 'set-story-name',
                 value: {
                   id: currentStory.id,
@@ -345,7 +345,7 @@
                 placeholder="请输入章节标题"
                 on:blur={() => {
                   flushStories();
-                  $rtm.syncStory({
+                  $rtm?.syncStory({
                     op: 'set-chapter-name',
                     value: {
                       id: chapter.id,
@@ -380,7 +380,7 @@
                                 on:blur={() => {
                                   flushStories();
                                   outScene();
-                                  $rtm.syncStory({
+                                  $rtm?.syncStory({
                                     op: 'set-scene-name',
                                     value: {
                                       id: scene.id,

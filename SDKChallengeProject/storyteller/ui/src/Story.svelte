@@ -203,10 +203,19 @@
   .story-tooltip {
     position: absolute;
     z-index: 999999;
-    background: rgba(0, 0, 0, 0.75);
-    color: white;
-    padding: 1em;
+    background: white;
+    color: #212529;
+    padding: 0.5em 0.75em;
     display: none;
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    border-radius: 0.3rem;
+  }
+
+  .story-tooltip-meta {
+    border-top: 1px solid rgba(0, 0, 0, 0.2);
+    margin-top: 4px;
+    padding-top: 4px;
+    text-align: right;
   }
 
   .story-tooltip-target-mask {
@@ -263,7 +272,9 @@
       <div bind:this={tooltipEl} class="story-tooltip">
         {#if nextTooltip}
           <div>{nextTooltip.content}</div>
-          <div>{tooltipIdx + 1}/{tooltips.length}</div>
+          <div class="story-tooltip-meta">
+            {tooltipIdx + 1}/{tooltips.length}
+          </div>
         {/if}
       </div>
       <div

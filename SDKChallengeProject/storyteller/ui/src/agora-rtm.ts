@@ -372,12 +372,14 @@ export class AgoraRtmTransporter {
       }).match(/(.|[\r\n]){1,30000}/g) || [];
     await pmap(
       texts,
-      (text, idx) =>
-        this.channel.sendMessage({
+      async (text, idx) => {
+        await this.channel.sendMessage({
           text: `${idx + 1}/${texts.length}/${this.mid}_${text}`,
-        }),
+        });
+        await sleep(1000);
+      },
       {
-        concurrency: 10,
+        concurrency: 50,
       }
     );
   }

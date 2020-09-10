@@ -28,6 +28,9 @@
   export let sceneIdx = 0;
 
   remoteStory.subscribe((newValue) => {
+    if (!newValue) {
+      return;
+    }
     const chapterInNewValue = newValue.chapters.find(
       (c) => c.id === chapter.id
     );
@@ -154,7 +157,7 @@
     } as const;
     scene.effects = scene.effects.concat(newEffect);
     finishTooltip();
-    $rtm.syncStory({
+    $rtm?.syncStory({
       op: "add-effect",
       value: {
         chapterId: chapter.id,
@@ -330,7 +333,7 @@
       },
     } as const;
     scene.effects = scene.effects.concat(newEffect);
-    $rtm.syncStory({
+    $rtm?.syncStory({
       op: "add-effect",
       value: {
         chapterId: chapter.id,
@@ -365,7 +368,7 @@
     const idx = scene.effects.indexOf(effect);
     scene.effects = scene.effects.filter((e) => e !== effect);
     if (idx > -1) {
-      $rtm.syncStory({
+      $rtm?.syncStory({
         op: "remove-effect",
         value: {
           chapterId: chapter.id,
@@ -380,7 +383,7 @@
     const { type, payload, index } = modalPayload;
     if (type === "tooltip") {
       scene.effects[index].payload = payload;
-      $rtm.syncStory({
+      $rtm?.syncStory({
         op: "update-effect",
         value: {
           chapterId: chapter.id,
@@ -397,7 +400,7 @@
           payload,
         } as Effect;
         scene.effects = scene.effects.concat(newEffect);
-        $rtm.syncStory({
+        $rtm?.syncStory({
           op: "add-effect",
           value: {
             chapterId: chapter.id,
@@ -408,7 +411,7 @@
         });
       } else {
         scene.effects[index].payload = payload;
-        $rtm.syncStory({
+        $rtm?.syncStory({
           op: "update-effect",
           value: {
             chapterId: chapter.id,
@@ -443,7 +446,7 @@
       scene.events[scene.events.length - 1].timestamp -
       scene.events[0].timestamp;
     chapter.sequence = chapter.sequence.slice();
-    $rtm.syncStory({
+    $rtm?.syncStory({
       op: "update-scene",
       value: {
         chapterId: chapter.id,
@@ -461,7 +464,7 @@
       : null;
     chapter.sequence = chapter.sequence.concat(newScene);
     sceneIdx = chapter.sequence.length - 1;
-    $rtm.syncStory({
+    $rtm?.syncStory({
       op: "add-scene",
       value: {
         chapterId: chapter.id,
