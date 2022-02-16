@@ -1,0 +1,13 @@
+.vscode/**
+.vscode-test/**
+test/**
+.gitignore
+jsconfig.json
+vsc-extension-quickstart.md
+.eslintrc.json
+frt/
+codesync-web/
+
+frt/**
+codesync-web/**
+**.vsix

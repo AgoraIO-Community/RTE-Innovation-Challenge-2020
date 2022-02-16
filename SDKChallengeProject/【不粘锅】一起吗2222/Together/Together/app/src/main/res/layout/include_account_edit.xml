@@ -1,0 +1,139 @@
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+    <LinearLayout
+        android:id="@+id/ll_register_phone"
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:layout_marginLeft="24dp"
+        android:layout_marginRight="24dp"
+        android:background="@drawable/bg_login_input_ok"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:id="@+id/iv_register_username_icon"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_marginLeft="14dp"
+            android:contentDescription="@null"
+            android:src="@mipmap/ic_singup_mobile"
+            tools:ignore="RtlHardcoded" />
+
+        <View
+            android:layout_width="1px"
+            android:layout_height="22dp"
+            android:layout_marginLeft="14dp"
+            android:layout_marginRight="14dp"
+            android:background="@color/login_line_color" />
+
+        <EditText
+            android:id="@+id/et_register_username"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@null"
+            android:hint="@string/register_input_username_hint"
+            android:inputType="phone"
+            android:maxLength="11"
+            android:maxLines="1"
+            android:minLines="1"
+            android:paddingLeft="4dp"
+            android:paddingRight="4dp"
+            android:textColor="@color/white"
+            android:textColorHint="@color/white"
+            android:textCursorDrawable="@null"
+            android:textSize="@dimen/font_16" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/ll_register_sms_code"
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:layout_marginLeft="24dp"
+        android:layout_marginRight="24dp"
+        android:background="@drawable/bg_login_input_ok"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:layout_marginTop="80dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:id="@+id/iv_register_auth_code_icon"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_marginLeft="14dp"
+            android:layout_marginRight="14dp"
+            android:contentDescription="@null"
+            android:src="@mipmap/ic_signup_sms" />
+
+        <View
+            android:layout_width="1px"
+            android:layout_height="22dp"
+            android:background="@color/login_line_color" />
+
+        <EditText
+            android:id="@+id/et_register_auth_code"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp"
+            android:layout_weight="1"
+            android:background="@null"
+            android:hint="@string/hint_password"
+            android:maxLength="16"
+            android:inputType="textPassword"
+            android:digits="0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
+            android:paddingLeft="4dp"
+            android:textColor="@color/white"
+            android:textColorHint="@color/white"
+            android:textCursorDrawable="@null"
+            android:textSize="@dimen/font_16" />
+
+        <CheckBox
+            android:id="@+id/register_cb_show_password"
+            android:checked="false"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="4dp"
+            android:gravity="center"
+            android:button="@drawable/selector_password_show"/>
+
+        <ImageButton
+            android:id="@+id/img_register_clear"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:src="@drawable/icon_clear"
+            android:onClick="clear"
+            android:scaleType="fitCenter"
+            android:background="@drawable/bg_login_navigation_bar"
+            android:layout_marginRight="16dp"/>
+
+
+        <!--        <TextView-->
+        <!--            android:id="@+id/tv_register_sms_call"-->
+        <!--            android:layout_width="wrap_content"-->
+        <!--            android:layout_height="wrap_content"-->
+        <!--            android:layout_marginRight="16dp"-->
+        <!--            android:alpha="0.4"-->
+        <!--            android:background="@drawable/bg_register_call_sms"-->
+        <!--            android:gravity="center_vertical"-->
+        <!--            android:paddingLeft="6dp"-->
+        <!--            android:paddingTop="4dp"-->
+        <!--            android:paddingRight="6dp"-->
+        <!--            android:paddingBottom="4dp"-->
+        <!--            android:text="@string/register_sms_hint"-->
+        <!--            android:textColor="@color/white"-->
+        <!--            android:textSize="12sp"-->
+        <!--            tools:ignore="RtlHardcoded" />-->
+    </LinearLayout>
+</android.support.constraint.ConstraintLayout>

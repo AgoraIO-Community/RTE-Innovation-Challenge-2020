@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<QCARConfig>
+<Tracking>
+<ModelTarget name="VuforiaMars_ModelTarget" motionHint="adaptive"/>
+
+</Tracking>
+
+<Assembly name="VuforiaMars_ModelTargets_assembly" assemblyId="91f5220e29224e4fa198e66214e43292">
+<Part name="VuforiaMars_ModelTarget" translation="0 0 0" rotation="AD: 0 0 1 0"/>
+<EntryPoint name="Back" translation="0 0.0378461 0.386541" rotation="AD: 1 0 0 210">
+
+</EntryPoint>
+<EntryPoint name="Front" translation="1.17013e-18 0.0474009 0.369991" rotation="AD: -2.3658359427573407e-16 -1.0352761804100832 3.8637033051562746 180">
+
+</EntryPoint>
+
+</Assembly>
+
+</QCARConfig>

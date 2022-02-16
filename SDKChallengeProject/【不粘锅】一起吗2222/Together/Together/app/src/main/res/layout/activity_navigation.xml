@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+    android:background="@color/white">
+
+<!--    <ImageView-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="40dp"-->
+<!--        android:background="@color/white"-->
+<!--        app:layout_constraintLeft_toLeftOf="parent"-->
+<!--        app:layout_constraintTop_toTopOf="parent"/>-->
+
+    <com.hwm.together.util.navigation.NavigationViewPager
+        android:id="@+id/homepages_viewPager"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginBottom="52dp"
+        app:layout_constraintBottom_toBottomOf="parent">
+    </com.hwm.together.util.navigation.NavigationViewPager>
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/bg_press_material"
+        android:layout_marginBottom="52dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"/>
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="52dp"
+        android:background="@color/white"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"/>
+
+    <RadioGroup
+        android:id="@+id/navigation_rg"
+        android:layout_width="wrap_content"
+        android:layout_height="52dp"
+        android:background="@color/white"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent">
+        <RadioButton
+            android:id="@+id/navigation_homepage_rb"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:button="@null"
+            android:text="电影院"
+            android:textSize="10sp"
+            android:textColor="#696969"
+            android:drawableTop="@drawable/bootom_icon_home_selector"
+            android:gravity="center"
+            android:drawablePadding="2dp"/>
+        <RadioButton
+            android:id="@+id/navigation_chase_rb"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:button="@null"
+            android:text="游戏厅"
+            android:textSize="10sp"
+            android:textColor="#696969"
+            android:drawableTop="@drawable/bootom_icon_chase_selector"
+            android:gravity="center"
+            android:drawablePadding="2dp"
+            android:layout_marginLeft="42dp"/>
+        <RadioButton
+            android:id="@+id/navigation_community_rb"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:button="@null"
+            android:text="动态"
+            android:textSize="10sp"
+            android:textColor="#696969"
+            android:drawableTop="@drawable/bootom_icon_community_selector"
+            android:gravity="center"
+            android:drawablePadding="2dp"
+            android:layout_marginLeft="42dp"/>
+        <RadioButton
+            android:id="@+id/navigation_friends_rb"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:button="@null"
+            android:text="好友"
+            android:textSize="10sp"
+            android:textColor="#696969"
+            android:drawableTop="@drawable/bootom_icon_friends_selector"
+            android:gravity="center"
+            android:drawablePadding="2dp"
+            android:layout_marginLeft="42dp" />
+        <RadioButton
+            android:id="@+id/navigation_mine_rb"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:button="@null"
+            android:text="我的"
+            android:textSize="10sp"
+            android:textColor="#696969"
+            android:drawableTop="@drawable/bootom_icon_mine_selector"
+            android:gravity="center"
+            android:drawablePadding="2dp"
+            android:layout_marginLeft="42dp"/>
+    </RadioGroup>
+
+    <ImageView
+        android:id="@+id/navigation_mine_red_point"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/icon_new_message"
+        android:layout_marginRight="48dp"
+        android:layout_marginBottom="26dp"
+        app:layout_constraintRight_toRightOf="@+id/navigation_rg"
+        app:layout_constraintBottom_toBottomOf="@+id/navigation_rg"
+        android:visibility="gone"/>
+
+
+</android.support.constraint.ConstraintLayout>

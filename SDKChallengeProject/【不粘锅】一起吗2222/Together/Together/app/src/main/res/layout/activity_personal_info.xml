@@ -1,0 +1,207 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/person_info_cl_parent_view"
+    tools:context="com.hwm.together.view.activity.PersonalInfoActivity">
+
+    <include
+        android:id="@+id/person_in_top_bar"
+        layout="@layout/include_title_black"
+        app:layout_constraintTop_toTopOf="parent"/>
+
+
+    <TextView
+        android:id="@+id/person_info_tv_head"
+        android:layout_width="match_parent"
+        android:layout_height="90dp"
+        android:text="头像"
+        android:textSize="16dp"
+        android:textColor="@color/balck"
+        android:gravity="center_vertical"
+        android:onClick="showPhotoDialog"
+        android:background="@color/white"
+        android:paddingLeft="16dp"
+        android:paddingRight="16dp"
+        android:drawableRight="@drawable/icon_go_right"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/person_in_top_bar"/>
+
+    <ImageView
+        android:id="@+id/person_info_headimg"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginRight="50dp"
+        app:layout_constraintRight_toRightOf="@+id/person_info_tv_head"
+        app:layout_constraintTop_toTopOf="@+id/person_info_tv_head"
+        app:layout_constraintBottom_toBottomOf="@+id/person_info_tv_head"/>
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/bg_press_material"
+        android:layout_marginLeft="16dp"
+        app:layout_constraintLeft_toLeftOf="@+id/person_info_tv_head"
+        app:layout_constraintTop_toBottomOf="@+id/person_info_tv_head"/>
+
+    <TextView
+        android:id="@+id/person_info_tv_nickname"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="昵称"
+        android:textSize="16dp"
+        android:textColor="@color/balck"
+        android:paddingTop="14dp"
+        android:paddingBottom="14dp"
+        android:layout_marginTop="1dp"
+        android:background="@color/white"
+        android:paddingLeft="16dp"
+        android:paddingRight="16dp"
+        android:drawableRight="@drawable/icon_go_right"
+        app:layout_constraintLeft_toLeftOf="@+id/person_info_tv_head"
+        app:layout_constraintTop_toBottomOf="@+id/person_info_tv_head"/>
+
+    <EditText
+        android:id="@+id/person_info_et_nickname"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:hint="请输入昵称（必填）"
+        android:gravity="end"
+        android:textSize="16dp"
+        android:maxLength="8"
+        android:background="@color/white"
+        android:layout_marginRight="50dp"
+        app:layout_constraintRight_toRightOf="@+id/person_info_tv_head"
+        app:layout_constraintTop_toTopOf="@+id/person_info_tv_nickname"
+        app:layout_constraintBottom_toBottomOf="@+id/person_info_tv_nickname"/>
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/bg_press_material"
+        android:layout_marginLeft="16dp"
+        app:layout_constraintLeft_toLeftOf="@+id/person_info_tv_nickname"
+        app:layout_constraintTop_toBottomOf="@+id/person_info_tv_nickname"/>
+
+    <TextView
+        android:id="@+id/person_info_tv_gender"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="性别"
+        android:onClick="selectGender"
+        android:textSize="16dp"
+        android:textColor="@color/balck"
+        android:paddingTop="14dp"
+        android:paddingBottom="14dp"
+        android:layout_marginTop="1dp"
+        android:background="@color/white"
+        android:paddingLeft="16dp"
+        android:paddingRight="16dp"
+        android:drawableRight="@drawable/icon_go_right"
+        app:layout_constraintLeft_toLeftOf="@+id/person_info_tv_nickname"
+        app:layout_constraintTop_toBottomOf="@+id/person_info_tv_nickname"/>
+
+    <TextView
+        android:id="@+id/person_info_tv_get_gender"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="16dp"
+        android:text="请选择性别"
+        android:background="@color/white"
+        android:layout_marginRight="50dp"
+        app:layout_constraintRight_toRightOf="@+id/person_info_tv_head"
+        app:layout_constraintTop_toTopOf="@+id/person_info_tv_gender"
+        app:layout_constraintBottom_toBottomOf="@+id/person_info_tv_gender"/>
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/bg_press_material"
+        android:layout_marginLeft="16dp"
+        app:layout_constraintLeft_toLeftOf="@+id/person_info_tv_gender"
+        app:layout_constraintTop_toBottomOf="@+id/person_info_tv_gender"/>
+
+    <TextView
+        android:id="@+id/person_info_tv_birthday"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="生日"
+        android:onClick="selectBirthday"
+        android:textSize="16dp"
+        android:textColor="@color/balck"
+        android:paddingTop="14dp"
+        android:paddingBottom="14dp"
+        android:layout_marginTop="1dp"
+        android:background="@color/white"
+        android:paddingLeft="16dp"
+        android:paddingRight="16dp"
+        android:drawableRight="@drawable/icon_go_right"
+        app:layout_constraintLeft_toLeftOf="@+id/person_info_tv_gender"
+        app:layout_constraintTop_toBottomOf="@+id/person_info_tv_gender"/>
+
+    <TextView
+        android:id="@+id/person_info_tv_get_birthday"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="16dp"
+        android:text="请选择生日"
+        android:background="@color/white"
+        android:layout_marginRight="50dp"
+        app:layout_constraintRight_toRightOf="@+id/person_info_tv_head"
+        app:layout_constraintTop_toTopOf="@+id/person_info_tv_birthday"
+        app:layout_constraintBottom_toBottomOf="@+id/person_info_tv_birthday"/>
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/bg_press_material"
+        android:layout_marginLeft="16dp"
+        app:layout_constraintLeft_toLeftOf="@+id/person_info_tv_birthday"
+        app:layout_constraintTop_toBottomOf="@+id/person_info_tv_birthday"/>
+
+    <TextView
+        android:id="@+id/person_info_tv_location"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="地区"
+        android:onClick="selectLocation"
+        android:textSize="16dp"
+        android:textColor="@color/balck"
+        android:paddingTop="14dp"
+        android:paddingBottom="14dp"
+        android:layout_marginTop="1dp"
+        android:background="@color/white"
+        android:paddingLeft="16dp"
+        android:paddingRight="16dp"
+        android:drawableRight="@drawable/icon_go_right"
+        app:layout_constraintLeft_toLeftOf="@+id/person_info_tv_birthday"
+        app:layout_constraintTop_toBottomOf="@+id/person_info_tv_birthday"/>
+
+    <TextView
+        android:id="@+id/person_info_tv_get_location"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="16dp"
+        android:text="请选择地区"
+        android:background="@color/white"
+        android:layout_marginRight="50dp"
+        app:layout_constraintRight_toRightOf="@+id/person_info_tv_head"
+        app:layout_constraintTop_toTopOf="@+id/person_info_tv_location"
+        app:layout_constraintBottom_toBottomOf="@+id/person_info_tv_location"/>
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="提交"
+        android:textSize="18dp"
+        android:onClick="setInfo"
+        android:layout_marginTop="30dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/person_info_tv_location" />
+
+</android.support.constraint.ConstraintLayout>

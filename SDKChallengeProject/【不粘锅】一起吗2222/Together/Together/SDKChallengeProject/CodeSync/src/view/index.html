@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <link href="index.css" rel="stylesheet">
+</head>
+
+<body class="agora-theme">
+  <p id="link"></p>
+  <div id="hei">
+    <div id="qrcode"></div>
+  </div>
+  <div id="roomId" class="roomid"></div>
+  <p id="danmuList"></p>
+  <!-- <script src="index.js"></script> -->
+  <script src="../../lib/jquery/jquery.min.js"></script>
+  <script src="./lib/agora-rtm-sdk-1.3.1.js"></script>
+  <script src="./lib/qr.js"></script>
+  <script src="./lib/axios.js"></script>
+  <script src="./lib/yes3.js"></script>
+  <script>
+    $("#TypeA").hide();
+    const vscode = acquireVsCodeApi();
+
+    function callVscode(data, cb) {
+      if (typeof data === 'string') {
+        data = {
+          cmd: data
+        };
+      }
+      if (cb) {
+        const cbid = Date.now() + '' + Math.round(Math.random() * 100000);
+        callbacks[cbid] = cb;
+        data.cbid = cbid;
+      }
+      vscode.postMessage(data);
+    }
+    let codeType = "python";
+    let flag = false;
+
+    function leaveRtm(rtmObj) {
+      rtmObj.logout()
+    }
+    let lastStr = "";
+    let roomId = -1;
+    const rtm = {
+      client: null,
+      channel: null,
+    };
+    let options = {
+      appId: "",
+      channel: "demo_channel_name",
+      token: null,
+      uid: "testing",
+      channelID: null,
+    };
+    let hasInited = false;
+    async function initRtm(channelCode) {
+      if (!hasInited) {
+        hasInited = true;
+      } else {
+        return;
+      }
+      let rid = channelCode;
+      if (channelCode == -1) {
+        let [rid, channelCode] = await yesapi.cs.newRoom();
+        console.log(rid, channelCode);
+        callVscode({
+          cmd: "newRoom",
+          rid: rid
+        });
+      } else {
+        channelCode = await yesapi.cs.queryRoom(channelCode);
+      }
+      $("#roomId").html(`房间号：${rid}`);
+      roomId = rid;
+      rtm.client = AgoraRTM.createInstance(options.appId);
+      let uid = options.uid;
+      await rtm.client.login({
+        token: null,
+        uid: uid + Math.round(Math.random() * 10000).toString(),
+      });
+      rtm.channel = rtm.client.createChannel(channelCode);
+      options.channelID = channelCode;
+      await rtm.channel.join()
+      rtm.channel.on("ChannelMessage", ({
+        text
+      }, senderId) => {
+        if (text.substr(0, 6) == "[CODE]") return;
+        // if(text.substr(0,7)=="[DANMU]") {
+        //   document.getElementById("danmuList").innerText=document.getElementById("danmuList").innerText+"\n"+text.replace("[DANMU]","").replace("\n","")
+        //   callVscode({cmd:"danmu",text1213:text.replace("[DANMU]","").replace("\n","")})
+        // }
+      });
+      rtm.channel.on("MemberJoined", (memberId) => {
+        sendRtmMsg(lastStr);
+        console.log(lastStr, memberId);
+      });      
+      new QRCode(document.getElementById("qrcode"), "");
+      callVscode("initedSuccess");
+    }
+    async function sendRtmMsg(msg) {
+      await rtm.channel.sendMessage({
+        text: msg
+      })
+    }
+
+
+    window.addEventListener('message', event => {
+      const message = event.data;
+      console.log(event);
+      switch (message.cmd) {
+        case 'vscodeCallback':
+          break;
+        case 'initUid':
+          console.log(message.data.uid)
+          initRtm(message.data.uid);
+          $("#url").html(message.data.uid)
+          break;
+        case 'updateTxt':
+          let {
+            text
+          } = message.data;
+          text.replace("\n", "|][|");
+          text = "[CODE]" + text;
+          sendRtmMsg(text);
+          lastStr = text;
+          break;
+        default:
+          break;
+      }
+    });
+    setTimeout(() => {
+      if (!hasInited) initRtm(-1);
+    }, 8000);
+  </script>
+  </div>
+</body>
+<style>
+  body {
+    color: black;
+  }
+  .roomid {
+    color: black;
+    font-size: 20px;
+  }
+</style>
+
+</html>
