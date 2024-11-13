@@ -1,4 +1,11 @@
-# RTE Innovation Challenge 2020
+# [ARCHIVED] RTE Innovation Challenge 2020
+
+**⚠️ This project is no longer maintained and has been archived.**  
+Please note that this repository is now in a read-only state and will not receive any further updates or support.
+
+For documentation and support, please visit the [Agora Documentation](https://docs.agora.io/en/).
+
+---
 
 *English* | [中文](README.zh.md)
 
